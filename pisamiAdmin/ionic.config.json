@@ -1,0 +1,7 @@
+{
+  "name": "pisamiAdmin",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
