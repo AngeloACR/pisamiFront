@@ -8,37 +8,40 @@
 </ion-header>
  -->
 <ion-content>
-<div class="pageBox">
-    <div class="logBox">
-        <div class="logoBox">
-            <img class="formImg" src="assets/LOGIN/LOGOPISAMI.png" alt="Logo">
-        </div>
-        <div class="formBox">
-            <form [formGroup]="login" (ngSubmit)="logUser()">
-                <div class="formContent">
-                    <div class="formInput">
-                        <label for="">Usuario</label>
-                        <input class="lInput" type="text" formControlName="username" name="username">
-                    </div>                                   
-                    
-                    <div class="formInput">
-                        <label for="">Contraseña</label>
-                        <input class="lInput" type="password" formControlName="password" name="password">
-                    </div>
-                    <div class="buttonBox">
+    <div class="pageBox">
+        <div class="logBox">
+            <div class="logoBox">
+                <img class="formImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+            </div>
+            <div class="formBox">
+                <form [formGroup]="login" (ngSubmit)="logUser()">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Usuario</label>
+                            <input class="lInput" type="text" formControlName="username" name="username" />
+                        </div>
 
-                        <button type="submit" class="formButton">
-              <p>Iniciar Sesión</p>
-            </button>
-              <p class="tagLine">¿Has olvidado tu contraseña?</p>
+                        <div class="formInput">
+                            <label for="">Contraseña</label>
+                            <input class="lInput" type="password" formControlName="password" name="password" />
+                        </div>
+                        <div class="buttonBox">
+                            <button type="submit" class="formButton">
+                <p>Iniciar Sesión</p>
+              </button>
+                            <p class="tagLine">¿Has olvidado tu contraseña?</p>
+
+                            <button type="submit" class="formButton">
+                <p>Registrarse</p>
+              </button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="copyright">
-              <p>Copyright Alcaldia Municipal de Ibague © PISAMI V2.0</p>
-              <p>Todos los Derechos Reservados</p>
+                </form>
+            </div>
+            <div class="copyright">
+                <p>Copyright Alcaldia Municipal de Ibague © PISAMI V2.0</p>
+                <p>Todos los Derechos Reservados</p>
+            </div>
         </div>
     </div>
-</div>
 </ion-content>

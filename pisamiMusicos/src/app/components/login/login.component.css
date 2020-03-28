@@ -14,7 +14,7 @@
 }
 
 .logoBox {
-    width: 75%;
+    width: 35%;
 }
 
 .logoBox img {
@@ -127,18 +127,20 @@
 .formButton:active {
     background-color: white;
 }
- .copyright{
-     color: white;
-     position:absolute;
-     bottom: 0;
-     margin-bottom: 20px;
-     text-align: center;
- }
- .copyright p{
-     font-size: 12px;
-     margin: 0;
-     color: white;
- }
+
+.copyright {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.copyright p {
+    font-size: 12px;
+    margin: 0;
+    color: white;
+}
 
 .formButton p {
     color: black;
@@ -162,10 +164,10 @@
     margin-bottom: 10px;
 }
 
-.tagLine{
+.tagLine {
     font-size: 12px;
     color: white;
-/*     border-style: solid;
+    /*     border-style: solid;
     border-bottom-width:1px;
     border-top-width:0;
     border-left-width:0;
@@ -175,10 +177,9 @@
     margin: 0;
 }
 
-.tagLine:hover{
+.tagLine:hover {
     font-weight: bold;
 }
-
 
 .formImg {
     width: 108px;
