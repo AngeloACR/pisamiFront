@@ -7,14 +7,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     z-index: 200;
-    background-image: url('/assets/images/care-bg.jpg');
+    background-image: url('/assets/REGISTRO/FONDO2.png');
     background-size: cover;
 }
 
 .logoBox {
-    width: 30%;
+    width: 46%;
 }
 
 .logoBox img {
@@ -33,11 +33,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 50%;
+    width: 100%;
     flex-wrap: nowrap;
-    background-color: white;
-    /*     height: 100%;
- */
+    height: 100%;
 }
 
 .headerBox {
@@ -56,13 +54,13 @@
 .optionsBox {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    padding-top: 5%;
-    color: black;
-    height: 100%;
+    flex-basis: 100%;
+    color: white;
     background-size: cover;
     width: 100%;
+    background-color: transparent;
 }
 
 .iconsBox {
@@ -70,11 +68,6 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
-}
-
-.iconsBox h1 {
-    margin-bottom: 42px;
 }
 
 .iconBox {
@@ -88,6 +81,171 @@
     font-weight: bold;
     color: black;
     font-size: 23px;
+}
+
+.iconImg {
+    height: 18vh;
+    cursor: pointer;
+}
+
+.formHorario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.formDias {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.formDias .formInput {
+    justify-content: flex-start;
+}
+
+.formDias .formInput .checkContainer {
+    font-size: 16px;
+}
+
+.formNames {
+    text-align: left;
+    width: 50%;
+}
+
+.formApertura {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+}
+
+.formApertura .formInput label {
+    width: 65%;
+}
+
+.formCierre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+}
+
+.formHorario .formInput {
+    height: 40px;
+}
+
+.formCierre .formInput label {
+    width: 65%;
+}
+
+.formServicios {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.formTipo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    font-size: 14px !important;
+}
+
+.formPrecio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    font-size: 14px !important;
+}
+
+.formDuracion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    font-size: 14px !important;
+}
+
+.arrayInput {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrayInput input {
+    width: 100%;
+    font-size: 14px !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    height: 31px !important;
+}
+
+.actionButton {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.actionButton button {
+    background-color: #0072b9;
+    color: white;
+}
+
+.formMetodosdePago {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.formCheckboxs {
+    margin-left: 42px;
+}
+
+.formEmpresa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.formInfodePago {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 23px;
+}
+
+.formTerminos {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2vh;
+    width: 60%;
+}
+
+.formTerminos label {
+    font-size: 18px;
+    text-align: center;
 }
 
 .formInput {
@@ -158,17 +316,16 @@ justify-content: space-evenly; */
 }
 
 .logBox {
-    background-color: #ffffff;
+    background-color: transparent;
     border-radius: 3px;
     height: 0;
-    max-height: 80%;
+    max-height: 100%;
     align-self: center;
-    display: flex;
+    display: none;
     flex-direction: row;
-    position: fixed;
     overflow: hidden;
     overflow-y: scroll;
-    width: 90%;
+    width: 100%;
 }
 
 .blackBox {
@@ -184,7 +341,57 @@ justify-content: space-evenly; */
 }
 
 .formAct {
-    height: auto;
+    flex: 1 1 auto;
+    height: calc(100% - 60px);
+    display: flex;
+}
+
+.messageBox {
+    background-color: #ffffff;
+    height: 0;
+    max-height: 100%;
+    align-self: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.endForm {
+    flex: 1 1 auto;
+    height: calc(100% - 60px);
+    display: flex;
+}
+
+.messageInnerBox {
+    margin-top: 20px;
+    position: relative;
+    border-radius: 23px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: green;
+    text-align: center;
+    align-items: center;
+    width: 80%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageInnerBox p {
+    font-size: 20px;
+    width: 80%;
+    font-weight: bold;
+}
+
+.messageImg {
+    position: absolute;
+    z-index: 100;
+    top: 20px;
+    width: 150px;
+    left: 60px;
 }
 
 .blackAct {
@@ -225,7 +432,7 @@ margin: 0;
     flex-direction: row;
     align-items: center;
     height: 52px;
-    width: 30%;
+    width: 50%;
     color: white;
     background-color: #0084b6;
     margin: auto;
@@ -274,7 +481,7 @@ margin: 0;
 }
 
 .iconImg {
-    height: 18vh;
+    height: 30vh;
     cursor: pointer;
 }
 
@@ -376,6 +583,7 @@ margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2vh;
     justify-content: flex-start;
 }
 
@@ -430,6 +638,7 @@ margin: 0;
 
 .formDescripcion label {
     margin-bottom: 10px;
+    font-size: 16px;
 }
 
 .formDescripcion textarea {
@@ -475,6 +684,30 @@ margin: 0;
     color: white;
 }
 
+.hideOption {
+    display: none;
+}
+
+.logBox::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #afccf4;
+    border-color: #9ba6c0;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.logBox::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+}
+
+.logBox::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #819fe2;
+}
+
 @media only screen and (max-width: 600px) {
     .selectionBox {
         width: 100%;
@@ -494,7 +727,7 @@ margin: 0;
     }
     .optionsBox {
         flex-basis: 100%;
-        overflow-y: scroll;
+        height: 100%;
     }
     .iconsBox {
         flex-wrap: wrap;
@@ -561,7 +794,22 @@ margin: 0;
     .lInput {
         height: 23px;
     }
-    .formAct {
+    /*     .formAct {
         height: 100%;
+    } */
+    .formMetodosdePago .checkContainer {
+        font-size: 16px;
+    }
+    .formMetodosdePago label {
+        text-align: center;
+    }
+    .formApertura .formInput {
+        justify-content: center;
+    }
+    .formCierre .formInput {
+        justify-content: center;
+    }
+    .formHorario label {
+        font-size: 15px;
     }
 }

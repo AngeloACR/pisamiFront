@@ -1,1 +1,235 @@
-<ion-content> </ion-content>
+<ion-content>
+    <div class="pageBox">
+        <div class="selectionBox" *ngIf="!isMusico">
+            <div class="optionsBox" [ngClass]="hideOption">
+                <div class="logoBox">
+                  <img class="formImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+                </div>
+                <h1>¿Cómo te quieres registrar?</h1>
+                <div class="iconsBox">
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="musicoImg" alt="Logo" (click)="firstToggle($event, 'musico')" />
+                        <p>Musico</p>
+                    </div>
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="userImg" alt="Logo" (click)="firstToggle($event, 'usuario')" />
+                        <p>Ususario</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="selectionBox" *ngIf="isMusico">
+            <div class="optionsBox" [ngClass]="hideOption">
+                <div class="logoBox">
+                  <img class="formImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+                </div>
+                <h1>Tipo de Perfil</h1>
+                <div class="iconsBox">
+                    <div class="iconBox">
+                      <img class="iconImg" [src]="solistaImg" alt="Logo" (click)="toggleForm($event, 'solista')" />
+                      <p>Musico/Cantante</p>
+                    </div>
+                    <div class="iconBox">
+                      <img class="iconImg" [src]="duoImg" alt="Logo" (click)="toggleForm($event, 'duo')" />
+                      <p>Dúo</p>
+                  </div>
+                  <div class="iconBox">
+                    <img class="iconImg" [src]="orquestaImg" alt="Logo" (click)="toggleForm($event, 'orquesta')" />
+                    <p>Orquesta</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+<!-- 
+        <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div> -->
+
+        <div class="logBox" [ngClass]="showForm">
+            <div class="closeButton">
+                <button class="closeB" (click)="closeForm()">X</button>
+            </div>
+            <div class="formBox">
+                <form *ngIf="isUser" [formGroup]="registroUser">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Nombre</label>
+                            <input class="lInput" type="text" formControlName="nombre" name="nombre" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Apellido</label>
+                            <input class="lInput" type="text" formControlName="apellido" name="apellido" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Teléfono</label>
+                            <input class="lInput" type="text" formControlName="tlf" name="tlf" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Correo</label>
+                            <input class="lInput" type="text" formControlName="correo" name="correo" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Contraseña</label>
+                            <input class="lInput" type="password" formControlName="password" name="password" />
+                        </div>
+                    </div>
+                </form>
+
+                <form *ngIf="isSolista" [formGroup]="registroSolista">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                          <label for=""></label>
+                          <select name="" formControlName="">
+                            <option selected="true">Sí</option>
+                            <option>No</option>
+                          </select>
+                      </div>                        
+                      <div class="formInput">
+                        <label for=""></label>
+                        <select name="" formControlName="">
+                          <option selected="true">Sí</option>
+                          <option>No</option>
+                        </select>
+                      </div>                        
+                      <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formDescripcion">
+                          <label for="">Descripcion de la empresa</label>
+                          <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                      </div>                        
+                        <div class="formInput">
+                            <label for=""></label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                    </div>
+                </form>
+                
+                <form *ngIf="isDuo" [formGroup]="registroDuo">
+                  <div class="formContent">
+                      <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                      <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                      <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                      <div class="formInput">
+                        <label for=""></label>
+                        <select name="" formControlName="">
+                          <option selected="true">Sí</option>
+                          <option>No</option>
+                        </select>
+                    </div>                        
+                    <div class="formInput">
+                      <label for=""></label>
+                      <select name="" formControlName="">
+                        <option selected="true">Sí</option>
+                        <option>No</option>
+                      </select>
+                    </div>                        
+                    <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                      <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                      <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                      <div class="formDescripcion">
+                        <label for="">Descripcion de la empresa</label>
+                        <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                    </div>                        
+                      <div class="formInput">
+                          <label for=""></label>
+                          <input class="lInput" type="text" formControlName="" name="" />
+                      </div>
+                  </div>
+                </form>
+
+              <form *ngIf="isOrquesta" [formGroup]="registroOrquesta">
+                <div class="formContent">
+                    <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="text" formControlName="" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="number" formControlName="" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="text" formControlName="" name="" />
+                    </div>
+                    <div class="formInput">
+                      <label for=""></label>
+                      <select name="" formControlName="">
+                        <option selected="true">Sí</option>
+                        <option>No</option>
+                      </select>
+                  </div>                        
+                  <div class="formInput">
+                    <label for=""></label>
+                    <select name="" formControlName="">
+                      <option selected="true">Sí</option>
+                      <option>No</option>
+                    </select>
+                  </div>                        
+                  <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="text" formControlName="" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="text" formControlName="" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="text" formControlName="" name="" />
+                    </div>
+                    <div class="formDescripcion">
+                      <label for="">Descripcion de la empresa</label>
+                      <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                  </div>                        
+                    <div class="formInput">
+                        <label for=""></label>
+                        <input class="lInput" type="text" formControlName="" name="" />
+                    </div>
+                </div>
+              </form>
+
+                <button type="button" class="formButton" (click)="endRegistro()">
+          <p>REGISTRARSE</p>
+        </button>
+            </div>
+        </div>
+    </div>
+</ion-content>
