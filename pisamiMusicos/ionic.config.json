@@ -1,7 +1,0 @@
-{
-  "name": "pisamiMusicos",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
