@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -25,4 +25,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

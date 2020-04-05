@@ -17,6 +17,7 @@ export class RegistroComponent implements OnInit {
   registroSolista: FormGroup;
   registroDuo: FormGroup;
   registroOrquesta: FormGroup;
+  registroInfo: FormGroup;
 
   formCompleted: Boolean;
   formSelected: Boolean;
@@ -25,6 +26,7 @@ export class RegistroComponent implements OnInit {
   isMusico: Boolean;
   isSolista: Boolean;
   isDuo: Boolean;
+  isInfo: Boolean;
   isOrquesta: Boolean;
   showBlack: {};
   showForm: {};
@@ -83,6 +85,9 @@ export class RegistroComponent implements OnInit {
     });
 
     this.registroOrquesta = new FormGroup({
+    });
+
+    this.registroInfo = new FormGroup({
     });
 
   }
@@ -157,6 +162,27 @@ export class RegistroComponent implements OnInit {
     this.hideOption = {
       hideOption: false
     }
+  }
+
+  regisGmail() {
+    console.log('Going to gmail');
+  }
+
+  regisFacebook() {
+    console.log('Going to facebook');
+  }
+
+  toggleInfo() {
+
+    this.isUser = false;
+    this.isSolista = false;
+    this.isDuo = false;
+    this.isOrquesta = false;
+    this.isInfo = true;
+  }
+
+  endRegistro(event, tipo) {
+    console.log(tipo);
   }
 
 }

@@ -57,7 +57,7 @@
     justify-content: center;
     align-items: center;
     flex-basis: 100%;
-    color: white;
+    color: #c1272d;
     background-size: cover;
     width: 100%;
     background-color: transparent;
@@ -79,116 +79,13 @@
 
 .iconBox p {
     font-weight: bold;
-    color: black;
+    color: #c1272d;
     font-size: 23px;
 }
 
 .iconImg {
     height: 18vh;
     cursor: pointer;
-}
-
-.formHorario {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.formDias {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
-}
-
-.formDias .formInput {
-    justify-content: flex-start;
-}
-
-.formDias .formInput .checkContainer {
-    font-size: 16px;
-}
-
-.formNames {
-    text-align: left;
-    width: 50%;
-}
-
-.formApertura {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 35%;
-}
-
-.formApertura .formInput label {
-    width: 65%;
-}
-
-.formCierre {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 35%;
-}
-
-.formHorario .formInput {
-    height: 40px;
-}
-
-.formCierre .formInput label {
-    width: 65%;
-}
-
-.formServicios {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.formTipo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 25%;
-    font-size: 14px !important;
-}
-
-.formPrecio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    font-size: 14px !important;
-}
-
-.formDuracion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    font-size: 14px !important;
-}
-
-.arrayInput {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.arrayInput input {
-    width: 100%;
-    font-size: 14px !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    height: 31px !important;
 }
 
 .actionButton {
@@ -204,48 +101,27 @@
     color: white;
 }
 
-.formMetodosdePago {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-}
-
 .formCheckboxs {
     margin-left: 42px;
-}
-
-.formEmpresa {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.formInfodePago {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 23px;
 }
 
 .formTerminos {
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin: auto;
     margin-top: 2vh;
     width: 60%;
 }
 
-.formTerminos label {
-    font-size: 18px;
+.formTerminos p {
+    margin: 0;
+    cursor: pointer;
+    font-size: 12px;
     text-align: center;
+    color: #c1272d;
+    text-decoration: underline;
 }
 
 .formInput {
@@ -260,8 +136,10 @@
 }
 
 .formInput label {
+    font-size: 14px;
     white-space: nowrap;
     margin-right: 15px;
+    color: #c1272d;
 }
 
 .formSide {
@@ -292,18 +170,19 @@ justify-content: space-evenly; */
 }
 
 .lInput {
+    width: 100%;
     flex-basis: 100%;
-    font-size: 16px;
+    font-size: 14px;
     padding-left: 16px;
     border-radius: 42px;
     height: 33px;
     border: none;
     background-image: none;
-    background-color: #ffffc5;
+    background-color: white;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     border-style: solid;
-    border-color: #0072b9;
+    border-color: #c1272d;
     border-width: 2px;
     box-shadow: none;
 }
@@ -324,8 +203,35 @@ justify-content: space-evenly; */
     display: none;
     flex-direction: row;
     overflow: hidden;
-    overflow-y: scroll;
     width: 100%;
+}
+
+.regisBox {
+    margin-top: 3vh;
+    width: 80%;
+}
+
+.welcomeBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    color: #c1272d;
+}
+
+.welcomeBox h1 {
+    font-size: 23px;
+}
+
+.welcomeBox img {
+    width: 30%;
+}
+
+.regisBox img {
+    width: 100%;
+    cursor: pointer;
 }
 
 .blackBox {
@@ -410,48 +316,33 @@ justify-content: space-evenly; */
     align-items: center;
 }
 
-
-/* 
-.formButton {
-width: 104px;
-height: 36px;
-background: white;
-color: black;
-font-size: 14px;
-text-align: center;
-border-radius: 5px;
-}
-
-.formButton p {
-margin: 0;
-}
-*/
-
 .formButton {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 52px;
-    width: 50%;
+    height: 37px;
+    min-width: 40%;
+    width: auto;
     color: white;
-    background-color: #0084b6;
+    font-weight: bold;
+    background-color: #c1272d;
     margin: auto;
     margin-top: 5vh;
     margin-bottom: 5vh;
     border-style: solid;
     border-width: 3px;
-    border-color: #0084b6;
-    border-radius: 8px;
+    border-color: #c1272d;
+    border-radius: 60px;
     cursor: pointer;
 }
 
 .formButton:hover {
-    color: #0084b6;
+    color: #c1272d;
     background-color: white;
 }
 
 .formButton:active {
-    color: #0084b6;
+    color: #c1272d;
     background-color: white;
 }
 
@@ -465,7 +356,7 @@ margin: 0;
 }
 
 .formButton:hover p {
-    color: #0084b6;
+    color: #c1272d;
 }
 
 .buttonBox {
@@ -486,8 +377,8 @@ margin: 0;
 }
 
 .formInput select {
-    border: 3px solid #0072b9;
-    color: #0072b9;
+    border: 3px solid #c1272d;
+    color: #c1272d;
     background-color: white;
 }
 
@@ -500,7 +391,9 @@ margin: 0;
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 12px;
+    color: #c1272d;
+    text-align: center;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -528,7 +421,7 @@ margin: 0;
     height: 25px;
     width: 25px;
     background-color: white;
-    border-color: #0072b9;
+    border-color: #c1272d;
     border-width: 3px;
     border-style: solid;
     border-radius: 8px;
@@ -538,14 +431,14 @@ margin: 0;
 /* On mouse-over, add a grey background color */
 
 .checkContainer:hover input~.checkmark {
-    background-color: #ccc;
+    background-color: white;
 }
 
 
 /* When the checkbox is checked, add a blue background */
 
 .checkContainer input:checked~.checkmark {
-    background-color: #0072b9;
+    background-color: #c1272d;
 }
 
 
@@ -568,8 +461,8 @@ margin: 0;
 /* Style the checkmark/indicator */
 
 .checkContainer .checkmark:after {
-    left: 9px;
-    top: 5px;
+    left: 6px;
+    top: 2px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -588,10 +481,10 @@ margin: 0;
 }
 
 .formImagenes h3 {
-    color: white;
-    background-color: #0084b6;
+    color: #c1272d;
     font-weight: bold;
     padding: 8px;
+    margin-bottom: 0;
 }
 
 .formFiles {
@@ -606,17 +499,18 @@ margin: 0;
 }
 
 .formFile label {
-    width: 10vw;
-    height: 10vw;
-    margin-left: 23px;
-    margin-right: 23px;
+    width: 16vh;
+    height: 16vh;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: 8px;
     cursor: pointer;
-    background-image: none;
-    background-color: #ffffc5;
+    background-image: url('/assets/REGISTRO MUSICO/IMAGEN.png');
+    background-size: cover;
+    background-color: white;
     border-style: solid;
-    border-color: #0072b9;
+    border-color: #c1272d;
     border-width: 2px;
-    border-radius: 23px;
 }
 
 .formFile input {
@@ -626,6 +520,11 @@ margin: 0;
     position: absolute;
 }
 
+#info .formInput {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .formDescripcion {
     display: flex;
     flex-direction: row;
@@ -633,21 +532,21 @@ margin: 0;
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
-    margin-bottom: 10px;
 }
 
 .formDescripcion label {
     margin-bottom: 10px;
-    font-size: 16px;
+    color: #c1272d;
+    font-size: 14px;
 }
 
 .formDescripcion textarea {
     width: 100%;
     border-width: 2px;
     padding-left: 16px;
-    border-color: #0072b9;
+    border-color: #c1272d;
     border-radius: 23px;
-    background-color: #ffffc5;
+    background-color: white;
 }
 
 .fileName {
@@ -705,7 +604,7 @@ margin: 0;
 .logBox::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #819fe2;
+    background-color: #c1272d;
 }
 
 @media only screen and (max-width: 600px) {
@@ -721,9 +620,9 @@ margin: 0;
     .formImg {
         width: 25%;
     }
-    .optionsBox h1 {
+    .optionsBox p {
         text-align: center;
-        font-size: 23px;
+        font-size: 16px;
     }
     .optionsBox {
         flex-basis: 100%;
@@ -749,6 +648,8 @@ margin: 0;
     }
     .formContent {
         padding: 0;
+        margin: auto;
+        width: 90%;
     }
     .formSide {
         width: 31%;
@@ -760,56 +661,34 @@ margin: 0;
         max-height: 100%;
     }
     .formInput {
-        width: 80%;
-        margin-bottom: 15px;
-        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: 8px;
         justify-content: flex-start;
     }
     .formDescripcion {
-        width: 80%;
+        width: 100%;
         margin: auto;
+        margin-bottom: 8px;
     }
     .formImagenes {
         width: 80%;
         margin: auto;
     }
     .formImagenes h3 {
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
     }
     .formButton {
-        width: 60%;
         margin-top: 2vh;
         margin-bottom: 2vh;
     }
     .formButton p {
-        font-size: 18x;
+        font-size: 16x;
     }
     .fileName {
         font-size: 8px;
     }
-    .formFile label {
-        border-radius: 8px;
-    }
     .lInput {
         height: 23px;
-    }
-    /*     .formAct {
-        height: 100%;
-    } */
-    .formMetodosdePago .checkContainer {
-        font-size: 16px;
-    }
-    .formMetodosdePago label {
-        text-align: center;
-    }
-    .formApertura .formInput {
-        justify-content: center;
-    }
-    .formCierre .formInput {
-        justify-content: center;
-    }
-    .formHorario label {
-        font-size: 15px;
     }
 }
