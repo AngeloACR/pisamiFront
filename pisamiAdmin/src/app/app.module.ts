@@ -12,14 +12,26 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
+import { ArtistasComponent } from './components/artistas/artistas.component';
+import { GenerosComponent } from './components/generos/generos.component';
+import { NotificacionesComponent } from './components/notificaciones/notificaciones.component';
+import { PoliticasComponent } from './components/politicas/politicas.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ArtistasComponent,
+    GenerosComponent,
+    NotificacionesComponent,
+    PoliticasComponent,
+    UsuariosComponent,
     RegistroComponent,
-    LoginComponent
-    ],
+    LoginComponent,
+    SidemenuComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -37,4 +49,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

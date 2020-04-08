@@ -11,18 +11,43 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  /*   public appPages = [
+      {
+        title: 'Registro',
+        url: '/registro',
+        icon: 'mail'
+      },
+      {
+        title: 'Iniciar sesión',
+        url: '/login',
+        icon: 'paper-plane'
+      }
+    ];
+   */
+
   public appPages = [
     {
-      title: 'Registro',
-      url: '/registro',
+      title: 'Buscar artistas',
+      url: '/artistas',
       icon: 'mail'
     },
     {
-      title: 'Iniciar sesión',
-      url: '/login',
+      title: 'Mi cuenta (editar perfil)',
+      url: '/perfil',
+      icon: 'paper-plane'
+    },
+    {
+      title: 'Políticas',
+      url: '/politicas',
+      icon: 'paper-plane'
+    },
+    {
+      title: 'Cerrar sesión',
+      url: '/logout',
       icon: 'paper-plane'
     }
   ];
+
 
   constructor(
     private platform: Platform,

@@ -1,4 +1,11 @@
-<ion-content>
+<ion-header [translucent]="true">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
     <div class="pageBox">
         <div class="selectionBox" *ngIf="!isMusico">
             <div class="optionsBox" [ngClass]="hideOption">
@@ -165,58 +172,54 @@
                 </form>
 
                 <form *ngIf="isDuo" [formGroup]="registroDuo">
-                    <div class="formContent">
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <select name="" formControlName="">
-                          <option selected="true">Sí</option>
-                          <option>No</option>
-                        </select>
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <select name="" formControlName="">
-                        <option selected="true">Sí</option>
-                        <option>No</option>
-                      </select>
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-                        <div class="formDescripcion">
-                            <label for="">Descripcion de la empresa</label>
-                            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
-                        </div>
-                        <div class="formInput">
-                            <label for=""></label>
-                            <input class="lInput" type="text" formControlName="" name="" />
-                        </div>
-
-                        <button type="button" class="formButton" (click)="toggleInfo()">
-                            <p>Siguiente</p>
-                        </button>
-                    </div>
+                        <div class="formContent">
+                                <div class="formInput">
+                                    <label for="">Nombre Artístico</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Ciudad de Origen</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">¿Esta dispuesto a salir
+                                            de la ciudad?</label>
+                                    <select name="" formControlName="">
+                                    <option selected="true">Sí</option>
+                                    <option>No</option>
+                                </select>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">¿Tiene representante?</label>
+                                    <select name="" formControlName="">
+                                <option selected="true">Sí</option>
+                                <option>No</option>
+                                </select>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Nombre Representante</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Teléfono</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Correo</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formDescripcion">
+                                    <label for="">Descripcion</label>
+                                    <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Página Web</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <button type="button" class="formButton" (click)="toggleInfo()">
+                                        <p>Siguiente</p>
+                                    </button>                        
+                            </div>
                 </form>
 
                 <form *ngIf="isOrquesta" [formGroup]="registroOrquesta">

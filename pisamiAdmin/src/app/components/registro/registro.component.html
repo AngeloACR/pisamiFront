@@ -1,8 +1,333 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Registro</ion-title>
-  </ion-toolbar>
-</ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    
+    <ion-content>
+    <div class="pageBox">
+        <div class="selectionBox" *ngIf="!isMusico">
+            <div class="optionsBox" [ngClass]="hideOption">
+                <div class="logoBox">
+                    <img class="formImg" src="assets/REGISTRO/LOGOREGIS.png" alt="Logo" />
+                </div>
+                <p><b>¿Cómo te quieres registrar?</b></p>
+                <div class="iconsBox">
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="musicoImg" alt="Logo" (click)="firstToggle($event, 'musico')" />
+                        <p>Musico</p>
+                    </div>
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="userImg" alt="Logo" (click)="firstToggle($event, 'usuario')" />
+                        <p>Ususario</p>
+                    </div>
+                </div>
+                <div class="regisBox">
+                    <img src="assets/REGISTRO/REGISGMAIL.png" alt="gmail" (click)="regisGmail()" />
+                </div>
+                <div class="regisBox">
+                    <img src="assets/REGISTRO/REGISFACEBOOK.png" alt="facebook" (click)="regisFacebook()" />
+                </div>
+            </div>
+        </div>
+        <div class="selectionBox" *ngIf="isMusico">
+            <div class="optionsBox" [ngClass]="hideOption">
+                <div class="logoBox">
+                    <img class="formImg" src="assets/REGISTRO/LOGOREGIS.png" alt="Logo" />
+                </div>
+                <h1>Tipo de Perfil</h1>
+                <div class="iconsBox">
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="solistaImg" alt="Logo" (click)="toggleForm($event, 'solista')" />
+                        <p>Musico/Cantante</p>
+                    </div>
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="duoImg" alt="Logo" (click)="toggleForm($event, 'duo')" />
+                        <p>Dúo</p>
+                    </div>
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="orquestaImg" alt="Logo" (click)="toggleForm($event, 'orquesta')" />
+                        <p>Orquesta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 
+        <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div> -->
+
+        <div class="logBox" [ngClass]="showForm">
+                <div class="welcomeBox" *ngIf="isUser">
+                        <h1><b>Registro Usuario</b></h1>
+                    </div>
+                    <div class="welcomeBox" *ngIf="isSolista">
+                            <h1><b>Registro Músico/Cantante</b></h1>
+                        </div>
+            <div class="welcomeBox" *ngIf="isDuo">
+                <h1><b>Registro Dúo</b></h1>
+            </div>
+            <div class="welcomeBox" *ngIf="isOrquesta">
+                <h1><b>Registro Orquesta</b></h1>
+            </div>
+            <div class="formBox">
+                <form *ngIf="isUser" [formGroup]="registroUser">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Nombre</label>
+                            <input class="lInput" type="text" formControlName="nombre" name="nombre" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Apellido</label>
+                            <input class="lInput" type="text" formControlName="apellido" name="apellido" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Teléfono</label>
+                            <input class="lInput" type="text" formControlName="tlf" name="tlf" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Correo</label>
+                            <input class="lInput" type="text" formControlName="correo" name="correo" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Contraseña</label>
+                            <input class="lInput" type="password" formControlName="password" name="password" />
+                        </div>
+                        <div class="formTerminos">
+                            <label class="checkContainer">
+                            Estoy de acuerdo con los términos y condiciones
+                            <input
+                                type="checkbox"
+                                formControlName="aceptarTerminos"
+                            />
+                            <span class="checkmark"></span>
+                            </label>
+                            <p>Ver más</p>
+                            <br><br>
+                        </div>
+
+                <button type="button" class="formButton" (click)="endRegistro()">
+                        <p>Crear</p>
+                    </button>
+                    </div>
+                </form>
+
+                <form *ngIf="isSolista" [formGroup]="registroSolista">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Nombre real</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre artístico</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Ciudad de origen</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Esta dispuesto a salir
+                                de la ciudad?</label>
+                            <select name="" formControlName="">
+                            <option selected="true">Sí</option>
+                            <option>No</option>
+                          </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Tiene representante?</label>
+                            <select name="" formControlName="">
+                          <option selected="true">Sí</option>
+                          <option>No</option>
+                        </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre Representante</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Telefono:</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Correo:</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formDescripcion">
+                            <label for="">Descripción</label>
+                            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Pagina Web</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                    </div>
+
+                    <button type="button" class="formButton" (click)="toggleInfo()">
+                            <p>Siguiente</p>
+                        </button>
+                </form>
+
+                <form *ngIf="isDuo" [formGroup]="registroDuo">
+                        <div class="formContent">
+                                <div class="formInput">
+                                    <label for="">Nombre Artístico</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Ciudad de Origen</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">¿Esta dispuesto a salir
+                                            de la ciudad?</label>
+                                    <select name="" formControlName="">
+                                    <option selected="true">Sí</option>
+                                    <option>No</option>
+                                </select>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">¿Tiene representante?</label>
+                                    <select name="" formControlName="">
+                                <option selected="true">Sí</option>
+                                <option>No</option>
+                                </select>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Nombre Representante</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Teléfono</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Correo</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <div class="formDescripcion">
+                                    <label for="">Descripcion</label>
+                                    <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Página Web</label>
+                                    <input class="lInput" type="text" formControlName="" name="" />
+                                </div>
+                                <button type="button" class="formButton" (click)="toggleInfo()">
+                                        <p>Siguiente</p>
+                                    </button>                        
+                            </div>
+                </form>
+
+                <form *ngIf="isOrquesta" [formGroup]="registroOrquesta">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Nombre Artístico</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Número de integrantes</label>
+                            <input class="lInput" type="number" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Ciudad de Origen</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Esta dispuesto a salir
+                                    de la ciudad?</label>
+                            <select name="" formControlName="">
+                            <option selected="true">Sí</option>
+                            <option>No</option>
+                        </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Tiene representante?</label>
+                            <select name="" formControlName="">
+                        <option selected="true">Sí</option>
+                        <option>No</option>
+                        </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre Representante</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Teléfono</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Correo</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formDescripcion">
+                            <label for="">Descripcion</label>
+                            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Página Web</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <button type="button" class="formButton" (click)="toggleInfo()">
+                                <p>Siguiente</p>
+                            </button>                        
+                    </div>
+                </form>
+
+                <form id="info" *ngIf="isInfo" [formGroup]="registroInfo">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Estilos de música</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <div class="formImagenes">
+                                <br />
+                                <h3>Fotos</h3>
+                                <div class="formFiles">
+                                    <div class="formFile">
+                                        <label for="documento1"></label>
+                                        <input type="file" formControlName="imagen1" id="imagen1" (change)="fileProgress($event, 'imagen1')" />
+                                        <span class="fileName" *ngIf="fileName1">{{fileName1}}</span
+                    >
+                  </div>
+                  <div class="formFile">
+                    <label for="imagen2"></label>
+                    <input
+                      type="file"
+                      formControlName="imagen2"
+                      id="imagen2"
+                      (change)="fileProgress($event, 'imagen2')"
+                    />
+                    <span class="fileName" *ngIf="fileName2"
+                      >{{fileName2}}</span
+                    >
+                  </div>
+                  <div class="formFile">
+                    <label for="imagen3"></label>
+                    <input
+                      type="file"
+                      formControlName="imagen3"
+                      id="imagen3"
+                      (change)="fileProgress($event, 'imagen3')"
+                    />
+                    <span class="fileName" *ngIf="fileName3"
+                      >{{fileName3}}</span
+                    >
+                  </div>
+                </div>
+              </div>
+                        
+                        <div class="formInput">
+                            <label for="">Agregar link de música</label>
+                            <input class="lInput" type="text" formControlName="" name="" />
+                        </div>
+                        <button type="button" class="formButton" (click)="endRegistro()">
+                                    <p>Guardar información</p>
+                                </button>
+                            </div>
+                </form>
+
+                </div>
+            </div>
+        </div>
+</ion-content>

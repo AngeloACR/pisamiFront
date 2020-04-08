@@ -13,16 +13,85 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Registro',
-      url: '/registro',
-      icon: 'mail'
+      title: 'MODULO ADMINISTRADOR',
+      url: '/registro/0',
+      icon: 'assets/MENU/MODULOADMINIS.png',
+      childs: [
+        {
+          title: 'REGISTRO DE USUARIOS',
+          url: '/registro/0',
+          icon: 'assets/MENU/REGISTROUSU.png'
+        }, {
+          title: 'LISTA DE USUARIOS',
+          url: '/administrador/0',
+          icon: 'assets/MENU/LISTAUSU.png'
+        }, {
+          title: 'REGISTRO DE ARTISTAS',
+          url: '/registro/1',
+          icon: 'assets/MENU/REGISTROARTISTA.png'
+        },
+      ]
     },
     {
-      title: 'Iniciar sesión',
+      title: 'VALIDACIÓN DE CUENTAS',
+      url: '/artistas/1',
+      icon: 'assets/MENU/VALIDADCUENTA.png',
+      childs: [
+        {
+          title: 'LISTA DE ARTISTAS',
+          url: '/artistas/1',
+          icon: 'assets/MENU/LISTAARTISTA.png'
+        }
+      ]
+    },
+    {
+      title: 'CONFIGURACIÒN',
+      url: '/generos/0',
+      icon: 'assets/MENU/CONFIGURACION.png',
+      childs: [
+        {
+          title: 'CREACIÓN DE GÉNERO',
+          url: '/generos/0',
+          icon: 'assets/MENU/GUARDARGENERO.png'
+        }, {
+          title: 'LISTA DE GÉNEROS',
+          url: '/generos/1',
+          icon: 'assets/MENU/LISTAGENEROS.png'
+        }, {
+          title: 'NOTIFICACIONES',
+          url: '/notificaciones/0',
+          icon: 'assets/MENU/NOTIFICACIONES.png'
+        },
+        {
+          title: 'LISTA DE NOTIFICACIONES',
+          url: '/notificaciones/1',
+          icon: 'assets/MENU/LISTANOTIFICACIONES.png'
+        }
+      ]
+    }, {
+      title: 'POLÍTICAS',
+      url: '/politicas/0',
+      icon: 'assets/MENU/POLITICAS.png'
+    },
+    {
+      title: 'CERRAR SESIÓN',
       url: '/login',
-      icon: 'paper-plane'
+      icon: 'assets/MENU/CERRARSESION.png'
     }
   ];
+
+  /*   public appPages = [
+      {
+        title: 'Registro',
+        url: '/registro',
+        icon: 'mail'
+      },
+      {
+        title: 'Iniciar sesión',
+        url: '/login',
+        icon: 'paper-plane'
+      }
+    ]; */
 
   constructor(
     private platform: Platform,
