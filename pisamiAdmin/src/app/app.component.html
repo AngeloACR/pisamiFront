@@ -4,18 +4,20 @@
         <ion-menu contentId="main-content" type="overlay">
             <ion-content id="adminMenu">
                 <ion-list>
-                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item class="menuItem" (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-                            <ion-icon slot="start" [src]="p.icon"></ion-icon>
+                    <div *ngFor="let p of appPages; let i = index">
+                        <ion-item class="menuItem" (click)="tMenu($event, p, i)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
+                            <img class="menuImg" [src]="p.icon" />
                             <ion-label class="mainLabel">{{ p.title }}</ion-label>
                         </ion-item>
-                        <ion-list id="childs-list">
-                            <ion-item class="menuItem" *ngFor="let c of p.childs" routerDirection="root" [routerLink]="[c.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-                                <ion-icon slot="start" [src]="c.icon"></ion-icon>
-                                <ion-label class="childLabel">{{ c.title }}</ion-label>
-                            </ion-item>
+                        <ion-list class="childList">
+                            <ion-menu-toggle auto-hide="false">
+                                <ion-item class="childItem" [ngClass]="p.class" *ngFor="let c of p.childs" routerDirection="root" [routerLink]="[c.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
+                                    <img class="menuImg" [src]="c.icon" />
+                                    <ion-label class="childLabel">{{ c.title }}</ion-label>
+                                </ion-item>
+                            </ion-menu-toggle>
                         </ion-list>
-                    </ion-menu-toggle>
+                    </div>
                 </ion-list>
             </ion-content>
         </ion-menu>

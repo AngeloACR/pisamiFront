@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
     {
       title: 'MODULO ADMINISTRADOR',
       url: '/registro/0',
+      class: {
+        aBox: false
+      },
       icon: 'assets/MENU/MODULOADMINIS.png',
       childs: [
         {
@@ -35,6 +38,9 @@ export class AppComponent implements OnInit {
     {
       title: 'VALIDACIÓN DE CUENTAS',
       url: '/artistas/1',
+      class: {
+        aBox: false
+      },
       icon: 'assets/MENU/VALIDADCUENTA.png',
       childs: [
         {
@@ -47,6 +53,9 @@ export class AppComponent implements OnInit {
     {
       title: 'CONFIGURACIÒN',
       url: '/generos/0',
+      class: {
+        aBox: false
+      },
       icon: 'assets/MENU/CONFIGURACION.png',
       childs: [
         {
@@ -71,11 +80,17 @@ export class AppComponent implements OnInit {
     }, {
       title: 'POLÍTICAS',
       url: '/politicas/0',
+      class: {
+        aBox: false
+      },
       icon: 'assets/MENU/POLITICAS.png'
     },
     {
       title: 'CERRAR SESIÓN',
       url: '/login',
+      class: {
+        aBox: false
+      },
       icon: 'assets/MENU/CERRARSESION.png'
     }
   ];
@@ -111,4 +126,21 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  tMenu(event, item, i) {
+    this.selectedIndex = i;
+    this.closeMenus();
+    this.appPages[i].class = {
+      aBox: true,
+    }
+  }
+
+  closeMenus() {
+    this.appPages.forEach(item => {
+      item.class = {
+        aBox: false,
+      }
+    });
+  }
+
 }
