@@ -14,6 +14,7 @@ export class GenerosComponent implements OnInit {
   id: string;
 
   registroGenero: FormGroup;
+  buscarGenero: FormGroup;
 
   isCrear: Boolean;
   isListar: Boolean;
@@ -64,9 +65,17 @@ export class GenerosComponent implements OnInit {
       nombre: new FormControl(''),
       descripcion: new FormControl(''),
     });
+    this.buscarGenero = new FormGroup({
+      nombre: new FormControl(''),
+    });
+  
   }
 
+
   endRegistro() {
+  }
+
+  filtrarGenero() {
   }
 
 }

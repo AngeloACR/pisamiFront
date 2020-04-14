@@ -27,22 +27,22 @@ export class AppComponent implements OnInit {
 
   public appPages = [
     {
-      title: 'Buscar artistas',
+      title: 'BUSCAR ARTISTAS',
       url: '/artistas',
       icon: 'mail'
     },
     {
-      title: 'Mi cuenta (editar perfil)',
+      title: 'MI CUENTA (EDITAR PERFIL)',
       url: '/perfil',
       icon: 'paper-plane'
     },
     {
-      title: 'Políticas',
+      title: 'POLÍTICAS',
       url: '/politicas',
       icon: 'paper-plane'
     },
     {
-      title: 'Cerrar sesión',
+      title: 'CERRAR SESIÓN',
       url: '/logout',
       icon: 'paper-plane'
     }

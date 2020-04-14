@@ -34,6 +34,20 @@
                 </form>
             </div>
         </div>
-        <div class="logBox" *ngIf="isListar"></div>
+        <div class="logBox" *ngIf="isListar">
+            <form [formGroup]="buscarGenero">
+                <div class="formContent">
+                    <div class="formInput">
+                        <label for="">NOMBRE DEL GENERO</label>
+                        <input class="lInput" type="text" formControlName="nombre" name="" />
+                    </div>
+
+                    <button type="button" class="formButton" (click)="filtrarGenero()">
+            <p>FILTRAR</p>
+          </button>
+                </div>
+            </form>
+            <div class="listBox"></div>
+        </div>
     </div>
 </ion-content>
