@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
 export class GenerosComponent implements OnInit {
 
   id: string;
+  title: string;
 
   registroGenero: FormGroup;
   buscarGenero: FormGroup;
@@ -38,7 +39,6 @@ export class GenerosComponent implements OnInit {
       this.actRoute.url.subscribe(value => {
         let url = value[0].path;
         if (url == 'generos') {
-          console.log(this.id)
           if (event instanceof NavigationEnd) {
             this.ngOnInit();
           }
@@ -53,9 +53,11 @@ export class GenerosComponent implements OnInit {
     if (this.id == '0') {
       this.isCrear = true;
       this.isListar = false;
+      this.title = 'CREAR GÉNERO MUSICAL';
     } else if (this.id == '1') {
       this.isCrear = false;
       this.isListar = true;
+      this.title = 'LISTA DE GÉNEROS MUSICALES';
     }
   }
 

@@ -3,8 +3,7 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title *ngIf="isCrear">CREAR GÉNERO MUSICAL</ion-title>
-        <ion-title *ngIf="isListar">LISTA DE GÉNEROS MUSICALES</ion-title>
+        <ion-title>{{title}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -47,7 +46,15 @@
           </button>
                 </div>
             </form>
-            <div class="listBox"></div>
+            <div class="listBox">
+                <div class="titleRow">
+                    <p style="width: 108px;">ID</p>
+                    <p style="width: 200px;">NOMBRE DEL GÉNERO</p>
+                    <p style="width: 250px;">DESCRIPCIÓN</p>
+                    <p style="width: 150px;">ACCIONES</p>
+                </div>
+                <div class="contentRow "></div>
+            </div>
         </div>
     </div>
 </ion-content>

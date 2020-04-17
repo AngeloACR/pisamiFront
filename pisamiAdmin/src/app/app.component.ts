@@ -83,7 +83,18 @@ export class AppComponent implements OnInit {
       class: {
         aBox: false
       },
-      icon: 'assets/MENU/POLITICAS.png'
+      icon: 'assets/MENU/POLITICAS.png',
+      childs: [
+        {
+          title: 'CREACIÓN DE POLÍTICAS',
+          url: '/politicas/0',
+          icon: 'assets/MENU/GUARDARGENERO.png'
+        }, {
+          title: 'LISTA DE POLÍTICAS',
+          url: '/politicas/1',
+          icon: 'assets/MENU/LISTAGENEROS.png'
+        }
+      ]
     },
     {
       title: 'CERRAR SESIÓN',
