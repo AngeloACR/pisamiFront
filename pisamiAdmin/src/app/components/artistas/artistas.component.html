@@ -3,8 +3,43 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <ion-title>{{title}}</ion-title>
     </ion-toolbar>
 </ion-header>
-<p>
-    artistas works!
-</p>
+
+<ion-content>
+    <div class="pageBox">
+        <div class="logBox" *ngIf="isCrear"></div>
+        <div class="logBox" *ngIf="isListar">
+            <form [formGroup]="buscarArtista">
+                <div class="formContent">
+                    <div class="formInput">
+                        <label for="">NOMBRE DEL ARTISTA</label>
+                        <input class="lInput" type="text" formControlName="nombre" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">GÉNERO MUSICAL</label>
+                        <select name="" formControlName="genero">
+              <option selected="true"></option>
+              <option></option>
+            </select>
+                    </div>
+                    <button type="button" class="formButton" (click)="filtrarArtista()">
+            <p>FILTRAR</p>
+          </button>
+                </div>
+            </form>
+            <div class="listBox">
+                <div class="titleRow">
+                    <p style="width: 108px;">ID</p>
+                    <p style="width: 200px;">NOMBRE</p>
+                    <p style="width: 200px;">TELÉFONO</p>
+                    <p style="width: 200px;">CORREO</p>
+                    <p style="width: 200px;">GÉNERO</p>
+                    <p style="width: 150px;">ACCIÓN</p>
+                </div>
+                <div class="contentRow "></div>
+            </div>
+        </div>
+    </div>
+</ion-content>

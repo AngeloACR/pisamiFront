@@ -3,6 +3,7 @@
             <ion-buttons slot="start">
                 <ion-menu-button></ion-menu-button>
             </ion-buttons>
+            <ion-title>{{title}}</ion-title>
         </ion-toolbar>
     </ion-header>
     
@@ -37,7 +38,6 @@
                 <div class="logoBox">
                     <img class="formImg" src="assets/REGISTRO/LOGOREGIS.png" alt="Logo" />
                 </div>
-                <h1>Tipo de Perfil</h1>
                 <div class="iconsBox">
                     <div class="iconBox">
                         <img class="iconImg" [src]="solistaImg" alt="Logo" (click)="toggleForm($event, 'solista')" />
@@ -58,18 +58,6 @@
         <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div> -->
 
         <div class="logBox" [ngClass]="showForm">
-                <div class="welcomeBox" *ngIf="isUser">
-                        <h1><b>Registro Usuario</b></h1>
-                    </div>
-                    <div class="welcomeBox" *ngIf="isSolista">
-                            <h1><b>Registro Músico/Cantante</b></h1>
-                        </div>
-            <div class="welcomeBox" *ngIf="isDuo">
-                <h1><b>Registro Dúo</b></h1>
-            </div>
-            <div class="welcomeBox" *ngIf="isOrquesta">
-                <h1><b>Registro Orquesta</b></h1>
-            </div>
             <div class="formBox">
                 <form *ngIf="isUser" [formGroup]="registroUser">
                     <div class="formContent">

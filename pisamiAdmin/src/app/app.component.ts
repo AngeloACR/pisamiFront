@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
           icon: 'assets/MENU/REGISTROUSU.png'
         }, {
           title: 'LISTA DE USUARIOS',
-          url: '/administrador/0',
+          url: '/usuarios/1',
           icon: 'assets/MENU/LISTAUSU.png'
         }, {
           title: 'REGISTRO DE ARTISTAS',

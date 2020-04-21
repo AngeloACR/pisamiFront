@@ -12,7 +12,7 @@ import { forkJoin } from 'rxjs';
 export class RegistroComponent implements OnInit {
 
   id: string;
-
+  title: string;
   registroUser: FormGroup;
   registroSolista: FormGroup;
   registroDuo: FormGroup;
@@ -65,8 +65,10 @@ export class RegistroComponent implements OnInit {
     this.initForm();
     if (this.id == '0') {
       this.firstToggle('', 'usuario');
+      this.title = 'REGISTRO DE USUARIO';
     } else if (this.id == '1') {
       this.firstToggle('', 'musico');
+      this.title = 'REGISTRO DE ARTISTAS';
     }
     this.musicoImg = 'assets/REGISTRO/MUSICO.png';
     this.userImg = 'assets/REGISTRO/USUARIO.png';
