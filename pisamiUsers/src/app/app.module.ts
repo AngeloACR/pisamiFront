@@ -12,14 +12,21 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
+import { PoliticasComponent } from './components/politicas/politicas.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
-    LoginComponent
-    ],
+    LoginComponent,
+    BuscadorComponent,
+    PoliticasComponent,
+    PerfilComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -37,4 +44,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

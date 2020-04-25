@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-//    private dbHandler: DbHandlerService,
+    //    private dbHandler: DbHandlerService,
     private fb: FormBuilder,
     private router: Router
   ) { }
@@ -34,38 +34,38 @@ export class LoginComponent implements OnInit {
     this.auth.login(data).subscribe((logData: any) => {
       if (logData.auth) {
         this.auth.storeData(logData);
-//        this.actualizar();
+        //        this.actualizar();
       }
     });
   }
-/*   actualizar() {
-    let refreshList = [
-      {
-        endpoint: '/users/all',
-        name: 'users'
-      },
-      {
-        endpoint: '/doctors/all',
-        name: 'doctors'
-      },
-      {
-        endpoint: '/patients/all',
-        name: 'patients'
-      },
-    ]
-    let dataArray = [];
-    refreshList.forEach(element => {
-      dataArray.push(this.dbHandler.getSomething(element.endpoint));
-    });
-    forkJoin(dataArray).subscribe(info => {
-      let i = 0;
+  /*   actualizar() {
+      let refreshList = [
+        {
+          endpoint: '/users/all',
+          name: 'users'
+        },
+        {
+          endpoint: '/doctors/all',
+          name: 'doctors'
+        },
+        {
+          endpoint: '/patients/all',
+          name: 'patients'
+        },
+      ]
+      let dataArray = [];
       refreshList.forEach(element => {
-        this.dbHandler.refreshData(info[i], element.name);
-        i++;
+        dataArray.push(this.dbHandler.getSomething(element.endpoint));
       });
-      this.router.navigateByUrl('/');
-    });
-  } */
+      forkJoin(dataArray).subscribe(info => {
+        let i = 0;
+        refreshList.forEach(element => {
+          this.dbHandler.refreshData(info[i], element.name);
+          i++;
+        });
+        this.router.navigateByUrl('/');
+      });
+    } */
   flush() {
     this.login.setValue({
       username: '',

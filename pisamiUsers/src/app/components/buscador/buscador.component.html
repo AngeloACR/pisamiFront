@@ -1,0 +1,107 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="pageBox">
+        <div class="logBox" *ngIf="isBuscar">
+            <div class="formBox">
+                <form [formGroup]="buscarArtista">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Género Musical</label>
+                            <select name="" formControlName="genero">
+                <option selected="true"></option>
+                <option></option>
+              </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre del Artista o de la Orquesta</label>
+                            <input class="lInput" type="text" formControlName="nombre" name="" />
+                        </div>
+
+                        <button type="button" class="formButton" (click)="endBuscador()">
+              <p>BUSCAR</p>
+            </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="logBox" *ngIf="isResultados">
+            <div class="cardBox" *ngFor="let artista of artistas">
+                <div class="imgBox"></div>
+                <div class="infoBox">
+                    <p>NOMBRE AGRUPACIÓN</p>
+                    <p>{{artista.nombre}}</p>
+                    <p>CATEGORÍAS</p>
+                    <p>{{artista.categorias}}</p>
+                </div>
+                <div class="moreBox">
+                    <button type="button" class="formButton" (click)="verArtista($event, artista)">
+            <p>VER MÁS</p>
+          </button>
+                </div>
+            </div>
+        </div>
+        <div class="logBox" *ngIf="isVer">
+            <div class="backBox">
+                <img src="assets/DETALLES ARTISTA/VOLVERLISTA.png" alt="" (click)="volverLista()" />
+            </div>
+            <div class="imgList">
+                <img class="imgArrow" src="assets/DETALLES ARTISTA/FLECHAIZQ.png" alt="" />
+                <img class="artistaImg" src="" alt="" />
+                <img class="imgArrow" src="assets/DETALLES ARTISTA/FECHADER.png" alt="" />
+            </div>
+            <div class="verBox">
+                <div class="starsBox"></div>
+                <div class="detailsBox">
+                    <p>NOMBRE AGRUPACIÓN</p>
+                    <p>{{artistaEscogido.nombre}}</p>
+                    <p>CATEGORÍAS</p>
+                    <p>{{artistaEscogido.categorias}}</p>
+                    <p>CIUDAD DE ORIGEN</p>
+                    <p>{{artistaEscogido.ciudad}}</p>
+                    <p>DESCRIPCIÓN</p>
+                    <p>{{artistaEscogido.descripcion}}</p>
+                    <p>INTEGRANTES</p>
+                    <p>{{artistaEscogido.integrantes}}</p>
+                    <p>SALEN DE LA CIUDAD</p>
+                    <p>{{artistaEscogido.salen}}</p>
+                    <p>REPRESENTANTE</p>
+                    <p>{{artistaEscogido.representante}}</p>
+                    <p>TELÉFONO</p>
+                    <p>{{artistaEscogido.telefono}}</p>
+                    <p>CORREO</p>
+                    <p>{{artistaEscogido.correo}}</p>
+                </div>
+                <div class="linksBox">
+                    <p class="linkTitle">LINKS DE MÚSICA</p>
+                    <div class="linksList">
+                        <div class="linkListTitle">
+                            LINKS DE MÚSICA DE SOUNDCLOUD
+                        </div>
+                        <p class="linkName" *ngFor="let link of artistaEscogido.soundLinks">
+                            NOMBRE CANCIÓN: {{link}}
+                        </p>
+                    </div>
+                    <div class="linksList">
+                        <div class="linkListTitle">
+                            LINKS DE MÚSICA DE YOUTUBE
+                        </div>
+                        <p class="linkName" *ngFor="let link of artistaEscogido.youLinks">
+                            NOMBRE CANCIÓN: {{link}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="ratingBox">
+                <p>CALIFICA QUE TE PARECIÓ</p>
+                <div class="starsBox"></div>
+            </div>
+        </div>
+    </div>
+</ion-content>
