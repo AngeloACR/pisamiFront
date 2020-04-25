@@ -1,7 +1,0 @@
-{
-  "name": "pisamiUsers",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
