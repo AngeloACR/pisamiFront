@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { PoliticasComponent } from './components/politicas/politicas.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { RatingComponent } from './components/rating/rating.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,9 +26,12 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     BuscadorComponent,
     PoliticasComponent,
-    PerfilComponent
+    PerfilComponent,
+    RatingComponent
   ],
-  entryComponents: [],
+  entryComponents: [
+    RatingComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

@@ -44,6 +44,7 @@
                     <button type="button" class="formButton" (click)="verArtista($event, artista)">
             <p>VER MÁS</p>
           </button>
+                    <app-rating [rating]="artista.rating"> </app-rating>
                 </div>
             </div>
         </div>
@@ -57,26 +58,22 @@
                 <img class="imgArrow" src="assets/DETALLES ARTISTA/FECHADER.png" alt="" />
             </div>
             <div class="verBox">
-                <div class="starsBox"></div>
+                <div class="starsBox">
+                    <app-rating [rating]="artistaEscogido.rating"> </app-rating>
+                </div>
                 <div class="detailsBox">
                     <p>NOMBRE AGRUPACIÓN</p>
                     <p>{{artistaEscogido.nombre}}</p>
                     <p>CATEGORÍAS</p>
                     <p>{{artistaEscogido.categorias}}</p>
-                    <p>CIUDAD DE ORIGEN</p>
-                    <p>{{artistaEscogido.ciudad}}</p>
+                    <p>CIUDAD DE ORIGEN: {{artistaEscogido.ciudad}}</p>
                     <p>DESCRIPCIÓN</p>
                     <p>{{artistaEscogido.descripcion}}</p>
-                    <p>INTEGRANTES</p>
-                    <p>{{artistaEscogido.integrantes}}</p>
-                    <p>SALEN DE LA CIUDAD</p>
-                    <p>{{artistaEscogido.salen}}</p>
-                    <p>REPRESENTANTE</p>
-                    <p>{{artistaEscogido.representante}}</p>
-                    <p>TELÉFONO</p>
-                    <p>{{artistaEscogido.telefono}}</p>
-                    <p>CORREO</p>
-                    <p>{{artistaEscogido.correo}}</p>
+                    <p>INTEGRANTES: {{artistaEscogido.integrantes}}</p>
+                    <p>SALEN DE LA CIUDAD: {{artistaEscogido.salen}}</p>
+                    <p>REPRESENTANTE: {{artistaEscogido.representante}}</p>
+                    <p>TELÉFONO: {{artistaEscogido.telefono}}</p>
+                    <p>CORREO: {{artistaEscogido.correo}}</p>
                 </div>
                 <div class="linksBox">
                     <p class="linkTitle">LINKS DE MÚSICA</p>
@@ -99,8 +96,10 @@
                 </div>
             </div>
             <div class="ratingBox">
-                <p>CALIFICA QUE TE PARECIÓ</p>
-                <div class="starsBox"></div>
+                <p>CALIFICA QUE TE PARECIÓ:</p>
+                <div class="starsBox">
+                    <app-rating [rating]="artistaEscogido.rating"> </app-rating>
+                </div>
             </div>
         </div>
     </div>

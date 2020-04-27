@@ -342,6 +342,7 @@
 }
 
 .verBox {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -353,7 +354,12 @@
 }
 
 .verBox .starsBox {
-    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 140px;
+    background-color: #c1272d;
+    border-radius: 42px;
 }
 
 .detailsBox {
@@ -415,16 +421,21 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    margin-top: 10px;
+    padding-bottom: 10px;
 }
 
 .ratingBox p {
     font-size: 10px;
     font-weight: bolder;
     color: #c1272d;
+    margin-right: 10px;
 }
 
-.ratingBox .starsbox {
-    display: none;
+.ratingBox .starsBox {
+    width: 140px;
+    background-color: #c1272d;
+    border-radius: 42px;
 }
 
 .imgArrow {

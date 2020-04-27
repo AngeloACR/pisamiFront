@@ -63,7 +63,7 @@ export class BuscadorComponent implements OnInit {
       representante: 'Juanito Alimaña',
       telefono: '085-98921454',
       correo: 'banda@musica.com',
-      rating: 5,
+      rating: 3,
       soundLinks: ['https://soundcloud.com/xxxxxxxx', 'https://soundcloud.com/xxxxxxxx'],
       youLinks: ['https://youtube.com/xxxxxxxx', 'https://youtube.com/xxxxxxxx'],
     }, {
@@ -76,7 +76,7 @@ export class BuscadorComponent implements OnInit {
       representante: 'Juanito Alimaña',
       telefono: '085-98921454',
       correo: 'banda@musica.com',
-      rating: 5,
+      rating: 4,
       soundLinks: ['https://soundcloud.com/xxxxxxxx', 'https://soundcloud.com/xxxxxxxx'],
       youLinks: ['https://youtube.com/xxxxxxxx', 'https://youtube.com/xxxxxxxx'],
     }]
