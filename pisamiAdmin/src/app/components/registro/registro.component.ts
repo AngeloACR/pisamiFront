@@ -11,6 +11,7 @@ import { forkJoin } from 'rxjs';
 })
 export class RegistroComponent implements OnInit {
 
+  generos = ['Cumbia', 'Bachata', 'Vallenato', 'Rock'];
   id: string;
   title: string;
   registroUser: FormGroup;
@@ -18,7 +19,6 @@ export class RegistroComponent implements OnInit {
   registroDuo: FormGroup;
   registroOrquesta: FormGroup;
   registroInfo: FormGroup;
-
   formCompleted: Boolean;
   formSelected: Boolean;
   tipoSelected: String;
@@ -50,7 +50,6 @@ export class RegistroComponent implements OnInit {
       this.actRoute.url.subscribe(value => {
         let url = value[0].path;
         if (url == 'registro') {
-          console.log(this.id)
           if (event instanceof NavigationEnd) {
             this.ngOnInit();
           }
@@ -87,15 +86,51 @@ export class RegistroComponent implements OnInit {
     });
 
     this.registroSolista = new FormGroup({
+      nombreReal: new FormControl(''),
+      nombreArtistico: new FormControl(''),
+      salir: new FormControl(''),
+      ciudadOrigen: new FormControl(''),
+      tieneRepresentante: new FormControl(''),
+      nombreRepresentante: new FormControl(''),
+      telefono: new FormControl(''),
+      correo: new FormControl(''),
+      descripcion: new FormControl(''),
+      paginaWeb: new FormControl(''),
+    });
+
+    this.registroDuo = new FormGroup({
+      nombreArtistico: new FormControl(''),
+      salir: new FormControl(''),
+      ciudadOrigen: new FormControl(''),
+      tieneRepresentante: new FormControl(''),
+      nombreRepresentante: new FormControl(''),
+      telefono: new FormControl(''),
+      correo: new FormControl(''),
+      descripcion: new FormControl(''),
+      paginaWeb: new FormControl(''),
     });
 
     this.registroOrquesta = new FormGroup({
-    });
-
-    this.registroOrquesta = new FormGroup({
+      numeroIntegrantes: new FormControl(''),
+      salir: new FormControl(''),
+      ciudadOrigen: new FormControl(''),
+      tieneRepresentante: new FormControl(''),
+      nombreRepresentante: new FormControl(''),
+      telefono: new FormControl(''),
+      correo: new FormControl(''),
+      descripcion: new FormControl(''),
+      paginaWeb: new FormControl(''),
     });
 
     this.registroInfo = new FormGroup({
+      generos: new FormControl(''),
+      imagen1: new FormControl(''),
+      imagen2: new FormControl(''),
+      imagen3: new FormControl(''),
+      soundLinks: new FormControl(''),
+      youLinks: new FormControl(''),
+      soundNombres: new FormControl(''),
+      youNombres: new FormControl(''),
     });
 
   }
