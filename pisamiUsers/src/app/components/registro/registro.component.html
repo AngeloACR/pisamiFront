@@ -319,11 +319,36 @@
                   </div>
                 </div>
               </div>
-                        
-                        <div class="formInput">
-                            <label for="">Agregar link de música</label>
-                            <input class="lInput" type="text" formControlName="" name="" />
+              <div class="linksBox">
+                    <p class="linkTitle">Agregar link de música</p>
+                    <div class="linksList">
+                        <div class="linkListTitle">
+                                Agregar link de música de Soundcloud
                         </div>
+                        <div class="formInput">
+                                <label for="">Nombre de Canción</label>
+                                <input class="lInput" type="text" formControlName="soundNombres" name="" />
+                            </div>
+                            <div class="formInput">
+                                    <label for="">Link de Canción</label>
+                                    <input class="lInput" type="text" formControlName="soundLinks" name="" />
+                                </div>
+        
+                    </div>
+                    <div class="linksList">
+                        <div class="linkListTitle">
+                                Agregar link de música de Youtube
+                        </div>
+                        <div class="formInput">
+                                <label for="">Nombre de Canción</label>
+                                <input class="lInput" type="text" formControlName="youNombres" name="" />
+                            </div>
+                            <div class="formInput">
+                                    <label for="">Link de Canción</label>
+                                    <input class="lInput" type="text" formControlName="youLinks" name="" />
+                                </div>
+                        </div>
+                </div>
                         <button type="button" class="formButton" (click)="endRegistro()">
                                     <p>Guardar información</p>
                                 </button>
