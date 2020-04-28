@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
 export class RegistroComponent implements OnInit {
 
   id: string;
+  generos = ['Cumbia', 'Bachata', 'Vallenato', 'Rock'];
 
   registroUser: FormGroup;
   registroSolista: FormGroup;
@@ -79,16 +80,53 @@ export class RegistroComponent implements OnInit {
     });
 
     this.registroSolista = new FormGroup({
+      nombreReal: new FormControl(''),
+      nombreArtistico: new FormControl(''),
+      salir: new FormControl(''),
+      ciudadOrigen: new FormControl(''),
+      tieneRepresentante: new FormControl(''),
+      nombreRepresentante: new FormControl(''),
+      telefono: new FormControl(''),
+      correo: new FormControl(''),
+      descripcion: new FormControl(''),
+      paginaWeb: new FormControl(''),
+    });
+
+    this.registroDuo = new FormGroup({
+      nombreArtistico: new FormControl(''),
+      salir: new FormControl(''),
+      ciudadOrigen: new FormControl(''),
+      tieneRepresentante: new FormControl(''),
+      nombreRepresentante: new FormControl(''),
+      telefono: new FormControl(''),
+      correo: new FormControl(''),
+      descripcion: new FormControl(''),
+      paginaWeb: new FormControl(''),
     });
 
     this.registroOrquesta = new FormGroup({
-    });
-
-    this.registroOrquesta = new FormGroup({
+      numeroIntegrantes: new FormControl(''),
+      salir: new FormControl(''),
+      ciudadOrigen: new FormControl(''),
+      tieneRepresentante: new FormControl(''),
+      nombreRepresentante: new FormControl(''),
+      telefono: new FormControl(''),
+      correo: new FormControl(''),
+      descripcion: new FormControl(''),
+      paginaWeb: new FormControl(''),
     });
 
     this.registroInfo = new FormGroup({
+      generos: new FormControl(''),
+      imagen1: new FormControl(''),
+      imagen2: new FormControl(''),
+      imagen3: new FormControl(''),
+      soundLinks: new FormControl(''),
+      youLinks: new FormControl(''),
+      soundNombres: new FormControl(''),
+      youNombres: new FormControl(''),
     });
+
 
   }
 
