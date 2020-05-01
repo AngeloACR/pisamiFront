@@ -14,6 +14,7 @@ export class UsuariosComponent implements OnInit {
   title: string;
   registroUsuario: FormGroup;
   buscarUsuario: FormGroup;
+  usuarios: any;
 
   isCrear: Boolean;
   isListar: Boolean;
@@ -48,6 +49,21 @@ export class UsuariosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.usuarios = [{
+      id: '539524',
+      nombre: 'Juanito',
+      apellido: 'Alimaña',
+      correo: 'juanitoalimaña@gmail.com',
+      telefono: '553-6989597',
+    }, {
+      id: '539524',
+      nombre: 'Juanito',
+      apellido: 'Alimaña',
+      correo: 'juanitoalimaña@gmail.com',
+      telefono: '553-6989597',
+    }]
+
+
     this.initForm();
     if (this.id == '0') {
       this.isCrear = true;
@@ -76,6 +92,18 @@ export class UsuariosComponent implements OnInit {
   }
 
   filtrarUsuario() {
+  }
+
+  editarUsuario(event, usuario) {
+  }
+
+  habilitarUsuario(event, habilitar) {
+    console.log(habilitar)
+    if (habilitar == 0) {
+      console.log('Deshabilitar')
+    } else if (this.id == '1') {
+      console.log('Habilitar')
+    }
   }
 
 }

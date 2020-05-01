@@ -14,6 +14,7 @@ export class PoliticasComponent implements OnInit {
   title: string;
   registroPolitica: FormGroup;
   buscarPolitica: FormGroup;
+  politicas: any;
 
   isCrear: Boolean;
   isListar: Boolean;
@@ -47,7 +48,21 @@ export class PoliticasComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit() {   
+    this.politicas = [{
+      id: '29384',
+      nombre: 'TRATO DE DATOS PERSONALES',
+      },{
+      id: '29385',
+      nombre: 'COMPROMISO CON EL USUARIO', 
+      }, {
+      id: '29386',
+      nombre: 'COMPROMISO CON EL MUSICO', 
+      }, {
+      id: '29387',
+      nombre: 'COMPROMISO CON EL ADMINISTRADOR'
+      }
+    ]
     this.initForm();
     if (this.id == '0') {
       this.isCrear = true;
@@ -78,5 +93,12 @@ export class PoliticasComponent implements OnInit {
 
   filtrarPolitica() {
   }
+
+  editarPolitica(event, politica) {
+  }
+
+  eliminarPolitica(event, politica) {
+  }
+
 
 }

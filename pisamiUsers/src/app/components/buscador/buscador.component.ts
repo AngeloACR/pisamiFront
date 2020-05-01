@@ -13,6 +13,8 @@ import { forkJoin } from 'rxjs';
 export class BuscadorComponent implements OnInit {
 
   id: string;
+  generos = ['Cumbia', 'Bachata', 'Vallenato', 'Rock'];
+
   artistas: any;
   artistaEscogido: any;
   buscarArtista: FormGroup;

@@ -19,10 +19,9 @@
                     </div>
                     <div class="formInput">
                         <label for="">GÉNERO MUSICAL</label>
-                        <select name="" formControlName="genero">
-              <option selected="true"></option>
-              <option></option>
-            </select>
+                         <select class="lInput" name="" formControlName="genero">
+                <option *ngFor="let genero of generos">{{genero}}</option>
+              </select>
                     </div>
                     <button type="button" class="formButton" (click)="filtrarArtista()">
             <p>FILTRAR</p>
@@ -35,10 +34,27 @@
                     <p style="width: 200px;">NOMBRE</p>
                     <p style="width: 200px;">TELÉFONO</p>
                     <p style="width: 200px;">CORREO</p>
-                    <p style="width: 200px;">GÉNERO</p>
-                    <p style="width: 150px;">ACCIÓN</p>
+                    <p style="width: 200px;">GÉNEROS</p>
+                    <p style="width: 250px;">ACCIÓN</p>
                 </div>
-                <div class="contentRow "></div>
+                <div class="contentRow" *ngFor="let artista of artistas">
+                    <p style="width: 108px;">{{artista.id}}</p>
+                    <p style="width: 200px;">{{artista.nombre}}</p>
+                    <p style="width: 200px;">{{artista.telefono}}</p>
+                    <p style="width: 200px;">{{artista.correo}}</p>
+                    <p style="width: 200px;">{{artista.categorias}}</p>
+                    <p style="width: 250px;" class="actionBox">
+                    <button style="background-color: orange" type="button" class="actionButton" (click)="editarArtista($event, artista)">
+            <p>EDITAR</p>
+          </button>
+          <button style="background-color: green" type="button" class="actionButton" (click)="habilitarArtista($event, artista, 1)">
+            <p>HABILITAR</p>
+          </button>
+          <button style="background-color: red" type="button" class="actionButton" (click)="habilitarArtista($event, artista, 0)">
+            <p>DESHABILITAR</p>
+          </button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

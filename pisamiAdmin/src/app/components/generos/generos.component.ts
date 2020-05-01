@@ -13,6 +13,7 @@ export class GenerosComponent implements OnInit {
 
   id: string;
   title: string;
+  generos: any;
 
   registroGenero: FormGroup;
   buscarGenero: FormGroup;
@@ -49,6 +50,24 @@ export class GenerosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.generos = [{
+      id: '29384',
+      nombre: 'Cumbia',
+      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+      },{
+      id: '29385',
+      nombre: 'Bachata', 
+      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+      }, {
+      id: '29386',
+      nombre: 'Vallenato', 
+      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+      }, {
+      id: '29387',
+      nombre: 'Rock'
+      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+      }
+    ]
     this.initForm();
     if (this.id == '0') {
       this.isCrear = true;
@@ -80,4 +99,9 @@ export class GenerosComponent implements OnInit {
   filtrarGenero() {
   }
 
+  editarGenero(event, genero) {
+  }
+
+  eliminarGenero(event, genero) {
+  }
 }

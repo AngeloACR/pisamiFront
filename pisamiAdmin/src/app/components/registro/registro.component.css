@@ -187,6 +187,10 @@ justify-content: space-evenly; */
     box-shadow: none;
 }
 
+select.lInput {
+    border-radius: 0;
+}
+
 .formBox {
     width: 60%;
     margin: auto;
@@ -307,6 +311,7 @@ justify-content: space-evenly; */
 .formContent {
     display: flex;
     width: 100%;
+    margin-top: 10px;
     padding-right: 5px;
     padding-left: 5px;
     height: auto;
@@ -376,7 +381,7 @@ justify-content: space-evenly; */
 }
 
 .formInput select {
-    border: 3px solid #c1272d;
+    border: 2px solid #c1272d;
     color: #c1272d;
     background-color: white;
 }
@@ -519,6 +524,14 @@ justify-content: space-evenly; */
     position: absolute;
 }
 
+#info {
+    margin-top: 20px;
+}
+
+#info select.lInput {
+    border-radius: 23px;
+}
+
 #info .formInput {
     flex-wrap: wrap;
     justify-content: center;
@@ -609,6 +622,7 @@ justify-content: space-evenly; */
 .linksBox {
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 4vh;
 }
 
 .linkTitle {
@@ -617,6 +631,7 @@ justify-content: space-evenly; */
     font-weight: 900;
     width: 100%;
     margin: 0;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -627,6 +642,16 @@ justify-content: space-evenly; */
     border-width: 2px;
     background-color: white;
     border-color: #c1272d;
+}
+
+.linksList .formInput {
+    flex-wrap: nowrap !important;
+    margin-top: 5px;
+    width: 98%;
+}
+
+.linksList .lInput {
+    background-color: #ffffc5;
 }
 
 .linkListTitle {
@@ -690,11 +715,11 @@ justify-content: space-evenly; */
         order: 2;
         margin: 0;
         width: 100%;
+        margin-top: 10px;
     }
     .formContent {
         padding: 0;
         margin: auto;
-        margin-top: 10px;
         width: 90%;
     }
     .formSide {
@@ -719,6 +744,7 @@ justify-content: space-evenly; */
     .formImagenes {
         width: 80%;
         margin: auto;
+        margin-bottom: 4vh;
     }
     .formImagenes h3 {
         font-size: 14px;

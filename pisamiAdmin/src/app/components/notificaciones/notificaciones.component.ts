@@ -14,6 +14,7 @@ export class NotificacionesComponent implements OnInit {
   title: string;
   registroNotificacion: FormGroup;
   buscarNotificacion: FormGroup;
+  notificaciones: any;
 
   isCrear: Boolean;
   isListar: Boolean;
@@ -46,7 +47,21 @@ export class NotificacionesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.notificaciones = [{
+      id: '29384',
+      nombre: 'BIENVENIDO',
+      },{
+      id: '29385',
+      nombre: 'EXPULSADO', 
+      }, {
+      id: '29386',
+      nombre: 'ENCUENTRO VALLENATERO', 
+      }, {
+      id: '29387',
+      nombre: 'ENCUENTRO DEL POP'
+      }
+    ]
     this.initForm();
     if (this.id == '0') {
       this.isCrear = true;
@@ -76,5 +91,12 @@ export class NotificacionesComponent implements OnInit {
 
   filtrarNotificacion() {
   }
+
+  editarNotificacion(event, notificacion) {
+  }
+
+  eliminarNotificacion(event, notificacion) {
+  }
+
 
 }

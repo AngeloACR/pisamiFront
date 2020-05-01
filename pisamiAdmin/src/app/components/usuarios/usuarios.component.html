@@ -38,9 +38,26 @@
                     <p style="width: 200px;">APELLIDO</p>
                     <p style="width: 200px;">CORREO</p>
                     <p style="width: 200px;">TELÉFONO</p>
-                    <p style="width: 150px;">ACCIÓN</p>
+                    <p style="width: 250px;">ACCIÓN</p>
                 </div>
-                <div class="contentRow "></div>
+                <div class="contentRow" *ngFor="let usuario of usuarios">
+                    <p style="width: 108px;">{{usuario.id}}</p>
+                    <p style="width: 200px;">{{usuario.nombre}}</p>
+                    <p style="width: 200px;">{{usuario.apellido}}</p>
+                    <p style="width: 200px;">{{usuario.correo}}</p>
+                    <p style="width: 200px;">{{usuario.id}}</p>
+                    <p style="width: 250px;" class="actionBox">
+                    <button style="background-color: orange" type="button" class="actionButton" (click)="editarUsuario()">
+            <p>EDITAR</p>
+          </button>
+          <button style="background-color: green" type="button" class="actionButton" (click)="habilitarUsuario($event, 1)">
+            <p>HABILITAR</p>
+          </button>
+          <button style="background-color: red" type="button" class="actionButton" (click)="habilitarUsuario($event, 0)">
+            <p>DESHABILITAR</p>
+          </button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

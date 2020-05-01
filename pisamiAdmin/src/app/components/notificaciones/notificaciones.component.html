@@ -45,9 +45,20 @@
                 <div class="titleRow">
                     <p style="width: 108px;">ID</p>
                     <p style="width: 200px;">NOMBRE NOTIFICACIÓN</p>
-                    <p style="width: 150px;">ACCIONES</p>
+                    <p style="width: 250px;">ACCIONES</p>
                 </div>
-                <div class="contentRow "></div>
+                <div class="contentRow" *ngFor="let notificacion of notificaciones">
+                    <p style="width: 108px;">{{notificacion.id}}</p>
+                    <p style="width: 200px;">{{notificacion.nombre}}</p>
+                    <p style="width: 250px;" class="actionBox">
+                        <button style="background-color: orange" type="button" class="actionButton" (click)="editarNotificacion($event, notificacion)">
+                            <p>EDITAR</p>
+                        </button>
+                        <button style="background-color: red" type="button" class="actionButton" (click)="eliminarNotificacion($event, notificacion)">
+                            <p>ELIMINAR</p>
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

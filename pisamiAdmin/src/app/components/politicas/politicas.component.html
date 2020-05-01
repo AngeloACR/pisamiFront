@@ -18,11 +18,15 @@
                             <input class="lInput" type="text" formControlName="id" name="" />
                         </div>
                         <div class="formInput">
-                            <label for="">NOMBRE DE LA POLÍTICA</label>
+                            <label class="nameLabel" for="">NOMBRE DE LA POLÍTICA</label>
                             <input class="lInput" type="text" formControlName="nombre" name="" />
                         </div>
                         <div class="formDescripcion">
                             <label for="">SUBIR PDF</label>
+                            <div class="fileBox">
+                                <img src="assets/CREAR POLITICA/DOCPDF.png" alt="" />
+                                <p class="tagText">Nota: Se recomienda que el archivo no supere los 2 MB de tamaño</p>
+                            </div>
                         </div>
 
                         <button type="button" class="formButton" (click)="endRegistro()">
@@ -51,7 +55,18 @@
                     <p style="width: 200px;">NOMBRE DE POLÍTICA</p>
                     <p style="width: 150px;">ACCIONES</p>
                 </div>
-                <div class="contentRow "></div>
+                <div class="contentRow" *ngFor="let politica of politicas">
+                    <p style="width: 108px;">{{politica.id}}</p>
+                    <p style="width: 200px;">{{politica.nombre}}</p>
+                    <p style="width: 250px;" class="actionBox">
+                        <button style="background-color: orange" type="button" class="actionButton" (click)="editarPolitica($event, politica)">
+                            <p>EDITAR</p>
+                        </button>
+                        <button style="background-color: red" type="button" class="actionButton" (click)="eliminarPolitica($event, politica)">
+                            <p>ELIMINAR</p>
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

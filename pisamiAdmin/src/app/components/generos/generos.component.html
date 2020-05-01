@@ -18,7 +18,7 @@
                             <input class="lInput" type="text" formControlName="id" name="" />
                         </div>
                         <div class="formInput">
-                            <label for="">NOMBRE DEL GENERO MUSICAL</label>
+                            <label class="nameLabel" for="">NOMBRE DEL GENERO MUSICAL</label>
                             <input class="lInput" type="text" formControlName="nombre" name="" />
                         </div>
                         <div class="formDescripcion">
@@ -51,9 +51,21 @@
                     <p style="width: 108px;">ID</p>
                     <p style="width: 200px;">NOMBRE DEL GÉNERO</p>
                     <p style="width: 250px;">DESCRIPCIÓN</p>
-                    <p style="width: 150px;">ACCIONES</p>
+                    <p style="width: 250px;">ACCIONES</p>
                 </div>
-                <div class="contentRow "></div>
+                <div class="contentRow" *ngFor="let genero of generos">
+                    <p style="width: 108px;">{{genero.id}}</p>
+                    <p style="width: 200px;">{{genero.nombre}}</p>
+                    <p style="width: 250px;">{{genero.descripcion}}</p>
+                    <p style="width: 250px;" class="actionBox">
+                    <button style="background-color: orange" type="button" class="actionButton" (click)="editarGenero($event, genero)">
+            <p>EDITAR</p>
+          </button>
+          <button style="background-color: red" type="button" class="actionButton" (click)="eliminarGenero($event, genero)">
+            <p>ELIMINAR</p>
+          </button>
+                    </p>
+</div>
             </div>
         </div>
     </div>

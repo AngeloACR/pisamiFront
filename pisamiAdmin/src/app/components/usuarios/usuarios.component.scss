@@ -33,8 +33,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 23px;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
     width: 100%;
     align-self: center;
 }
@@ -65,7 +65,7 @@
 }
 
 .lInput {
-    flex-basis: 100%;
+    width: 100%;
     font-size: 16px;
     padding-left: 23px;
     border-radius: 42px;
@@ -108,7 +108,7 @@
 }
 
 .formBox {
-    width: 90%;
+    width: 95%;
     background-color: white;
     border-style: solid;
     border-width: 2px;
@@ -130,7 +130,7 @@
 
 .formContent {
     display: flex;
-    width: 90%;
+    width: 100%;
     margin: auto;
     margin-top: 5vh;
     height: auto;
@@ -161,6 +161,48 @@
 
 .formButton:active {
     background-color: white;
+}
+
+.actionBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.actionButton {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    height: 80%;
+    width: 30%;
+    color: black;
+    margin-right: 5px;
+    border-radius: 42px;
+    cursor: pointer;
+}
+
+.actionButton:hover {
+    background-color: white;
+}
+
+.actionButton:active {
+    background-color: white;
+}
+
+.actionButton p {
+    color: white !important;
+    margin: 0;
+    font-size: 8px !important;
+    border: none !important;
+    background-color: transparent !important;
+    font-weight: bold;
+    min-width: 10px !important;
+    width: 100% !important;
+    text-decoration: none !important;
+}
+
+.actionButton:hover p {
+    color: #c1272d;
 }
 
 .copyright {

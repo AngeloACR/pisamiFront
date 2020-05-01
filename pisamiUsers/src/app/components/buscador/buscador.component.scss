@@ -80,6 +80,11 @@
     box-shadow: none;
 }
 
+select.lInput{
+    border-radius: 0;
+    height: 30px;
+}
+
 .formDescripcion {
     display: flex;
     flex-direction: row;
@@ -109,6 +114,7 @@
 
 .formBox {
     width: 90%;
+    margin-top: 30px;
     background-color: white;
     border-style: solid;
     border-width: 2px;
@@ -149,10 +155,15 @@
     color: black;
     background-color: #c1272d;
     margin: auto;
-    margin-top: 1vh;
+    margin-top: 4vh;
     margin-bottom: 4vh;
     border-radius: 42px;
     cursor: pointer;
+}
+
+.moreBox .formButton{
+    border-radius: 8px;
+    width: 84%
 }
 
 .formButton:hover {
@@ -188,6 +199,11 @@
 
 .formButton:hover p {
     color: #c1272d;
+}
+
+.moreBox .formButton p{
+    font-size: 12px;
+    
 }
 
 .buttonBox {
@@ -385,6 +401,7 @@
     font-weight: 900;
     width: 100%;
     margin: 0;
+    color: #c1272d;
     text-align: center;
 }
 
@@ -434,12 +451,13 @@
 
 .ratingBox .starsBox {
     width: 120px;
+    height: 25px;
     background-color: #c1272d;
     border-radius: 42px;
 }
 
 .imgArrow {
-    width: 50px;
+    width: 40px;
 }
 
 .artistaImg {

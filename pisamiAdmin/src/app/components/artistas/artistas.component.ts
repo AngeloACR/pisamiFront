@@ -14,6 +14,8 @@ export class ArtistasComponent implements OnInit {
   title: string;
   registroArtista: FormGroup;
   buscarArtista: FormGroup;
+  artistas: any;
+  generos = ['Cumbia', 'Bachata', 'Vallenato', 'Rock'];
 
   isCrear: Boolean;
   isListar: Boolean;
@@ -48,6 +50,19 @@ export class ArtistasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.artistas = [{
+      id: '2587956',
+      nombre: 'Los Bacanos',
+      categorias: 'Bachata, cumbia, salsa',
+      telefono: '085-98921454',
+      correo: 'banda@musica.com',
+    }, {
+      id: '8587956',
+      nombre: 'Los cantautores',
+      categorias: 'Reggaeton, rock, metal',
+      telefono: '085-98921454',
+      correo: 'banda@musica.com',
+    }]    
     this.initForm();
     if (this.id == '0') {
       this.isCrear = true;
@@ -75,6 +90,18 @@ export class ArtistasComponent implements OnInit {
   }
 
   filtrarArtista() {
+  }
+
+  editarArtista(event, usuario) {
+  }
+
+  habilitarArtista(event, artista, habilitar) {
+    console.log(habilitar)
+    if (habilitar == 0) {
+      console.log('Deshabilitar')
+    } else if (this.id == '1') {
+      console.log('Habilitar')
+    }
   }
 
 }
