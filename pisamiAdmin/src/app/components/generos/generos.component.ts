@@ -64,7 +64,7 @@ export class GenerosComponent implements OnInit {
       descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
       }, {
       id: '29387',
-      nombre: 'Rock'
+      nombre: 'Rock',
       descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
       }
     ]
