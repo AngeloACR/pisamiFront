@@ -7,12 +7,13 @@ import { AuthService } from './auth.service';
 })
 export class GuardService implements CanActivate {
   constructor(public auth: AuthService, private router: Router) { }  
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!this.auth.isAuthenticated() && state.url != '/login') {
+  canActivate = async function(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let isAuthenticated = await this.auth.isAuthenticated()
+    if (!isAuthenticated && state.url != '/login') {
       this.router.navigate(['/login']);
       return false;
     }
-    if (this.auth.isAuthenticated() && state.url == '/login') {
+    if (isAuthenticated && state.url == '/login') {
       this.router.navigate(['/']);
     }
     return true;

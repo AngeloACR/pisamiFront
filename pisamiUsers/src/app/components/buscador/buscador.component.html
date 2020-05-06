@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
+<!--     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    </ion-toolbar>
+            <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
+    </ion-toolbar> -->
+    <app-header></app-header>
 </ion-header>
 
 <ion-content>
@@ -79,16 +81,16 @@
                         <div class="linkListTitle">
                             LINKS DE MÚSICA DE SOUNDCLOUD
                         </div>
-                        <p class="linkName" *ngFor="let link of artistaEscogido.soundLinks">
-                            NOMBRE CANCIÓN: {{link}}
+                        <p class="linkName" *ngFor="let cancion of artistaEscogido.soundCanciones">
+                            {{cancion.nombre}}: {{cancion.link}}
                         </p>
                     </div>
                     <div class="linksList">
                         <div class="linkListTitle">
                             LINKS DE MÚSICA DE YOUTUBE
                         </div>
-                        <p class="linkName" *ngFor="let link of artistaEscogido.youLinks">
-                            NOMBRE CANCIÓN: {{link}}
+                        <p class="linkName" *ngFor="let cancion of artistaEscogido.youCanciones">
+                            {{cancion.nombre}}: {{cancion.link}}
                         </p>
                     </div>
                 </div>
@@ -96,7 +98,7 @@
             <div class="ratingBox">
                 <p>CALIFICA QUE TE PARECIÓ:</p>
                 <div class="starsBox">
-                    <app-rating [rating]="artistaEscogido.rating"> </app-rating>
+                    <app-rating [rating]="-1"> </app-rating>
                 </div>
             </div>
         </div>

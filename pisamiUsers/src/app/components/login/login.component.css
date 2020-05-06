@@ -8,7 +8,7 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    z-index: 200;
+   
     background-image: url('/assets/LOGIN/FONDO.png');
     background-size: cover;
 }
@@ -71,7 +71,7 @@
     height: 36px;
     border: none;
     background-image: none;
-    background-color: #ffffc5;
+    background-color: white;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

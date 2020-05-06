@@ -8,7 +8,7 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    z-index: 200;
+   
     background-image: url('/assets/REGISTRO/FONDO2.png');
     background-size: cover;
 }
@@ -74,7 +74,7 @@
     border-width: 2px;
     height: 36px;
     background-image: none;
-    background-color: #ffffc5;
+    background-color: white;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -104,7 +104,7 @@
     border-width: 2px;
     border-color: #c1272d;
     border-radius: 23px;
-    background-color: #ffffc5;
+    background-color: white;
 }
 
 .formBox {

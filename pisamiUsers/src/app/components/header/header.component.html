@@ -1,0 +1,14 @@
+<ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <form [formGroup]="buscador">
+
+    <div class="formInput">
+      <img class="searchIcon" src="assets/MENU/LUPA.png" alt="" (click)="endBuscador()"/>
+      <input class="lInput" type="text" formControlName="artista" name="artista" placeholder="Busca por categoria, por nombre de cantante o agrupación"/>
+    </div>
+    </form>
+</ion-toolbar>
+<div class="circularBox"></div>
+<img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />

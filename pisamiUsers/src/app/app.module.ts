@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -16,6 +17,10 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { PoliticasComponent } from './components/politicas/politicas.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { HeaderComponent } from './components/header/header.component';
+
+import { FileValueAccessor } from './directives/fileControl'
+import { FileValidator } from './directives/fileValidator'
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,14 +32,19 @@ import { AppRoutingModule } from './app-routing.module';
     BuscadorComponent,
     PoliticasComponent,
     PerfilComponent,
-    RatingComponent
+    RatingComponent,
+    HeaderComponent,
+    FileValueAccessor,
+    FileValidator
   ],
   entryComponents: [
-    RatingComponent
+    RatingComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

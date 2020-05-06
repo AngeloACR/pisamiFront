@@ -8,7 +8,7 @@
     left: 0;
     width: 100%;
     min-height: 100%;
-    z-index: 200;
+   
     background-image: url('/assets/REGISTRO/FONDO2.png');
     background-size: cover;
 }
@@ -650,7 +650,7 @@ select.lInput {
 }
 
 .linksList .lInput {
-    background-color: #ffffc5;
+    background-color: white;
 }
 
 .linkListTitle {

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { FileValidator } from '../../directives/fileValidator';
 
 @Component({
   selector: 'app-registro',
@@ -118,9 +119,9 @@ export class RegistroComponent implements OnInit {
 
     this.registroInfo = new FormGroup({
       generos: new FormControl(''),
-      imagen1: new FormControl(''),
-      imagen2: new FormControl(''),
-      imagen3: new FormControl(''),
+      imagen1: new FormControl('', [FileValidator.validate]),
+      imagen2: new FormControl('', [FileValidator.validate]),
+      imagen3: new FormControl('', [FileValidator.validate]),
       soundLinks: new FormControl(''),
       youLinks: new FormControl(''),
       soundNombres: new FormControl(''),

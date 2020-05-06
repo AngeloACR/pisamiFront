@@ -66,8 +66,18 @@ export class BuscadorComponent implements OnInit {
       telefono: '085-98921454',
       correo: 'banda@musica.com',
       rating: 3,
-      soundLinks: ['https://soundcloud.com/xxxxxxxx', 'https://soundcloud.com/xxxxxxxx'],
-      youLinks: ['https://youtube.com/xxxxxxxx', 'https://youtube.com/xxxxxxxx'],
+      soundCanciones: [{
+        nombre: 'La papa quemada',
+        link: 'https://soundcloud.com/xxxxxxxx'}, {
+        nombre: 'Caminos distantes',
+        link: 'https://soundcloud.com/xxxxxxxx',
+      }],
+      youCanciones: [{
+        nombre: 'La papa quemada',
+        link: 'https://youtube.com/xxxxxxxx'}, {
+        nombre: 'Caminos distantes',
+        link: 'https://youtube.com/xxxxxxxx',
+      }],
     }, {
       nombre: 'Los cantautores',
       categorias: 'Reggaeton, rock, metal',
@@ -79,8 +89,18 @@ export class BuscadorComponent implements OnInit {
       telefono: '085-98921454',
       correo: 'banda@musica.com',
       rating: 4,
-      soundLinks: ['https://soundcloud.com/xxxxxxxx', 'https://soundcloud.com/xxxxxxxx'],
-      youLinks: ['https://youtube.com/xxxxxxxx', 'https://youtube.com/xxxxxxxx'],
+      soundCanciones: [{
+        nombre: 'La papa quemada',
+        link: 'https://soundcloud.com/xxxxxxxx'}, {
+        nombre: 'Caminos distantes',
+        link: 'https://soundcloud.com/xxxxxxxx',
+      }],
+      youCanciones: [{
+        nombre: 'La papa quemada',
+        link: 'https://youtube.com/xxxxxxxx'}, {
+        nombre: 'Caminos distantes',
+        link: 'https://youtube.com/xxxxxxxx',
+      }],
     }]
     this.initForm();
     if (this.id == '0') {
@@ -98,6 +118,11 @@ export class BuscadorComponent implements OnInit {
     }
   }
 
+   trackByFn(index, item) {
+    console.log("tracking")
+    console.log(index);
+    console.log(item);
+  }
   initForm() {
     this.buscarArtista = new FormGroup({
       genero: new FormControl(''),

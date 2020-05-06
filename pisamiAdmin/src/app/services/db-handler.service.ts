@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { AuthService } from './auth.service';
 import { forkJoin } from 'rxjs';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
 	providedIn: 'root'
@@ -20,14 +21,16 @@ export class DbHandlerService {
 	constructor(
 		private http: HttpClient,
 		private datePipe: DatePipe,
-		private auth: AuthService
+		private auth: AuthService,
+		private storage: Storage
 	) {
 	}
 
-	postSomething(body, endpoint) {
+	postSomething= async function(body, endpoint) {
+		try{
 		let headers = new HttpHeaders();
 		headers = headers.append('Content-Type', 'application/json');
-		let token = this.auth.getToken();
+		let token = await this.auth.getToken();
 		if (token != null) {
 			headers = headers.append('Authorization', token)
 		}
@@ -36,39 +39,55 @@ export class DbHandlerService {
 		address = address + endpoint;
 
 		return this.http.post(address, body, { headers: headers });
+		}
+		catch(e){
+			console.log(e)
+			return e
+		}
 
 	}
 
-	getSomething(endpoint) {
+	getSomething= async function(endpoint) {
+		try{
 		let headers = new HttpHeaders();
 		headers = headers.append('Content-Type', 'application/json');
-		let token = this.auth.getToken();
+		let token = await this.auth.getToken();
 		headers = headers.append('Authorization', token)
 		var address = this.mySource;
 
 		address = address + endpoint;
 
 		return this.http.get(address, { headers: headers });
+		}
+		catch(e){
+			console.log(e)
+			return e
+		}
 	}
 
-	putSomething(body, endpoint) {
+	putSomething= async function(body, endpoint) {
+		try{
 		let headers = new HttpHeaders();
 		headers = headers.append('Content-Type', 'application/json');
-		let token = this.auth.getToken();
+		let token = await this.auth.getToken();
 		headers = headers.append('Authorization', token)
 
 		var address = this.mySource;
-
 		address = address + endpoint;
-
-
+		
 		return this.http.put(address, body, { headers: headers });
+		}
+		catch(e){
+			console.log(e)
+			return e
+		}
 	}
 
-	deleteSomething(item, endpoint) {
+	deleteSomething= async function(item, endpoint) {
+		try{
 		let headers = new HttpHeaders();
 		headers = headers.append('Content-Type', 'application/json');
-		let token = this.auth.getToken();
+		let token = await this.auth.getToken();
 		headers = headers.append('Authorization', token)
 
 		var address = this.mySource;
@@ -86,16 +105,28 @@ export class DbHandlerService {
 		};
 
 		return this.http.delete(address, options);
+		}
+		catch(e){
+			console.log(e)
+			return e
+		}
 	}
 
 	setLocal(name, value) {
-		localStorage.removeItem(name);
-		localStorage.setItem(name, JSON.stringify(value));
+		this.storage.remove(name);
+		this.storage.set(name, JSON.stringify(value));
 	}
 
-	getLocal(name) {
-		var value = JSON.parse(localStorage.getItem(name));
-		return value;
+	getLocal= async function(name) {
+		try{
+		let value = await this.storage.get(name)
+			value = JSON.parse(value);
+			return value;
+		}
+		catch(e){
+			console.log(e)
+			return e
+		}
 	}
 
 }

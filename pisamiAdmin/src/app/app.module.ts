@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -20,6 +21,9 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { FileValueAccessor } from './directives/fileControl'
+import { FileValidator } from './directives/fileValidator'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +34,15 @@ import { AppRoutingModule } from './app-routing.module';
     UsuariosComponent,
     RegistroComponent,
     LoginComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    FileValueAccessor,
+    FileValidator
   ],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import * as jwt_decode from 'jwt-decode';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private storage: Storage
   ) { }
 
   login(logData: any) {
@@ -39,24 +41,24 @@ export class AuthService {
 
   }
   logout() {
-    localStorage.removeItem('loggedIn');
-    localStorage.removeItem('token');
-    localStorage.clear();
+    this.storage.remove('loggedIn');
+    this.storage.remove('token');
+    this.storage.clear();
     window.location.reload();
   }
 
   storeData(storeData: any) {
-    localStorage.setItem('token', storeData.token);
-    localStorage.setItem('loggedIn', storeData.auth);
+    this.storage.set('token', storeData.token);
+    this.storage.set('loggedIn', 'true');
   }
 
   resetPass(resetData: any) {
 
   }
 
-  decode() {
+  decode = async function() {
     try {
-      var token = localStorage.getItem('token');
+    let token = await this.storage.get('token')
       return jwt_decode(token);
     }
     catch (Error) {
@@ -64,15 +66,25 @@ export class AuthService {
     }
   }
 
-  isAuthenticated() {
-    const loggedIn = localStorage.getItem('loggedIn');
-    const isLogged = (loggedIn == 'true')
-    return isLogged;
+  isAuthenticated = async function() {
+    try {
+    let loggedIn = await this.storage.get('loggedIn')
+      const isLogged = (loggedIn == 'true')
+        return isLogged;
+    }
+    catch (Error) {
+      return false;
+    }
   }
 
-  getToken() {
-    const token = localStorage.getItem('token');
-    return token;
+  getToken = async function() {
+    try {
+    let token = await this.storage.get('token')
+      return token;
+    }
+    catch (Error) {
+      return null;
+    }
   }
-
+  
 }
