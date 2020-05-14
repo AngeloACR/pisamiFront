@@ -15,7 +15,7 @@
                     <img class="formImg" src="assets/REGISTRO/LOGOREGIS.png" alt="Logo" />
                 </div>
                 <p><b>¿Cómo te quieres registrar?</b></p>
-                <div class="iconsBox">
+               <div class="iconsBox">
                     <div class="iconBox">
                         <img class="iconImg" [src]="musicoImg" alt="Logo" (click)="firstToggle($event, 'musico')" />
                         <p>Musico</p>
@@ -81,21 +81,12 @@
                             <label for="">Contraseña</label>
                             <input class="lInput" type="password" formControlName="password" name="password" />
                         </div>
-                        <div class="formTerminos">
-                            <label class="checkContainer">
-                            Estoy de acuerdo con los términos y condiciones
-                            <input
-                                type="checkbox"
-                                formControlName="aceptarTerminos"
-                            />
-                            <span class="checkmark"></span>
-                            </label>
-                            <p>Ver más</p>
-                            <br><br>
-                        </div>
 
-                <button type="button" class="formButton" (click)="endRegistro()">
+                <button type="button" class="formButton" *ngIf="isRegistrar" (click)="endRegistro()">
                         <p>Crear</p>
+                    </button>
+                <button type="button" class="formButton" *ngIf="isEditar" (click)="editarElemento()">
+                        <p>Editar</p>
                     </button>
                     </div>
                 </form>
@@ -328,7 +319,7 @@
                         </div>
                         <div class="formInput">
                                 <label for="">Nombre de Canción</label>
-                                <input class="lInput" type="text" formControlName="youNombres" name="" />
+                             <input class="lInput" type="text" formControlName="youNombres" name="" />
                             </div>
                             <div class="formInput">
                                     <label for="">Link de Canción</label>
@@ -336,7 +327,10 @@
                                 </div>
                         </div>
                 </div>
-                        <button type="button" class="formButton" (click)="endRegistro()">
+                        <button type="button" class="formButton" *ngIf="isRegistrar" (click)="endRegistro()">
+                                    <p>Guardar información</p>
+                                </button>
+                        <button type="button" class="formButton" *ngIf="isEditar" (click)="editarElemento()">
                                     <p>Guardar información</p>
                                 </button>
                             </div>

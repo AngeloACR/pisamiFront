@@ -71,7 +71,9 @@
     height: 36px;
     border: none;
     background-image: none;
-    background-color: #ffffc5;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: grayscale(0.5) opacity(0.8);
+    color: black;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

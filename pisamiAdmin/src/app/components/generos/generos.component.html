@@ -1,72 +1,107 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>{{title}}</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="pageBox">
-        <div class="logBox" *ngIf="isCrear">
-            <div class="formBox">
-                <form [formGroup]="registroGenero">
-                    <div class="formContent">
-                        <div class="formInput">
-                            <label for="">ID</label>
-                            <input class="lInput" type="text" formControlName="id" name="" />
-                        </div>
-                        <div class="formInput">
-                            <label class="nameLabel" for="">NOMBRE DEL GENERO MUSICAL</label>
-                            <input class="lInput" type="text" formControlName="nombre" name="" />
-                        </div>
-                        <div class="formDescripcion">
-                            <label for="">DESCRIPCIÓN</label>
-                            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
-                        </div>
+  <div class="pageBox">
+    <div class="logBox" *ngIf="isCrear || isEditar">
+      <div class="formBox">
+        <form [formGroup]="registroGenero">
+          <div class="formContent">
+            <div class="formInput">
+              <label for="">ID</label>
+              <input class="lInput" type="text" formControlName="id" name="" />
+            </div>
+            <div class="formInput">
+              <label class="nameLabel" for="">NOMBRE DEL GENERO MUSICAL</label>
+              <input
+                class="lInput"
+                type="text"
+                formControlName="nombre"
+                name=""
+              />
+            </div>
+            <div class="formDescripcion">
+              <label for="">DESCRIPCIÓN</label>
+              <textarea
+                rows="6"
+                type="text"
+                formControlName="descripcion"
+                name=""
+              ></textarea>
+            </div>
 
-                        <button type="button" class="formButton" (click)="endRegistro()">
+            <button type="button" class="formButton" *ngIf="isCrear" (click)="endRegistro()">
               <p>CREAR</p>
             </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="logBox" *ngIf="isListar">
-            <form [formGroup]="buscarGenero">
-                <div class="formContent">
-                    <div class="formInput">
-                        <label for="">NOMBRE DEL GENERO</label>
-                        <input class="lInput" type="text" formControlName="nombre" name="" />
-                    </div>
+                        <button type="button" class="formButton" *ngIf="isEditar" (click)="endRegistro()">
+              <p>EDITAR</p>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="logBox" *ngIf="isListar">
+      <form [formGroup]="buscarGenero">
+        <div class="formContent">
+          <div class="formInput">
+            <label for="">NOMBRE DEL GENERO</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
 
-                    <button type="button" class="formButton" (click)="filtrarGenero()">
+          <button type="button" class="formButton" (click)="filtrarGenero()">
             <p>FILTRAR</p>
           </button>
-                </div>
-            </form>
-            <div class="listBox">
-                <div class="titleRow">
-                    <p style="width: 108px;">ID</p>
-                    <p style="width: 200px;">NOMBRE DEL GÉNERO</p>
-                    <p style="width: 250px;">DESCRIPCIÓN</p>
-                    <p style="width: 250px;">ACCIONES</p>
-                </div>
-                <div class="contentRow" *ngFor="let genero of generos">
-                    <p style="width: 108px;">{{genero.id}}</p>
-                    <p style="width: 200px;">{{genero.nombre}}</p>
-                    <p style="width: 250px;">{{genero.descripcion}}</p>
-                    <p style="width: 250px;" class="actionBox">
-                    <button style="background-color: orange" type="button" class="actionButton" (click)="editarGenero($event, genero)">
-            <p>EDITAR</p>
-          </button>
-          <button style="background-color: red" type="button" class="actionButton" (click)="eliminarGenero($event, genero)">
-            <p>ELIMINAR</p>
-          </button>
-                    </p>
-</div>
-            </div>
         </div>
+      </form>
+
+      <div class="listBox">
+        <div class="titleRow">
+          <p style="width: 108px;">ID</p>
+          <p style="width: 200px;">NOMBRE DEL GÉNERO</p>
+          <p style="width: 250px;">DESCRIPCIÓN</p>
+          <p style="width: 250px;">ACCIONES</p>
+        </div>
+        <div class="contentRow" *ngFor="let genero of generos">
+          <div style="width: 108px;">
+            <p>{{ genero.id }}</p>
+          </div>
+          <div style="width: 200px;">
+            <p>{{ genero.nombre }}</p>
+          </div>
+          <div style="width: 250px;">
+            <p>{{ genero.descripcion }}</p>
+          </div>
+          <div style="width: 250px;" class="actionBox">
+            <button
+              style="background-color: orange"
+              type="button"
+              class="actionButton"
+              (click)="editarGenero($event, genero)"
+            >
+              <p>EDITAR</p>
+            </button>
+            <button
+              style="background-color: red"
+              type="button"
+              class="actionButton"
+              (click)="eliminarGenero($event, genero)"
+            >
+              <p>ELIMINAR</p>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </ion-content>

@@ -13,6 +13,17 @@
     background-size: cover;
 }
 
+.backBox {
+    width: 80px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.backBox img{
+    width: 100% !important;
+}
+
 .logoBox {
     width: 75%;
 }
@@ -277,6 +288,65 @@
     min-width: 108px;
     white-space: normal;
     font-weight: bold;
+}
+
+
+.linksBox {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 4vh;
+}
+
+.linkTitle {
+    color: #c1272d;
+    font-size: 14px;
+    font-weight: 900;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 2px;
+    background-color: white;
+    border-color: #c1272d;
+}
+
+.linksList .formInput {
+    flex-wrap: nowrap !important;
+    width: 98%;
+    margin-top: 10px;
+}
+
+.linksList .lInput {
+    background-color: white;
+}
+
+.linkListTitle {
+    color: white;
+    background-color: #c1272d;
+    font-weight: bolder;
+    font-size: 14px;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.linkName {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 @media only screen and (max-width: 600px) {

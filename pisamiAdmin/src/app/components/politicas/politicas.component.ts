@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-politicas',
@@ -15,9 +16,11 @@ export class PoliticasComponent implements OnInit {
   registroPolitica: FormGroup;
   buscarPolitica: FormGroup;
   politicas: any;
+  politicaEscogida: any;
 
   isCrear: Boolean;
   isListar: Boolean;
+  isEditar: Boolean;
 
   formCompleted: Boolean;
   formSelected: Boolean;
@@ -29,10 +32,14 @@ export class PoliticasComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public actionSheetController: ActionSheetController    
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params['id'];
+      if (params['politica']) {
+        this.politicaEscogida = JSON.parse(params['politica']);
+      }
     });
     this.router.events.subscribe(event => {
       this.actRoute.url.subscribe(value => {
@@ -48,7 +55,8 @@ export class PoliticasComponent implements OnInit {
     });
   }
 
-  ngOnInit() {   
+  ngOnInit() {
+    this.isEditar = false;
     this.politicas = [{
       id: '29384',
       nombre: 'TRATO DE DATOS PERSONALES',
@@ -72,7 +80,36 @@ export class PoliticasComponent implements OnInit {
       this.isCrear = false;
       this.isListar = true;
       this.title = 'LISTA DE POLÍTICAS';
+    } else if (this.id == '2') {
+      this.isCrear = false;
+      this.isListar = false;
+      this.isEditar = true;
+      this.title = 'EDITAR POLÍTICA';
+      this.editForm(this.politicaEscogida)
     }
+  }
+
+  async eliminarPolitica(event, politica){
+    const actionSheet = await this.actionSheetController.create({
+      header: '¿Seguro que desea eliminar este elemento?',
+      buttons: [{
+        text: 'ELIMINAR',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          console.log('ELIMINANDO...');
+          console.log(politica);
+        }
+      }, {
+        text: 'CANCELAR',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
   initForm() {
@@ -87,6 +124,12 @@ export class PoliticasComponent implements OnInit {
 
   }
 
+  editForm(elemento){
+    this.registroPolitica.controls['id'].setValue(elemento.id);
+    this.registroPolitica.controls['nombre'].setValue(elemento.nombre);
+    this.registroPolitica.controls['descripcion'].setValue(elemento.descripcion);
+  }
+
 
   endRegistro() {
   }
@@ -95,10 +138,8 @@ export class PoliticasComponent implements OnInit {
   }
 
   editarPolitica(event, politica) {
+    let aux = JSON.stringify(politica)
+    this.router.navigate(['/politicas/2', { politica: aux }]);
   }
-
-  eliminarPolitica(event, politica) {
-  }
-
 
 }

@@ -33,7 +33,9 @@
         </div>
         <div class="logBox" *ngIf="isResultados">
             <div class="cardBox" *ngFor="let artista of artistas">
-                <div class="imgBox"></div>
+                <div class="imgBox">
+                    <img class="imgResultados" [src]="artista.imagenes[0]" alt="" />
+                </div>
                 <div class="infoBox">
                     <p>NOMBRE AGRUPACIÓN</p>
                     <p>{{artista.nombre}}</p>
@@ -53,9 +55,13 @@
                 <img src="assets/DETALLES ARTISTA/VOLVERLISTA.png" alt="" (click)="volverLista()" />
             </div>
             <div class="imgList">
-                <img class="imgArrow" src="assets/DETALLES ARTISTA/FLECHAIZQ.png" alt="" />
-                <img class="artistaImg" src="" alt="" />
-                <img class="imgArrow" src="assets/DETALLES ARTISTA/FECHADER.png" alt="" />
+                <div class="arrowBox">
+                    <img class="imgArrow" src="assets/DETALLES ARTISTA/FLECHAIZQ.png" alt="" *ngIf="!isStartOfList" (click)="prev()"/>
+                </div>
+                <img class="artistaImg" [src]="currentImage" alt="" />
+                <div class="arrowBox">
+                    <img class="imgArrow" src="assets/DETALLES ARTISTA/FECHADER.png" alt="" *ngIf="!isEndOfList" (click)="next()"/>
+                </div>
             </div>
             <div class="verBox">
                 <div class="starsBox">

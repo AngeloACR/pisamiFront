@@ -59,6 +59,13 @@
         <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div> -->
 
         <div class="logBox" [ngClass]="showForm">
+            <div class="backBox">
+                <img src="assets/DETALLES ARTISTA/VOLVERLISTA.png" alt="" (click)="volverSeleccionMusico()" *ngIf="isSolista || isDuo || isOrquesta"/>
+            </div>
+                    <div class="backBox">
+                <img src="assets/DETALLES ARTISTA/VOLVERLISTA.png" alt="" (click)="volverInfoArtista()" *ngIf="isSolista || isDuo || isInfo"/>
+            </div>
+            
             <!--             <div class="closeButton">
                 <button class="closeB" (click)="closeForm()">X</button>
             </div> -->

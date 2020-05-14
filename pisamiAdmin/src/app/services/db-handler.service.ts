@@ -1,132 +1,122 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
-import { AuthService } from './auth.service';
-import { forkJoin } from 'rxjs';
-import { Storage } from '@ionic/storage';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { DatePipe } from "@angular/common";
+import { AuthService } from "./auth.service";
+import { forkJoin } from "rxjs";
+import { Storage } from "@ionic/storage";
 
 @Injectable({
-	providedIn: 'root'
+  providedIn: "root"
 })
 export class DbHandlerService {
+  today = new Date();
+  localSource = "http://localhost:3400";
+  serverSource = "";
 
-	today = new Date;
-	localSource = 'http://localhost:3400';
-	serverSource = '';
+  //mySource = this.localSource
+  mySource = this.serverSource;
 
+  constructor(
+    private http: HttpClient,
+    private datePipe: DatePipe,
+    private auth: AuthService,
+    private storage: Storage
+  ) {}
 
-	//mySource = this.localSource
-	mySource = this.serverSource
+  postSomething = async function(body, endpoint) {
+    try {
+      let headers = new HttpHeaders();
+      headers = headers.append("Content-Type", "application/json");
+      let token = await this.auth.getToken();
+      if (token != null) {
+        headers = headers.append("Authorization", token);
+      }
+      var address = this.mySource;
 
-	constructor(
-		private http: HttpClient,
-		private datePipe: DatePipe,
-		private auth: AuthService,
-		private storage: Storage
-	) {
-	}
+      address = address + endpoint;
 
-	postSomething= async function(body, endpoint) {
-		try{
-		let headers = new HttpHeaders();
-		headers = headers.append('Content-Type', 'application/json');
-		let token = await this.auth.getToken();
-		if (token != null) {
-			headers = headers.append('Authorization', token)
-		}
-		var address = this.mySource;
+      return this.http.post(address, body, { headers: headers });
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
 
-		address = address + endpoint;
+  getSomething = async function(endpoint) {
+    try {
+      let headers = new HttpHeaders();
+      headers = headers.append("Content-Type", "application/json");
+      let token = await this.auth.getToken();
+      headers = headers.append("Authorization", token);
+      var address = this.mySource;
 
-		return this.http.post(address, body, { headers: headers });
-		}
-		catch(e){
-			console.log(e)
-			return e
-		}
+      address = address + endpoint;
 
-	}
+      return this.http.get(address, { headers: headers });
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
 
-	getSomething= async function(endpoint) {
-		try{
-		let headers = new HttpHeaders();
-		headers = headers.append('Content-Type', 'application/json');
-		let token = await this.auth.getToken();
-		headers = headers.append('Authorization', token)
-		var address = this.mySource;
+  putSomething = async function(body, endpoint) {
+    try {
+      let headers = new HttpHeaders();
+      headers = headers.append("Content-Type", "application/json");
+      let token = await this.auth.getToken();
+      headers = headers.append("Authorization", token);
 
-		address = address + endpoint;
+      var address = this.mySource;
+      address = address + endpoint;
 
-		return this.http.get(address, { headers: headers });
-		}
-		catch(e){
-			console.log(e)
-			return e
-		}
-	}
+      return this.http.put(address, body, { headers: headers });
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
 
-	putSomething= async function(body, endpoint) {
-		try{
-		let headers = new HttpHeaders();
-		headers = headers.append('Content-Type', 'application/json');
-		let token = await this.auth.getToken();
-		headers = headers.append('Authorization', token)
+  deleteSomething = async function(item, endpoint) {
+    try {
+      let headers = new HttpHeaders();
+      headers = headers.append("Content-Type", "application/json");
+      let token = await this.auth.getToken();
+      headers = headers.append("Authorization", token);
 
-		var address = this.mySource;
-		address = address + endpoint;
-		
-		return this.http.put(address, body, { headers: headers });
-		}
-		catch(e){
-			console.log(e)
-			return e
-		}
-	}
+      var address = this.mySource;
 
-	deleteSomething= async function(item, endpoint) {
-		try{
-		let headers = new HttpHeaders();
-		headers = headers.append('Content-Type', 'application/json');
-		let token = await this.auth.getToken();
-		headers = headers.append('Authorization', token)
+      address = address + endpoint;
 
-		var address = this.mySource;
+      item = JSON.stringify(item);
 
-		address = address + endpoint;
+      let params = new HttpParams();
+      params = params.append("item", item);
 
-	    item = JSON.stringify(item)
-	
-		let params = new HttpParams()
-		params = params.append('item', item);
+      let options = {
+        headers: headers,
+        params: params
+      };
 
-		let options = {
-			headers: headers,
-			params: params
-		};
+      return this.http.delete(address, options);
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
 
-		return this.http.delete(address, options);
-		}
-		catch(e){
-			console.log(e)
-			return e
-		}
-	}
+  setLocal(name, value) {
+    this.storage.remove(name);
+    this.storage.set(name, JSON.stringify(value));
+  }
 
-	setLocal(name, value) {
-		this.storage.remove(name);
-		this.storage.set(name, JSON.stringify(value));
-	}
-
-	getLocal= async function(name) {
-		try{
-		let value = await this.storage.get(name)
-			value = JSON.parse(value);
-			return value;
-		}
-		catch(e){
-			console.log(e)
-			return e
-		}
-	}
-
+  getLocal = async function(name) {
+    try {
+      let value = await this.storage.get(name);
+      value = JSON.parse(value);
+      return value;
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
 }

@@ -224,4 +224,17 @@ export class RegistroComponent implements OnInit {
     console.log(tipo);
   }
 
+  volverInfoArtista(){
+    this.isSolista = (this.tipoSelected == 'solista');  
+    this.isDuo = (this.tipoSelected == 'duo'); 
+    this.isOrquesta = (this.tipoSelected == 'orquesta');
+    this.isInfo = false;
+  }
+
+  volverSeleccionMusico(){
+    this.isSolista = false;
+    this.isDuo = false;
+    this.isOrquesta = false;
+  }
+
 }

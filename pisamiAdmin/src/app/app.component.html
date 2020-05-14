@@ -12,7 +12,7 @@
                         <ion-list class="childList">
                             <ion-menu-toggle auto-hide="false">
                                 <ion-item class="childItem" [ngClass]="p.class" *ngFor="let c of p.childs" routerDirection="root" [routerLink]="[c.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
-                                    <img class="menuImg" [src]="c.icon" />
+                                  <img class="menuImg" [src]="c.icon" />
                                     <ion-label class="childLabel">{{ c.title }}</ion-label>
                                 </ion-item>
                             </ion-menu-toggle>

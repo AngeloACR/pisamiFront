@@ -13,6 +13,17 @@
     background-size: cover;
 }
 
+.backBox {
+    width: 80px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.backBox img{
+    width: 100% !important;
+}
+
 .logoBox {
     width: 46%;
 }

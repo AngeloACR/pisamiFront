@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-generos',
@@ -14,12 +15,14 @@ export class GenerosComponent implements OnInit {
   id: string;
   title: string;
   generos: any;
+  generoEscogido: any;
 
   registroGenero: FormGroup;
   buscarGenero: FormGroup;
 
   isCrear: Boolean;
   isListar: Boolean;
+  isEditar: Boolean;
 
   formCompleted: Boolean;
   formSelected: Boolean;
@@ -31,10 +34,14 @@ export class GenerosComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public actionSheetController: ActionSheetController   
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params['id'];
+      if (params['genero']) {
+        this.generoEscogido = JSON.parse(params['genero']);
+      }
     });
     this.router.events.subscribe(event => {
       this.actRoute.url.subscribe(value => {
@@ -50,6 +57,7 @@ export class GenerosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isEditar = false;
     this.generos = [{
       id: '29384',
       nombre: 'Cumbia',
@@ -77,6 +85,12 @@ export class GenerosComponent implements OnInit {
       this.isCrear = false;
       this.isListar = true;
       this.title = 'LISTA DE GÉNEROS MUSICALES';
+    } else if (this.id == '2') {
+      this.isCrear = false;
+      this.isListar = false;
+      this.isEditar = true;
+      this.title = 'EDITAR GÉNERO';
+      this.editForm(this.generoEscogido)
     }
   }
 
@@ -92,6 +106,12 @@ export class GenerosComponent implements OnInit {
   
   }
 
+  editForm(elemento){
+    this.registroGenero.controls['nombre'].setValue(elemento.nombre);
+    this.registroGenero.controls['id'].setValue(elemento.id);
+    this.registroGenero.controls['descripcion'].setValue(elemento.descripcion);
+  }
+
 
   endRegistro() {
   }
@@ -100,8 +120,32 @@ export class GenerosComponent implements OnInit {
   }
 
   editarGenero(event, genero) {
+    let aux = JSON.stringify(genero)
+    this.router.navigate(['/generos/2', { genero: aux }]);
   }
 
-  eliminarGenero(event, genero) {
+
+  async eliminarGenero(event, genero){
+    const actionSheet = await this.actionSheetController.create({
+      header: '¿Seguro que desea eliminar este elemento?',
+      buttons: [{
+        text: 'ELIMINAR',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          console.log('ELIMINANDO...');
+          console.log(genero);
+        }
+      }, {
+        text: 'CANCELAR',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
+
 }

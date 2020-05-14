@@ -15,6 +15,9 @@ export class RegistroComponent implements OnInit {
   generos = ['Cumbia', 'Bachata', 'Vallenato', 'Rock'];
   id: string;
   title: string;
+  usuarioEscogido: any;
+  artistaEscogido: any;
+
   registroUser: FormGroup;
   registroSolista: FormGroup;
   registroDuo: FormGroup;
@@ -23,12 +26,17 @@ export class RegistroComponent implements OnInit {
   formCompleted: Boolean;
   formSelected: Boolean;
   tipoSelected: String;
+
   isUser: Boolean;
   isMusico: Boolean;
   isSolista: Boolean;
   isDuo: Boolean;
   isInfo: Boolean;
   isOrquesta: Boolean;
+  
+  isRegistrar: Boolean;
+  isEditar: Boolean;
+
   showBlack: {};
   showForm: {};
   hideOption: {};
@@ -46,6 +54,12 @@ export class RegistroComponent implements OnInit {
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params['id'];
+      if (params['usuario']) {
+        this.usuarioEscogido = JSON.parse(params['usuario']);
+      }
+      if (params['artista']) {
+        this.artistaEscogido = JSON.parse(params['artista']);
+      }
     });
     this.router.events.subscribe(event => {
       this.actRoute.url.subscribe(value => {
@@ -62,13 +76,27 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
     this.isMusico = false;
+    this.isRegistrar = false;
+    this.isEditar = false;
     this.initForm();
     if (this.id == '0') {
+    this.isRegistrar = true;
       this.firstToggle('', 'usuario');
       this.title = 'REGISTRO DE USUARIO';
     } else if (this.id == '1') {
+    this.isRegistrar = true;
       this.firstToggle('', 'musico');
       this.title = 'REGISTRO DE ARTISTAS';
+    }else if (this.id == '2') {
+    this.isEditar = true;
+      this.editUsuario(this.usuarioEscogido);
+      this.firstToggle('', 'usuario');
+      this.title = 'EDITAR USUARIO';
+    } else if (this.id == '3') {
+    this.isEditar = true;
+      this.editArtista(this.artistaEscogido)
+      this.firstToggle('', 'musico');
+      this.title = 'EDITAR ARTISTA';
     }
     this.musicoImg = 'assets/REGISTRO/MUSICO.png';
     this.userImg = 'assets/REGISTRO/USUARIO.png';
@@ -135,6 +163,19 @@ export class RegistroComponent implements OnInit {
     });
 
   }
+
+  editUsuario(usuario){
+    this.registroUser.controls['nombre'].setValue(usuario.nombre);
+    this.registroUser.controls['apellido'].setValue(usuario.apellido);
+    this.registroUser.controls['tlf'].setValue(usuario.telefono);
+    this.registroUser.controls['correo'].setValue(usuario.correo);
+    this.registroUser.controls['correo'].disable();
+  }
+
+  editArtista(artista){
+  }
+
+
 
   toggleForm(event, tipo) {
     this.formSelected = true;
@@ -225,8 +266,13 @@ export class RegistroComponent implements OnInit {
     this.isInfo = true;
   }
 
-  endRegistro(event, tipo) {
-    console.log(tipo);
+  endRegistro() {
+    console.log("Registrando");
   }
+
+  editarElemento(){
+    console.log("Editando");
+  }
+
 
 }

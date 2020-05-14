@@ -651,7 +651,7 @@ select.lInput {
 }
 
 .linksList .lInput {
-    background-color: #ffffc5;
+    background-color: white;
 }
 
 .linkListTitle {
@@ -715,7 +715,7 @@ select.lInput {
         order: 2;
         margin: 0;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 40px;
     }
     .formContent {
         padding: 0;

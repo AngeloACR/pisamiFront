@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-artistas',
@@ -30,7 +31,8 @@ export class ArtistasComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public actionSheetController: ActionSheetController   
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params['id'];
@@ -92,16 +94,53 @@ export class ArtistasComponent implements OnInit {
   filtrarArtista() {
   }
 
-  editarArtista(event, usuario) {
+  editarArtista(event, artista) {
+    let aux = JSON.stringify(artista)
+    this.router.navigate(['/registro/3', { artista: aux }]);
   }
 
-  habilitarArtista(event, artista, habilitar) {
-    console.log(habilitar)
+  async habilitarArtista(event, artista, habilitar) {
+    let actionSheet;
     if (habilitar == 0) {
-      console.log('Deshabilitar')
-    } else if (this.id == '1') {
-      console.log('Habilitar')
+    actionSheet = await this.actionSheetController.create({
+      header: '¿Seguro que desea deshabilitar este elemento?',
+      buttons: [{
+        text: 'DESHABILITAR',
+        icon: 'close-circle',
+        handler: () => {
+          console.log('DESHANILITANDO');
+          console.log(artista);
+        }
+      }, {
+        text: 'CANCELAR',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
+    } else if (habilitar == '1') {
+    actionSheet = await this.actionSheetController.create({
+      header: '¿Seguro que desea habilitar este elemento?',
+      buttons: [{
+        text: 'HABILITAR',
+        icon: 'checkmark-circle',
+        handler: () => {
+          console.log('HABILITANDO');
+          console.log(artista);
+        }
+      }, {
+        text: 'CANCELAR',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
     }
+    await actionSheet.present();
   }
 
 }

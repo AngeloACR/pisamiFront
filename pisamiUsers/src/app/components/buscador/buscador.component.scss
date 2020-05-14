@@ -305,6 +305,14 @@ select.lInput{
 
 .imgBox {
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgResultados{
+    width: 70%;
 }
 
 .infoBox {
@@ -464,10 +472,15 @@ select.lInput{
     width: 40px;
 }
 
+.arrowBox{
+    width: 40px;
+}
+
+
 .artistaImg {
-    width: 200px;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 150px;
+    margin-left: 23px;
+    margin-right: 23px;
 }
 
 @media only screen and (max-width: 600px) {

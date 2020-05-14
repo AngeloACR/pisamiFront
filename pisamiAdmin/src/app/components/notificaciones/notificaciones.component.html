@@ -9,7 +9,7 @@
 
 <ion-content>
     <div class="pageBox">
-        <div class="logBox" *ngIf="isCrear">
+        <div class="logBox" *ngIf="isCrear || isEditar">
             <div class="formBox">
                 <form [formGroup]="registroNotificacion">
                     <div class="formInput">
@@ -21,8 +21,11 @@
                             <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
                         </div>
 
-                        <button type="button" class="formButton" (click)="endRegistro()">
+                        <button type="button" class="formButton" *ngIf="isCrear" (click)="endRegistro()">
               <p>CREAR</p>
+            </button>
+                        <button type="button" class="formButton" *ngIf="isEditar" (click)="endRegistro()">
+              <p>EDITAR</p>
             </button>
                     </div>
                 </form>
@@ -48,16 +51,20 @@
                     <p style="width: 250px;">ACCIONES</p>
                 </div>
                 <div class="contentRow" *ngFor="let notificacion of notificaciones">
-                    <p style="width: 108px;">{{notificacion.id}}</p>
-                    <p style="width: 200px;">{{notificacion.nombre}}</p>
-                    <p style="width: 250px;" class="actionBox">
+                    <div style="width: 108px;">
+                        <p>{{notificacion.id}}</p>
+                    </div>
+                    <div style="width: 200px;">
+                        <p>{{notificacion.nombre}}</p>
+                    </div>
+                    <div style="width: 250px;" class="actionBox">
                         <button style="background-color: orange" type="button" class="actionButton" (click)="editarNotificacion($event, notificacion)">
                             <p>EDITAR</p>
                         </button>
                         <button style="background-color: red" type="button" class="actionButton" (click)="eliminarNotificacion($event, notificacion)">
                             <p>ELIMINAR</p>
                         </button>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>

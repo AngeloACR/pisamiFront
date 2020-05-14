@@ -1,64 +1,104 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>{{title}}</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="pageBox">
-        <div class="logBox" *ngIf="isCrear"></div>
-        <div class="logBox" *ngIf="isListar">
-            <form [formGroup]="buscarUsuario">
-                <div class="formContent">
-                    <div class="formInput">
-                        <label for="">NOMBRE</label>
-                        <input class="lInput" type="text" formControlName="nombre" name="" />
-                    </div>
-                    <div class="formInput">
-                        <label for="">APELLIDO</label>
-                        <input class="lInput" type="text" formControlName="nombre" name="" />
-                    </div>
-                    <div class="formInput">
-                        <label for="">CORREO</label>
-                        <input class="lInput" type="text" formControlName="nombre" name="" />
-                    </div>
+  <div class="pageBox">
+    <div class="logBox" *ngIf="isEditar"></div>
+    <div class="logBox" *ngIf="isListar">
+      <form [formGroup]="buscarUsuario">
+        <div class="formContent">
+          <div class="formInput">
+            <label for="">NOMBRE</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
+          <div class="formInput">
+            <label for="">APELLIDO</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
+          <div class="formInput">
+            <label for="">CORREO</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
 
-                    <button type="button" class="formButton" (click)="filtrarUsuario()">
+          <button type="button" class="formButton" (click)="filtrarUsuario()">
             <p>FILTRAR</p>
           </button>
-                </div>
-            </form>
-            <div class="listBox">
-                <div class="titleRow">
-                    <p style="width: 108px;">ID</p>
-                    <p style="width: 200px;">NOMBRE</p>
-                    <p style="width: 200px;">APELLIDO</p>
-                    <p style="width: 200px;">CORREO</p>
-                    <p style="width: 200px;">TELÉFONO</p>
-                    <p style="width: 250px;">ACCIÓN</p>
-                </div>
-                <div class="contentRow" *ngFor="let usuario of usuarios">
-                    <p style="width: 108px;">{{usuario.id}}</p>
-                    <p style="width: 200px;">{{usuario.nombre}}</p>
-                    <p style="width: 200px;">{{usuario.apellido}}</p>
-                    <p style="width: 200px;">{{usuario.correo}}</p>
-                    <p style="width: 200px;">{{usuario.id}}</p>
-                    <p style="width: 250px;" class="actionBox">
-                    <button style="background-color: orange" type="button" class="actionButton" (click)="editarUsuario()">
+        </div>
+      </form>
+      <div class="listBox">
+        <div class="titleRow">
+          <p style="width: 108px;">ID</p>
+          <p style="width: 200px;">NOMBRE</p>
+          <p style="width: 200px;">APELLIDO</p>
+          <p style="width: 200px;">CORREO</p>
+          <p style="width: 200px;">TELÉFONO</p>
+          <p style="width: 250px;">ACCIÓN</p>
+        </div>
+        <div class="contentRow" *ngFor="let usuario of usuarios">
+          <div style="width: 108px;">
+            <p>{{ usuario.id }}</p>
+          </div>
+          <div style="width: 200px;">
+            <p>{{ usuario.nombre }}</p>
+          </div>
+          <div style="width: 200px;">
+            <p>{{ usuario.apellido }}</p>
+          </div>
+          <div style="width: 200px;">
+            <p>{{ usuario.correo }}</p>
+          </div>
+          <div style="width: 200px;">
+            <p>{{ usuario.id }}</p>
+          </div>
+          <div style="width: 250px;" class="actionBox">
+              <button
+              style="background-color: orange"
+              type="button"
+              class="actionButton"
+              (click)="editarUsuario($event, usuario)"
+            >
             <p>EDITAR</p>
-          </button>
-          <button style="background-color: green" type="button" class="actionButton" (click)="habilitarUsuario($event, 1)">
-            <p>HABILITAR</p>
-          </button>
-          <button style="background-color: red" type="button" class="actionButton" (click)="habilitarUsuario($event, 0)">
+            </button>
+            <button
+            style="background-color: green"
+              type="button"
+              class="actionButton"
+              (click)="habilitarUsuario($event, usuario, 1)"
+              >
+              <p>HABILITAR</p>
+            </button>
+            <button
+              style="background-color: red"
+              type="button"
+              class="actionButton"
+              (click)="habilitarUsuario($event, usuario, 0)"
+            >
             <p>DESHABILITAR</p>
           </button>
-                    </p>
-                </div>
-            </div>
         </div>
+      </div>
+      </div>
     </div>
+  </div>
 </ion-content>

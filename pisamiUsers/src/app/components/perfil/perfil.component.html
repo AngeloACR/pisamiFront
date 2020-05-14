@@ -10,7 +10,7 @@
 
 <ion-content>
     <div class="pageBox">
-        <div class="logBox">
+        <div class="logBox" *ngIf="isUser">
             <div class="titleBox">
                 Configuración de mi Perfil
             </div>
@@ -43,6 +43,223 @@
             </button>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="logBox" *ngIf="isMusico">
+                    <div class="backBox">
+                <img src="assets/DETALLES ARTISTA/VOLVERLISTA.png" alt="" (click)="volverInfoArtista()" *ngIf="isSolista || isDuo || isInfo"/>
+            </div>
+            <div class="titleBox">
+                Configuración de mi Perfil
+            </div>
+            <div class="formBox">
+                <form *ngIf="isSolista" [formGroup]="actualizarSolista">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Nombre real</label>
+                            <input class="lInput" type="text" formControlName="nombreReal" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre artístico</label>
+                            <input class="lInput" type="text" formControlName="nombreArtistico" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Ciudad de origen</label>
+                            <input class="lInput" type="text" formControlName="ciudadOrigen" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Esta dispuesto a salir
+                                de la ciudad?</label>
+                            <select class="lInput" name="" formControlName="salir">
+                            <option selected="true">Sí</option>
+                            <option>No</option>
+                          </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Tiene representante?</label>
+                            <select class="lInput" name="" formControlName="tieneRepresentante">
+                          <option selected="true">Sí</option>
+                          <option>No</option>
+                        </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre Representante</label>
+                            <input class="lInput" type="text" formControlName="nombreRepresentante" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Telefono:</label>
+                            <input class="lInput" type="text" formControlName="telefono" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Correo:</label>
+                            <input class="lInput" type="text" formControlName="correo" name="" />
+                        </div>
+                        <div class="formDescripcion">
+                            <label for="">Descripción</label>
+                            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Pagina Web</label>
+                            <input class="lInput" type="text" formControlName="paginaWeb" name="" />
+                        </div>
+                    </div>
+
+                    <button type="button" class="formButton" (click)="toggleInfo()">
+                            <p>Siguiente</p>
+                        </button>
+                </form>
+
+                <form *ngIf="isDuo" [formGroup]="actualizarDuo">
+                        <div class="formContent">
+                                <div class="formInput">
+                                    <label for="">Nombre Artístico</label>
+                                    <input class="lInput" type="text" formControlName="nombreArtistico" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Ciudad de Origen</label>
+                                    <input class="lInput" type="text" formControlName="ciudadOrigen" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">¿Esta dispuesto a salir
+                                            de la ciudad?</label>
+                                    <select class="lInput" name="" formControlName="salir">
+                                    <option selected="true">Sí</option>
+                                    <option>No</option>
+                                </select>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">¿Tiene representante?</label>
+                                    <select class="lInput" name="" formControlName="tieneRepresentante">
+                                <option selected="true">Sí</option>
+                                <option>No</option>
+                                </select>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Nombre Representante</label>
+                                    <input class="lInput" type="text" formControlName="nombreRepresentante" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Teléfono</label>
+                                    <input class="lInput" type="text" formControlName="telefono" name="" />
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Correo</label>
+                                    <input class="lInput" type="text" formControlName="correo" name="" />
+                                </div>
+                                <div class="formDescripcion">
+                                    <label for="">Descripcion</label>
+                                    <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                                </div>
+                                <div class="formInput">
+                                    <label for="">Página Web</label>
+                                    <input class="lInput" type="text" formControlName="paginaWeb" name="" />
+                                </div>
+                                <button type="button" class="formButton" (click)="toggleInfo()">
+                                        <p>Siguiente</p>
+                                    </button>                        
+                            </div>
+                </form>
+
+                <form *ngIf="isOrquesta" [formGroup]="actualizarOrquesta">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Nombre Artístico</label>
+                            <input class="lInput" type="text" formControlName="nombreArtistico" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Número de integrantes</label>
+                            <input class="lInput" type="number" formControlName="numeroIntegrantes" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Ciudad de Origen</label>
+                            <input class="lInput" type="text" formControlName="ciudadOrigen" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Esta dispuesto a salir
+                                    de la ciudad?</label>
+                            <select class="lInput" name="" formControlName="salir">
+                            <option selected="true">Sí</option>
+                            <option>No</option>
+                        </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">¿Tiene representante?</label>
+                            <select class="lInput" name="" formControlName="tieneRepresentante">
+                        <option selected="true">Sí</option>
+                        <option>No</option>
+                        </select>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Nombre Representante</label>
+                            <input class="lInput" type="text" formControlName="nombreRepresentante" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Teléfono</label>
+                            <input class="lInput" type="text" formControlName="telefono" name="" />
+                        </div>
+                        <div class="formInput">
+                            <label for="">Correo</label>
+                            <input class="lInput" type="text" formControlName="correo" name="" />
+                        </div>
+                        <div class="formDescripcion">
+                            <label for="">Descripcion</label>
+                            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+                        </div>
+                        <div class="formInput">
+                            <label for="">Página Web</label>
+                            <input class="lInput" type="text" formControlName="paginaWeb" name="" />
+                        </div>
+                        <button type="button" class="formButton" (click)="toggleInfo()">
+                                <p>Siguiente</p>
+                            </button>                        
+                    </div>
+                </form>
+
+                <form id="info" *ngIf="isInfo" [formGroup]="actualizarInfo">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <label for="">Estilos de música</label>
+                            <select class="lInput" name="" formControlName="generos">
+                                    <option *ngFor="let genero of generos">{{genero}}</option>
+                                    </select>
+                                </div>
+              <div class="linksBox">
+                    <p class="linkTitle">Agregar link de música</p>
+                    <div class="linksList">
+                        <div class="linkListTitle">
+                                Agregar link de música de Soundcloud
+                        </div>
+                        <div class="formInput">
+                                <label for="">Nombre de Canción</label>
+                                <input class="lInput" type="text" formControlName="soundNombres" name="" />
+                            </div>
+                            <div class="formInput">
+                                    <label for="">Link de Canción</label>
+                                    <input class="lInput" type="text" formControlName="soundLinks" name="" />
+                                </div>
+        
+                    </div>
+                    <div class="linksList">
+                        <div class="linkListTitle">
+                                Agregar link de música de Youtube
+                        </div>
+                        <div class="formInput">
+                                <label for="">Nombre de Canción</label>
+                                <input class="lInput" type="text" formControlName="youNombres" name="" />
+                            </div>
+                            <div class="formInput">
+                                    <label for="">Link de Canción</label>
+                                    <input class="lInput" type="text" formControlName="youLinks" name="" />
+                                </div>
+                        </div>
+                </div>
+                        <button type="button" class="formButton" (click)="endRegistro()">
+                                    <p>Actualizar</p>
+                                </button>
+                            </div>
+                </form>
+
+
             </div>
         </div>
     </div>

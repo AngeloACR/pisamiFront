@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-notificaciones',
@@ -15,9 +16,11 @@ export class NotificacionesComponent implements OnInit {
   registroNotificacion: FormGroup;
   buscarNotificacion: FormGroup;
   notificaciones: any;
+  notificacionEscogida: any;
 
   isCrear: Boolean;
   isListar: Boolean;
+  isEditar: Boolean;
 
   formCompleted: Boolean;
   formSelected: Boolean;
@@ -29,10 +32,14 @@ export class NotificacionesComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public actionSheetController: ActionSheetController   
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params['id'];
+      if (params['notificacion']) {
+        this.notificacionEscogida = JSON.parse(params['notificacion']);
+      }
     });
     this.router.events.subscribe(event => {
       this.actRoute.url.subscribe(value => {
@@ -47,7 +54,8 @@ export class NotificacionesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {    
+  ngOnInit() { 
+    this.isEditar = false;
     this.notificaciones = [{
       id: '29384',
       nombre: 'BIENVENIDO',
@@ -71,6 +79,12 @@ export class NotificacionesComponent implements OnInit {
       this.isCrear = false;
       this.isListar = true;
       this.title = 'LISTA DE NOTIFICACIONES';
+    } else if (this.id == '2') {
+      this.isCrear = false;
+      this.isListar = false;
+      this.isEditar = true;
+      this.title = 'EDITAR NOTIFICACIÓN';
+      this.editForm(this.notificacionEscogida)
     }
   }
 
@@ -85,6 +99,11 @@ export class NotificacionesComponent implements OnInit {
 
   }
 
+  editForm(elemento){
+    this.registroNotificacion.controls['nombre'].setValue(elemento.nombre);
+    this.registroNotificacion.controls['descripcion'].setValue(elemento.descripcion);
+  }
+
 
   endRegistro() {
   }
@@ -93,10 +112,31 @@ export class NotificacionesComponent implements OnInit {
   }
 
   editarNotificacion(event, notificacion) {
+    let aux = JSON.stringify(notificacion)
+    this.router.navigate(['/notificaciones/2', { notificacion: aux }]);
   }
 
-  eliminarNotificacion(event, notificacion) {
+  async eliminarNotificacion(event, notificacion){
+    const actionSheet = await this.actionSheetController.create({
+      header: '¿Seguro que desea eliminar este elemento?',
+      buttons: [{
+        text: 'ELIMINAR',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          console.log('ELIMINANDO...');
+          console.log(notificacion);
+        }
+      }, {
+        text: 'CANCELAR',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
-
 
 }

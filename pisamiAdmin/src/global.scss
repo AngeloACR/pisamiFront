@@ -43,3 +43,7 @@ ion-title {
     padding-left: 42px;
     padding-right: 42px;
 }
+
+input[type="text"]:disabled {
+  background: #dddddd;
+}
