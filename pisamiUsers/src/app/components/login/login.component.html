@@ -21,11 +21,14 @@
                             <label for="">Usuario</label>
                             <input class="lInput" type="text" formControlName="username" name="username" />
                         </div>
+                        <div class="errorTag" *ngIf="fLogin.username.errors?.required && (fLogin.username.touched || fLogin.username.dirty)">Este campo es requerido</div>
 
                         <div class="formInput">
                             <label for="">Contraseña</label>
                             <input class="lInput" type="password" formControlName="password" name="password" />
                         </div>
+                        <div class="errorTag" *ngIf="fLogin.password.errors?.required && (fLogin.password.touched || fLogin.password.dirty)">Este campo es requerido</div>
+
                         <div class="buttonBox">
                             <button type="submit" class="formButton">
                 <p>Iniciar Sesión</p>

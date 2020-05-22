@@ -155,7 +155,7 @@
   cursor: pointer;
 }
 
-.formButton:hover {
+.formButton:active {
   background-color: white;
 }
 
@@ -186,7 +186,7 @@
   text-decoration: none !important;
 }
 
-.formButton:hover p {
+.formButton:active p {
   color: #c1272d;
 }
 
@@ -212,7 +212,7 @@
   margin: 0;
 }
 
-.tagLine:hover {
+.tagLine:active {
   font-weight: bold;
 }
 
@@ -295,7 +295,7 @@
   cursor: pointer;
 }
 
-.actionButton:hover {
+.actionButton:active {
   background-color: white;
 }
 
@@ -315,7 +315,7 @@
   text-decoration: none !important;
 }
 
-.actionButton:hover p {
+.actionButton:active p {
   color: #c1272d;
 }
 

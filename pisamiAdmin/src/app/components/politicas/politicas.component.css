@@ -155,13 +155,10 @@
   cursor: pointer;
 }
 
-.formButton:hover {
-  background-color: white;
-}
-
 .formButton:active {
   background-color: white;
 }
+
 
 .copyright {
   color: white;
@@ -186,7 +183,7 @@
   text-decoration: none !important;
 }
 
-.formButton:hover p {
+.formButton:active p {
   color: #c1272d;
 }
 
@@ -234,7 +231,7 @@
   margin: 0;
 }
 
-.tagLine:hover {
+.tagLine:active {
   font-weight: bold;
 }
 
@@ -317,10 +314,6 @@
   cursor: pointer;
 }
 
-.actionButton:hover {
-  background-color: white;
-}
-
 .actionButton:active {
   background-color: white;
 }
@@ -337,8 +330,16 @@
   text-decoration: none !important;
 }
 
-.actionButton:hover p {
+.actionButton:active p {
   color: #c1272d;
+}
+
+.errorTag{
+    font-size: 10px;
+    color: red;
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: right;
 }
 
 @media only screen and (max-width: 600px) {

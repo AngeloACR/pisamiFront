@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
 
@@ -90,14 +90,18 @@ export class NotificacionesComponent implements OnInit {
 
   initForm() {
     this.registroNotificacion = new FormGroup({
-      nombre: new FormControl(''),
-      descripcion: new FormControl(''),
+      nombre: new FormControl('', Validators.required),
+      descripcion: new FormControl('', Validators.required),
     });
     this.buscarNotificacion = new FormGroup({
       nombre: new FormControl(''),
     });
 
   }
+
+    get fNotificacion() { 
+      return this.registroNotificacion.controls;
+     }
 
   editForm(elemento){
     this.registroNotificacion.controls['nombre'].setValue(elemento.nombre);
@@ -106,14 +110,23 @@ export class NotificacionesComponent implements OnInit {
 
 
   endRegistro() {
+    if(this.catchUserErrors()){
+      this.toggleError();
+    } else{
+      console.log('Registro')
+    }
   }
 
   filtrarNotificacion() {
   }
 
   editarNotificacion(event, notificacion) {
-    let aux = JSON.stringify(notificacion)
-    this.router.navigate(['/notificaciones/2', { notificacion: aux }]);
+    if(this.catchUserErrors()){
+      this.toggleError();
+    } else{ 
+      let aux = JSON.stringify(notificacion)
+      this.router.navigate(['/notificaciones/2', { notificacion: aux }]);
+    }
   }
 
   async eliminarNotificacion(event, notificacion){
@@ -137,6 +150,28 @@ export class NotificacionesComponent implements OnInit {
       }]
     });
     await actionSheet.present();
+  }
+
+   async toggleError() {
+    let actionSheet = await this.actionSheetController.create({
+      header: 'Hay errores en el formulario. Por favor, revíselo e intente de nuevo',
+      buttons: [{
+        text: 'VOLVER',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+    catchUserErrors(){
+        let aux1 = this.fNotificacion.nombre.errors ? this.fNotificacion.nombre.errors.required : false;
+        let aux2 = this.fNotificacion.descripcion.errors ? this.fNotificacion.descripcion.errors.required : false;
+        let error = aux1 || aux2;
+        return error
+      
   }
 
 }

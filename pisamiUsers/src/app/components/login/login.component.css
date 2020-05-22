@@ -120,7 +120,7 @@
     cursor: pointer;
 }
 
-.formButton:hover {
+.formButton:active {
     background-color: white;
 }
 
@@ -151,7 +151,7 @@
     text-decoration: none !important;
 }
 
-.formButton:hover p {
+.formButton:active p {
     color: #0084b6;
 }
 
@@ -177,7 +177,7 @@
     margin: 0;
 }
 
-.tagLine:hover {
+.tagLine:active {
     font-weight: bold;
 }
 
@@ -185,6 +185,14 @@
     width: 108px;
     margin: auto;
     margin-top: 3vh;
+}
+
+.errorTag{
+    font-size: 10px;
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: right;
 }
 
 @media only screen and (max-width: 600px) {

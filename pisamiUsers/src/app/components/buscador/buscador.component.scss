@@ -166,7 +166,7 @@ select.lInput{
     width: 84%
 }
 
-.formButton:hover {
+.formButton:active {
     background-color: white;
 }
 
@@ -197,7 +197,7 @@ select.lInput{
     text-decoration: none !important;
 }
 
-.formButton:hover p {
+.formButton:active p {
     color: #c1272d;
 }
 
@@ -228,7 +228,7 @@ select.lInput{
     margin: 0;
 }
 
-.tagLine:hover {
+.tagLine:active {
     font-weight: bold;
 }
 

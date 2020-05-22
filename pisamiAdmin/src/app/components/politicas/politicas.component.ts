@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
 
@@ -89,6 +89,12 @@ export class PoliticasComponent implements OnInit {
     }
   }
 
+    get fPolitica() { 
+      return this.registroPolitica.controls;
+     }
+
+
+
   async eliminarPolitica(event, politica){
     const actionSheet = await this.actionSheetController.create({
       header: '¿Seguro que desea eliminar este elemento?',
@@ -114,9 +120,8 @@ export class PoliticasComponent implements OnInit {
 
   initForm() {
     this.registroPolitica = new FormGroup({
-      id: new FormControl(''),
-      nombre: new FormControl(''),
-      descripcion: new FormControl(''),
+      id: new FormControl('', Validators.required),
+      nombre: new FormControl('', Validators.required),
     });
     this.buscarPolitica = new FormGroup({
       nombre: new FormControl(''),
@@ -127,19 +132,50 @@ export class PoliticasComponent implements OnInit {
   editForm(elemento){
     this.registroPolitica.controls['id'].setValue(elemento.id);
     this.registroPolitica.controls['nombre'].setValue(elemento.nombre);
-    this.registroPolitica.controls['descripcion'].setValue(elemento.descripcion);
   }
 
 
   endRegistro() {
+     if(this.catchUserErrors()){
+      this.toggleError();
+    } else{  
+      console.log('Registrando')
+    }
   }
 
   filtrarPolitica() {
   }
 
   editarPolitica(event, politica) {
-    let aux = JSON.stringify(politica)
-    this.router.navigate(['/politicas/2', { politica: aux }]);
+    if(this.catchUserErrors()){
+      this.toggleError();
+    } else{   
+      let aux = JSON.stringify(politica)
+      this.router.navigate(['/politicas/2', { politica: aux }]);
+    }
   }
+
+   async toggleError() {
+    let actionSheet = await this.actionSheetController.create({
+      header: 'Hay errores en el formulario. Por favor, revíselo e intente de nuevo',
+      buttons: [{
+        text: 'VOLVER',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('CANCELANDO...');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+    catchUserErrors(){
+        let aux1 = this.fPolitica.nombre.errors ? this.fPolitica.nombre.errors.required : false;
+        let aux2 = this.fPolitica.id.errors ? this.fPolitica.id.errors.required : false;
+        let error = aux1 || aux2;
+        return error
+      
+  }
+
 
 }

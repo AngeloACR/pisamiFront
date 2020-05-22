@@ -19,9 +19,12 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { HeaderComponent } from './components/header/header.component';
 
-import { FileValueAccessor } from './directives/fileControl'
-import { FileValidator } from './directives/fileValidator'
-
+import { FileValueAccessor } from './directives/fileControl';
+import { FileValidator } from './directives/fileValidator';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FileTransfer} from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -53,6 +56,10 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     DatePipe,
+    FileOpener,
+    FileTransfer,
+    DocumentViewer,
+    File,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

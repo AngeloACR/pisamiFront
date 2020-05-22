@@ -59,7 +59,7 @@
     cursor: pointer;
 }
 
-.navElement:hover {
+.navElement:active {
     font-weight: bold;
 }
 
@@ -104,7 +104,7 @@ a {
     margin-left: 23px;
 }
 
-.navChild:hover {
+.navChild:active {
     font-weight: bold;
 }
 

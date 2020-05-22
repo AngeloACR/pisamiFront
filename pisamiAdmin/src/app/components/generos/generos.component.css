@@ -164,10 +164,6 @@
   background-color: white;
 }
 
-.formButton:active {
-  background-color: white;
-}
-
 .copyright {
   color: white;
   position: absolute;
@@ -304,9 +300,6 @@
   background-color: white;
 }
 
-.actionButton:active {
-  background-color: white;
-}
 
 .actionButton p {
   color: white !important;
@@ -322,6 +315,14 @@
 
 .actionButton:hover p {
   color: #c1272d;
+}
+
+.errorTag{
+    font-size: 10px;
+    color: red;
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: right;
 }
 
 @media only screen and (max-width: 600px) {

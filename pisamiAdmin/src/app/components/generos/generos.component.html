@@ -17,6 +17,7 @@
               <label for="">ID</label>
               <input class="lInput" type="text" formControlName="id" name="" />
             </div>
+            <div class="errorTag" *ngIf="fGenero.id.errors?.required && (fGenero.id.touched || fGenero.id.dirty)">Este campo es requerido</div>
             <div class="formInput">
               <label class="nameLabel" for="">NOMBRE DEL GENERO MUSICAL</label>
               <input
@@ -26,6 +27,7 @@
                 name=""
               />
             </div>
+            <div class="errorTag" *ngIf="fGenero.nombre.errors?.required && (fGenero.nombre.touched || fGenero.nombre.dirty)">Este campo es requerido</div>
             <div class="formDescripcion">
               <label for="">DESCRIPCIÓN</label>
               <textarea
@@ -35,6 +37,7 @@
                 name=""
               ></textarea>
             </div>
+            <div class="errorTag" *ngIf="fGenero.descripcion.errors?.required && (fGenero.descripcion.touched || fGenero.descripcion.dirty)">Este campo es requerido</div>
 
             <button type="button" class="formButton" *ngIf="isCrear" (click)="endRegistro()">
               <p>CREAR</p>
