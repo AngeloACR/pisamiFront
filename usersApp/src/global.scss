@@ -1,0 +1,242 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-toolbar {
+    --background:  #F24E2B !important;
+    --color: white;
+}
+
+ion-menu-button {
+    --color: white;
+}
+
+ion-title {
+    --color: white;
+    font-size: 12px;
+    padding-left: 42px;
+    padding-right: 42px;
+}
+
+.pageImg{
+    height: 25vh;
+    margin-bottom: 60px;
+    margin-top: 42px;
+    left: 50%;
+    transform: translatex(50%);
+}
+
+.logBox {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+    border-radius: 3px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorTag {
+  font-size: 10px;
+  color: red;
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.formContent {
+    padding: 0;
+    margin: auto;
+    width: 90%;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  width: 100%;
+  align-self: center;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+}
+
+.formInput label {
+  font-size: 14px;
+  white-space: nowrap;
+  margin-right: 15px;
+  color: black;
+}
+
+.lInput {
+  width: 100%;
+  flex-basis: 100%;
+  font-size: 14px;
+  padding-left: 16px;
+  height: 23px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+
+/* The checkContainer */
+
+.checkContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  color: black;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.checkContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+/* On mouse-over, add a grey background color */
+
+.checkContainer:active input ~ .checkmark {
+  background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.checkContainer input:checked ~ .checkmark {
+  background-color: #F24E2B;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+
+.checkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.checkContainer .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.formButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 37px;
+  min-width: 70%;
+  width: auto;
+  color: white;
+  font-weight: bold;
+  background-color: #F24E2B;
+  margin: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #F24E2B;
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+.formButton:active {
+  color: #F24E2B;
+  background-color: white;
+}
+
+.formButton p {
+  color: white;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  text-decoration: none !important;
+}
+
+.formButton:active p {
+  color: #F24E2B;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+}

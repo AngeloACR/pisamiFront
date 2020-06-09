@@ -1,0 +1,28 @@
+.formInput{
+    flex-direction: column;
+    margin-bottom: 42px;
+}
+
+.formInput label{
+    color: #F24E2B;
+    margin-bottom: 15px;
+}
+
+.formInput.nombreArtista{
+    border: none;
+}
+
+.nombreArtista .lInput{
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 23px;
+}
+
+.pageImg{
+    height: 25vh;
+    margin-bottom: 60px;
+    margin-top: 42px;
+    left: 50%;
+    transform: translatex(50%);
+}

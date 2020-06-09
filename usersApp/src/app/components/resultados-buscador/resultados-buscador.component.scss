@@ -1,0 +1,63 @@
+
+.cardBox {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: 23px;
+    background-color: #F24E2B;
+    margin-bottom: 15px;
+}
+
+.cardBox div {
+    margin: 0;
+}
+
+.imgBox {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgResultados{
+    width: 70%;
+}
+
+.infoBox {
+    width: 40%;
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.moreBox {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.moreBox button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 26px;
+    width: 90%;
+    background-color: white;
+    color: #F24E2B;
+    margin: auto;
+    border-radius: 23px;
+    cursor: pointer;
+}
+
+.moreBox button p {
+    color: #F24E2B;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    text-decoration: none !important;
+}

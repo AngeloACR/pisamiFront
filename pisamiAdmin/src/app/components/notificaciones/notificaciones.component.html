@@ -21,7 +21,7 @@
                         <div class="formDescripcion">
                             <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
                         </div>
-                        <div class="errorTag" *ngIf="fNotificacion.descripcion.errors?.required && (fNotificacion.descripcion.touched || fNotificacion.descripcion.dirty)">Este campo es requerido</div>
+                     <div class="errorTag" *ngIf="fNotificacion.descripcion.errors?.required && (fNotificacion.descripcion.touched || fNotificacion.descripcion.dirty)">Este campo es requerido</div>
             
                         <button type="button" class="formButton" *ngIf="isCrear" (click)="endRegistro()">
               <p>CREAR</p>

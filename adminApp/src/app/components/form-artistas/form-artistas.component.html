@@ -1,0 +1,150 @@
+<form [formGroup]="registroMusico" (ngSubmit)="endRegistro()">
+    <div class="formContent">
+        <div class="formInput">
+            <label for="">Nombre real</label>
+            <input class="lInput" type="text" formControlName="nombreReal" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.nombreReal.errors?.required && (fMusico.nombreReal.touched || fMusico.nombreReal.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Nombre artístico</label>
+            <input class="lInput" type="text" formControlName="nombreArtistico" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.nombreArtistico.errors?.required && (fMusico.nombreArtistico.touched || fMusico.nombreArtistico.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Número de integrantes</label>
+            <input class="lInput" type="number" formControlName="numeroIntegrantes" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fOrquesta.numeroIntegrantes.errors?.required && (fOrquesta.numeroIntegrantes.touched || fOrquesta.numeroIntegrantes.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Ciudad de origen</label>
+            <input class="lInput" type="text" formControlName="ciudadOrigen" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.ciudadOrigen.errors?.required && (fMusico.ciudadOrigen.touched || fMusico.ciudadOrigen.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">¿Esta dispuesto a salir de la ciudad?</label>
+            <select name="" formControlName="salir">
+                <option selected="true">Sí</option>
+                <option>No</option>
+            </select>
+        </div>
+        <div class="errorTag" *ngIf="fMusico.salir.errors?.required && (fMusico.salir.touched || fMusico.salir.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">¿Tiene representante?</label>
+            <select name="" formControlName="tieneRepresentante">
+                <option selected="true">Sí</option>
+                <option>No</option>
+            </select>
+        </div>
+        <div class="errorTag" *ngIf="fMusico.tieneRepresentante.errors?.required && (fMusico.tieneRepresentante.touched || fMusico.tieneRepresentante.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Nombre Representante</label>
+            <input class="lInput" type="text" formControlName="nombreRepresentante" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.nombreRepresentante.errors?.required && (fMusico.nombreRepresentante.touched || fMusico.nombreRepresentante.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Telefono:</label>
+            <input class="lInput" type="text" formControlName="telefono" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.telefono.errors?.required && (fMusico.telefono.touched || fMusico.telefono.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Correo:</label>
+            <input class="lInput" type="text" formControlName="correo" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.correo.errors?.required && (fMusico.correo.touched || fMusico.correo.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.correo.errors?.email && (fMusico.correo.touched || fMusico.correo.dirty)">Por favor ingrese un correo válido</div>
+
+        <div class="formDescripcion">
+            <label for="">Descripción</label>
+            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+        </div>
+        <div class="errorTag" *ngIf="fMusico.descripcion.errors?.required && (fMusico.descripcion.touched || fMusico.descripcion.dirty)">Este campo es requerido</div>
+
+        <div class="formInput">
+            <label for="">Pagina Web</label>
+            <input class="lInput" type="text" formControlName="paginaWeb" name="" />
+        </div>
+        <div class="errorTag" *ngIf="fMusico.paginaWeb.errors?.required && (fMusico.paginaWeb.touched || fMusico.paginaWeb.dirty)">Este campo es requerido</div>
+
+        <button type="button" class="formButton" (click)="toggleInfo()">
+            <p>Siguiente</p>
+        </button>
+    </div>
+
+<div id="info" *ngIf="isInfo">
+    <div class="formContent">
+        <div class="formInput">
+            <label for="">Estilos de música</label>
+            <select class="lInput" name="" formControlName="generos">
+            <option *ngFor="let genero of generos">{{genero}}</option>
+            </select>
+        </div>
+        <div class="formImagenes">
+                <br />
+                <h3>Fotos</h3>
+                <div class="formFiles">
+                    <div class="formFile">
+                        <label for="documento1"></label>
+                        <input type="file" formControlName="imagen1" id="imagen1" (change)="fileProgress($event, 'imagen1')" />
+                        <span class="fileName" *ngIf="fileName1">{{fileName1}}</span>
+        </div>
+        <div class="formFile">
+            <label for="imagen2"></label>
+            <input type="file" formControlName="imagen2" id="imagen2" (change)="fileProgress($event, 'imagen2')"/>
+            <span class="fileName" *ngIf="fileName2">{{fileName2}}</span>
+        </div>
+        <div class="formFile">
+            <label for="imagen3"></label>
+            <input type="file" formControlName="imagen3" id="imagen3" (change)="fileProgress($event, 'imagen3')"/>
+            <span class="fileName" *ngIf="fileName3">{{fileName3}}</span>
+        </div>
+    </div>
+</div>
+<div class="linksBox">
+    <p class="linkTitle">Agregar link de música</p>
+    <div class="linksList">
+        <div class="linkListTitle">
+                Agregar link de música de Soundcloud <span class="addLink" (click)="addSoundcloud()">+</span>
+        </div>
+        <div class="arrayBox" *ngFor="let sound of soundLinks.controls;">
+            <ng-container class="controlBox" [formGroup]="sound">
+                <div class="formInput">
+                    <label for="">Nombre de Canción</label>
+                    <input class="lInput" type="text" formControlName="nombre" name="" />
+                </div>
+                <div class="formInput">
+                    <label for="">Link de Canción</label>
+                    <input class="lInput" type="text" formControlName="link" name="" />
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="linksList">
+        <div class="linkListTitle">
+                Agregar link de música de Youtube <span class="addLink" (click)="addYoutube()">+</span>
+        </div>
+        <div class="arrayBox" *ngFor="let you of youLinks.controls;">
+            <ng-container class="controlBox" [formGroup]="you">
+                <div class="formInput">
+                    <label for="">Nombre de Canción</label>
+                    <input class="lInput" type="text" formControlName="nombre" name="" />
+                </div>
+                <div class="formInput">
+                    <label for="">Link de Canción</label>
+                    <input class="lInput" type="text" formControlName="link" name="" />
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<button type="submit" class="formButton" >
+    <p>Guardar información</p>
+</button>
+</form>

@@ -26,6 +26,7 @@ import {
 } from "@ionic-native/file-transfer/ngx";
 import { File } from "@ionic-native/file/ngx";
 import { DocumentViewer } from "@ionic-native/document-viewer/ngx";
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: "app-registro",
@@ -81,6 +82,7 @@ export class RegistroComponent implements OnInit {
     private transfer: FileTransfer,
     private file: File,
     private dV: DocumentViewer,
+    private androidPermissions: AndroidPermissions,
     private platform: Platform
   ) {
     this.actRoute.params.subscribe(params => {
@@ -129,14 +131,16 @@ export class RegistroComponent implements OnInit {
     ".png": "image/png",
     ".pdf": "application/pdf",
     ".jpg": "image/jpeg",
-    ".jpeg": "image/jpeg",
-    ".jpe": "image/jpeg"
   };
 
-  download() {
-    const url = "http://192.168.0.117:3400/TERMINOSYCONDICIONES.pdf";
+  async download() {
+    const url = "http://www.corestandards.org/wp-content/uploads/Math_Standards.pdf";
     const fileTransfer = this.transfer.create();
-    let path = this.file.externalDataDirectory;
+    if (!this.platform.is('cordova')) {
+      console.warn('Cannot download in local environment!');
+      return;
+    }
+    let path = await this.getDownloadPath();
     console.log(path);
     if (this.platform.is("ios")) {
     } else {
@@ -157,6 +161,24 @@ export class RegistroComponent implements OnInit {
         }
       );
   }
+
+    public async getDownloadPath() {
+        if (this.platform.is('ios')) {
+            return this.file.documentsDirectory;
+        }
+	
+			// To be able to save files on Android, we first need to ask the user for permission. 
+			// We do not let the download proceed until they grant access
+        await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE).then(
+            result => {
+                if (!result.hasPermission) {
+                    return this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE);
+                }
+            }
+        );
+ 
+        return this.file.externalRootDirectory + "/Download/";
+    }
 
   verMas(url) {
     /*   this.dV.viewDocument(url, 'application/pdf', {})

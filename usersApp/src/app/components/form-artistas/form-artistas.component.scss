@@ -1,0 +1,170 @@
+
+#info {
+  margin-top: 20px;
+}
+
+#info select.lInput {
+  border-radius: 23px;
+}
+
+#info .formInput {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.arrayBox {
+  width: 100%;
+}
+
+
+.controlBox {
+  width: 100%;
+}
+
+.addLink {
+  color: white;
+  font-weight: bolder;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+
+.linksBox {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 4vh;
+}
+
+.linkTitle {
+  color: black;
+  font-size: 14px;
+  font-weight: 900;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-width: 2px;
+  background-color: white;
+  border-color: black;
+}
+
+.linksList .formInput {
+  flex-wrap: nowrap !important;
+  width: 98%;
+}
+
+.linksList .lInput {
+  background-color: white;
+}
+
+.linkListTitle {
+  color: white;
+  background-color: black;
+  font-weight: bolder;
+  font-size: 14px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+.linkName {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+
+.formFiles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.formFile {
+  display: flex;
+  flex-direction: column;
+}
+
+.formFile label {
+  width: 16vh;
+  height: 16vh;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background-image: url("/assets/REGISTRO MUSICO/IMAGEN.png");
+  background-size: cover;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+.formFile input {
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+  position: absolute;
+}
+
+.fileName {
+  padding-top: 10px;
+  font-weight: bold;
+    font-size: 8px;
+  text-align: center;
+}
+
+  .formImagenes {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 4vh;
+  }
+  .formImagenes h3 {
+    font-size: 14px;
+    text-align: center;
+  }
+
+
+.formDescripcion {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+
+.formDescripcion label {
+  margin-bottom: 10px;
+  color: black;
+  font-size: 14px;
+}
+
+.formDescripcion textarea {
+  width: 100%;
+  border-width: 2px;
+  padding-left: 16px;
+  border-color: black;
+  border-radius: 23px;
+  background-color: white;
+}

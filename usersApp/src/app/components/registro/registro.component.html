@@ -1,0 +1,63 @@
+<!-- <ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+            <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
+    </ion-toolbar>
+    <app-header></app-header>
+</ion-header> -->
+
+<ion-content>
+    <div class="pageBox">
+        <div class="selectionBox" *ngIf="!isMusico">
+            <div class="optionsBox" [ngClass]="hideOption">
+                <div class="logoBox">
+                    <img class="formImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                </div>
+                <p><b>Elige una de las dos opciones <br>
+                con la que te quieres registrar</b></p>
+                <div class="iconsBox">
+                    <div class="iconBox">
+                        <img style="width: 23vh;" class="iconImg" [src]="musicoImg" alt="Logo" (click)="firstToggle($event, 'musico')" />
+                    </div>
+                    <div class="iconBox">
+                        <img style="width: 23vh;" class="iconImg" [src]="userImg" alt="Logo" (click)="firstToggle($event, 'usuario')" />
+                    </div>
+                </div>
+                <div class="regisBox">
+                    <img src="assets/4-registro/gmail.png" alt="gmail" (click)="regisGmail()" />
+                </div>
+                <div class="regisBox">
+                    <img src="assets/4-registro/facebook.png" alt="facebook" (click)="regisFacebook()" />
+                </div>
+            </div>
+        </div>
+        <div class="selectionBox" *ngIf="isMusico">
+            <div class="optionsBox" [ngClass]="hideOption">
+                <div class="logoBox">
+                    <img class="formImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                </div>
+                    <img class="imgTitle" src="assets/5-tipo/tipo.png" alt="tipo" (click)="regisGmail()" />
+                <div class="iconsBox">
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="solistaImg" alt="solista" (click)="toggleForm($event, 'solista')" />
+                    </div>
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="duoImg" alt="duo" (click)="toggleForm($event, 'duo')" />
+                    </div>
+                    <div class="iconBox">
+                        <img class="iconImg" [src]="orquestaImg" alt="orquesta" (click)="toggleForm($event, 'orquesta')" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logBox" [ngClass]="showForm">
+            <div class="formBox">
+                <app-form-usuarios [editMode]="0" *ngIf="isUser"></app-form-usuarios>
+                <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="isMusico"></app-form-artistas>
+            </div>
+        </div>
+    </div>        
+</ion-content>

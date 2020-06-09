@@ -26,6 +26,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { FileTransfer} from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { AppRoutingModule } from './app-routing.module';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AppRoutingModule } from './app-routing.module';
     FileOpener,
     FileTransfer,
     DocumentViewer,
+    AndroidPermissions,
     File,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

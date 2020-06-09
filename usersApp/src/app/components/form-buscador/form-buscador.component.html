@@ -1,0 +1,19 @@
+<img class="pageImg" src="assets/8-busqueda/busqueda.png" alt="buscador">
+
+<form [formGroup]="buscarArtista">
+    <div class="formContent">
+        <div class="formInput nombreArtista">
+            <label for="">Nombre del Artista o de la Orquesta</label>
+            <input class="lInput" type="text" formControlName="nombre" name="" />
+        </div>
+        <div class="formInput" style="flex-wrap:nowrap;">
+            <label for="">Género Musical</label>
+            <select class="lInput" name="" formControlName="genero">
+              <option *ngFor="let genero of generos">{{genero}}</option>
+            </select>
+        </div>
+    </div>
+    <button type="button" class="formButton" (click)="endBuscador()">
+      <p>BUSCAR</p>
+    </button>
+</form>

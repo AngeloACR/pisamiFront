@@ -1,0 +1,7 @@
+{
+  "name": "usersApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,19 @@
+<img class="pageImg" src="assets/9-resultados busqueda/.png" alt="buscador">
+
+    <div class="cardBox" *ngFor="let artista of artistas">
+        <div class="imgBox">
+            <img class="imgResultados" [src]="artista.imagenes[0]" alt="" />
+        </div>
+        <div class="infoBox">
+            <p>NOMBRE AGRUPACIÓN</p>
+            <p>{{artista.nombre}}</p>
+            <p>CATEGORÍAS</p>
+            <p>{{artista.categorias}}</p>
+        </div>
+        <div class="moreBox">
+            <button type="button" class="formButton" (click)="verArtista($event, artista)">
+              <p>VER MÁS</p>
+            </button>
+            <app-rating [rating]="artista.rating"> </app-rating>
+        </div>
+    </div>

@@ -1,0 +1,140 @@
+.pageBox {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  height: auto;
+  background-image: url("/assets/4-registro/fondoregistro.png");
+  background-size: cover;
+}
+
+.backBox {
+  width: 80px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.backBox img {
+  width: 100% !important;
+}
+
+.logoBox {
+  width: 46%;
+}
+
+.logoBox img {
+  width: 100%;
+}
+
+.selectionBox {
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.optionsBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  color: white;
+  background-size: cover;
+  width: 100%;
+  background-color: transparent;
+  height: 100%;
+}
+
+.optionsBox p {
+  text-align: center;
+  font-size: 23px;
+}
+
+.iconsBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.iconBox {
+    width: 42%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hideOption {
+  display: none;
+}
+
+.logBox {
+  background-color: white;
+  border-radius: 3px;
+  height: 0;
+  max-height: 100%;
+  align-self: center;
+  display: none;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+    flex-wrap: wrap;
+}
+
+.regisBox {
+  margin-top: 3vh;
+  width: 80%;
+}
+.regisBox img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.formAct {
+  flex: 1 1 auto;
+  height: calc(100% - 60px);
+  display: flex;
+}
+
+.imgTitle {
+  width: 60%;
+}
+
+.iconImg {
+  height: 25vh;
+  cursor: pointer;
+}
+
+.logBox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #afccf4;
+  border-color: #9ba6c0;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.logBox::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.logBox::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F24E2B;
+}
+

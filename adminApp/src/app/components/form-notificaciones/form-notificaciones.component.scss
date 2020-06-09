@@ -1,0 +1,27 @@
+
+.formDescripcion {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.formDescripcion label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #c1272d;
+  font-size: 14px;
+}
+
+.formDescripcion textarea {
+  width: 100%;
+  padding-left: 16px;
+  border-width: 2px;
+  border-color: #c1272d;
+  border-radius: 23px;
+  background-color: white;
+}

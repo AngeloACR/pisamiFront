@@ -1,0 +1,36 @@
+<form [formGroup]="registroPolitica">
+          <div class="formContent">
+            <div class="formInput">
+              <label for="">ID</label>
+              <input class="lInput" type="text" formControlName="id" name="" />
+            </div>
+            <div class="errorTag" *ngIf="fPolitica.id.errors?.required && (fPolitica.id.touched || fPolitica.id.dirty)">Este campo es requerido</div>
+            <div class="formInput">
+              <label class="nameLabel" for="">NOMBRE DE LA POLÍTICA</label>
+              <input
+                class="lInput"
+                type="text"
+                formControlName="nombre"
+                name=""
+              />
+            </div>
+            <div class="errorTag" *ngIf="fPolitica.nombre.errors?.required && (fPolitica.nombre.touched || fPolitica.nombre.dirty)">Este campo es requerido</div>
+            <div class="formDescripcion">
+              <label for="">SUBIR PDF</label>
+              <div class="fileBox">
+                <img src="assets/CREAR POLITICA/DOCPDF.png" alt="" />
+                <p class="tagText">
+                  Nota: Se recomienda que el archivo no supere los 2 MB de
+                  tamaño
+                </p>
+              </div>
+            </div>
+
+            <button type="button" class="formButton" *ngIf="!editMode" (click)="endRegistro()">
+              <p>CREAR</p>
+            </button>
+                        <button type="button" class="formButton" *ngIf="editMode" (click)="endRegistro()">
+              <p>EDITAR</p>
+            </button>
+          </div>
+        </form>

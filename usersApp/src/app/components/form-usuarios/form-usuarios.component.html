@@ -1,0 +1,52 @@
+<p class="titleText">
+    Por favor llene el siguiente formulario:
+</p>
+
+<form [formGroup]="registroUser" (ngSubmit)="endRegistro()">
+    <div class="formContent">
+        <div class="formInput">
+            <label for="">Nombre</label>
+            <input class="lInput" type="text" formControlName="nombre" name="nombre" />
+        </div>
+        <div class="errorTag" *ngIf="fUser.nombre.errors?.required && (fUser.nombre.touched || fUser.nombre.dirty)">Este campo es requerido</div>
+        <div class="formInput">
+            <label for="">Apellido</label>
+            <input class="lInput" type="text" formControlName="apellido" name="apellido" />
+        </div>
+        <div class="errorTag" *ngIf="fUser.apellido.errors?.required && (fUser.apellido.touched || fUser.apellido.dirty)">Este campo es requerido</div>
+        <div class="formInput">
+            <label for="">Teléfono</label>
+            <input class="lInput" type="text" formControlName="tlf" name="tlf" />
+        </div>
+        <div class="errorTag" *ngIf="fUser.tlf.errors?.required && (fUser.tlf.touched || fUser.tlf.dirty)">Este campo es requerido</div>
+        <div class="formInput">
+            <label for="">Correo</label>
+            <input class="lInput" type="text" formControlName="correo" name="correo" />
+        </div>
+        <div class="errorTag" *ngIf="fUser.correo.errors?.required && (fUser.correo.touched || fUser.correo.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fUser.correo.errors?.email && (fUser.correo.touched || fUser.correo.dirty)">Por favor ingrese un correo válido</div>
+        <div class="formInput">
+            <label for="">Contraseña</label>
+            <input class="lInput" type="password" formControlName="password" name="password" />
+        </div>
+        <div class="errorTag" *ngIf="fUser.password.errors?.required && (fUser.password.touched || fUser.password.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fUser.password.errors?.minlenght && (fUser.password.touched || fUser.password.dirty)">La contraseña debe contener al menos 6 carácteres</div>
+
+        <div class="formTerminos">
+            <label class="checkContainer">
+            Estoy de acuerdo con los términos y condiciones
+            <input
+                type="checkbox"
+                formControlName="aceptarTerminos"
+            />
+            <span class="checkmark"></span>
+            </label>
+            <p (click)="verMas()">Ver más</p>
+            <br><br>
+        </div>
+
+        <button type="submit" class="formButton">
+            <p>Crear</p>
+        </button>
+    </div>
+</form>

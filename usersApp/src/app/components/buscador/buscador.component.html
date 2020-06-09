@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+<!--     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+            <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
+    </ion-toolbar> -->
+    <app-header></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="pageBox">
+        <div class="logBox" *ngIf="isBuscar">
+            <app-form-buscador (resultados)="abrirResultados($event)" style="width: 100%;"></app-form-buscador>
+        </div>
+        <div class="logBox" *ngIf="isResultados">
+            <app-resultados-buscador (artistaEscogido)="mostrarArtista($event)" style="width: 100%;" [artistas]="artistas"></app-resultados-buscador>
+        </div>
+        <div class="logBox" *ngIf="isVer">
+            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (volver)="volverResultados()"></app-detalle-artista>
+        </div>
+    </div>
+</ion-content>

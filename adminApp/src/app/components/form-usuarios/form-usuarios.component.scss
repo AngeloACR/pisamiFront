@@ -1,0 +1,18 @@
+.formTerminos {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2vh;
+  width: 60%;
+}
+
+.formTerminos p {
+  margin: 0;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+  color: #c1272d;
+  text-decoration: underline;
+}
