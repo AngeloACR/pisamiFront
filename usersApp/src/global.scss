@@ -42,12 +42,14 @@ ion-title {
 }
 
 .pageImg{
+    position: relative;
     height: 25vh;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     margin-top: 42px;
     left: 50%;
-    transform: translatex(50%);
+    transform: translatex(-50%);
 }
+
 
 .logBox {
     background-color: transparent;
@@ -58,8 +60,7 @@ ion-title {
     align-self: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    overflow: scroll;
 }
 
 .errorTag {

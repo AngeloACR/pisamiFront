@@ -1,4 +1,4 @@
-
+<div class="pageBox" [ngClass]="hideBox">
     <div class="backBox">
         <img src="assets/10-perfil artista/atras.png" alt="" (click)="mostrarResultados()" />
     </div>
@@ -13,62 +13,49 @@
     </div>
     <div class="verBox">
         <div class="detailsABox">
-            <p>Nombre</p>
-            <p>{{artistaEscogido.nombre}}</p>
-            <p>Géneros</p>
-            <p>{{artistaEscogido.categorias}}</p>
-            <p>Ciudad de Origen: {{artistaEscogido.ciudad}}</p>
+            <p class="detailTitle">Nombre</p>
+            <p class="detailContent">{{artistaEscogido.nombre}}</p>
+            <p class="detailTitle">Géneros</p>
+            <p class="detailContent">{{artistaEscogido.categorias}}</p>
+            <p class="detailTitle">Ciudad de Origen: <span class="detailContent">{{artistaEscogido.ciudad}}</span></p>
         <div class="starsBox">
             <app-rating [rating]="artistaEscogido.rating"> </app-rating>
         </div>
         </div>
         <div class="detailsBBox">
-            <p>DESCRIPCIÓN</p>
+            <p class="detailTitle">DESCRIPCIÓN</p>
             <p>{{artistaEscogido.descripcion}}</p>
-            <p>REPRESENTANTE: {{artistaEscogido.representante}}</p>
-            <p>INTEGRANTES: {{artistaEscogido.integrantes}}</p>
-            <p>Salen de la ciudad: {{artistaEscogido.salen}}</p>
+            <p class="detailTitle">REPRESENTANTE: <span class="detailContent">{{artistaEscogido.representante}}</span></p>
+            <p class="detailTitle">INTEGRANTES: <span class="detailContent">{{artistaEscogido.integrantes}}</span></p>
+            <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.salen}}</span></p>
+        </div>
+        <div class="detailsDBox">
+            <div class="musicItem">
+                <img src="assets/10-perfil artista/video.png" alt="video" (click)="mostrarVideos()"/>
+            </div>
+            <div class="musicItem">
+                <img src="assets/10-perfil artista/musica.png" alt="musica" (click)="mostrarCanciones()"/>
+            </div>
         </div>
         <div class="detailsCBox">
-            <p style="width: 100%; text-align: center;">CONTACTO</p>
-        <div class="contactItem">
-            <img src="assets/10-perfil artista/tele.png" alt="telefono"/>
-            <p>{{artistaEscogido.telefono}}</p>
-        </div>
-        <div class="contactItem">
-            <img src="assets/10-perfil artista/correo.png" alt="correo"/>
-            <p>{{artistaEscogido.correo}}</p>
-        </div>
-        <div class="contactItem">
-            <img src="assets/10-perfil artista/facebbok.png" alt="facebook"/>
-            <p>{{artistaEscogido.facebook}}</p>
-        </div>
-        <div class="contactItem">
-            <img src="assets/10-perfil artista/instagram.png" alt="instagram"/>
-            <p>{{artistaEscogido.instagram}}</p>
-        </div>
-
-
-        </div>        
-        <!-- <div class="linksBox">
-            <p class="linkTitle">LINKS DE MÚSICA</p>
-            <div class="linksList">
-                <div class="linkListTitle">
-                    LINKS DE MÚSICA DE SOUNDCLOUD
-                </div>
-                <p class="linkName" *ngFor="let cancion of artistaEscogido.soundCanciones">
-                    {{cancion.nombre}}: {{cancion.link}}
-                </p>
+            <p style="width: 100%; text-align: center; font-size: 16px;">CONTACTO</p>
+            <div class="contactItem">
+                <img src="assets/10-perfil artista/tele.png" alt="telefono"/>
+                <p class="detailContent">{{artistaEscogido.telefono}}</p>
             </div>
-            <div class="linksList">
-                <div class="linkListTitle">
-                    LINKS DE MÚSICA DE YOUTUBE
-                </div>
-                <p class="linkName" *ngFor="let cancion of artistaEscogido.youCanciones">
-                    {{cancion.nombre}}: {{cancion.link}}
-                </p>
+            <div class="contactItem">
+                <img src="assets/10-perfil artista/correo.png" alt="correo"/>
+                <p class="detailContent">{{artistaEscogido.correo}}</p>
             </div>
-        </div> -->
+            <div class="contactItem">
+                <img src="assets/10-perfil artista/facebbok.png" alt="facebook"/>
+                <p class="detailContent">{{artistaEscogido.facebook}}</p>
+            </div>
+            <div class="contactItem">
+                <img src="assets/10-perfil artista/instagram.png" alt="instagram"/>
+                <p class="detailContent">{{artistaEscogido.instagram}}</p>
+            </div>
+        </div>
     </div>
     <div class="ratingBox">
         <p>CALIFICA QUE TE PARECIÓ:</p>
@@ -76,3 +63,11 @@
             <app-rating [rating]="-1"> </app-rating>
         </div>
     </div>
+</div>
+
+<div class="logBox" *ngIf="isVideos">
+    <app-videos style="width: 100%;"  [videos]="artistaEscogido.youtube" (verCanciones)="mostrarCanciones()" (volver)="mostrarPerfil()"></app-videos>
+</div>
+<div class="logBox" *ngIf="isCanciones">
+    <app-canciones style="width: 100%;" [canciones]="artistaEscogido.soundcloud" (verVideos)="mostrarVideos()" (volver)="mostrarPerfil()"></app-canciones>
+</div>

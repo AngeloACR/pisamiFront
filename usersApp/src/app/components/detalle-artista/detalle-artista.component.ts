@@ -12,7 +12,11 @@ export class DetalleArtistaComponent implements OnInit {
   artistaEscogido: any;
 
   @Output()
-volver = new EventEmitter<any>();
+  volver = new EventEmitter<any>();
+
+  isVideos: boolean;
+  isCanciones: boolean;
+  hideBox: {};
 
 
   isEndOfList: boolean;
@@ -26,10 +30,15 @@ volver = new EventEmitter<any>();
     ) { }
 
   ngOnInit() {
+    this.isVideos = false;
+    this.isCanciones = false;
     this.isStartOfList = true;
     this.isEndOfList = false;
     this.currentImageIndex = 0;
     this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
+    this.hideBox = {
+      hideBox: false
+    }
   }
 
 
@@ -66,6 +75,31 @@ volver = new EventEmitter<any>();
   volverLista() {
     console.log('Volver a resultados');
     //this.router.navigateByUrl('/buscador/');
+  }
+
+  mostrarCanciones(){
+    this.isCanciones = true;
+    this.isVideos = false;
+    this.hideBox = {
+      hideBox: true
+    }
+  }
+
+  mostrarPerfil(){
+    this.isCanciones = false;
+    this.isVideos = false;
+    this.hideBox = {
+      hideBox: false
+    }
+  }
+
+  mostrarVideos(){
+    this.isCanciones = false;
+    this.isVideos = true;
+    this.hideBox = {
+      hideBox: true
+    }
+    
   }
 
 }

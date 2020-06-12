@@ -21,9 +21,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { VideosComponent } from './components/videos/videos.component';
 import { ResultadosBuscadorComponent } from './components/resultados-buscador/resultados-buscador.component';
+import { CancionesComponent } from './components/canciones/canciones.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { BuscadorVideosComponent } from './components/buscador-videos/buscador-videos.component';
 import { PoliticaComponent } from './components/politica/politica.component';
+import { BuscadorCancionesComponent } from './components/buscador-canciones/buscador-canciones.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { PoliticaComponent } from './components/politica/politica.component';
     LoginComponent,
     RatingComponent, 
     RegistroComponent,
-    ResultadosBuscadorComponent, 
+    ResultadosBuscadorComponent,
+    VideosComponent,
+    CancionesComponent,
+    BuscadorCancionesComponent,
+    BuscadorVideosComponent,
     ],
   entryComponents: [
     DetalleArtistaComponent,
@@ -47,6 +55,10 @@ import { PoliticaComponent } from './components/politica/politica.component';
     HeaderComponent,
     RatingComponent,
     ResultadosBuscadorComponent,     
+    VideosComponent,
+    CancionesComponent,
+    BuscadorCancionesComponent,
+    BuscadorVideosComponent,
   ],
   imports: [
     BrowserModule, 

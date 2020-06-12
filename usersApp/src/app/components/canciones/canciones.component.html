@@ -1,0 +1,25 @@
+<img class="pageImg" src="assets/11-musica del artista/musica.png" alt="musica">
+
+
+<div class="contentBox">
+    <div class="contentItem" *ngFor="let cancion of canciones">
+      <iframe 
+      width="100%" 
+      height="166" 
+      scrolling="no" 
+      frameborder="no" 
+      allow="autoplay" 
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/119817930&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+      </iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/wooden-box" title="Wooden-Box" target="_blank" style="color: #cccccc; text-decoration: none;">Wooden-Box</a> · <a href="https://soundcloud.com/wooden-box/la-flaca-jarabe-de-palo" title="La Flaca - Jarabe de palo" target="_blank" style="color: #cccccc; text-decoration: none;">La Flaca - Jarabe de palo</a></div>
+    </div>
+</div>
+
+
+<div class="outBox">
+    <div class="musicItem">
+        <img src="assets/11-musica del artista/video.png" alt="video"  (click)="mostrarVideos()"/>
+    </div>
+    <div class="musicItem">
+        <img src="assets/11-musica del artista/perfil.png" alt="perfil" (click)="mostrarPerfil()"/>
+    </div>
+</div>

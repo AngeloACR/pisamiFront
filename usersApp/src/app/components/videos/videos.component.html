@@ -1,0 +1,22 @@
+<img class="pageImg" src="assets/12-videos del artista/video.png" alt="video">
+
+<div class="contentBox">
+    <div class="contentItem" *ngFor="let video of videos">
+      <iframe 
+      class="videoFrame"
+      [src]="sanitize(video.link)" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+    </div>
+</div>
+
+
+<div class="outBox">
+    <div class="musicItem">
+        <img src="assets/12-videos del artista/musica.png" alt="musica" (click)="mostrarCanciones()"/>
+    </div>
+    <div class="musicItem">
+        <img src="assets/12-videos del artista/perfil.png" alt="perfil" (click)="mostrarPerfil()"/>
+    </div>
+</div>

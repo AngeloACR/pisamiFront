@@ -6,6 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PoliticaComponent } from './components/politica/politica.component';
+import { BuscadorVideosComponent } from './components/buscador-videos/buscador-videos.component';
+import { BuscadorCancionesComponent } from './components/buscador-canciones/buscador-canciones.component';
 
 const routes: Routes = [
  {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'perfil/:id',
     component: PerfilComponent,
+  },
+  {
+    path: 'canciones',
+    component: BuscadorCancionesComponent,
+  },
+  {
+    path: 'videos',
+    component: BuscadorVideosComponent,
   }
 ];
 @NgModule({

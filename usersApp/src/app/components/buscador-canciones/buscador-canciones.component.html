@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+<!--     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+            <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
+    </ion-toolbar> -->
+    <app-header></app-header>
+</ion-header>
+
+<ion-content>
+<div class="logBox">
+    <div style="width: 100%;">
+    <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+
+    <form class="musicForm" [formGroup]="buscarCanciones">
+        <div class="formContent">
+            <div class="formInput nombreArtista">
+                <label for="">Nombre del Video</label>
+                <input class="lInput" type="text" formControlName="nombre" name="" />
+            </div>
+        </div>
+        <button type="button" class="formButton" (click)="buscar()">
+        <p>BUSCAR</p>
+        </button>
+    </form>
+    </div>
+
+    <div *ngIf="isResultados" style="width: 100%;">
+    <p class="resultadosTitle">Resultados de búsqueda</p>    
+    <div class="contentBox"  *ngFor="let canciones of canciones">
+        <div class="contentItem">
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/119817930&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/wooden-box" title="Wooden-Box" target="_blank" style="color: #cccccc; text-decoration: none;">Wooden-Box</a> · <a href="https://soundcloud.com/wooden-box/la-flaca-jarabe-de-palo" title="La Flaca - Jarabe de palo" target="_blank" style="color: #cccccc; text-decoration: none;">La Flaca - Jarabe de palo</a></div>
+        </div>
+        <div class="outBox">
+            <div class="musicItem">
+                <img src="assets/13-musica/video.png" alt="video" (click)="mostrarVideos()"/>
+            </div>
+            <div class="musicItem">
+                <img src="assets/13-musica/perfil.png" alt="perfil" (click)="mostrarPerfil()"/>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</ion-content>
