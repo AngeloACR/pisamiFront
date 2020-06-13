@@ -1,0 +1,13 @@
+.contentBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.resultadosTitle{
+    font-weight: 16px;
+    color: #F24E2B;
+    text-align: center;
+}

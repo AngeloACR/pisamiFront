@@ -43,6 +43,7 @@ import { BuscadorCancionesComponent } from './components/buscador-canciones/busc
     RegistroComponent,
     ResultadosBuscadorComponent,
     VideosComponent,
+    PoliticaComponent,
     CancionesComponent,
     BuscadorCancionesComponent,
     BuscadorVideosComponent,

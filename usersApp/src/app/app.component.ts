@@ -15,22 +15,37 @@ export class AppComponent {
     {
       title: 'BUSCAR ARTISTAS',
       url: '/buscador/0',
-      icon: 'mail'
+      icon: 'assets/7-menu/artista.png'
     },
     {
-      title: 'MI CUENTA (EDITAR PERFIL)',
-      url: '/perfil/0',
-      icon: 'paper-plane'
+      title: 'FAVORITOS',
+      url: '/favoritos/0',
+      icon: 'assets/7-menu/favorito.png'
     },
     {
-      title: 'POLÍTICAS',
-      url: '/politicas/0',
-      icon: 'paper-plane'
+      title: 'VIDEOS',
+      url: '/videos',
+      icon: 'assets/7-menu/videos.png'
     },
     {
-      title: 'CERRAR SESIÓN',
+      title: 'CANCIONES',
+      url: '/canciones',
+      icon: 'assets/7-menu/canciones.png'
+    },
+    {
+      title: 'MI CUENTA',
+      url: '/perfil',
+      icon: 'assets/7-menu/perfil.png'
+    },
+    {
+      title: 'POLITICAS',
+      url: '/politica/0',
+      icon: 'assets/7-menu/politicas.png'
+    },
+    {
+      title: 'CERRAR SESION',
       url: '/logout',
-      icon: 'paper-plane'
+      icon: 'assets/7-menu/cerrar.png'
     }
   ];
   constructor(
