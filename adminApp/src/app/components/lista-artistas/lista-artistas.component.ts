@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: 'app-lista-artistas',
@@ -9,6 +16,7 @@ export class ListaArtistasComponent implements OnInit {
 
   artistas: any;
   fields: any;
+  buscarArtista: FormGroup;
 
   constructor() { }
 
@@ -29,6 +37,18 @@ export class ListaArtistasComponent implements OnInit {
     this.fields = [
       'Id', 'Nombre', 'Teléfono', 'Correo'
     ];       
+    this.initForm();
+  }
+
+  initForm() {
+    this.buscarArtista = new FormGroup({
+      nombre: new FormControl(''),
+      genero: new FormControl(''),
+    });
+  
+  }
+
+  filtrarArtista() {
   }
 
   habilitarArtista(event){

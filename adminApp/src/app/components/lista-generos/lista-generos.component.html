@@ -4,9 +4,26 @@
 
 <ion-content>
         <div class="logBox">
-            <div style="width: 100%;">
-                <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+            <div class="listaFilter">
+                <img class="pageImg" src="assets/10- lista de genros/lista de genros.png" alt="musica">
+                <form [formGroup]="buscarGenero">
+                    <div class="formContent">
+                    <div class="formInput">
+                        <label for="">Nombre del Género</label>
+                        <input
+                        class="lInput"
+                        type="text"
+                        formControlName="nombre"
+                        name=""
+                        />
+                    </div>
+
+                    <button type="button" class="formButton" (click)="filtrarGenero()">
+                        <p>FILTRAR</p>
+                    </button>
+                    </div>
+                </form>
+                <app-lista [fields]="fields" [values]="generos" (habilitar)="habilitarGenero($event)" (eliminar)="eliminarGenero($event)"  (editar)="editarGenero($event)" style="width: 100%;"></app-lista>
             </div>
-            <app-lista [fields]="fields" [values]="generos" (habilitar)="habilitarGenero($event)" (eliminar)="eliminarGenero($event)"  (editar)="editarGenero($event)" style="width: 100%;"></app-lista>
     </div>
 </ion-content>

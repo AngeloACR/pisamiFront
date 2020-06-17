@@ -4,8 +4,30 @@
 
 <ion-content>
         <div class="logBox">
-            <div style="width: 100%;">
-                <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+            <div class="listaFilter">
+                <img class="pageImg" src="assets/7-listado de artistas/listado.png" alt="musica">
+      <form [formGroup]="buscarArtista">
+        <div class="formContent">
+          <div class="formInput">
+            <label for="">Nombre del Artista</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Género musical</label>
+            <select class="lInput" name="" formControlName="genero">
+              <option *ngFor="let genero of generos">{{ genero }}</option>
+            </select>
+          </div>
+          <button type="button" class="formButton" (click)="filtrarArtista()">
+            <p>FILTRAR</p>
+          </button>
+        </div>
+      </form>
             </div>
             <app-lista [fields]="fields" [values]="artistas" [isHabilitar]="true" (habilitar)="habilitarArtista($event)" (eliminar)="eliminarArtista($event)" (editar)="editarArtista($event)" style="width: 100%;"></app-lista>
         </div>

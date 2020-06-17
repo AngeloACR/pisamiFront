@@ -18,7 +18,7 @@
   text-align: center;
   color: white;
   width: 200px;
-  background-color: #c1272d;
+  background-color:#F24E2B;
   border-style: solid;
   border-width: 1px;
   border-color: white;
@@ -45,11 +45,11 @@
     display: inline-block;
     flex-shrink: 0;
     text-align: center;
-    color: #c1272d;
+    color: #F24E2B;
     background-color: white;
     border-style: solid;
     border-width: 1px;
-    border-color: #c1272d;
+    border-color: #F24E2B;
     font-size: 12px;
     margin: 0;
     white-space: normal;
@@ -102,5 +102,5 @@
 }
 
 .actionButton:active p {
-  color: #c1272d;
+  color: #F24E2B;
 }

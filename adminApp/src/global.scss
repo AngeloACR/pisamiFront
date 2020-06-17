@@ -241,3 +241,34 @@ ion-title {
   width: 100%;
   margin-bottom: 10px;
 }
+
+.listaFilter{
+  width: 100%;
+}
+
+.listaFilter .formInput{
+  border: none !important;
+}
+
+.listaFilter .formInput label{
+  text-align: center;
+}
+
+.listaFilter .formInput .lInput{
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 23px;
+}
+
+.listaFilter .pageImg{
+  height: 15vh;
+}
+
+.listaFilter .formButton{
+  margin-top: 30px !important;
+}
+
+.listaFilter .formContent{
+  margin-bottom: 30px;
+}

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: 'app-lista-politicas',
@@ -9,7 +16,8 @@ export class ListaPoliticasComponent implements OnInit {
 
   politicas: any;
   fields: any;
-
+  buscarPolitica: FormGroup;
+  
   constructor() { }
 
   ngOnInit() {
@@ -30,6 +38,28 @@ export class ListaPoliticasComponent implements OnInit {
     this.fields = [
       'Id', 'Nombre'
     ];    
+    this.initForm();
+  }
+
+  initForm() {
+    this.buscarPolitica = new FormGroup({
+      nombre: new FormControl(''),
+    });
+  
+  }
+
+  filtrarPolitica() {
+  }
+  habilitarPolitica(event){
+    
+  }
+
+  editarPolitica(event){
+    
+  }
+
+  eliminarPolitica(event){
+    
   }
 
 }

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: 'app-lista-generos',
@@ -9,6 +16,7 @@ export class ListaGenerosComponent implements OnInit {
 
   generos: any;
   fields: any;
+  buscarGenero: FormGroup;
 
   constructor() { }
 
@@ -34,6 +42,30 @@ export class ListaGenerosComponent implements OnInit {
     this.fields = [
       'Id', 'Nombre', 'Descripción'
     ]    
+    this.initForm();
   }
+
+  initForm() {
+    this.buscarGenero = new FormGroup({
+      nombre: new FormControl(''),
+    });
+  
+  }
+
+  filtrarGenero() {
+  }
+
+  habilitarGenero(event){
+    
+  }
+
+  editarGenero(event){
+    
+  }
+
+  eliminarGenero(event){
+    
+  }
+
 
 }

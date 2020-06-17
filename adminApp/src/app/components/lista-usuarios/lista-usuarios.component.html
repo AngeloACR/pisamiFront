@@ -4,8 +4,43 @@
 
 <ion-content>
         <div class="logBox">
-            <div style="width: 100%;">
-                <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+            <div class="listaFilter">
+                <img class="pageImg" src="assets/4- lista de usuarios/lista usuarios.png" alt="musica">
+      <form [formGroup]="buscarUsuario">
+        <div class="formContent">
+          <div class="formInput">
+            <label for="">Nombre</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Apellido</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
+          <div class="formInput">
+            <label for="">Correo</label>
+            <input
+              class="lInput"
+              type="text"
+              formControlName="nombre"
+              name=""
+            />
+          </div>
+
+          <button type="button" class="formButton" (click)="filtrarUsuario()">
+            <p>FILTRAR</p>
+          </button>
+        </div>
+      </form>
             </div>
             <app-lista [fields]="fields" [values]="usuarios" [isHabilitar]="true" (habilitar)="habilitarUsuario($event)" (eliminar)="eliminarUsuario($event)"  (editar)="editarUsuarios($event)" style="width: 100%;"></app-lista>
         </div>

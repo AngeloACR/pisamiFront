@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: 'app-lista-notificaciones',
@@ -9,6 +16,7 @@ export class ListaNotificacionesComponent implements OnInit {
 
   notificaciones: any;
   fields: any;
+  buscarNotificacion: FormGroup;
 
   constructor() { }
 
@@ -30,7 +38,29 @@ export class ListaNotificacionesComponent implements OnInit {
     this.fields = [
       'Id', 'Nombre'
     ];
+    this.initForm();
+  }
 
+  initForm() {
+    this.buscarNotificacion = new FormGroup({
+      nombre: new FormControl(''),
+    });
+  
+  }
+
+  filtrarNotificacion() {
+  }
+
+    habilitarNotificacion(event){
+    
+  }
+
+  editarNotificacion(event){
+    
+  }
+
+  eliminarNotificacion(event){
+    
   }
 
 }

@@ -4,8 +4,20 @@
 
 <ion-content>
         <div class="logBox">
-            <div style="width: 100%;">
-                <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+            <div class="listaFilter">
+                <img class="pageImg" src="assets/12-listanoti/lista.png" alt="musica">
+            <form [formGroup]="buscarNotificacion">
+                <div class="formContent">
+                    <div class="formInput">
+                        <label style="width: 60%; white-space: normal" for="">Nombre de la Notificación</label>
+                        <input class="lInput" type="text" formControlName="nombre" name="" />
+                    </div>
+
+                    <button type="button" class="formButton" (click)="filtrarNotificacion()">
+            <p>FILTRAR</p>
+          </button>
+                </div>
+            </form>
             </div>
             <app-lista [fields]="fields" [values]="notificaciones" (habilitar)="habilitarNotificacion($event)" (eliminar)="eliminarNotificacion($event)"  (editar)="editarNotificacion($event)" style="width: 100%;"></app-lista>
     </div>
