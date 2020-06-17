@@ -30,7 +30,7 @@ export class FormPoliticasComponent implements OnInit {
 
 
   initForm(editMode) {
-    this.registroNotificacion = new FormGroup({
+    this.registroPolitica = new FormGroup({
       nombre: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
     });

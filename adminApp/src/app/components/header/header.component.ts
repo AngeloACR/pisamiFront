@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  buscador: FormGroup
+  constructor(
+    private router: Router,
+    ) { }
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit() {
+  this.buscador = new FormGroup({
+      artista: new FormControl(''),
+    });
+  }
+ 
+  endBuscador() {
+    this.router.navigateByUrl('/buscador/0');
+    this.buscador.reset();
+  }
 }

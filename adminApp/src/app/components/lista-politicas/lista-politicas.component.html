@@ -1,0 +1,12 @@
+<ion-header [translucent]="true">
+    <app-header></app-header>
+</ion-header>
+
+<ion-content>
+        <div class="logBox">
+            <div style="width: 100%;">
+                <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+            </div>
+            <app-lista [fields]="fields" [values]="politicas" (habilitar)="habilitarPolitica($event)" (eliminar)="eliminarPolitica($event)"  (editar)="editarPolitica($event)" style="width: 100%;"></app-lista>
+    </div>
+</ion-content>

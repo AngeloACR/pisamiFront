@@ -9,7 +9,7 @@ import { ActionSheetController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    //private dbHandler: DbHandlerService,
+    //    private dbHandler: DbHandlerService,
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
     private router: Router
@@ -34,60 +34,57 @@ export class LoginComponent implements OnInit {
   logUser() {
         if(this.catchUserErrors()){
       this.toggleError();
-    } else{
+    } else{    
     var data = this.login.value;
     this.auth.login(data).subscribe((logData: any) => {
       if (logData.auth) {
         this.auth.storeData(logData);
-        //this.actualizar();
+        //        this.actualizar();
       }
     });
     }
   }
-
-   actualizar() {
-    let refreshList = [
-      {
-        endpoint: '/users/all',
-        name: 'users'
-      },
-      {
-        endpoint: '/doctors/all',
-        name: 'doctors'
-      },
-      {
-        endpoint: '/patients/all',
-        name: 'patients'
-      },
-    ]
-    let dataArray = [];
-    refreshList.forEach(element => {
-      dataArray.push(this.dbHandler.getSomething(element.endpoint));
-    });
-    forkJoin(dataArray).subscribe(info => {
-      let i = 0;
+  /*   actualizar() {
+      let refreshList = [
+        {
+          endpoint: '/users/all',
+          name: 'users'
+        },
+        {
+          endpoint: '/doctors/all',
+          name: 'doctors'
+        },
+        {
+          endpoint: '/patients/all',
+          name: 'patients'
+        },
+      ]
+      let dataArray = [];
       refreshList.forEach(element => {
-        this.dbHandler.refreshData(info[i], element.name);
-        i++;
+        dataArray.push(this.dbHandler.getSomething(element.endpoint));
       });
-      this.router.navigateByUrl('/');
-    });
-  }
-
+      forkJoin(dataArray).subscribe(info => {
+        let i = 0;
+        refreshList.forEach(element => {
+          this.dbHandler.refreshData(info[i], element.name);
+          i++;
+        });
+        this.router.navigateByUrl('/');
+      });
+    } */
   flush() {
     this.login.setValue({
       username: '',
       password: ''
     });
   }
-
   registro() {
     this.router.navigateByUrl('/registro');
   }
 
-  get fLogin() { 
-    return this.login.controls;
-  }
+     get fLogin() { 
+      return this.login.controls;
+     }
 
  async toggleError() {
     let actionSheet = await this.actionSheetController.create({
@@ -110,5 +107,5 @@ export class LoginComponent implements OnInit {
         return error
       
   }
-
+ 
 }

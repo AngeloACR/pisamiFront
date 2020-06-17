@@ -39,7 +39,7 @@
 }
 
 .linkTitle {
-  color: #c1272d;
+  color: black;
   font-size: 14px;
   font-weight: 900;
   width: 100%;
@@ -54,7 +54,7 @@
   border-style: solid;
   border-width: 2px;
   background-color: white;
-  border-color: #c1272d;
+  border-color: black;
 }
 
 .linksList .formInput {
@@ -68,7 +68,7 @@
 
 .linkListTitle {
   color: white;
-  background-color: #c1272d;
+  background-color: black;
   font-weight: bolder;
   font-size: 14px;
   width: 100%;
@@ -93,7 +93,8 @@
 .formFiles {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .formFile {
@@ -112,7 +113,7 @@
   background-size: cover;
   background-color: white;
   border-style: solid;
-  border-color: #c1272d;
+  border-color: black;
   border-width: 2px;
 }
 
@@ -139,3 +140,31 @@
     font-size: 14px;
     text-align: center;
   }
+
+
+.formDescripcion {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+
+.formDescripcion label {
+  margin-bottom: 10px;
+  color: black;
+  font-size: 14px;
+}
+
+.formDescripcion textarea {
+  width: 100%;
+  border-width: 2px;
+  padding-left: 16px;
+  border-color: black;
+  border-radius: 23px;
+  background-color: white;
+}

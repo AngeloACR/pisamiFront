@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { DatePipe } from "@angular/common";
 import * as jwt_decode from "jwt-decode";
 import { Storage } from "@ionic/storage";
 
@@ -23,7 +22,6 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private datePipe: DatePipe,
     private storage: Storage
   ) {}
 

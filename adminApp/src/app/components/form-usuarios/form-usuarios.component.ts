@@ -8,8 +8,8 @@ import {
   Validators
 } from "@angular/forms";
 import { forkJoin } from "rxjs";
-import { DbHandler } from "../../services/db-handler.service";
-import { FileHandler } from "../../services/file.service";
+import { DbHandlerService } from "../../services/db-handler.service";
+import { FileHandlerService } from "../../services/file-handler.service";
 import { FileValidator } from "../../directives/fileValidator";
 import { ConfirmPasswordValidator } from "../../directives/must-match.validator";
 import { ActionSheetController } from "@ionic/angular";
@@ -33,17 +33,13 @@ export class FormUsuariosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dbHandler: DbHandler,
-    private fileHandler: FileHandler,
+    private dbHandler: DbHandlerService,
+    private fileHandler: FileHandlerService,
     public actionSheetController: ActionSheetController,
   ) { }
 
   ngOnInit() {
     this.initForm(this.editMode);
-  }
-
-  verMas() {
-      this.fileHandler.downloadPoliticas();
   }
 
   initForm(editMode) {
@@ -63,12 +59,12 @@ export class FormUsuariosComponent implements OnInit {
       ConfirmPasswordValidator.MatchPassword
     );
     if(editMode){
-    this.actualizarUser.controls['nombre'].setValue(this.user.nombre)
-    this.actualizarUser.controls['apellido'].setValue(this.user.apellido)
-    this.actualizarUser.controls['tlf'].setValue(this.user.tlf)
-    this.actualizarUser.controls['correo'].setValue(this.user.correo)
-    this.actualizarUser.controls['correo'].disable()
-    this.actualizarUser.controls['password'].setValue(this.user.password)
+    this.registroUser.controls['nombre'].setValue(this.user.nombre)
+    this.registroUser.controls['apellido'].setValue(this.user.apellido)
+    this.registroUser.controls['tlf'].setValue(this.user.tlf)
+    this.registroUser.controls['correo'].setValue(this.user.correo)
+    this.registroUser.controls['correo'].disable()
+    this.registroUser.controls['password'].setValue(this.user.password)
 
     }
   }

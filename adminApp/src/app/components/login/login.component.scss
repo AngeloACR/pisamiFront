@@ -8,13 +8,13 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    z-index: 200;
-    background-image: url('/assets/LOGIN/FONDO.png');
+   
+    background-image: url('/assets/1-inicio/fondologin.png');
     background-size: cover;
 }
 
 .logoBox {
-    width: 75%;
+    width: 35%;
 }
 
 .logoBox img {
@@ -67,16 +67,20 @@
     flex-basis: 100%;
     font-size: 16px;
     padding-left: 23px;
-    border-radius: 42px;
+    border-radius: 0 !important;
     height: 36px;
     border: none;
     background-image: none;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: grayscale(0.5) opacity(0.8);
-    color: black;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+.lInput::placeholder {
+  color: black;
+  font-weight: bolder;
 }
 
 .formBox {

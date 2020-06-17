@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { DatePipe } from "@angular/common";
 import { AuthService } from "./auth.service";
 import { forkJoin } from "rxjs";
 import { Storage } from "@ionic/storage";
@@ -18,7 +17,6 @@ export class DbHandlerService {
 
   constructor(
     private http: HttpClient,
-    private datePipe: DatePipe,
     private auth: AuthService,
     private storage: Storage
   ) {}

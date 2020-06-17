@@ -29,7 +29,7 @@ export class FormNotificacionesComponent implements OnInit {
   }
 
 
-  initForm() {
+  initForm(editMode) {
     this.registroNotificacion = new FormGroup({
       nombre: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
