@@ -1,0 +1,48 @@
+.formContent{
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 23px;
+  padding: 10px;
+}
+
+
+.tagBox {
+  font-size: 10px;
+}
+
+
+.fileBox {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.fileBox img {
+  width: 25%;
+}
+
+.tagText {
+  color: #F24E2B;
+  font-size: 8px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.tagLine {
+  font-size: 12px;
+  color: white;
+  /*     border-style: solid;
+    border-bottom-width:1px;
+    border-top-width:0;
+    border-left-width:0;
+    border-right-width: 0; */
+  text-decoration: underline;
+  border-color: white;
+  margin: 0;
+}
+
+.tagLine:active {
+  font-weight: bold;
+}

@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { FormArtistasComponent } from './components/form-artistas/form-artistas.component';
-import { FormNotificacionesComponent } from './components/form-notificaciones/form-notificaciones.component';
-import { FormPoliticasComponent } from './components/form-politicas/form-politicas.component';
-import { FormGenerosComponent } from './components/form-generos/form-generos.component';
-import { FormUsuariosComponent } from './components/form-usuarios/form-usuarios.component';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { ListaArtistasComponent } from './components/lista-artistas/lista-artistas.component';
 import { ListaGenerosComponent } from './components/lista-generos/lista-generos.component';
@@ -14,6 +9,11 @@ import { ListaPoliticasComponent } from './components/lista-politicas/lista-poli
 import { LoginComponent } from './components/login/login.component';
 import { ValidacionComponent } from './components/validacion/validacion.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
+import { RegistroArtistasComponent } from './components/registro-artistas/registro-artistas.component';
+import { RegistroGenerosComponent } from './components/registro-generos/registro-generos.component';
+import { RegistroNotificacionesComponent } from './components/registro-notificaciones/registro-notificaciones.component';
+import { RegistroPoliticasComponent } from './components/registro-politicas/registro-politicas.component';
 
 const routes: Routes = [
  {
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'registrousuarios',
-    component: FormUsuariosComponent,
+    component: RegistroUsuariosComponent,
   },
   {
     path: 'listausuarios',
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'registroartistas',
-    component: FormArtistasComponent,
+    component: RegistroArtistasComponent,
   },
   {
     path: 'listaartistas',
@@ -42,15 +42,15 @@ const routes: Routes = [
   },
   {
     path: 'creageneros',
-    component: FormGenerosComponent,
+    component: RegistroGenerosComponent,
   },
   {
     path: 'listageneros',
     component: ListaGenerosComponent,
   },
   {
-    path: 'registronotificaciones',
-    component: FormNotificacionesComponent,
+    path: 'notificaciones',
+    component: RegistroNotificacionesComponent,
   },
   {
     path: 'listanotificaciones',
@@ -58,7 +58,7 @@ const routes: Routes = [
   },
   {
     path: 'politicas',
-    component: FormPoliticasComponent,
+    component: RegistroPoliticasComponent,
   },
   {
     path: 'listapoliticas',

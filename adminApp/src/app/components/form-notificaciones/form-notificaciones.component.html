@@ -1,10 +1,11 @@
 <form [formGroup]="registroNotificacion">
-    <div class="formInput">
-        <label for="">NOMBRE DE LA NOTIFICACIÓN</label>
-        <input class="lInput" type="text" formControlName="nombre" name="" />
-    </div>
-    <div class="errorTag" *ngIf="fNotificacion.nombre.errors?.required && (fNotificacion.nombre.touched || fNotificacion.nombre.dirty)">Este campo es requerido</div>
+
     <div class="formContent">
+      <div class="formInput">
+          <label for="">Nombre de la Notificación</label>
+          <input class="lInput" type="text" formControlName="nombre" name="" />
+      </div>
+      <div class="errorTag" *ngIf="fNotificacion.nombre.errors?.required && (fNotificacion.nombre.touched || fNotificacion.nombre.dirty)">Este campo es requerido</div>
         <div class="formDescripcion">
             <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
         </div>

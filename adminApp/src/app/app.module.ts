@@ -27,6 +27,12 @@ import { ListaPoliticasComponent } from './components/lista-politicas/lista-poli
 import { LoginComponent } from './components/login/login.component';
 import { ValidacionComponent } from './components/validacion/validacion.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
+import { RegistroArtistasComponent } from './components/registro-artistas/registro-artistas.component';
+import { RegistroGenerosComponent } from './components/registro-generos/registro-generos.component';
+import { RegistroNotificacionesComponent } from './components/registro-notificaciones/registro-notificaciones.component';
+import { RegistroPoliticasComponent } from './components/registro-politicas/registro-politicas.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +51,12 @@ import { AdminComponent } from './components/admin/admin.component';
     ListaGenerosComponent,
     ListaNotificacionesComponent,
     ListaPoliticasComponent,
-    LoginComponent,    
+    LoginComponent,
+    RegistroUsuariosComponent,
+    RegistroArtistasComponent,
+    RegistroGenerosComponent,
+    RegistroNotificacionesComponent,
+    RegistroPoliticasComponent,   
 
     ],
   entryComponents: [
