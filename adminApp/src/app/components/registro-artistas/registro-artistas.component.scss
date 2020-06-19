@@ -1,0 +1,81 @@
+
+  .selectionBox {
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: nowrap;
+    height: 100%;
+    
+  }
+  
+  .optionsBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;
+    background-image: url('/assets/1-inicio/fondo_Mesa de trabajo 1.png');
+    background-size: cover;
+        background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
+  .formImg {
+    width: 25%;
+  }
+ 
+    .iconsBox {
+        display: flex;
+        flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .iconBox {
+    display: flex;
+    flex-direction: column;
+    width: 42%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .iconBox p {
+    font-weight: bold;
+    color: #c1272d;
+    font-size: 23px;
+  }
+  
+  .iconImg {
+    height: 18vh;
+    cursor: pointer;
+  }
+  
+  
+  .formBox {
+    width: 60%;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+  }
+  
+  .formBox {
+    display: none;
+    width: 100%;
+  }
+  
+  .hideOption {
+    display: none;
+  }
+  
+  .formAct {
+    display: block !important;
+  }
+
+.imgTitle {
+  margin-bottom: 40px;
+  width: 60%;
+}

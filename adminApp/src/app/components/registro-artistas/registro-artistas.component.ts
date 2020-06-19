@@ -121,4 +121,24 @@ export class RegistroArtistasComponent implements OnInit {
     this.isOrquesta = false;
   }
 
+
+  soundLinks = new FormArray([]);
+  youLinks = new FormArray([]);
+  addYoutube() {
+    const group = new FormGroup({
+      nombre: new FormControl(""),
+      link: new FormControl("")
+    });
+
+    this.youLinks.push(group);
+  }
+  addSoundcloud() {
+    const group = new FormGroup({
+      nombre: new FormControl(""),
+      link: new FormControl("")
+    });
+
+    this.soundLinks.push(group);
+  }
+
 }
