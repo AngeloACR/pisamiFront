@@ -13,7 +13,7 @@
         <div class="selectionBox" *ngIf="!isMusico">
             <div class="optionsBox" [ngClass]="hideOption">
                 <div class="logoBox">
-                    <img class="formImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                    <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
                 </div>
                 <p><b>Elige una de las dos opciones <br>
                 con la que te quieres registrar</b></p>
@@ -36,7 +36,7 @@
         <div class="selectionBox" *ngIf="isMusico">
             <div class="optionsBox" [ngClass]="hideOption">
                 <div class="logoBox">
-                    <img class="formImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                    <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
                 </div>
                     <img class="imgTitle" src="assets/5-tipo/tipo.png" alt="tipo" (click)="regisGmail()" />
                 <div class="iconsBox">
@@ -56,7 +56,7 @@
         <div class="logBox" [ngClass]="showForm">
             <div class="formBox">
                 <app-form-usuarios [editMode]="0" *ngIf="isUser"></app-form-usuarios>
-                <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="isMusico"></app-form-artistas>
+                <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="tipoSelected"></app-form-artistas>
             </div>
         </div>
     </div>        

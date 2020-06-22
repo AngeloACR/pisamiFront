@@ -112,6 +112,7 @@ export class RegistroComponent implements OnInit {
     this.hideOption = {
       hideOption: true
     };
+    console.log(this.tipoSelected);
   }
 
   firstToggle(event, tipo) {

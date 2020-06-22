@@ -124,7 +124,9 @@ tipo: string;
       telefono: new FormControl("", Validators.required),
       correo: new FormControl("", [Validators.required, Validators.email]),
       descripcion: new FormControl("", Validators.required),
-      paginaWeb: new FormControl("", Validators.required),
+      instagram: new FormControl("", Validators.required),
+      facebook: new FormControl(""),
+      paginaWeb: new FormControl(""),
       numeroIntegrantes: new FormControl("", Validators.required),
       generos: new FormControl("", Validators.required),
       imagen1: new FormControl("", [FileValidator.validate]),
@@ -146,6 +148,8 @@ tipo: string;
       this.registroMusico.controls['telefono'].setValue(this.user.telefono);
       this.registroMusico.controls['correo'].setValue(this.user.correo);
       this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
+      this.registroMusico.controls['instagram'].setValue(this.user.instagram);
+      this.registroMusico.controls['facebook'].setValue(this.user.facebook);
       this.registroMusico.controls['paginaWeb'].setValue(this.user.paginaWeb);
 
     }

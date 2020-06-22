@@ -68,6 +68,14 @@
         <div class="errorTag" *ngIf="fMusico.descripcion.errors?.required && (fMusico.descripcion.touched || fMusico.descripcion.dirty)">Este campo es requerido</div>
 
         <div class="formInput">
+            <label for="">Página de Instagram</label>
+            <input class="lInput" type="text" formControlName="instagram" name="" />
+        </div>
+        <div class="formInput">
+            <label for="">Página de Facebook</label>
+            <input class="lInput" type="text" formControlName="facebook" name="" />
+        </div>
+        <div class="formInput">
             <label for="">Pagina Web</label>
             <input class="lInput" type="text" formControlName="paginaWeb" name="" />
         </div>
@@ -110,7 +118,7 @@
                 <p class="linkTitle">Agregar link de música</p>
                 <div class="linksList">
                     <div class="linkListTitle">
-                            Agregar link de música de Soundcloud <span class="addLink" (click)="addSoundcloud()">+</span>
+                            Agregar iframe de música de Soundcloud <span class="addLink" (click)="addSoundcloud()">+</span>
                     </div>
                     <div class="arrayBox" *ngFor="let sound of soundLinks.controls;">
                         <ng-container class="controlBox" [formGroup]="sound">
@@ -119,7 +127,7 @@
                                 <input class="lInput" type="text" formControlName="nombre" name="" />
                             </div>
                             <div class="formInput">
-                                <label for="">Link de Canción</label>
+                                <label for="">Iframe de Canción</label>
                                 <input class="lInput" type="text" formControlName="link" name="" />
                             </div>
                         </ng-container>
@@ -127,7 +135,7 @@
                 </div>
                 <div class="linksList">
                     <div class="linkListTitle">
-                            Agregar link de música de Youtube <span class="addLink" (click)="addYoutube()">+</span>
+                            Agregar iframe de música de Youtube <span class="addLink" (click)="addYoutube()">+</span>
                     </div>
                     <div class="arrayBox" *ngFor="let you of youLinks.controls;">
                         <ng-container class="controlBox" [formGroup]="you">
@@ -136,7 +144,7 @@
                                 <input class="lInput" type="text" formControlName="nombre" name="" />
                             </div>
                             <div class="formInput">
-                                <label for="">Link de Canción</label>
+                                <label for="">Iframe de Canción</label>
                                 <input class="lInput" type="text" formControlName="link" name="" />
                             </div>
                         </ng-container>

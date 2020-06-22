@@ -12,9 +12,12 @@
     <div class="pageBox">
         <div class="logBox">
             <div class="logoBox">
-                <img class="formImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+                <img class="pageImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
             </div>
             <div class="formBox">
+                <div class="textBanner">
+                    <p>Iniciar sesión</p>
+                </div>            
                 <form [formGroup]="login" (ngSubmit)="logUser()">
                     <div class="formContent">
                         <div class="formInput">
