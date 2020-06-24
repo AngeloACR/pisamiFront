@@ -25,9 +25,9 @@ export class BuscadorCancionesComponent implements OnInit {
     this.initForm();
     this.canciones = [{
         nombre: 'La Flaca',
-        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ'}, {
+        link: 'https://soundcloud.com/xxxxxxxx'}, {
         nombre: 'La Flaca',
-        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ',
+        link: 'https://soundcloud.com/xxxxxxxx',
       }];
   }
 

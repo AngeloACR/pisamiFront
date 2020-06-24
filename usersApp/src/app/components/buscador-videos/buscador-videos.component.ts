@@ -28,17 +28,18 @@ export class BuscadorVideosComponent implements OnInit {
     this.isResultados = false;
     this.initForm();
     this.videos = [{
+
         nombre: 'La Flaca',
-        link: 'https://soundcloud.com/xxxxxxxx'}, {
+        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ'}, {
         nombre: 'La Flaca',
-        link: 'https://soundcloud.com/xxxxxxxx',
-      }];
-          this.videos.forEach(video => {
+        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ',
+      }];      
+         /*  this.videos.forEach(video => {
       let videoLink = video.link;
       let videoId = videoLink.split('watch?v=')[1];
       let videoEmbed = `https://www.youtube.com/embed/${videoId}`
       video.link = videoEmbed
-    });
+    }); */
   }
 
   initForm() {

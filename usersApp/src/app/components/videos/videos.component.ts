@@ -22,12 +22,12 @@ export class VideosComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.videos.forEach(video => {
+/*     this.videos.forEach(video => {
       let videoLink = video.link;
       let videoId = videoLink.split('watch?v=')[1];
       let videoEmbed = `https://www.youtube.com/embed/${videoId}`
       video.link = videoEmbed
-    });
+    }); */
   }
 
   sanitize(url: string) {

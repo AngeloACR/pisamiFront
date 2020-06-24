@@ -61,8 +61,8 @@ export class FormArtistasComponent implements OnInit {
   file2: any;
   file3: any;
 
-  soundLinks = new FormArray([]);
-  youLinks = new FormArray([]);
+  soundFrames = new FormArray([]);
+  youFrames = new FormArray([]);
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -104,7 +104,7 @@ export class FormArtistasComponent implements OnInit {
       link: new FormControl("")
     });
 
-    this.youLinks.push(group);
+    this.youFrames.push(group);
   }
   addSoundcloud() {
     const group = new FormGroup({
@@ -112,7 +112,7 @@ export class FormArtistasComponent implements OnInit {
       link: new FormControl("")
     });
 
-    this.soundLinks.push(group);
+    this.soundFrames.push(group);
   }
 
   initForm(editMode) {
@@ -133,9 +133,11 @@ export class FormArtistasComponent implements OnInit {
       generos: new FormControl("", Validators.required),
       imagen1: new FormControl("", [FileValidator.validate]),
       imagen2: new FormControl("", [FileValidator.validate]),
-      imagen3: new FormControl("", [FileValidator.validate])
-      /*       soundLinks: new FormControl('', Validators.required),
-      youLinks: new FormControl('', Validators.required),
+      imagen3: new FormControl("", [FileValidator.validate]),
+      soundFrames: this.soundFrames,
+      youFrames: this.youFrames,
+      /*       soundFrames: new FormControl('', Validators.required),
+      youFrames: new FormControl('', Validators.required),
       soundNombres: new FormControl('', Validators.required),
       youNombres: new FormControl('', Validators.required), */
     });
@@ -202,6 +204,30 @@ export class FormArtistasComponent implements OnInit {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {
+      let soundLinks = []
+      var soundControl = this.soundFrames.get('products') as FormArray;
+      soundControl.forEach(soundElement => {
+        let soundFrame = soundElement.value;
+        let soundLink = soundFrame.substring(
+          soundFrame.lastIndexOf("src=\"") + 5, 
+          soundFrame.lastIndexOf("\"></iframe>")
+      );
+      soundLinks.push(soundLink);
+      });
+
+      let youLinks = []
+      var youControl = this.youFrames.get('products') as FormArray;
+      youControl.forEach(youElement => {
+        let youFrame = youElement.value;
+        let youLink = youFrame.substring(
+          str.lastIndexOf("http"), 
+
+          str.lastIndexOf("\" frameborder")
+      );
+      youLinks.push(youLink);
+      });
+
+
       console.log("Registrando");
     }
   }

@@ -8,7 +8,7 @@ ion-menu{
 }
 
 ion-menu-toggle{
-    width: 47%;
+    width: 42%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,13 +45,11 @@ ion-menu-toggle ion-item{
 }
 
 ion-menu-toggle:nth-child(odd){
-    margin-left: 10px;
     align-self: flex-start;
 
 }
 
-ion-menu-toggle:nth-child(odd){
-    margin-right: 10px;
+ion-menu-toggle:nth-child(even){
     align-self: flex-end;
 }
 
@@ -164,4 +162,22 @@ ion-note {
 
 ion-item.selected {
     --color: var(--ion-color-primary);
+}
+
+.slideMenu{
+    top: 50%;
+    transform: translatey(-50%);
+}
+
+.configItem{
+    width: 100%;
+    position: absolute;
+    bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.configItem .menuImg{
+    height: 15vw;
 }

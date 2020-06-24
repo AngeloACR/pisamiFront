@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonSlides } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-root',
@@ -10,7 +13,17 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
 
+  menuSlider: any;
+
+  //Configuration for each Slider
+  slideOptsOne = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    centeredSlides: true,
+    effect: 'slide',
+  };
   public appPages = [
     {
       title: 'MÓDULO ADMINISTRADOR',
@@ -84,6 +97,26 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    this.initSlider();
+  }
+
+  initSlider(){
+    this.menuBoxes = [];
+    let menuOpts = 4;
+    let length = this.appPages.length;
+    var i,j;
+    for (i=0,j=length; i<j; i+=menuOpts) {
+        let aux = {
+          menuPages: this.appPages.slice(i,i+menuOpts)
+        };
+        this.menuBoxes.push(aux)
+    }
+
+    this.menuSlider = {
+      isBeginningSlide: true,
+      isEndSlide: false,
+      slidesItems: this.menuBoxes
+    };
   }
 
   initializeApp() {
