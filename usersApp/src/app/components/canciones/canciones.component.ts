@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-canciones',
@@ -16,7 +17,9 @@ export class CancionesComponent implements OnInit {
   @Output()
   verVideos = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(
+    private sanitizer: DomSanitizer
+    ) { }
 
   ngOnInit() {}
 
@@ -27,4 +30,7 @@ export class CancionesComponent implements OnInit {
     this.volver.emit()
   }
 
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }

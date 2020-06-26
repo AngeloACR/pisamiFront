@@ -13,6 +13,10 @@ import { IonSlides } from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  currentMenu: any;
+  menuBoxes: any;
+
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
 
   menuSlider: any;
@@ -24,6 +28,13 @@ export class AppComponent {
     centeredSlides: true,
     effect: 'slide',
   };
+
+  public config = {
+      title: 'CONFIGURACIÓN',
+      url: '/config',
+      icon: 'assets/2- menu/configuracion.png'
+    };
+
   public appPages = [
     {
       title: 'MÓDULO ADMINISTRADOR',
@@ -77,11 +88,6 @@ export class AppComponent {
     },
     {
       title: 'POLÍTICAS',
-      url: '/politicas',
-      icon: 'assets/2- menu/politicas.png'
-    },
-    {
-      title: 'LISTA DE POLÍTICAS',
       url: '/listapoliticas',
       icon: 'assets/2- menu/politicas.png'
     },

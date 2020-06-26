@@ -99,7 +99,7 @@ tipo: string;
   addYoutube() {
     const group = new FormGroup({
       nombre: new FormControl(""),
-      link: new FormControl("")
+      iframe: new FormControl("")
     });
 
     this.youFrames.push(group);
@@ -107,7 +107,7 @@ tipo: string;
   addSoundcloud() {
     const group = new FormGroup({
       nombre: new FormControl(""),
-      link: new FormControl("")
+      iframe: new FormControl("")
     });
 
     this.soundFrames.push(group);
@@ -164,6 +164,7 @@ tipo: string;
 
   toggleForm(tipo) {
     let img;
+    console.log(tipo)
     switch (tipo) {
       case "solista":
         this.isSolista = true;
@@ -203,27 +204,31 @@ tipo: string;
       this.toggleError();
     } else {
       let soundLinks = []
-      var soundControl = this.soundFrames.get('products') as FormArray;
-      soundControl.forEach(soundElement => {
-        let soundFrame = soundElement.value;
-        let soundLink = soundFrame.substring(
-          soundFrame.lastIndexOf("src=\"") + 5, 
-          soundFrame.lastIndexOf("\"></iframe>")
-      );
-      soundLinks.push(soundLink);
-      });
+      var soundControls = this.soundFrames.controls;
+       for (let control of soundControls) {
+        if (control instanceof FormGroup) {
+          let soundFrame = control.controls['iframe'].value;
+          let soundLink = soundFrame.substring(
+            soundFrame.lastIndexOf("src=\"") + 5, 
+            soundFrame.lastIndexOf("\"></iframe>")
+        );
+        soundLinks.push(soundLink);
+        }
+      } 
 
       let youLinks = []
-      var youControl = this.youFrames.get('products') as FormArray;
-      youControl.forEach(youElement => {
-        let youFrame = youElement.value;
-        let youLink = youFrame.substring(
-          youFrame.lastIndexOf("http"), 
+      var youControls = this.youFrames.controls;
+       for (let control of youControls) {
+        if (control instanceof FormGroup) {
+          let youFrame = control.controls['iframe'].value;
+          let youLink = youFrame.substring(
+            youFrame.lastIndexOf("http"), 
 
-          youFrame.lastIndexOf("\" frameborder")
-      );
-      youLinks.push(youLink);
-      });
+            youFrame.lastIndexOf("\" frameborder")
+        );
+        youLinks.push(youLink);
+        }
+      }
 
 
       console.log("Registrando");
@@ -296,4 +301,45 @@ tipo: string;
         aux1 || aux2 || aux3 || aux4 || aux5 || aux6 || aux7 || aux8 || aux9;
       return error;
   }
+
+
+  fileProgress(fileInput, imagen) {
+    let registro = this;
+    let files = fileInput.target.files;
+    let file = files[0];
+
+    if (files && file) {
+      let reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = function() {
+        switch (imagen) {
+          case "imagen1":
+
+            registro.fileName1 = file.name;
+            registro.file1 = reader.result.toString().split(',')[1];
+//            registro.file1 = reader.result;
+            break;
+          case "imagen2":
+            registro.fileName2 = file.name;
+            registro.file2 = reader.result.toString().split(',')[1];
+//            registro.file2 = reader.result;
+            break;
+          default:
+            registro.fileName3 = file.name;
+            registro.file3 = reader.result.toString().split(',')[1];
+//            registro.file3 = reader.result;
+            break;
+        }
+      };
+      reader.onerror = function(error) {
+        console.log("Error: ", error);
+      };
+    } else {
+      this.fileName1 = "";
+      this.fileName2 = "";
+      this.fileName3 = "";
+    }
+  }
+
 }

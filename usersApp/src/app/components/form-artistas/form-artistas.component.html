@@ -120,7 +120,7 @@
                     <div class="linkListTitle">
                             Agregar iframe de música de Soundcloud <span class="addLink" (click)="addSoundcloud()">+</span>
                     </div>
-                    <div class="arrayBox" *ngFor="let sound of soundLinks.controls;">
+                    <div class="arrayBox" *ngFor="let sound of soundFrames.controls;">
                         <ng-container class="controlBox" [formGroup]="sound">
                             <div class="formInput">
                                 <label for="">Nombre de Canción</label>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="formInput">
                                 <label for="">Iframe de Canción</label>
-                                <input class="lInput" type="text" formControlName="link" name="" />
+                                <input class="lInput" type="text" formControlName="iframe" name="" />
                             </div>
                         </ng-container>
                     </div>
@@ -137,7 +137,7 @@
                     <div class="linkListTitle">
                             Agregar iframe de música de Youtube <span class="addLink" (click)="addYoutube()">+</span>
                     </div>
-                    <div class="arrayBox" *ngFor="let you of youLinks.controls;">
+                    <div class="arrayBox" *ngFor="let you of youFrames.controls;">
                         <ng-container class="controlBox" [formGroup]="you">
                             <div class="formInput">
                                 <label for="">Nombre de Canción</label>
@@ -145,7 +145,7 @@
                             </div>
                             <div class="formInput">
                                 <label for="">Iframe de Canción</label>
-                                <input class="lInput" type="text" formControlName="link" name="" />
+                                <input class="lInput" type="text" formControlName="iframe" name="" />
                             </div>
                         </ng-container>
                     </div>

@@ -52,15 +52,15 @@ resultados = new EventEmitter<any>();
       ],
       soundcloud: [{
         nombre: 'La Flaca',
-        link: 'https://soundcloud.com/xxxxxxxx'}, {
+        link: 'https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true'}, {
         nombre: 'La Flaca',
-        link: 'https://soundcloud.com/xxxxxxxx',
+        link: 'https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true',
       }],
       youtube: [{
         nombre: 'La Flaca',
-        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ'}, {
+        link: 'https://www.youtube.com/embed/r2g0pM3PMNQ',}, {
         nombre: 'La Flaca',
-        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ',
+        link: 'https://www.youtube.com/embed/r2g0pM3PMNQ',
       }],
     }, {
       nombre: 'Los cantautores',

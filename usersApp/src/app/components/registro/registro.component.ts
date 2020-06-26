@@ -63,6 +63,10 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isUser = false;
+    this.isSolista = false;
+    this.isDuo = false;
+    this.isOrquesta = false;
     this.isMusico = false;
     this.musicoImg = "assets/4-registro/musico.png";
     this.userImg = "assets/4-registro/usuario.png";
@@ -76,6 +80,7 @@ export class RegistroComponent implements OnInit {
     switch (tipo) {
       case "user":
         this.isUser = true;
+        this.isMusico = false;
         this.isSolista = false;
         this.isDuo = false;
         this.isOrquesta = false;

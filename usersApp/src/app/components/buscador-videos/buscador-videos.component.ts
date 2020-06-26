@@ -30,9 +30,9 @@ export class BuscadorVideosComponent implements OnInit {
     this.videos = [{
 
         nombre: 'La Flaca',
-        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ'}, {
+        link: 'https://www.youtube.com/embed/r2g0pM3PMNQ'}, {
         nombre: 'La Flaca',
-        link: 'https://www.youtube.com/watch?v=r2g0pM3PMNQ',
+        link: 'https://www.youtube.com/embed/r2g0pM3PMNQ',
       }];      
          /*  this.videos.forEach(video => {
       let videoLink = video.link;
