@@ -23,8 +23,8 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'registro',
-    component: RegistroComponent,
+    path: 'restore',
+    component: RestorePassComponent,
   },
   {
     path: 'reset',
