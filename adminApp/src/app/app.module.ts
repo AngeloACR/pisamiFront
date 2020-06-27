@@ -32,11 +32,15 @@ import { RegistroArtistasComponent } from './components/registro-artistas/regist
 import { RegistroGenerosComponent } from './components/registro-generos/registro-generos.component';
 import { RegistroNotificacionesComponent } from './components/registro-notificaciones/registro-notificaciones.component';
 import { RegistroPoliticasComponent } from './components/registro-politicas/registro-politicas.component';
+import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
+import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    RestorePassComponent,
+    ResetPassComponent,
     ValidacionComponent,
     AdminComponent,
     FormArtistasComponent,

@@ -28,6 +28,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { BuscadorVideosComponent } from './components/buscador-videos/buscador-videos.component';
 import { PoliticaComponent } from './components/politica/politica.component';
 import { BuscadorCancionesComponent } from './components/buscador-canciones/buscador-canciones.component';
+import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
+import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { BuscadorCancionesComponent } from './components/buscador-canciones/busc
     HeaderComponent, 
     LoginComponent,
     RatingComponent, 
+    RestorePassComponent,
+    ResetPassComponent,
     RegistroComponent,
     ResultadosBuscadorComponent,
     VideosComponent,

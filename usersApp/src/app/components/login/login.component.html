@@ -1,12 +1,6 @@
-<!-- <ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-            <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
-    </ion-toolbar>
+<ion-header [translucent]="true">
     <app-header></app-header>
-</ion-header> -->
+</ion-header>
 
 <ion-content>
     <div class="pageBox">
@@ -36,7 +30,7 @@
                             <button type="submit" class="formButton">
                 <p>Iniciar Sesión</p>
               </button>
-                            <p class="tagLine">¿Has olvidado tu contraseña?</p>
+                            <p class="tagLine" (click)="restore()">¿Has olvidado tu contraseña?</p>
                             <button type="button" class="formButton" (click)="registro()">
                 <p>Regístrate</p>
               </button>

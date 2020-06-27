@@ -1,14 +1,14 @@
 .toolbarLogo{
     height: 56px;
     z-index: 10;
-    background-color:  #F24E2B;
+    background-color:  #F68522;
     position: absolute;
     top: 8px;
     right: 9px;
 }
 
 .circularBox{
-    background-color:  #F24E2B;
+    background-color:  #F68522;
     position: absolute;
     border-radius: 84px;
     top: 0;
@@ -30,7 +30,7 @@ form{
     padding-left: 16px;
     border-radius: 42px;
     border-style: solid;
-    border-color:  #F24E2B;
+    border-color:  #F68522;
     border-width: 2px;
     height: 30px;
     background-image: none;
@@ -54,25 +54,25 @@ form{
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-size:6px;
-  color:  #F24E2B;
+  color:  #F68522;
   line-height: 30px;
   transform:translate3d(0,-2px,0)
 }
 ::-moz-placeholder { /* Firefox 19+ */
   font-size:6px;
-  color:  #F24E2B;
+  color:  #F68522;
   line-height: 30px;
   transform:translate3d(0,-2px,0)
 }
 :-ms-input-placeholder { /* IE 10+ */
   font-size:6px;
-  color:  #F24E2B;
+  color:  #F68522;
   line-height: 30px;
   transform:translate3d(0,-2px,0)
 }
 :-moz-placeholder { /* Firefox 18- */
   font-size:6px;
-  color:  #F24E2B;
+  color:  #F68522;
   line-height: 30px;
   transform:translate3d(0,-2px,0)
 }

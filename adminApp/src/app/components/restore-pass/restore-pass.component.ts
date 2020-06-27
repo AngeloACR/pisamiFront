@@ -4,7 +4,7 @@ import { AuthService } from "../../services/auth.service";
 import {
   FormBuilder,
   FormGroup,
-  FormControl, 
+  FormControl,
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -12,13 +12,14 @@ import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-restore-pass',
+  templateUrl: './restore-pass.component.html',
+  styleUrls: ['./restore-pass.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  login: FormGroup;
+export class RestorePassComponent implements OnInit {
+  restorePassword: FormGroup;
 
+  showConfirm = {};
   constructor(
     private auth: AuthService,
     private fb: FormBuilder,
@@ -27,40 +28,43 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.login = new FormGroup({
-      username: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required)
+    this.restorePassword = new FormGroup({
+      mail: new FormControl("", [Validators.required, Validators.email]),
     });
+    this.showConfirm = {
+      showConfirm: false,
+    }
   }
 
-  logUser() {
+  close(){
+    this.router.navigateByUrl("/");
+  }
+
+  restorePass() {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {
-      var data = this.login.value;
-      this.auth.login(data).subscribe((logData: any) => {
-        if (logData.auth) {
-          this.auth.storeData(logData);
+      this.showConfirm = {
+          showConfirm: true,
+      }
+      var data = this.restorePassword.value;
+      this.auth.restore(data).subscribe((data: any) => {
+        this.showConfirm = {
+            showConfirm: true,
         }
       });
     }
   }
 
   flush() {
-    this.login.setValue({
-      username: "",
-      password: ""
-    });
+    this.restorePassword.reset()
   }
   registro() {
     this.router.navigateByUrl("/registro");
   }
-  restore() {
-    this.router.navigateByUrl("/restore");
-  }
 
-  get fLogin() {
-    return this.login.controls;
+  get fRestore() {
+    return this.restorePassword.controls;
   }
 
   async toggleError() {
@@ -81,13 +85,10 @@ export class LoginComponent implements OnInit {
     await actionSheet.present();
   }
   catchUserErrors() {
-    let aux1 = this.fLogin.username.errors
-      ? this.fLogin.username.errors.required
+    let aux1 = this.fRestore.mail.errors
+      ? this.fRestore.mail.errors.required
       : false;
-    let aux2 = this.fLogin.password.errors
-      ? this.fLogin.password.errors.required
-      : false;
-    let error = aux1 || aux2;
+    let error = aux1;
     return error;
   }
 }

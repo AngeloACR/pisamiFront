@@ -15,15 +15,10 @@ export class AuthService {
 
   serverSource = "";
 
-  prodSource = "";
-
   //mySource = this.localSource;
   mySource = this.serverSource;
 
-  constructor(
-    private http: HttpClient,
-    private storage: Storage
-  ) {}
+  constructor(private http: HttpClient, private storage: Storage) {}
 
   login(logData: any) {
     let headers = new HttpHeaders();
@@ -35,6 +30,29 @@ export class AuthService {
     var address = this.mySource + this.endpoint + "/";
     return this.http.post(address, body, { headers: headers });
   }
+
+
+  restore(data: any) {
+    let headers = new HttpHeaders();
+    headers.append("Content-Type", "application/json");
+    let body = {
+      mail: data.mail,
+    };
+    var address = this.mySource + this.endpoint + "/restore";
+    return this.http.post(address, body, { headers: headers });
+  }
+
+  reset(data: any) {
+    let headers = new HttpHeaders();
+    headers.append("Content-Type", "application/json");
+    let body = {
+      password: data.password,
+    };
+    var address = this.mySource + this.endpoint + "/reset";
+    return this.http.post(address, body, { headers: headers });
+  }
+
+
   logout() {
     this.storage.remove("loggedIn");
     this.storage.remove("token");

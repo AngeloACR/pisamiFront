@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+    <app-header></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="pageBox">
+        <div class="logBox">
+            <div class="logoBox">
+                <img class="pageImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+            </div>
+            <div class="formBox">
+                <div class="textBanner">
+                    <p>Cambiar tu Contraseña</p>
+                </div>            
+                <form [formGroup]="resetPassword" (ngSubmit)="resetPass()">
+                    <div class="formContent">
+                        <div class="formInput">
+<!--                             <label for="">Contraseña</label>
+ -->                            <input class="lInput" type="password" placeholder="Contraseña" formControlName="password" name="password" />
+                        </div>
+                        <div class="errorTag" *ngIf="fPassword.password.errors?.required && (fPassword.password.touched || fPassword.password.dirty)">Este campo es requerido</div>
+                        <div class="errorTag" *ngIf="fPassword.password.errors?.minlength && (fPassword.password.touched || fPassword.password.dirty)">La contraseña debe contener al menos 6 carácteres</div>
+                        <div class="formInput">
+<!--                             <label for="">Contraseña</label>
+ -->                            <input class="lInput" type="password" placeholder="Confirmar Contraseña" formControlName="cpassword" name="cpassword" />
+                        </div>
+                            <div class="errorTag" *ngIf="fPassword.cpassword.errors?.ConfirmPassword">Las contraseñas deben coincidir</div>
+                        <div class="errorTag" *ngIf="fPassword.cpassword.errors?.required && (fPassword.cpassword.touched || fPassword.cpassword.dirty)">Este campo es requerido</div>
+
+                        <div class="buttonBox">
+                            <button type="submit" class="formButton">
+                <p>Cambiar</p>
+              </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="confirmText" [ngClass]="showConfirm">
+                <span class="loginButton" (click)="close()">X</span>
+                <p>Su contraseña se ha cambiado exitosamente</p>
+            </div>
+            <div class="copyright">
+                <p>Copyright Alcaldia Municipal de Ibagué © PISAMI</p>
+                <p>Todos los Derechos Reservados</p>
+            </div>
+        </div>
+    </div>
+</ion-content>
