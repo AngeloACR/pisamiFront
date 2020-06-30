@@ -6,6 +6,8 @@ import {
   FormArray,
   Validators
 } from "@angular/forms";
+import { ActionSheetController } from "@ionic/angular";
+import { DbHandlerService } from "../../services/db-handler.service";
 
 @Component({
   selector: 'app-lista-artistas',
@@ -18,7 +20,10 @@ export class ListaArtistasComponent implements OnInit {
   fields: any;
   buscarArtista: FormGroup;
 
-  constructor() { }
+  constructor(
+    private dbHandler: DbHandlerService,
+    private actionSheetController: ActionSheetController,
+  ) { }
 
   ngOnInit() {
     this.artistas = [{
@@ -36,7 +41,18 @@ export class ListaArtistasComponent implements OnInit {
     }];
     this.fields = [
       'Id', 'Nombre', 'Teléfono', 'Correo'
-    ];       
+    ];
+
+    let endpoint = `/artistas`
+    this.dbHandler.getSomething(endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.artistas = data;
+        }
+      });
     this.initForm();
   }
 
@@ -49,6 +65,19 @@ export class ListaArtistasComponent implements OnInit {
   }
 
   filtrarArtista() {
+    let dataAux = this.buscarArtista.value;
+    
+    let endpoint = `/perfiles/nombre/${dataAux.nombre}`
+
+    this.dbHandler.getSomething(endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.artistas = data;
+        }
+      });
   }
 
   habilitarArtista(event){
@@ -60,7 +89,35 @@ export class ListaArtistasComponent implements OnInit {
   }
 
   eliminarArtista(event){
-    
+    let id = event.id;
+    let endpoint = `/perfiles/delete/${id}`;
+        this.dbHandler.deleteSomething(endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit();
+        }
+      });
+  }
+
+  async toggleError(msg) {
+    let actionSheet = await this.actionSheetController.create({
+      header:
+        msg,
+      buttons: [
+        {
+          text: "VOLVER",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("CANCELANDO...");
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
   }
 
 }

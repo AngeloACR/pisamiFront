@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
+import { DbHandlerService } from "../../services/db-handler.service";
 
 @Component({
   selector: 'app-form-generos',
@@ -24,7 +25,8 @@ export class FormGenerosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public actionSheetController: ActionSheetController   
+    public actionSheetController: ActionSheetController,
+    private dbHandler: DbHandlerService,
   ) { }
 
   ngOnInit() {
@@ -53,28 +55,66 @@ export class FormGenerosComponent implements OnInit {
 
   endRegistro() {
      if(this.catchUserErrors()){
-      this.toggleError();
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
     } else{  
-      console.log('Registrando')
+      console.log('Registrando');
+            let endpoint = '/generos'
+      let dataAux = this.registroGenero.value;
+      let dataValues = {
+      };
+      this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit()
+        }
+      });
+    }
+  }
+
+  endUpdate() {
+    if (this.catchUserErrors()) {
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
+    } else {
+      console.log("Registrando");
+      let endpoint = '/generos'
+      let dataAux = this.registroGenero.value;
+      let dataValues = {
+      };
+      this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit()
+        }
+      });
     }
   }
 
 
-   async toggleError() {
+  async toggleError(msg) {
     let actionSheet = await this.actionSheetController.create({
-      header: 'Hay errores en el formulario. Por favor, revíselo e intente de nuevo',
-      buttons: [{
-        text: 'VOLVER',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('CANCELANDO...');
+      header:
+        msg,
+      buttons: [
+        {
+          text: "VOLVER",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("CANCELANDO...");
+          }
         }
-      }]
+      ]
     });
     await actionSheet.present();
   }
-
     catchUserErrors(){
         let aux1 = this.fGenero.nombre.errors ? this.fGenero.nombre.errors.required : false;
         let aux2 = this.fGenero.descripcion.errors ? this.fGenero.descripcion.errors.required : false;

@@ -6,6 +6,8 @@ import {
   FormArray,
   Validators
 } from "@angular/forms";
+import { ActionSheetController } from "@ionic/angular";
+import { DbHandlerService } from "../../services/db-handler.service";
 
 @Component({
   selector: 'app-lista-politicas',
@@ -18,7 +20,10 @@ export class ListaPoliticasComponent implements OnInit {
   fields: any;
   buscarPolitica: FormGroup;
   
-  constructor() { }
+  constructor(
+    private dbHandler: DbHandlerService,
+    private actionSheetController: ActionSheetController,
+  ) { }
 
   ngOnInit() {
     this.politicas = [{
@@ -35,6 +40,17 @@ export class ListaPoliticasComponent implements OnInit {
       nombre: 'COMPROMISO CON EL ADMINISTRADOR'
       }
     ];
+    let endpoint = `/politicas`    
+
+    this.dbHandler.getSomething(endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.politicas = data;
+        }
+      });
     this.fields = [
       'Id', 'Nombre'
     ];    
@@ -49,6 +65,19 @@ export class ListaPoliticasComponent implements OnInit {
   }
 
   filtrarPolitica() {
+    let dataAux = this.buscarPolitica.value;
+    
+    let endpoint = `/politicas/nombre/${dataAux.nombre}`
+
+    this.dbHandler.getSomething(endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.politicas = data;
+        }
+      });
   }
   habilitarPolitica(event){
     
@@ -59,7 +88,35 @@ export class ListaPoliticasComponent implements OnInit {
   }
 
   eliminarPolitica(event){
-    
+        let id = event.id;
+    let endpoint = `/perfiles/delete/${id}`;
+        this.dbHandler.deleteSomething(endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit();
+        }
+      });
+  }
+
+  async toggleError(msg) {
+    let actionSheet = await this.actionSheetController.create({
+      header:
+        msg,
+      buttons: [
+        {
+          text: "VOLVER",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("CANCELANDO...");
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
   }
 
 }

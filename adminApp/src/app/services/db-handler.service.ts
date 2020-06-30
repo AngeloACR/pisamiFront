@@ -9,11 +9,11 @@ import { Storage } from "@ionic/storage";
 })
 export class DbHandlerService {
   today = new Date();
-  localSource = "http://localhost:3400";
-  serverSource = "";
+  localSource = "http://localhost:5050";
+  serverSource = "https://pisami.com";
 
-  //mySource = this.localSource
-  mySource = this.serverSource;
+  mySource = this.localSource
+  //mySource = this.serverSource;
 
   constructor(
     private http: HttpClient,
@@ -74,27 +74,20 @@ export class DbHandlerService {
     }
   };
 
-  deleteSomething = async function(item, endpoint) {
+  deleteSomething = async function(endpoint) {
     try {
       let headers = new HttpHeaders();
       headers = headers.append("Content-Type", "application/json");
       let token = await this.auth.getToken();
       headers = headers.append("Authorization", token);
 
-      var address = this.mySource;
-
-      address = address + endpoint;
-
-      item = JSON.stringify(item);
-
-      let params = new HttpParams();
-      params = params.append("item", item);
-
       let options = {
         headers: headers,
-        params: params
       };
 
+      var address = this.mySource;
+      address = address + endpoint;
+      
       return this.http.delete(address, options);
     } catch (e) {
       console.log(e);

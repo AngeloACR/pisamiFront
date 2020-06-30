@@ -190,7 +190,8 @@ tipo: string;
 
   toggleInfo() {
     if (this.catchUserErrors()) {
-      this.toggleError();
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
     } else {
       this.isSolista = false;
       this.isDuo = false;
@@ -199,9 +200,11 @@ tipo: string;
     }
   }
 
+
   endRegistro() {
     if (this.catchUserErrors()) {
-      this.toggleError();
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
     } else {
       let soundLinks = []
       var soundControls = this.soundFrames.controls;
@@ -229,16 +232,51 @@ tipo: string;
         youLinks.push(youLink);
         }
       }
-
-
+      let endpoint = '/perfiles'
+      let dataAux = this.registroMusico.value;
+      let dataValues = {
+        youLinks: youLinks,
+        soundLinks: soundLinks,
+      };
+      this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit()
+        }
+      });
       console.log("Registrando");
     }
   }
 
-  async toggleError() {
+  endUpdate() {
+    if (this.catchUserErrors()) {
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
+    } else {
+      console.log("Registrando");
+      let endpoint = '/perfiles'
+      let dataAux = this.registroMusico.value;
+      let dataValues = {
+      };
+      this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit()
+        }
+      });
+    }
+  }
+
+  async toggleError(msg) {
     let actionSheet = await this.actionSheetController.create({
       header:
-        "Hay errores en el formulario. Por favor, revíselo e intente de nuevo",
+        msg,
       buttons: [
         {
           text: "VOLVER",

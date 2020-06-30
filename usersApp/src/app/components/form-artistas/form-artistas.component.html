@@ -1,4 +1,5 @@
-<form [formGroup]="registroMusico" (ngSubmit)="endRegistro()">
+<form *ngIf="!editMode" [formGroup]="registroMusico" (ngSubmit)="endRegistro()">
+<form *ngIf="editMode" [formGroup]="registroMusico" (ngSubmit)="endUpdate()">
     <div class="formContent" *ngIf="!isInfo">
         <div class="formInput">
             <label for="">Nombre real</label>
@@ -151,9 +152,12 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="formButton" >
+                    <button *ngIf="!editMode" type="submit" class="formButton">
                 <p>Guardar información</p>
             </button>
+        <button *ngIf="editMode" type="submit" class="formButton">
+            <p>Actualizar perfil</p>
+        </button>
         </div>
     </div>
 </form>

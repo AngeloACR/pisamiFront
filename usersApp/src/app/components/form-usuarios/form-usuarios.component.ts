@@ -88,16 +88,62 @@ user: any;
 
   endRegistro() {
     if (this.catchUserErrors()) {
-      this.toggleError();
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
     } else {
       console.log("Registrando");
+      let endpoint = '/usuario'
+      let dataAux = this.registroUser.value;
+      let dataValues = {
+        nombredeusuario: dataAux.nombre,
+        apellidodeusuario: dataAux.apellido,
+        tlf: dataAux.tlf,
+        correo: dataAux.correo,
+        password: dataAux.password,
+      };
+      this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit()
+        }
+      });
     }
   }
 
-  async toggleError() {
+  endUpdate() {
+    if (this.catchUserErrors()) {
+      let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
+      this.toggleError(msg);
+    } else {
+      console.log("Registrando");
+      let endpoint = '/usuario'
+      let dataAux = this.registroUser.value;
+      let dataValues = {
+        nombredeusuario: dataAux.nombre,
+        apellidodeusuario: dataAux.apellido,
+        tlf: dataAux.tlf,
+        correo: dataAux.correo,
+        password: dataAux.password,
+      };
+      this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
+        // data is already a JSON object
+        if(!data.status){
+          let errorMsg = data.msg;
+          this.toggleError(errorMsg)
+        } else{
+          this.ngOnInit()
+        }
+      });
+    }
+  }
+
+  async toggleError(msg) {
     let actionSheet = await this.actionSheetController.create({
       header:
-        "Hay errores en el formulario. Por favor, revíselo e intente de nuevo",
+        msg,
       buttons: [
         {
           text: "VOLVER",
