@@ -13,14 +13,23 @@
     </div>
     <div class="verBox">
         <div class="detailsABox">
-            <p class="detailTitle">Nombre</p>
-            <p class="detailContent">{{artistaEscogido.nombre}}</p>
-            <p class="detailTitle">Géneros</p>
-            <p class="detailContent">{{artistaEscogido.categorias}}</p>
-            <p class="detailTitle">Ciudad de Origen: <span class="detailContent">{{artistaEscogido.ciudad}}</span></p>
-        <div class="starsBox">
-            <app-rating [rating]="artistaEscogido.rating"> </app-rating>
-        </div>
+            <div class="detailBox">
+                <p class="detailTitle">Nombre</p>
+                <p class="detailContent">{{artistaEscogido.nombre}}</p>
+            </div>
+            <div class="detailBox">
+                <p class="detailTitle">Ciudad de Origen: </p>
+                <p class="detailContent">{{artistaEscogido.ciudad}}</p>
+            </div>
+            <div class="detailBox">
+                <p class="detailTitle">Géneros</p>
+                <p class="detailContent">{{artistaEscogido.categorias}}</p>
+            </div>
+            <div class="detailRatingBox">
+                <div class="detailStarsBox">
+                    <app-rating [rating]="artistaEscogido.rating"> </app-rating>
+                </div>
+            </div>
         </div>
         <div class="detailsBBox">
             <p class="detailTitle">DESCRIPCIÓN</p>

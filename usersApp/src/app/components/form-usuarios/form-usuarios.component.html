@@ -1,9 +1,8 @@
-<p class="titleText">
+<p *ngIf="editMode" class="titleText">
     Por favor llene el siguiente formulario:
 </p>
 
-<form *ngIf="!editMode" [formGroup]="registroUser" (ngSubmit)="endRegistro()">
-<form *ngIf="editMode" [formGroup]="registroUser" (ngSubmit)="endUpdate()">
+<form [formGroup]="registroUser">
     <div class="formContent">
         <div class="formInput">
             <label for="">Nombre</label>
@@ -46,10 +45,10 @@
             <br><br>
         </div>
 
-        <button *ngIf="!editMode" type="submit" class="formButton">
+        <button *ngIf="!editMode" type="submit" class="formButton" (click)="endRegistro()">
             <p>Crear</p>
         </button>
-        <button *ngIf="editMode" type="submit" class="formButton">
+        <button *ngIf="editMode" type="submit" class="formButton" (click)="endUpdate()">
             <p>Actualizar perfil</p>
         </button>
     </div>

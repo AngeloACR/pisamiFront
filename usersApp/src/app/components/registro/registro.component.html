@@ -49,7 +49,8 @@
 
         <div class="logBox" [ngClass]="showForm">
             <div class="formBox">
-                <app-form-usuarios [editMode]="0" *ngIf="isUser"></app-form-usuarios>
+                <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" *ngIf="isUser" alt="Logo" />
+                <app-form-usuarios [editMode]="0" *ngIf="tipoSelected && isUser"></app-form-usuarios>
                 <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="tipoSelected && isMusico"></app-form-artistas>
             </div>
         </div>

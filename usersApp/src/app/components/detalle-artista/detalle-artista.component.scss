@@ -84,11 +84,31 @@
 
 .detailsABox {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    flex-wrap: wrap;
     margin-left: 10px;
     margin-bottom: 15px;
 }
+
+.detailBox{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%
+}
+
+.detailRatingBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.detailStarsBox{
+    width: 120px;
+}
+
 
 .detailTitle{
     color: #F24E2B;
@@ -100,7 +120,7 @@
     color: black !important;
     margin-bottom: 15px !important;
     font-size: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .detailsABox p {
