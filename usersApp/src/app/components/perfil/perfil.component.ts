@@ -23,9 +23,9 @@ import { forkJoin } from "rxjs";
 export class PerfilComponent implements OnInit {
   id: string;
 
-  selectedItem: String;
-  isUser: Boolean;
-  isMusico: Boolean;
+  selectedItem: any;
+  isUser: boolean;
+  isMusico: boolean;
   
 
   selectedImg: String;
@@ -56,36 +56,37 @@ export class PerfilComponent implements OnInit {
         let tipoUsuario = 1;
         if(tipoUsuario){
           this.selectedImg = '';
-          this.isMusici = false;
+          this.isMusico = false;
+          this.isUser = true;
 
-          this.userValues = {
-            nombre: Angelo Jose
-            apellido: Espinoza Santana
-            tlf: '+689256542'
-            correo: angelo@angelo;
+          let userValues = {
+            nombre: 'Angelo',
+            apellido: 'Espinoza', 
+            tlf: '+689256542',
+            correo: 'angelo@angelo',
           }
           this.selectedItem = userValues;
         }else {
           this.selectedImg = '';
-          this.isMuscio = true;
+          this.isMusico = true;
           this.isUser = false;
           let userValues ={
-      nombreReal: 'Jamaica 15'
-      nombreArtistico: 'Jamaica 16'
-      salir: 'No'
-      ciudadOrigen: 'Ibague'
-      tieneRepresentante: 'Si'
-      nombreRepresentante: 'Raul Leoni'
-      telefono: '+525896595'
-      correo:'gonzalo@gonzale.net'
-      descripcion: 'La banda mas bohemia de ibague'
-      instagram: 'Jamaica_16'
-      facebook: 'Jamaicajg'
-      paginaWeb: 'jamaica.jg'
-      numeroIntegrantes: 3
-      generos: ['Cumbia', 'Reggae']
+            nombreReal: 'Jamaica 15',
+            nombreArtistico: 'Jamaica 16',
+            salir: 'No',
+            ciudadOrigen: 'Ibague',
+            tieneRepresentante: 'Si',
+            nombreRepresentante: 'Raul Leoni',
+            telefono: '+525896595',
+            correo:'gonzalo@gonzale.net',
+            descripcion: 'La banda mas bohemia de ibague',
+            instagram: 'Jamaica_16',
+            facebook: 'Jamaicajg',
+            paginaWeb: 'jamaica.jg',
+            numeroIntegrantes: 3,
+            generos: ['Cumbia', 'Reggae'],
           }
-          this.selectedItem = this.userValues;
+          this.selectedItem = userValues;
         }
 
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';  
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -41,6 +42,7 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
     FormUsuariosComponent,
     HeaderComponent, 
     LoginComponent,
+    PerfilComponent,
     RatingComponent, 
     RestorePassComponent,
     ResetPassComponent,
@@ -71,6 +73,7 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     ],
