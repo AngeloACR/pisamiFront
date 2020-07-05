@@ -1,3 +1,20 @@
-<p>
-  perfil works!
-</p>
+<ion-header [translucent]="true">
+    <app-header></app-header>
+</ion-header>
+
+<ion-content>
+
+    <div class="modBox">
+
+
+        <div class="logBox" [ngClass]="showForm">
+            <div class="formBox">
+                <img class="pageImg" [src]="slectedImg" *ngIf="isUser" alt="Logo" />
+                <app-form-usuarios [editMode]="1" [user]="selectedItem" *ngIf="isUser"></app-form-usuarios>
+                <app-form-artistas [editMode]="1" [user]="selectedItem" *ngIf="isMusico"></app-form-artistas>
+
+            </div>
+        </div>
+    </div>        
+    </div>        
+</ion-content>[
