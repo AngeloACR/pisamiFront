@@ -1,47 +1,49 @@
 <ion-header [translucent]="true">
-    <app-header></app-header>
+    <app-header [title]="selectedTitle"></app-header>
 </ion-header>
 
 <ion-content>
+  <div class="modBox">
         <div class="logBox">
             <div class="listaFilter">
                 <img class="pageImg" src="assets/4- lista de usuarios/lista usuarios.png" alt="musica">
-      <form [formGroup]="buscarUsuario">
-        <div class="formContent">
-          <div class="formInput">
-            <label for="">Nombre</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName="nombre"
-              name=""
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Apellido</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName="nombre"
-              name=""
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Correo</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName="nombre"
-              name=""
-            />
-          </div>
+              <form [formGroup]="buscarUsuario">
+                <div class="formContent">
+                  <div class="formInput">
+                    <label for="">Nombre</label>
+                    <input
+                      class="lInput"
+                      type="text"
+                      formControlName="nombre"
+                      name=""
+                    />
+                  </div>
+                  <div class="formInput">
+                    <label for="">Apellido</label>
+                    <input
+                      class="lInput"
+                      type="text"
+                      formControlName="nombre"
+                      name=""
+                    />
+                  </div>
+                  <div class="formInput">
+                    <label for="">Correo</label>
+                    <input
+                      class="lInput"
+                      type="text"
+                      formControlName="nombre"
+                      name=""
+                    />
+                  </div>
 
-          <button type="button" class="formButton" (click)="filtrarUsuario()">
-            <p>FILTRAR</p>
-          </button>
-        </div>
-      </form>
+                  <button type="button" class="formButton" (click)="filtrarUsuario()">
+                    <p>FILTRAR</p>
+                  </button>
+                </div>
+              </form>
             </div>
             <app-lista [fields]="fields" [values]="usuarios" [isHabilitar]="true" (habilitar)="habilitarUsuario($event)" (eliminar)="eliminarUsuario($event)"  (editar)="editarUsuarios($event)" style="width: 100%;"></app-lista>
         </div>
+  </div>
 </ion-content>

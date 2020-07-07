@@ -1,8 +1,9 @@
 <ion-header [translucent]="true">
-    <app-header></app-header>
+    <app-header [title]="selectedTitle"></app-header>
 </ion-header>
 
 <ion-content>
+    <div class="modBox">
         <div class="logBox">
             <div class="listaFilter">
                 <img class="pageImg" src="assets/14- lista politicas/politica.png" alt="musica">
@@ -27,5 +28,6 @@
                 </form>
             </div>
             <app-lista [fields]="fields" [values]="politicas" (habilitar)="habilitarPolitica($event)" (eliminar)="eliminarPolitica($event)"  (editar)="editarPolitica($event)" style="width: 100%;"></app-lista>
+        </div>
     </div>
 </ion-content>
