@@ -16,6 +16,11 @@ import { RegistroNotificacionesComponent } from './components/registro-notificac
 import { RegistroPoliticasComponent } from './components/registro-politicas/registro-politicas.component';
 import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { EditarUsuariosComponent } from './components/editar-usuarios/editar-usuarios.component';
+import { EditarArtistasComponent } from './components/editar-artistas/editar-artistas.component';
+import { EditarGenerosComponent } from './components/editar-generos/editar-generos.component';
+import { EditarNotificacionesComponent } from './components/editar-notificaciones/editar-notificaciones.component';
+import { EditarPoliticasComponent } from './components/editar-politicas/editar-politicas.component';
 
 const routes: Routes = [
  {
@@ -29,6 +34,26 @@ const routes: Routes = [
   {
     path: 'reset',
     component: ResetPassComponent,
+  },
+  {
+    path: 'editarusuario',
+    component: EditarUsuariosComponent,
+  },
+  {
+    path: 'editarartista',
+    component: EditarArtistasComponent,
+  },
+  {
+    path: 'editargenero',
+    component: EditarGenerosComponent,
+  },
+  {
+    path: 'editarpolitica',
+    component: EditarPoliticasComponent,
+  },
+  {
+    path: 'editarnotificacion',
+    component: EditarNotificacionesComponent,
   },
   {
     path: 'admin',

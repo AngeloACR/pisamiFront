@@ -35,6 +35,7 @@ resultados = new EventEmitter<any>();
 
   endBuscador() {
     this.artistas = [{
+      id: 123,
       nombre: 'Los Bacanos',
       categorias: 'Bachata, cumbia, salsa',
       ciudad: 'Ibagué',

@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-lista-generos',
@@ -19,8 +20,10 @@ export class ListaGenerosComponent implements OnInit {
   generos: any;
   fields: any;
   buscarGenero: FormGroup;
+  listData: any;
 
   constructor(
+    private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
   ) { }
@@ -45,7 +48,7 @@ export class ListaGenerosComponent implements OnInit {
       }
     ];
 
-    let endpoint = `/generos`    
+    /* let endpoint = `/generos`    
         this.dbHandler.getSomething(endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -54,10 +57,19 @@ export class ListaGenerosComponent implements OnInit {
         } else{
           this.generos = data;
         }
-      });
+      }); */
     this.fields = [
       'Id', 'Nombre', 'Descripción'
     ]    
+        this.listData = []
+    this.generos.forEach(genero => {
+      let aux = {
+        id: genero.id,
+        nombre: genero.nombre,
+        descripcion: genero.descripcion,
+      }
+      this.listData.push(aux)
+    });
     this.initForm();
   }
 
@@ -89,6 +101,12 @@ export class ListaGenerosComponent implements OnInit {
   }
 
   editarGenero(event){
+    console.log(event);
+    console.log(this.generos)
+    let genero = this.generos[event];
+    console.log(genero)
+    genero = JSON.stringify(genero)
+    this.router.navigate(['/editargenero', { genero: genero }]);
     
   }
 

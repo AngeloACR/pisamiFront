@@ -27,9 +27,22 @@ export class ListaComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let auxValues = []
+    this.values.forEach(value => {
+      console.log(value);
+    let auxItems = []
+      Object.keys(value).forEach(function (key){
+          auxItems.push(value[key]);
+      });
+      auxValues.push(auxItems);
+    });
+    this.values = auxValues
+    console.log(this.values);
+  }
 
   editarElemento(event, value){
+    console.log(value)
     this.editar.emit(value);
   }
 

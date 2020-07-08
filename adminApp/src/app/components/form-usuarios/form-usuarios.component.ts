@@ -61,7 +61,7 @@ export class FormUsuariosComponent implements OnInit {
     if(editMode){
     this.registroUser.controls['nombre'].setValue(this.user.nombre)
     this.registroUser.controls['apellido'].setValue(this.user.apellido)
-    this.registroUser.controls['tlf'].setValue(this.user.tlf)
+    this.registroUser.controls['tlf'].setValue(this.user.telefono)
     this.registroUser.controls['correo'].setValue(this.user.correo)
     this.registroUser.controls['correo'].disable()
     this.registroUser.controls['password'].setValue(this.user.password)

@@ -34,6 +34,11 @@ import { RegistroNotificacionesComponent } from './components/registro-notificac
 import { RegistroPoliticasComponent } from './components/registro-politicas/registro-politicas.component';
 import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { EditarUsuariosComponent } from './components/editar-usuarios/editar-usuarios.component';
+import { EditarArtistasComponent } from './components/editar-artistas/editar-artistas.component';
+import { EditarGenerosComponent } from './components/editar-generos/editar-generos.component';
+import { EditarNotificacionesComponent } from './components/editar-notificaciones/editar-notificaciones.component';
+import { EditarPoliticasComponent } from './components/editar-politicas/editar-politicas.component';
 
 
 @NgModule({
@@ -56,10 +61,15 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
     ListaNotificacionesComponent,
     ListaPoliticasComponent,
     LoginComponent,
+    EditarUsuariosComponent,
     RegistroUsuariosComponent,
+    EditarArtistasComponent,
     RegistroArtistasComponent,
+    EditarGenerosComponent,
     RegistroGenerosComponent,
+    EditarNotificacionesComponent,
     RegistroNotificacionesComponent,
+    EditarPoliticasComponent,
     RegistroPoliticasComponent,   
 
     ],
