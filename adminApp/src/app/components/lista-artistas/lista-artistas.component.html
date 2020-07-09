@@ -1,8 +1,9 @@
 <ion-header [translucent]="true">
-    <app-header></app-header>
+    <app-header [title]="selectedTitle"></app-header>
 </ion-header>
 
 <ion-content>
+    <div class="modBox">
         <div class="logBox">
             <div class="listaFilter">
                 <img class="pageImg" src="assets/7-listado de artistas/listado.png" alt="musica">
@@ -29,6 +30,7 @@
         </div>
       </form>
             </div>
-            <app-lista [fields]="fields" [values]="artistas" [isHabilitar]="true" (habilitar)="habilitarArtista($event)" (eliminar)="eliminarArtista($event)" (editar)="editarArtista($event)" style="width: 100%;"></app-lista>
+            <app-lista [fields]="fields" [values]="listData" [isHabilitar]="true" (habilitar)="habilitarArtista($event)" (eliminar)="eliminarArtista($event)" (editar)="editarArtista($event)" style="width: 100%;"></app-lista>
+        </div>
         </div>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
@@ -8,6 +8,9 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input()
+  title: any;
+  
   buscador: FormGroup
   constructor(
     private router: Router,

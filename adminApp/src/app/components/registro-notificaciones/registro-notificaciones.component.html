@@ -1,12 +1,14 @@
 <ion-header [translucent]="true">
-    <app-header></app-header>
+    <app-header [title]="selectedTitle"></app-header>
 </ion-header>
 
 <ion-content>
+    <div class="modBox">
         <div class="logBox">
             <div class="listaFilter">
                 <img class="pageImg" src="assets/11-notificaciones/noti.png"/>
                 <app-form-notificaciones [editMode]="0"></app-form-notificaciones>
             </div>
         </div>
+    </div>
 </ion-content>

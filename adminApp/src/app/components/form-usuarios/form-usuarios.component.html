@@ -1,5 +1,5 @@
-<form *ngIf="!editMode" [formGroup]="registroUser" (ngSubmit)="endRegistro()">
-<form *ngIf="editMode" [formGroup]="registroUser" (ngSubmit)="endUpdate()">    <div class="formContent">
+<form [formGroup]="registroUser">
+    <div class="formContent">
         <div class="formInput">
             <label for="">Nombre</label>
             <input class="lInput" type="text" formControlName="nombre" name="nombre" />
@@ -28,10 +28,10 @@
         <div class="errorTag" *ngIf="fUser.password.errors?.required && (fUser.password.touched || fUser.password.dirty)">Este campo es requerido</div>
         <div class="errorTag" *ngIf="fUser.password.errors?.minlenght && (fUser.password.touched || fUser.password.dirty)">La contraseña debe contener al menos 6 carácteres</div>
 
-        <button *ngIf="!editMode" type="submit" class="formButton">
+        <button *ngIf="!editMode" type="button" (click)="endRegistro()" class="formButton">
             <p>Crear</p>
         </button>
-        <button *ngIf="editMode" type="submit" class="formButton">
+        <button *ngIf="editMode" type="button" (click)="endUpdate()" class="formButton">
             <p>Actualizar perfil</p>
         </button>
     </div>

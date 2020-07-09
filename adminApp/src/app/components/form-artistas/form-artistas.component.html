@@ -1,5 +1,4 @@
-<form *ngIf="!editMode" [formGroup]="registroMusico" (ngSubmit)="endRegistro()">
-<form *ngIf="editMode" [formGroup]="registroMusico" (ngSubmit)="endUpdate()">
+<form [formGroup]="registroMusico">
     <div class="formContent" *ngIf="!isInfo">
         <div class="formInput">
             <label for="">Nombre real</label>
@@ -120,7 +119,7 @@
                 <p class="linkTitle">Agregar link de música</p>
                 <div class="linksList">
                     <div class="linkListTitle">
-                            Agregar ifram de música de Soundcloud <span class="addLink" (click)="addSoundcloud()">+</span>
+                            Agregar iframe de música de Soundcloud <span class="addLink" (click)="addSoundcloud()">+</span>
                     </div>
                     <div class="arrayBox" *ngFor="let sound of soundFrames.controls;">
                         <ng-container class="controlBox" [formGroup]="sound">
@@ -137,7 +136,7 @@
                 </div>
                 <div class="linksList">
                     <div class="linkListTitle">
-                            Agregar ifram de música de Youtube <span class="addLink" (click)="addYoutube()">+</span>
+                            Agregar iframe de música de Youtube <span class="addLink" (click)="addYoutube()">+</span>
                     </div>
                     <div class="arrayBox" *ngFor="let you of youFrames.controls;">
                         <ng-container class="controlBox" [formGroup]="you">
@@ -153,10 +152,10 @@
                     </div>
                 </div>
             </div>
-                    <button *ngIf="!editMode" type="submit" class="formButton">
+                    <button *ngIf="!editMode" type="button" (click)="endRegistro()" class="formButton">
                 <p>Guardar información</p>
             </button>
-        <button *ngIf="editMode" type="submit" class="formButton">
+        <button *ngIf="editMode" type="button" (click)="endUpdate()" class="formButton">
             <p>Actualizar perfil</p>
         </button>
         </div>

@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -19,8 +20,10 @@ export class ListaUsuariosComponent implements OnInit {
   usuarios: any;
   fields: any;
   buscarUsuario: FormGroup;
+  listData: any;
 
   constructor(
+    private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
   ) { }
@@ -43,7 +46,7 @@ export class ListaUsuariosComponent implements OnInit {
       }
     ];
 
-    let endpoint = `/usuarios`
+    /* let endpoint = `/usuarios`
       this.dbHandler.getSomething(endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -52,10 +55,21 @@ export class ListaUsuariosComponent implements OnInit {
         } else{
           this.usuarios = data;
         }
-      });
+      }); */
     this.fields = [
       'Id', 'Nombre', 'Apellido', 'Correo', 'Teléfono'      
     ]    
+        this.listData = []
+    this.usuarios.forEach(usuario => {
+      let aux = {
+        id: usuario.id,
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        correo: usuario.correo,
+        telefono: usuario.telefono,
+      }
+      this.listData.push(aux)
+    });
     this.initForm();
   }
 
@@ -87,8 +101,10 @@ export class ListaUsuariosComponent implements OnInit {
     
   }
 
-  editarUsuario(event){
-    
+  editarUsuarios(event){
+    let user = this.usuarios[event];
+    user = JSON.stringify(user)
+    this.router.navigate(['/editarusuario', { user: user }]);
   }
 
   eliminarUsuario(event){

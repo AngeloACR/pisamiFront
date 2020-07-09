@@ -30,14 +30,14 @@
         </div>
         <div class="errorTag" *ngIf="fUser.correo.errors?.required && (fUser.correo.touched || fUser.correo.dirty)">Este campo es requerido</div>
         <div class="errorTag" *ngIf="fUser.correo.errors?.email && (fUser.correo.touched || fUser.correo.dirty)">Por favor ingrese un correo válido</div>
-        <div class="formInput">
+        <div class="formInput" *ngIf="!editMode">
             <label for="">Contraseña</label>
             <input class="lInput" type="password" formControlName="password" name="password" />
         </div>
         <div class="errorTag" *ngIf="fUser.password.errors?.required && (fUser.password.touched || fUser.password.dirty)">Este campo es requerido</div>
         <div class="errorTag" *ngIf="fUser.password.errors?.minlenght && (fUser.password.touched || fUser.password.dirty)">La contraseña debe contener al menos 6 carácteres</div>
 
-        <div class="formTerminos">
+        <div class="formTerminos" *ngIf="!editMode">
             <label class="checkContainer">
             Estoy de acuerdo con los términos y condiciones
             <input

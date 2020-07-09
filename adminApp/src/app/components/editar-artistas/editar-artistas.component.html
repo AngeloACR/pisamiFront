@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <app-header [title]="selectedTitle"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="modBox">
+      <div class="logBox">
+
+        <div class="formBox formAct">
+          <div class="registroFilter">
+            <img
+              class="pageImg"
+              src="assets/6-formulario de registro/cantante.png"
+            />
+            <app-form-artistas
+              [editMode]="1"
+              [user]="artista"
+            ></app-form-artistas>
+          </div>
+        </div>
+      </div>
+    </div>
+</ion-content>

@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'MI CUENTA',
-      url: '/perfil',
+      url: '/perfil/0',
       icon: 'assets/7-menu/perfil.png'
     },
     {

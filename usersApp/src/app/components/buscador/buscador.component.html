@@ -5,11 +5,11 @@
         </ion-buttons>
             <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
     </ion-toolbar> -->
-    <app-header></app-header>
+    <app-header [title]="selectedTitle"></app-header>
 </ion-header>
 
 <ion-content>
-    <div class="pageBox">
+    <div class="modBox">
         <div class="logBox" *ngIf="isBuscar">
             <app-form-buscador (resultados)="abrirResultados($event)" style="width: 100%;"></app-form-buscador>
         </div>

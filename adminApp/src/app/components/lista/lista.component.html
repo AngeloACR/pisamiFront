@@ -3,16 +3,16 @@
           <p *ngFor="let field of fields">{{field}}</p>
           <p style="width: 250px;">ACCIÓN</p>
         </div>
-        <div class="contentRow" *ngFor="let value of values">
-          <div *ngFor="let field of fields">
-            <p>{{ value[field] }}</p>
+        <div class="contentRow" *ngFor="let value of values; let i = index">
+          <div *ngFor="let item of value">
+            <p>{{ item }}</p>
           </div>
           <div style="width: 250px;" *ngIf="isHabilitar" class="actionBox">
             <button
               style="background-color: orange"
               type="button"
               class="actionButton"
-              (click)="editarElemento($event, value)"
+              (click)="editarElemento($event, i)"
             >
               <p>EDITAR</p>
             </button>
@@ -20,7 +20,7 @@
               style="background-color: green"
               type="button"
               class="actionButton"
-              (click)="habilitarElemento($event, value, 1)"
+              (click)="habilitarElemento($event, i, 1)"
             >
               <p>HABILITAR</p>
             </button>
@@ -28,16 +28,16 @@
               style="background-color: red"
               type="button"
               class="actionButton"
-              (click)="habilitarElemento($event, value, 0)"
+              (click)="habilitarElemento($event, i, 0)"
             >
               <p>DESHABILITAR</p>
             </button>
           </div>
           <div style="width: 250px;" *ngIf="!isHabilitar"class="actionBox">
-            <button style="background-color: orange" type="button" class="actionButton" (click)="editarElemento($event, value)">
+            <button style="background-color: orange" type="button" class="actionButton" (click)="editarElemento($event, i)">
                 <p>EDITAR</p>
             </button>
-            <button style="background-color: red" type="button" class="actionButton" (click)="eliminarElemento($event, value)">
+            <button style="background-color: red" type="button" class="actionButton" (click)="eliminarElemento($event, i)">
                 <p>ELIMINAR</p>
             </button>
           </div>

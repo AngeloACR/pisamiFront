@@ -50,11 +50,17 @@ ion-title {
     transform: translatex(-50%);
 }
 
+.modBox{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
 
 .logBox {
-    background-color: transparent;
+    background-color: white;
     width: 100%;
     height: 100%;
+    padding-top: 10px;
     border-radius: 3px;
     align-self: center;
     display: flex;

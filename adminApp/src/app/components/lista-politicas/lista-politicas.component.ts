@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-lista-politicas',
@@ -19,8 +20,10 @@ export class ListaPoliticasComponent implements OnInit {
   politicas: any;
   fields: any;
   buscarPolitica: FormGroup;
+  listData: any;
   
   constructor(
+    private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
   ) { }
@@ -42,7 +45,7 @@ export class ListaPoliticasComponent implements OnInit {
     ];
     let endpoint = `/politicas`    
 
-    this.dbHandler.getSomething(endpoint).then((data: any) => {
+    /* this.dbHandler.getSomething(endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
           let errorMsg = data.msg;
@@ -50,10 +53,18 @@ export class ListaPoliticasComponent implements OnInit {
         } else{
           this.politicas = data;
         }
-      });
+      }); */
     this.fields = [
       'Id', 'Nombre'
     ];    
+        this.listData = []
+    this.politicas.forEach(politica => {
+      let aux = {
+        id: politica.id,
+        nombre: politica.nombre,
+      }
+      this.listData.push(aux)
+    });
     this.initForm();
   }
 
@@ -84,6 +95,9 @@ export class ListaPoliticasComponent implements OnInit {
   }
 
   editarPolitica(event){
+    let politica = this.politicas[event];
+    politica = JSON.stringify(politica)
+    this.router.navigate(['/editarpolitica', { politica: politica }]);
     
   }
 
