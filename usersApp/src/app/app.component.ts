@@ -4,17 +4,21 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonSlides } from '@ionic/angular';
+import { UserService } from './services/user.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
+  providers : [UserService]
 })
 export class AppComponent implements OnInit {
 
   currentMenu: any;
   menuBoxes: any;
+  public identity;
+  public token;
 
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
 
@@ -75,10 +79,12 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public _userService : UserService
   ) {
     this.initializeApp();
     this.initSlider();
+    this.identity = this._userService.getIdentity();
   //Item object for Nature
 
   

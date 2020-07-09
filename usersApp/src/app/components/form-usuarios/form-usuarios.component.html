@@ -1,7 +1,12 @@
 <p *ngIf="editMode" class="titleText">
     Por favor llene el siguiente formulario:
 </p>
-
+<div class="alert alert-success" *ngIf="status == 'success'">
+    El registro se ha completado correctamente <a [routerLink]="['/']">Iniciar Sesion</a> 
+</div> 
+<div class="alert alert-danger" *ngIf="status == 'error'">
+    Error vuelva a completar el registro  
+</div> 
 <form [formGroup]="registroUser">
     <div class="formContent">
         <div class="formInput">

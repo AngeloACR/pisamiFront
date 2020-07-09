@@ -13,6 +13,7 @@ import {
   FormArray,
   Validators
 } from "@angular/forms";
+import {UserService} from "../../services/user.service";
 import { forkJoin } from "rxjs";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { FileHandlerService } from "../../services/file-handler.service";
@@ -24,6 +25,7 @@ import { ActionSheetController } from "@ionic/angular";
   selector: 'app-form-usuarios',
   templateUrl: './form-usuarios.component.html',
   styleUrls: ['./form-usuarios.component.scss'],
+  providers: [UserService]
 })
 export class FormUsuariosComponent implements OnInit {
   
@@ -34,6 +36,7 @@ editMode: number;
 user: any;
 
   id: string;
+  status: any;
 
   registroUser: FormGroup;
 
@@ -44,6 +47,7 @@ user: any;
     private dbHandler: DbHandlerService,
     private fileHandler: FileHandlerService,
     public actionSheetController: ActionSheetController,
+    private _userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -95,12 +99,27 @@ user: any;
       let endpoint = '/usuario'
       let dataAux = this.registroUser.value;
       let dataValues = {
-        nombredeusuario: dataAux.nombre,
-        apellidodeusuario: dataAux.apellido,
-        tlf: dataAux.tlf,
+        nombre: dataAux.nombre,
+        apellido: dataAux.apellido,
+        telefono: dataAux.tlf,
         correo: dataAux.correo,
-        password: dataAux.password,
+        contrasena: dataAux.password,
+        tipo_usuario: 1,
       };
+      this._userService.register(dataValues).subscribe(
+         response => {
+           if(response.status == "success"){
+            this.status = response.status;
+           }
+           else{
+            this.status = 'error';
+           }
+         },
+         error => {
+          this.status = 'error';
+          console.log(<any>error);
+         }
+      );
       this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
