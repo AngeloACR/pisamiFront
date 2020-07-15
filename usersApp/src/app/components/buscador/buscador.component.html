@@ -17,7 +17,7 @@
             <app-resultados-buscador (artistaEscogido)="mostrarArtista($event)" style="width: 100%;" [artistas]="artistas"></app-resultados-buscador>
         </div>
         <div class="logBox" *ngIf="isVer">
-            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (volver)="volverResultados()"></app-detalle-artista>
+            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (musica)="verMusica()" (perfil)="verPerfil()" (videos)="verVideos()" (volver)="volverResultados()"></app-detalle-artista>
         </div>
     </div>
 </ion-content>

@@ -23,6 +23,7 @@ import { forkJoin } from "rxjs";
 })
 export class RegistroComponent implements OnInit {
   id: string;
+  selectedTitle: any;
 
   tipoSelected: String;
   isUser: Boolean;
@@ -63,6 +64,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
+        this.selectedTitle = 'Regístrate'
     this.isUser = false;
     this.isSolista = false;
     this.isDuo = false;
@@ -79,6 +81,7 @@ export class RegistroComponent implements OnInit {
     let img;
     switch (tipo) {
       case "user":
+        this.selectedTitle = 'Registro de Usuario'
         this.isUser = true;
         this.isMusico = false;
         this.isSolista = false;
@@ -87,6 +90,7 @@ export class RegistroComponent implements OnInit {
         img = this.userImg;
         break;
       case "solista":
+        this.selectedTitle = 'Registro de Músico Cantante'
         this.isUser = false;
         this.isSolista = true;
         this.isDuo = false;
@@ -94,6 +98,7 @@ export class RegistroComponent implements OnInit {
         img = this.solistaImg;
         break;
       case "duo":
+        this.selectedTitle = 'Registro de Dúo'
         this.isUser = false;
         this.isSolista = false;
         this.isDuo = true;
@@ -101,6 +106,7 @@ export class RegistroComponent implements OnInit {
         img = this.duoImg;
         break;
       default:
+        this.selectedTitle = 'Registro de Orquesta'
         this.isUser = false;
         this.isSolista = false;
         this.isDuo = false;

@@ -9,7 +9,8 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 export class EditarGenerosComponent implements OnInit {
 
   genero: any;
-
+  selectedTitle: any;
+  
   constructor(
     private actRoute: ActivatedRoute,
   ) { 
@@ -21,6 +22,9 @@ export class EditarGenerosComponent implements OnInit {
     });    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.selectedTitle = 'Editar Género'
+
+  }
 
 }

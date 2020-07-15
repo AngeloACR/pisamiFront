@@ -31,6 +31,7 @@ import { PoliticaComponent } from './components/politica/politica.component';
 import { BuscadorCancionesComponent } from './components/buscador-canciones/buscador-canciones.component';
 import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
     CancionesComponent,
     BuscadorCancionesComponent,
     BuscadorVideosComponent,
+    FavoritosComponent,
     ],
   entryComponents: [
     DetalleArtistaComponent,

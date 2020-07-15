@@ -36,7 +36,7 @@ export class RestorePassComponent implements OnInit {
       showConfirm: false,
     }
 
-    this.selectedTitle = 'assets/4-menu/titulo.png';
+    this.selectedTitle = 'Reestablecer contraseña';
   }
 
   close(){

@@ -11,6 +11,7 @@ export class BuscadorCancionesComponent implements OnInit {
   canciones: any;
   buscarCanciones: FormGroup;
   isResultados: boolean;
+  selectedTitle: any;
 
   @Output()
   volver = new EventEmitter<any>();
@@ -21,6 +22,7 @@ export class BuscadorCancionesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+        this.selectedTitle = 'Canciones'
     this.isResultados = false;
     this.initForm();
     this.canciones = [{

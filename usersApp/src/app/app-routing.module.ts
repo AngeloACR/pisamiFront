@@ -10,6 +10,7 @@ import { BuscadorVideosComponent } from './components/buscador-videos/buscador-v
 import { BuscadorCancionesComponent } from './components/buscador-canciones/buscador-canciones.component';
 import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 const routes: Routes = [
  {
@@ -47,7 +48,13 @@ const routes: Routes = [
   {
     path: 'videos',
     component: BuscadorVideosComponent,
-  }
+  },
+  {
+    path: 'favoritos',
+    component: FavoritosComponent,
+  },
+  
+  
 ];
 @NgModule({
   imports: [

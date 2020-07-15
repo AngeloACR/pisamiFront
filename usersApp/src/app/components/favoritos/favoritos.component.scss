@@ -1,14 +1,21 @@
 
 .cardBox {
-    width: 90%;
+    width: 95%;
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: nowrap;
-    border-radius: 23px;
-    background-color: #F24E2B;
+    border-color: #F24E2B;
+    border-style: solid;
+    border-width: 0;
+    border-top-width: 2px;
+    background-color: white;
     margin-bottom: 15px;
     margin: auto;
+}
+
+.cardBox:last-child{
+    border-bottom-width: 2px;
 }
 
 .cardBox div {
@@ -29,7 +36,7 @@
 
 .infoBox {
     width: 40%;
-    color: white;
+    color: #F24E2B;
     font-size: 10px;
     font-weight: 900;
 }

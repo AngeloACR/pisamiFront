@@ -12,6 +12,7 @@ export class BuscadorVideosComponent implements OnInit {
   videos: any;
   buscarVideos: FormGroup;
   isResultados: boolean;
+  selectedTitle: any;
 
   @Output()
   volver = new EventEmitter<any>();
@@ -25,6 +26,7 @@ export class BuscadorVideosComponent implements OnInit {
 
 
   ngOnInit() {
+        this.selectedTitle = 'Videos'
     this.isResultados = false;
     this.initForm();
     this.videos = [{

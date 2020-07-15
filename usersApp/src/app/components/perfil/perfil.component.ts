@@ -26,6 +26,7 @@ export class PerfilComponent implements OnInit {
   selectedItem: any;
   isUser: boolean;
   isMusico: boolean;
+  selectedTitle: any;
   
 
   selectedImg: String;
@@ -51,11 +52,12 @@ export class PerfilComponent implements OnInit {
     });
   }
   ngOnInit() {
+        this.selectedTitle = 'Mi Cuenta'
 
         //AQUI HAY QUE DEFINIR EL TIPO DE USUARIO
         let tipoUsuario = 1;
         if(tipoUsuario){
-          this.selectedImg = '';
+          this.selectedImg = 'assets/usuario/14- mi cuenta/perfil.png';
           this.isMusico = false;
           this.isUser = true;
 

@@ -20,6 +20,7 @@ import { ConfirmPasswordValidator } from '../../directives/must-match.validator'
 })
 export class ResetPassComponent implements OnInit {
   resetPassword: FormGroup;
+  selectedTitle: any;
 
   showConfirm = {};
 

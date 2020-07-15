@@ -8,6 +8,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class EditarArtistasComponent implements OnInit {
   artista: any;
+  selectedTitle: any;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -20,6 +21,8 @@ export class EditarArtistasComponent implements OnInit {
     });
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectedTitle = 'Editar Artista'
+  }
 
 }

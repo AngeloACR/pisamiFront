@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-notificaciones.component.scss'],
 })
 export class RegistroNotificacionesComponent implements OnInit {
-
+  selectedTitle: any;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.selectedTitle = 'Registro de Notificación'
+  }
 
 }

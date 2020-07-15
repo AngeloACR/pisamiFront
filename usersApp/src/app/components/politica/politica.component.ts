@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./politica.component.scss'],
 })
 export class PoliticaComponent implements OnInit {
+  selectedTitle: any;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.selectedTitle = 'Políticas'
+  }
 
 }

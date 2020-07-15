@@ -21,7 +21,7 @@ export class ListaUsuariosComponent implements OnInit {
   fields: any;
   buscarUsuario: FormGroup;
   listData: any;
-
+  selectedTitle: any;
   constructor(
     private router: Router,
     private dbHandler: DbHandlerService,
@@ -29,6 +29,7 @@ export class ListaUsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.selectedTitle = 'Lista de Usuarios'
     this.usuarios = [
       {
         id: "539524",

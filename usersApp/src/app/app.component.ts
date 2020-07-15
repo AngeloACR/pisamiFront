@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'FAVORITOS',
-      url: '/favoritos/0',
+      url: '/favoritos',
       icon: 'assets/7-menu/favorito.png'
     },
     {

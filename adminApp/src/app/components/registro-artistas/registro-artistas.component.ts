@@ -29,6 +29,7 @@ export class RegistroArtistasComponent implements OnInit {
   isDuo: Boolean;
   isInfo: Boolean;
   isOrquesta: Boolean;
+  selectedTitle: any;
   
   showForm: {};
   hideOption: {};
@@ -61,6 +62,7 @@ export class RegistroArtistasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedTitle = 'Registro de Artistas'
     this.solistaImg = "assets/5-tipo/musicao.png";
     this.duoImg = "assets/5-tipo/duo.png";
     this.orquestaImg = "assets/5-tipo/orquesta.png";
@@ -70,18 +72,22 @@ export class RegistroArtistasComponent implements OnInit {
     let img;
     switch (tipo) {
       case "solista":
+        this.selectedTitle = 'Registro de Músico Cantante';
+
         this.isSolista = true;
         this.isDuo = false;
         this.isOrquesta = false;
         img = this.solistaImg;
         break;
       case "duo":
+        this.selectedTitle = 'Registro de Dúo'
         this.isSolista = false;
         this.isDuo = true;
         this.isOrquesta = false;
         img = this.duoImg;
         break;
       default:
+        this.selectedTitle = 'Registro de Orquesta'
         this.isSolista = false;
         this.isDuo = false;
         this.isOrquesta = true;

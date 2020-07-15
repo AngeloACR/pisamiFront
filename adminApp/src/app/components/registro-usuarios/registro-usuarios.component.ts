@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-usuarios.component.scss'],
 })
 export class RegistroUsuariosComponent implements OnInit {
-
+        selectedTitle: any
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.selectedTitle = 'Registro de Usuario'
+  }
 
 }

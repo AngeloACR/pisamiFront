@@ -21,6 +21,7 @@ export class ListaNotificacionesComponent implements OnInit {
   fields: any;
   buscarNotificacion: FormGroup;
   listData: any;
+  selectedTitle: any;
   
   constructor(
     private router: Router,
@@ -30,6 +31,7 @@ export class ListaNotificacionesComponent implements OnInit {
 
 
   ngOnInit() {
+    this.selectedTitle = 'Lista de Notificaciones'    
     this.notificaciones = [{
       id: '29384',
       nombre: 'BIENVENIDO',

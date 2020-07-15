@@ -21,6 +21,7 @@ export class ListaPoliticasComponent implements OnInit {
   fields: any;
   buscarPolitica: FormGroup;
   listData: any;
+  selectedTitle: any;
   
   constructor(
     private router: Router,
@@ -29,6 +30,7 @@ export class ListaPoliticasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.selectedTitle = 'Lista de Políticas'
     this.politicas = [{
       id: '29384',
       nombre: 'TRATO DE DATOS PERSONALES',

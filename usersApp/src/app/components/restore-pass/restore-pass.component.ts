@@ -18,6 +18,7 @@ import { ActionSheetController } from "@ionic/angular";
 })
 export class RestorePassComponent implements OnInit {
   restorePassword: FormGroup;
+  selectedTitle: any;
 
   showConfirm = {};
   constructor(

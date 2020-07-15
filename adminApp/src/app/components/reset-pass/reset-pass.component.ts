@@ -20,7 +20,7 @@ import { ConfirmPasswordValidator } from '../../directives/must-match.validator'
 })
 export class ResetPassComponent implements OnInit {
   resetPassword: FormGroup;
-
+  selectedTitle: any;
   showConfirm = {};
 
   constructor(
@@ -31,6 +31,7 @@ export class ResetPassComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+        this.selectedTitle = 'Reestablecer contraseña'
     this.resetPassword = new FormGroup({
       password: new FormControl("", [Validators.required, Validators.minLength(6)]),
       cpassword: new FormControl("", Validators.required),

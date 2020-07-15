@@ -18,6 +18,7 @@ import { ActionSheetController } from "@ionic/angular";
 })
 export class LoginComponent implements OnInit {
   login: FormGroup;
+  selectedTitle: any;
 
   constructor(
     private auth: AuthService,
