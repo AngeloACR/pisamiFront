@@ -19,12 +19,6 @@
                         <img style="width: 23vh;" class="iconImg" [src]="userImg" alt="Logo" (click)="firstToggle($event, 'usuario')" />
                     </div>
                 </div>
-                <div class="regisBox">
-                    <img src="assets/4-registro/gmail.png" alt="gmail" (click)="regisGmail()" />
-                </div>
-                <div class="regisBox">
-                    <img src="assets/4-registro/facebook.png" alt="facebook" (click)="regisFacebook()" />
-                </div>
             </div>
         </div>
         <div class="selectionBox" *ngIf="isMusico">
@@ -49,10 +43,10 @@
 
         <div class="logBox" [ngClass]="showForm">
             <div class="formBox">
-                <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" *ngIf="isUser" alt="Logo" />
-                <app-form-usuarios [editMode]="0" *ngIf="tipoSelected && isUser"></app-form-usuarios>
-                <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="tipoSelected && isMusico"></app-form-artistas>
-            </div>
+                <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                <app-form-usuarios [editMode]="0" [tipo]="tipoSelected" (registerCompleted)="registerCompleted()" *ngIf="tipoSelected"></app-form-usuarios>
+<!--                 <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="tipoSelected && isMusico"></app-form-artistas>
+ -->            </div>
         </div>
     </div>        
 </ion-content>

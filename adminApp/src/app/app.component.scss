@@ -1,5 +1,6 @@
 ion-menu ion-content {
-    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
+    --ion-background-color: #F24E2B !important;
+//    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
 }
 
 ion-menu{
@@ -44,6 +45,7 @@ ion-menu-toggle ion-item{
 .menuImg{
     height: 20vw;
     margin: 0;
+    background-color: #F24E2B;
 }
 
 ion-menu-toggle:nth-child(odd){
@@ -173,6 +175,7 @@ ion-item.selected {
 .slideMenu{
     top: 50%;
     transform: translatey(-50%);
+    background-color: #F24E2B;
 }
 
 .configItem{

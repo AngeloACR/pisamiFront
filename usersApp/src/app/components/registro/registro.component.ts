@@ -159,4 +159,8 @@ export class RegistroComponent implements OnInit {
     this.isOrquesta = false;
   }
 
+  registerCompleted(){
+    this.router.navigateByUrl("/login");
+  }
+
 }
