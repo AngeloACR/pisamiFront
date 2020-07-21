@@ -76,6 +76,26 @@ export class AuthService {
     }
   };
 
+  getType = async function() {
+    try {
+      let user = await this.decode();
+      let type = user.tipoUsuario;
+      return type;
+    } catch (Error) {
+      return null;
+    }
+  };
+
+  primerInicio = async function() {
+    try {
+      let user = await this.decode();
+      let primerInicio = user.primerInicio;
+      return primerInicio;
+    } catch (Error) {
+      return null;
+    }
+  };
+
   isAuthenticated = async function() {
     try {
       let loggedIn = await this.storage.get("loggedIn");

@@ -133,10 +133,6 @@ export class FormArtistasComponent implements OnInit {
       imagen3: new FormControl("", [FileValidator.validate]),
       soundFrames: this.soundFrames,
       youFrames: this.youFrames,
-      /*       soundFrames: new FormControl('', Validators.required),
-      youFrames: new FormControl('', Validators.required),
-      soundNombres: new FormControl('', Validators.required),
-      youNombres: new FormControl('', Validators.required), */
     });
     if(editMode){
       this.registroMusico.controls['numeroIntegrantes'].setValue(this.user.numeroIntegrantes);
@@ -145,11 +141,43 @@ export class FormArtistasComponent implements OnInit {
       this.registroMusico.controls['ciudadOrigen'].setValue(this.user.ciudadOrigen);
       this.registroMusico.controls['tieneRepresentante'].setValue(this.user.tieneRepresentante);
       this.registroMusico.controls['nombreRepresentante'].setValue(this.user.nombreRepresentante);
+      this.registroMusico.controls['generos'].setValue(this.user.generos);
       this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
       this.registroMusico.controls['instagram'].setValue(this.user.instagram);
       this.registroMusico.controls['facebook'].setValue(this.user.facebook);
       this.registroMusico.controls['paginaWeb'].setValue(this.user.paginaWeb);
+        let soundAuxs = this.user.soundFrames;
+        soundAuxs.forEach(soundAux => {
+          this.addSoundcloud()
+        });
 
+       var soundControls = this.soundFrames.controls;
+        let i = 0;
+       for (let control of soundControls) {
+        if (control instanceof FormGroup) {
+          let nombre = this.user.soundFrames[i].nombre;
+          let iframe = this.user.soundFrames[i].iframe;
+          control.controls['nombre'].setValue(nombre);
+          control.controls['iframe'].setValue(iframe);
+          i++;
+        }
+       }
+        
+        let youAuxs = this.user.youFrames;
+        youAuxs.forEach(youAux => {
+          this.addYoutube()
+        });
+        let j = 0;
+       var youControls = this.youFrames.controls;
+       for (let control of youControls) {
+        if (control instanceof FormGroup) {
+          let nombre = this.user.youFrames[j].nombre
+          let iframe = this.user.youFrames[j].iframe
+          control.controls['nombre'].setValue(nombre);
+          control.controls['iframe'].setValue(iframe);
+          j++
+        }
+       }
     }
   }
 

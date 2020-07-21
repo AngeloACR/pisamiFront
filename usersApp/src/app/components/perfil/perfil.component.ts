@@ -35,7 +35,8 @@ export class PerfilComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private platform: Platform
+    private platform: Platform,
+    private auth: AuthService,
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
@@ -51,10 +52,13 @@ export class PerfilComponent implements OnInit {
       });
     });
   }
-  ngOnInit() {
+  async ngOnInit() {
         this.selectedTitle = 'Mi Cuenta'
 
         //AQUI HAY QUE DEFINIR EL TIPO DE USUARIO
+        let primerInicio = await this.auth.primerInicio();
+
+        //let tipoUsuario = await this.auth.getType();
         let tipoUsuario = 1;
         if(tipoUsuario){
           this.selectedImg = 'assets/usuario/14- mi cuenta/perfil.png';

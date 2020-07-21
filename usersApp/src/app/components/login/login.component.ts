@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(data).subscribe((logData: any) => {
         if (logData.auth) {
           this.auth.storeData(logData);
+          this.router.navigateByUrl("/welcome");
         }
       });
     }

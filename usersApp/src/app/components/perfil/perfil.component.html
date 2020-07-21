@@ -11,7 +11,8 @@
             <div class="formBox">
                 <img class="pageImg" [src]="selectedImg" *ngIf="isUser" alt="Logo" />
                 <app-form-usuarios [editMode]="1" [user]="selectedItem" *ngIf="isUser"></app-form-usuarios>
-                <app-form-artistas [editMode]="1" [user]="selectedItem" *ngIf="isMusico"></app-form-artistas>
+                <app-form-artistas [editMode]="0" *ngIf="isMusico && isPrimerInicio"></app-form-artistas>
+                <app-form-artistas [editMode]="1" [user]="selectedItem" *ngIf="isMusico && !isPrimerInicio"></app-form-artistas>
 
             </div>
         </div>     

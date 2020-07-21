@@ -32,6 +32,7 @@ import { BuscadorCancionesComponent } from './components/buscador-canciones/busc
 import { RestorePassComponent } from './components/restore-pass/restore-pass.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FavoritosComponent } from './components/favoritos/favoritos.component';
     BuscadorCancionesComponent,
     BuscadorVideosComponent,
     FavoritosComponent,
+    WelcomeComponent,
     ],
   entryComponents: [
     DetalleArtistaComponent,
