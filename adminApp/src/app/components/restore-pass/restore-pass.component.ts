@@ -12,9 +12,9 @@ import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-restore-pass',
-  templateUrl: './restore-pass.component.html',
-  styleUrls: ['./restore-pass.component.scss'],
+  selector: "app-restore-pass",
+  templateUrl: "./restore-pass.component.html",
+  styleUrls: ["./restore-pass.component.scss"]
 })
 export class RestorePassComponent implements OnInit {
   restorePassword: FormGroup;
@@ -30,16 +30,16 @@ export class RestorePassComponent implements OnInit {
 
   ngOnInit() {
     this.restorePassword = new FormGroup({
-      mail: new FormControl("", [Validators.required, Validators.email]),
+      mail: new FormControl("", [Validators.required, Validators.email])
     });
     this.showConfirm = {
-      showConfirm: false,
-    }
+      showConfirm: false
+    };
 
-    this.selectedTitle = 'Reestablecer contraseña';
+    this.selectedTitle = "Reestablecer contraseña";
   }
 
-  close(){
+  close() {
     this.router.navigateByUrl("/");
   }
 
@@ -48,19 +48,19 @@ export class RestorePassComponent implements OnInit {
       this.toggleError();
     } else {
       this.showConfirm = {
-          showConfirm: true,
-      }
+        showConfirm: true
+      };
       var data = this.restorePassword.value;
-      this.auth.restore(data).subscribe((data: any) => {
+      this.auth.restorePass(data).subscribe((data: any) => {
         this.showConfirm = {
-            showConfirm: true,
-        }
+          showConfirm: true
+        };
       });
     }
   }
 
   flush() {
-    this.restorePassword.reset()
+    this.restorePassword.reset();
   }
   registro() {
     this.router.navigateByUrl("/registro");

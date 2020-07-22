@@ -49,7 +49,7 @@ export class RestorePassComponent implements OnInit {
           showConfirm: true,
       }
       var data = this.restorePassword.value;
-      this.auth.restore(data).subscribe((data: any) => {
+      this.auth.restorePass(data).subscribe((data: any) => {
         this.showConfirm = {
             showConfirm: true,
         }

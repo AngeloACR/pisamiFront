@@ -55,7 +55,7 @@ export class ResetPassComponent implements OnInit {
       this.showConfirm = {
           showConfirm: true,
       }
-      this.auth.reset(data).subscribe((data: any) => {
+      this.auth.resetPass(data).subscribe((data: any) => {
         console.log('Reset succesful')
         this.showConfirm = {
           showConfirm: true,
