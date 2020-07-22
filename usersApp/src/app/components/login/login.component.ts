@@ -4,7 +4,7 @@ import { AuthService } from "../../services/auth.service";
 import {
   FormBuilder,
   FormGroup,
-  FormControl, 
+  FormControl,
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -34,14 +34,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logUser() {
+  async logUser() {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {
       var data = this.login.value;
-      this.auth.login(data).subscribe((logData: any) => {
+      this.auth.login(data).subscribe(async (logData: any) => {
         if (logData.auth) {
-          this.auth.storeData(logData);
+          await this.auth.storeData(logData);
           this.router.navigateByUrl("/welcome");
         }
       });

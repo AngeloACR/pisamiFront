@@ -45,7 +45,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LogoutComponent
+    LogoutComponent,
     RestorePassComponent,
     ResetPassComponent,
     ValidacionComponent,

@@ -1,13 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 
 @Component({
-  selector: 'app-buscador-canciones',
-  templateUrl: './buscador-canciones.component.html',
-  styleUrls: ['./buscador-canciones.component.scss'],
+  selector: "app-buscador-canciones",
+  templateUrl: "./buscador-canciones.component.html",
+  styleUrls: ["./buscador-canciones.component.scss"]
 })
 export class BuscadorCancionesComponent implements OnInit {
-  
   canciones: any;
   buscarCanciones: FormGroup;
   isResultados: boolean;
@@ -19,36 +18,42 @@ export class BuscadorCancionesComponent implements OnInit {
   @Output()
   verVideos = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-        this.selectedTitle = 'Canciones'
+    this.selectedTitle = "Canciones";
     this.isResultados = false;
     this.initForm();
-    this.canciones = [{
-        nombre: 'La Flaca',
-        link: 'https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true'}, {
-        nombre: 'La Flaca',
-        link: 'https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true'}, {
-      }];
   }
 
   initForm() {
     this.buscarCanciones = new FormGroup({
-      nombre: new FormControl(''),
+      nombre: new FormControl("")
     });
-
   }
 
-  mostrarVideos(){
-    this.verVideos.emit()
+  mostrarVideos() {
+    this.verVideos.emit();
   }
-  mostrarPerfil(){
-    this.volver.emit()
-  }
-
-  buscar(){
-    this.isResultados = true;    
+  mostrarPerfil() {
+    this.volver.emit();
   }
 
+  buscar() {
+    //get canciones segun filtro
+    this.canciones = [
+      {
+        nombre: "La Flaca",
+        link:
+          "https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true"
+      },
+      {
+        nombre: "La Flaca",
+        link:
+          "https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true"
+      },
+      {}
+    ];
+    this.isResultados = true;
+  }
 }

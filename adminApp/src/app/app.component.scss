@@ -8,8 +8,11 @@ ion-menu{
     --max-width:500px !important;
 }
 
+.menu-inner{
+    width: 100% !important;
+}
 
-ion-menu-toggle{
+ion-menu-toggle, .menuList div{
     width: 42%;
     display: flex;
     flex-direction: column;
@@ -17,7 +20,7 @@ ion-menu-toggle{
     background-color:  #F24E2B;
 }
 
-ion-menu-toggle ion-item{
+ion-menu-toggle ion-item, , .menuList div ion-item{
 --padding-bottom: 0 !important;
 --padding-end: 0 !important;
 --padding-start: 0 !important;
@@ -48,12 +51,12 @@ ion-menu-toggle ion-item{
     background-color: #F24E2B;
 }
 
-ion-menu-toggle:nth-child(odd){
+ion-menu-toggle:nth-child(odd), .menuList div:nth-child(odd){
     align-self: flex-start;
 
 }
 
-ion-menu-toggle:nth-child(even){
+ion-menu-toggle:nth-child(even), .menuList div:nth-child(even){
     align-self: flex-end;
 }
 

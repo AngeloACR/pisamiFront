@@ -102,10 +102,10 @@ export class DbHandlerService {
     }
   };
 
-  setLocal(name, value) {
-    this.storage.remove(name);
-    this.storage.set(name, JSON.stringify(value));
-  }
+  setLocal = async function(name, value) {
+    await this.storage.remove(name);
+    await this.storage.set(name, JSON.stringify(value));
+  };
 
   getLocal = async function(name) {
     try {
