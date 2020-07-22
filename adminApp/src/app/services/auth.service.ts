@@ -31,27 +31,25 @@ export class AuthService {
     return this.http.post(address, body, { headers: headers });
   }
 
-
-  restore(data: any) {
+  resetPass(data: any) {
     let headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
     let body = {
-      mail: data.mail,
-    };
-    var address = this.mySource + this.endpoint + "/restore";
-    return this.http.post(address, body, { headers: headers });
-  }
-
-  reset(data: any) {
-    let headers = new HttpHeaders();
-    headers.append("Content-Type", "application/json");
-    let body = {
-      password: data.password,
+      mail: data.mail
     };
     var address = this.mySource + this.endpoint + "/reset";
     return this.http.post(address, body, { headers: headers });
   }
 
+  restorePass(data: any) {
+    let headers = new HttpHeaders();
+    headers.append("Content-Type", "application/json");
+    let body = {
+      password: data.password
+    };
+    var address = this.mySource + this.endpoint + "/restore";
+    return this.http.post(address, body, { headers: headers });
+  }
 
   logout() {
     this.storage.remove("loggedIn");
@@ -64,8 +62,6 @@ export class AuthService {
     this.storage.set("token", storeData.token);
     this.storage.set("loggedIn", "true");
   }
-
-  resetPass(resetData: any) {}
 
   decode = async function() {
     try {
