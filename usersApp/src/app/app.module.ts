@@ -33,6 +33,7 @@ import { RestorePassComponent } from './components/restore-pass/restore-pass.com
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     BuscadorVideosComponent,
     FavoritosComponent,
     WelcomeComponent,
+    LogoutComponent
     ],
   entryComponents: [
     DetalleArtistaComponent,

@@ -37,8 +37,8 @@ ion-content{
 ion-toolbar {
     --background: #F68522!important;
     --color: white;
-    --opacity: 1 !important;
-    --border-width: 0!important;
+    opacity: 1 !important;
+    border-width: 0!important;
 }
 
 ion-menu-button {

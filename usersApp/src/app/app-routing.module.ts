@@ -12,6 +12,7 @@ import { RestorePassComponent } from './components/restore-pass/restore-pass.com
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
  {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'favoritos',
     component: FavoritosComponent,
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
   },
   
   

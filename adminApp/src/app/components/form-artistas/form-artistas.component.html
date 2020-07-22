@@ -1,12 +1,6 @@
 <form [formGroup]="registroMusico">
     <div class="formContent" *ngIf="!isInfo">
         <div class="formInput">
-            <label for="">Nombre real</label>
-            <input class="lInput" type="text" formControlName="nombreReal" name="" />
-        </div>
-        <div class="errorTag" *ngIf="fMusico.nombreReal.errors?.required && (fMusico.nombreReal.touched || fMusico.nombreReal.dirty)">Este campo es requerido</div>
-
-        <div class="formInput">
             <label for="">Nombre artístico</label>
             <input class="lInput" type="text" formControlName="nombreArtistico" name="" />
         </div>
@@ -47,19 +41,6 @@
             <input class="lInput" type="text" formControlName="nombreRepresentante" name="" />
         </div>
         <div class="errorTag" *ngIf="fMusico.nombreRepresentante.errors?.required && (fMusico.nombreRepresentante.touched || fMusico.nombreRepresentante.dirty)">Este campo es requerido</div>
-
-        <div class="formInput">
-            <label for="">Telefono:</label>
-            <input class="lInput" type="text" formControlName="telefono" name="" />
-        </div>
-        <div class="errorTag" *ngIf="fMusico.telefono.errors?.required && (fMusico.telefono.touched || fMusico.telefono.dirty)">Este campo es requerido</div>
-
-        <div class="formInput">
-            <label for="">Correo:</label>
-            <input class="lInput" type="text" formControlName="correo" name="" />
-        </div>
-        <div class="errorTag" *ngIf="fMusico.correo.errors?.required && (fMusico.correo.touched || fMusico.correo.dirty)">Este campo es requerido</div>
-        <div class="errorTag" *ngIf="fMusico.correo.errors?.email && (fMusico.correo.touched || fMusico.correo.dirty)">Por favor ingrese un correo válido</div>
 
         <div class="formDescripcion">
             <label for="">Descripción</label>
