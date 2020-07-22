@@ -30,15 +30,15 @@ font-family: CreamCake;
 src: url('/assets/fonts/Cream Cake.ttf');
 }
 
-ion-content{
+ion-content{ 
   --ion-background-color: white;
 }
 
 ion-toolbar {
     --background: #F68522!important;
     --color: white;
-    opacity: 1;
-    --border-width: 0;
+    --opacity: 1 !important;
+    --border-width: 0!important;
 }
 
 ion-menu-button {

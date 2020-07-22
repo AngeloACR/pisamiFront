@@ -135,6 +135,7 @@ tipo: any;
         tlf: dataAux.tlf,
         correo: dataAux.correo,
         password: dataAux.password,
+        tipoUsuario: this.tipo,
       };
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
