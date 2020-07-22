@@ -11,10 +11,10 @@ export class LogoutComponent implements OnInit {
   constructor(
     private auth: AuthService
   ) { 
-    await this.auth.logout();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.auth.logout();
   }
 
 }
