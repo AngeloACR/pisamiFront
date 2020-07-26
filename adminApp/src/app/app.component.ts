@@ -136,11 +136,6 @@ export class AppComponent {
 
   public adminPages = [
     {
-      title: 'VALIDACIÓN DE CUENTAS',
-      url: '/validacion',
-      icon: 'assets/2- menu/validaciòn.png'
-    },
-    {
       title: 'REGISTRO DE USUARIOS',
       url: '/registrousuarios',
       icon: 'assets/2- menu/registro.png'
@@ -191,12 +186,12 @@ export class AppComponent {
     {
       title: 'CREAR POLÍTICAS',
       url: '/politicas',
-      icon: 'assets/2- menu/politicas.png'
+      icon: 'assets/2- menu/crearpoliticas.png'
     },
     {
       title: 'LISTA DE POLÍTICAS',
       url: '/listapoliticas',
-      icon: 'assets/2- menu/politicas.png'
+      icon: 'assets/2- menu/listapoli.png'
     },
   ];
 

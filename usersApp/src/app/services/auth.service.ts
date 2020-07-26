@@ -64,7 +64,6 @@ export class AuthService {
     await this.storage.remove("loggedIn");
     await this.storage.remove("token");
     await this.storage.clear();
-    window.location.reload();
   };
 
   storeData = async function(storeData: any) {

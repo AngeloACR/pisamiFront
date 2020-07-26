@@ -55,7 +55,6 @@ export class AuthService {
     this.storage.remove("loggedIn");
     this.storage.remove("token");
     this.storage.clear();
-    window.location.reload();
   }
 
   storeData(storeData: any) {

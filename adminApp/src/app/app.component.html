@@ -2,9 +2,10 @@
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
             <ion-header [translucent]="true">
-            <app-header [title]="selectedTitle"></app-header>
+                <app-header [title]="selectedTitle"></app-header>
             </ion-header>
             <ion-content id="adminMenu">
+                <img class="closeImg" src="assets/X.png" *ngIf="!mainMenu" (click)="volverMenu()" />
                 <ion-slides class="slideMenu" *ngIf="mainMenu" [options]="slideOptsOne" #slideWithNav>
                     <ion-slide *ngFor="let s of menuSlider.slidesItems">
                         <ion-list class="menuList">
@@ -20,7 +21,9 @@
                     <ion-slide *ngFor="let s of adminSlider.slidesItems">
                         <ion-list class="menuList">
                             <ion-menu-toggle auto-hide="false" *ngFor="let p of s.menuPages; let i = index">
-                                <ion-item class="menuItem" (click)="volverMenu()" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
+                                <ion-item class="menuItem" (click)="volverMenu()" routerDirection="root"
+                                    [routerLink]="[p.url]" lines="none" detail="false"
+                                    [class.selected]="selectedIndex==i">
                                     <img class="menuImg" [src]="p.icon" />
                                 </ion-item>
                             </ion-menu-toggle>
@@ -31,7 +34,9 @@
                     <ion-slide *ngFor="let s of configSlider.slidesItems">
                         <ion-list class="menuList">
                             <ion-menu-toggle auto-hide="false" *ngFor="let p of s.menuPages; let i = index">
-                                <ion-item class="menuItem" (click)="volverMenu()" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
+                                <ion-item class="menuItem" (click)="volverMenu()" routerDirection="root"
+                                    [routerLink]="[p.url]" lines="none" detail="false"
+                                    [class.selected]="selectedIndex==i">
                                     <img class="menuImg" [src]="p.icon" />
                                 </ion-item>
                             </ion-menu-toggle>
@@ -42,7 +47,9 @@
                     <ion-slide *ngFor="let s of politicasSlider.slidesItems">
                         <ion-list class="menuList">
                             <ion-menu-toggle auto-hide="false" *ngFor="let p of s.menuPages; let i = index">
-                                <ion-item class="menuItem" (click)="volverMenu()" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
+                                <ion-item class="menuItem" (click)="volverMenu()" routerDirection="root"
+                                    [routerLink]="[p.url]" lines="none" detail="false"
+                                    [class.selected]="selectedIndex==i">
                                     <img class="menuImg" [src]="p.icon" />
                                 </ion-item>
                             </ion-menu-toggle>

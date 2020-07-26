@@ -86,6 +86,10 @@ export class DetalleArtistaComponent implements OnInit {
     //this.router.navigateByUrl('/buscador/');
   }
 
+  agregarFavorito(){
+    let artistaFavorito = this.artistaEscogido;
+  }
+
   mostrarCanciones(){
     this.isCanciones = true;
     this.isVideos = false;

@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../../services/auth.service";
 //import { DbHandlerService } from '../../services/db-handler.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { ActionSheetController } from '@ionic/angular';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { forkJoin } from "rxjs";
+import { ActionSheetController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-
   login: FormGroup;
 
   constructor(
@@ -21,27 +25,26 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.login = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required)
     });
-
   }
 
   logUser() {
-        if(this.catchUserErrors()){
+    if (this.catchUserErrors()) {
       this.toggleError();
-    } else{    
-    var data = this.login.value;
-    this.auth.login(data).subscribe((logData: any) => {
-      if (logData.auth) {
-        this.auth.storeData(logData);
-        //        this.actualizar();
-      }
-    });
+    } else {
+      var data = this.login.value;
+      this.auth.login(data).subscribe((logData: any) => {
+        if (logData.auth) {
+          this.auth.storeData(logData);
+          //        this.actualizar();
+        }
+      });
     }
   }
 
@@ -51,38 +54,43 @@ export class LoginComponent implements OnInit {
 
   flush() {
     this.login.setValue({
-      username: '',
-      password: ''
+      username: "",
+      password: ""
     });
   }
   registro() {
-    this.router.navigateByUrl('/registro');
+    this.router.navigateByUrl("/registro");
   }
 
-     get fLogin() { 
-      return this.login.controls;
-     }
+  get fLogin() {
+    return this.login.controls;
+  }
 
- async toggleError() {
+  async toggleError() {
     let actionSheet = await this.actionSheetController.create({
-      header: 'Hay errores en el formulario. Por favor, revíselo e intente de nuevo',
-      buttons: [{
-        text: 'VOLVER',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('CANCELANDO...');
+      header:
+        "Hay errores en el formulario. Por favor, revíselo e intente de nuevo",
+      buttons: [
+        {
+          text: "VOLVER",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("CANCELANDO...");
+          }
         }
-      }]
+      ]
     });
     await actionSheet.present();
   }
-    catchUserErrors(){
-        let aux1 = this.fLogin.username.errors ? this.fLogin.username.errors.required : false;
-        let aux2 = this.fLogin.password.errors ? this.fLogin.password.errors.required : false;
-        let error = aux1 || aux2;
-        return error
-      
+  catchUserErrors() {
+    let aux1 = this.fLogin.username.errors
+      ? this.fLogin.username.errors.required
+      : false;
+    let aux2 = this.fLogin.password.errors
+      ? this.fLogin.password.errors.required
+      : false;
+    let error = aux1 || aux2;
+    return error;
   }
- 
 }

@@ -6,39 +6,44 @@
     <div class="pageBox">
         <div class="logBox">
             <div class="logoBox">
-                <img class="pageImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+                <img class="pageImg" src="assets/logoblanco.png" alt="Logo" />
             </div>
             <div class="formBox">
                 <div class="textBanner">
                     <p>Iniciar sesión</p>
-                </div>            
+                </div>
                 <form [formGroup]="login" (ngSubmit)="logUser()">
                     <div class="formContent">
                         <div class="formInput">
-<!--                             <label for="">Usuario</label>
- -->                            <input class="lInput" type="text" placeholder="Usuario" formControlName="username" name="username" />
+                            <!--                             <label for="">Usuario</label>
+ --> <input class="lInput" type="text" placeholder="Usuario" formControlName="username" name="username" />
                         </div>
-                        <div class="errorTag" *ngIf="fLogin.username.errors?.required && (fLogin.username.touched || fLogin.username.dirty)">Este campo es requerido</div>
+                        <div class="errorTag"
+                            *ngIf="fLogin.username.errors?.required && (fLogin.username.touched || fLogin.username.dirty)">
+                            Este campo es requerido</div>
 
                         <div class="formInput">
-<!--                             <label for="">Contraseña</label>
- -->                            <input class="lInput" type="password" placeholder="Contraseña" formControlName="password" name="password" />
+                            <!--                             <label for="">Contraseña</label>
+ --> <input class="lInput" type="password" placeholder="Contraseña" formControlName="password" name="password" />
                         </div>
-                        <div class="errorTag" *ngIf="fLogin.password.errors?.required && (fLogin.password.touched || fLogin.password.dirty)">Este campo es requerido</div>
+                        <div class="errorTag"
+                            *ngIf="fLogin.password.errors?.required && (fLogin.password.touched || fLogin.password.dirty)">
+                            Este campo es requerido</div>
 
                         <div class="buttonBox">
                             <button type="submit" class="formButton">
-                <p>Iniciar Sesión</p>
-              </button>
+                                <p>Iniciar Sesión</p>
+                            </button>
                             <p class="tagLine" (click)="restore()">¿Has olvidado tu contraseña?</p>
                             <button type="button" class="formButton" (click)="registro()">
-                <p>Regístrate</p>
-              </button>
+                                <p>Regístrate</p>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="copyright">
+                <img src="assets/logos alcaldia.png" alt="Logo" />
                 <p>Copyright Alcaldia Municipal de Ibagué © PISAMI</p>
                 <p>Todos los Derechos Reservados</p>
             </div>
