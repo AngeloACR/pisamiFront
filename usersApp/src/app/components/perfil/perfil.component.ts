@@ -31,6 +31,7 @@ export class PerfilComponent implements OnInit {
   isUser: boolean;
   isMusico: boolean;
   public identity;
+  selectedTitle: any;
   
 
   selectedImg: String;
@@ -41,6 +42,7 @@ export class PerfilComponent implements OnInit {
     private fb: FormBuilder,
     private platform: Platform,
     private _userService: UserService,
+    private auth: AuthService,
   ) {
     this.identity = this._userService.getIdentity();
     this.actRoute.params.subscribe(params => {
@@ -57,12 +59,19 @@ export class PerfilComponent implements OnInit {
       });
     });
   }
-  ngOnInit() {
+  async ngOnInit() {
+        this.selectedTitle = 'Mi Cuenta'
 
         //AQUI HAY QUE DEFINIR EL TIPO DE USUARIO
         let tipoUsuario = this.identity.tipo_usuario;
         if(tipoUsuario == 2){
           this.selectedImg = '';
+        let primerInicio = await this.auth.primerInicio();
+
+        //let tipoUsuario = await this.auth.getType();
+        let tipoUsuario = 1;
+        if(tipoUsuario){
+          this.selectedImg = 'assets/usuario/14- mi cuenta/perfil.png';
           this.isMusico = false;
           this.isUser = true;
 
@@ -99,4 +108,5 @@ export class PerfilComponent implements OnInit {
 
   }
 
+}
 }

@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class EditarPoliticasComponent implements OnInit {
   politica: any;
-
+  selectedTitle: any;
   constructor(
     private actRoute: ActivatedRoute,
 
@@ -20,6 +20,8 @@ export class EditarPoliticasComponent implements OnInit {
     });
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.selectedTitle = 'Editar Política'
+  }
 
 }

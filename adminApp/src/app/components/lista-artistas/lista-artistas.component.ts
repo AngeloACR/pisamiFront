@@ -21,6 +21,7 @@ export class ListaArtistasComponent implements OnInit {
   fields: any;
   buscarArtista: FormGroup;
   listData: any;
+  selectedTitle: any;
 
   constructor(
     private router: Router,
@@ -29,6 +30,7 @@ export class ListaArtistasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.selectedTitle = 'Lista de Artistas'
     this.artistas = [{
       id: '123',
       nombreArtistico: 'Los Bacanos',

@@ -10,17 +10,16 @@ import {
 import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
-import { ConfirmPasswordValidator } from '../../directives/must-match.validator';
-
+import { ConfirmPasswordValidator } from "../../directives/must-match.validator";
 
 @Component({
-  selector: 'app-reset-pass',
-  templateUrl: './reset-pass.component.html',
-  styleUrls: ['./reset-pass.component.scss'],
+  selector: "app-reset-pass",
+  templateUrl: "./reset-pass.component.html",
+  styleUrls: ["./reset-pass.component.scss"]
 })
 export class ResetPassComponent implements OnInit {
   resetPassword: FormGroup;
-
+  selectedTitle: any;
   showConfirm = {};
 
   constructor(
@@ -31,18 +30,23 @@ export class ResetPassComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.resetPassword = new FormGroup({
-      password: new FormControl("", [Validators.required, Validators.minLength(6)]),
-      cpassword: new FormControl("", Validators.required),
-    },
+    this.selectedTitle = "Reestablecer contraseña";
+    this.resetPassword = new FormGroup(
+      {
+        password: new FormControl("", [
+          Validators.required,
+          Validators.minLength(6)
+        ]),
+        cpassword: new FormControl("", Validators.required)
+      },
       ConfirmPasswordValidator.MatchPassword
     );
     this.showConfirm = {
-      showConfirm: false,
-    }
+      showConfirm: false
+    };
   }
 
-  close(){
+  close() {
     this.router.navigateByUrl("/");
   }
 
@@ -52,13 +56,13 @@ export class ResetPassComponent implements OnInit {
     } else {
       var data = this.resetPassword.value;
       this.showConfirm = {
-          showConfirm: true,
-      }
-      this.auth.reset(data).subscribe((data: any) => {
-        console.log('Reset succesful')
+        showConfirm: true
+      };
+      this.auth.resetPass(data).subscribe((data: any) => {
+        console.log("Reset succesful");
         this.showConfirm = {
-          showConfirm: true,
-        }
+          showConfirm: true
+        };
       });
     }
   }

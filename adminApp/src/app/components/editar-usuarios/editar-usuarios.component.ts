@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class EditarUsuariosComponent implements OnInit {
   user: any;
-
+  selectedTitle: any;
   constructor(
     private actRoute: ActivatedRoute,
 
@@ -21,7 +21,7 @@ export class EditarUsuariosComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.user);
+        this.selectedTitle = 'Editar Usuario'
   }
 
 }

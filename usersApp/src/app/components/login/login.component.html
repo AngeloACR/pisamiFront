@@ -6,12 +6,12 @@
     <div class="pageBox">
         <div class="logBox">
             <div class="logoBox">
-                <img class="pageImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+                <img class="pageImg" src="assets/logoblanco.png" alt="Logo" />
             </div>
             <div class="formBox">
                 <div class="textBanner">
                     <p>Iniciar sesión</p>
-                </div>            
+                </div>
                 <form [formGroup]="login" (ngSubmit)="logUser()">
                     <div class="formContent">
                         <div class="formInput">
@@ -28,17 +28,18 @@
 
                         <div class="buttonBox">
                             <button type="submit" class="formButton">
-                <p>Iniciar Sesión</p>
-              </button>
+                                <p>Iniciar Sesión</p>
+                            </button>
                             <p class="tagLine" (click)="restore()">¿Has olvidado tu contraseña?</p>
                             <button type="button" class="formButton" (click)="registro()">
-                <p>Regístrate</p>
-              </button>
+                                <p>Regístrate</p>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="copyright">
+                <img src="assets/logos alcaldia.png" alt="Logo" />
                 <p>Copyright Alcaldia Municipal de Ibagué © PISAMI</p>
                 <p>Todos los Derechos Reservados</p>
             </div>

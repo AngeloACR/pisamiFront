@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import {
   Router,
   ActivatedRoute,
@@ -34,6 +34,12 @@ editMode: number;
 
 @Input()
 user: any;
+
+@Input()
+tipo: any;
+
+  @Output()
+  registerCompleted = new EventEmitter<any>();
 
   id: string;
   status: any;
@@ -127,6 +133,7 @@ user: any;
           this.toggleError(errorMsg)
         } else{
           this.ngOnInit()
+          this.registerCompleted.emit();
         }
       });
     }
@@ -146,6 +153,7 @@ user: any;
         tlf: dataAux.tlf,
         correo: dataAux.correo,
         password: dataAux.password,
+        tipoUsuario: this.tipo,
       };
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object

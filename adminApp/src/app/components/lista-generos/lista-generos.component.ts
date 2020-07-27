@@ -24,6 +24,7 @@ export class ListaGenerosComponent implements OnInit {
   buscarGenero: FormGroup;
   listData: any;
   status;
+  selectedTitle: any;
 
   constructor(
     private router: Router,
@@ -33,6 +34,7 @@ export class ListaGenerosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.selectedTitle = 'Lista de Géneros'
     this.generos = [{
       id: '41',
       nombre: 'Vallenato', 

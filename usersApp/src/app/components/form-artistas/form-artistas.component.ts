@@ -140,10 +140,6 @@ export class FormArtistasComponent implements OnInit {
       imagen3: new FormControl("", [FileValidator.validate]),
       soundFrames: this.soundFrames,
       youFrames: this.youFrames,
-      /*       soundFrames: new FormControl('', Validators.required),
-      youFrames: new FormControl('', Validators.required),
-      soundNombres: new FormControl('', Validators.required),
-      youNombres: new FormControl('', Validators.required), */
     });
     if(editMode){
       this._userService.perfilId('121').subscribe(
@@ -165,6 +161,42 @@ export class FormArtistasComponent implements OnInit {
       this.registroMusico.controls['facebook'].setValue(response.perfiles[0].facebook);
       this.registroMusico.controls['pagina_web'].setValue(response.perfiles[0].pagina_web);
       this.registroMusico.controls['genero'].setValue(response.perfiles[0].genero);
+      this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
+      this.registroMusico.controls['instagram'].setValue(this.user.instagram);
+      this.registroMusico.controls['facebook'].setValue(this.user.facebook);
+      this.registroMusico.controls['paginaWeb'].setValue(this.user.paginaWeb);
+        let soundAuxs = this.user.soundFrames;
+        soundAuxs.forEach(soundAux => {
+          this.addSoundcloud()
+        });
+
+       var soundControls = this.soundFrames.controls;
+        let i = 0;
+       for (let control of soundControls) {
+        if (control instanceof FormGroup) {
+          let nombre = this.user.soundFrames[i].nombre;
+          let iframe = this.user.soundFrames[i].iframe;
+          control.controls['nombre'].setValue(nombre);
+          control.controls['iframe'].setValue(iframe);
+          i++;
+        }
+       }
+        
+        let youAuxs = this.user.youFrames;
+        youAuxs.forEach(youAux => {
+          this.addYoutube()
+        });
+        let j = 0;
+       var youControls = this.youFrames.controls;
+       for (let control of youControls) {
+        if (control instanceof FormGroup) {
+          let nombre = this.user.youFrames[j].nombre
+          let iframe = this.user.youFrames[j].iframe
+          control.controls['nombre'].setValue(nombre);
+          control.controls['iframe'].setValue(iframe);
+          j++
+        }
+       }
 
 
           }
@@ -177,7 +209,7 @@ export class FormArtistasComponent implements OnInit {
          console.log(<any>error);
         }
      );
-
+     
     }
   }
 
@@ -374,12 +406,6 @@ export class FormArtistasComponent implements OnInit {
       let aux4 = this.fMusico.nombre_representante.errors
         ? this.fMusico.nombre_representante.errors.required
         : false;
-      let aux5 = this.fMusico.telefono.errors
-        ? this.fMusico.telefono.errors.required
-        : false;
-      let aux6 = this.fMusico.correo.errors
-        ? this.fMusico.correo.errors.required
-        : false;
       let aux7 = this.fMusico.correo.errors
         ? this.fMusico.correo.errors.email
         : false;
@@ -391,7 +417,7 @@ export class FormArtistasComponent implements OnInit {
         : false;
 
       let error =
-        aux1 || aux2 || aux3 || aux4 || aux5 || aux6 || aux7 || aux8 || aux9;
+        aux2 || aux3 || aux4 || aux7 || aux8 || aux9;
       return error;
   }
 

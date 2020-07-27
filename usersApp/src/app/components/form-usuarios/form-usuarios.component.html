@@ -53,6 +53,14 @@
         <button *ngIf="!editMode" type="submit" class="formButton" (click)="endRegistro()">
             <p>Crear</p>
         </button>
+
+        <div *ngIf="!editMode" class="regisBox">
+            <img src="assets/4-registro/gmail.png" alt="gmail" (click)="regisGmail()" />
+        </div>
+        <div *ngIf="!editMode" class="regisBox">
+            <img src="assets/4-registro/facebook.png" alt="facebook" (click)="regisFacebook()" />
+        </div>
+
         <button *ngIf="editMode" type="submit" class="formButton" (click)="endUpdate()">
             <p>Actualizar perfil</p>
         </button>

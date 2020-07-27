@@ -1,23 +1,23 @@
 <ion-app>
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
+            <ion-header [translucent]="true">
+                <app-header title="menu"></app-header>
+            </ion-header>
+
             <ion-content id="adminMenu">
                 <ion-slides class="slideMenu" [options]="slideOptsOne" #slideWithNav>
                     <ion-slide *ngFor="let s of menuSlider.slidesItems">
                         <ion-list class="menuList">
                             <ion-menu-toggle auto-hide="false" *ngFor="let p of s.menuPages; let i = index">
-                                <ion-item class="menuItem" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
+                                <ion-item class="menuItem" routerDirection="root" [routerLink]="[p.url]" lines="none"
+                                    detail="false" [class.selected]="selectedIndex==i">
                                     <img class="menuImg" [src]="p.icon" />
                                 </ion-item>
                             </ion-menu-toggle>
                         </ion-list>
                     </ion-slide>
                 </ion-slides>
-                <ion-menu-toggle class="configItem" auto-hide="false">
-                    <ion-item class="menuItem" routerDirection="root" [routerLink]="[config.url]" lines="none" detail="false" [class.selected]="selectedIndex==i">
-                        <img class="menuImg" [src]="config.icon" />
-                    </ion-item>
-                </ion-menu-toggle>
             </ion-content>
 
 

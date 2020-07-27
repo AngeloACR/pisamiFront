@@ -6,7 +6,7 @@ import { AuthService } from "../../services/auth.service";
 import {
   FormBuilder,
   FormGroup,
-  FormControl, 
+  FormControl,
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   status : string;
   token;
   identity;
+  selectedTitle: any;
 
   constructor(
     private _userService: UserService,
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logUser() {
+  async logUser() {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {

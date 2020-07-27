@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 //import { DbHandlerService } from '../../services/db-handler.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { ActionSheetController } from '@ionic/angular';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { forkJoin } from "rxjs";
+import { ActionSheetController } from "@ionic/angular";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +19,6 @@ import { ActionSheetController } from '@ionic/angular';
   providers : [UserService],
 })
 export class LoginComponent implements OnInit {
-
   login: FormGroup;
   status;
   token;
@@ -26,18 +30,17 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.login = new FormGroup({
       correo: new FormControl('', Validators.required),
       contrasena: new FormControl('', Validators.required),
     });
-
   }
 
   logUser() {
-        if(this.catchUserErrors()){
+    if (this.catchUserErrors()) {
       this.toggleError();
     } else{    
     var data = this.login.value;
@@ -79,24 +82,27 @@ export class LoginComponent implements OnInit {
     });
   }
   registro() {
-    this.router.navigateByUrl('/registro');
+    this.router.navigateByUrl("/registro");
   }
 
-     get fLogin() { 
-      return this.login.controls;
-     }
+  get fLogin() {
+    return this.login.controls;
+  }
 
- async toggleError() {
+  async toggleError() {
     let actionSheet = await this.actionSheetController.create({
-      header: 'Hay errores en el formulario. Por favor, revíselo e intente de nuevo',
-      buttons: [{
-        text: 'VOLVER',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('CANCELANDO...');
+      header:
+        "Hay errores en el formulario. Por favor, revíselo e intente de nuevo",
+      buttons: [
+        {
+          text: "VOLVER",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("CANCELANDO...");
+          }
         }
-      }]
+      ]
     });
     await actionSheet.present();
   }
@@ -107,5 +113,4 @@ export class LoginComponent implements OnInit {
         return error
       
   }
- 
 }

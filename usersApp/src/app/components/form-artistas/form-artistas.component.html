@@ -48,19 +48,6 @@
         </div>
         <div class="errorTag" *ngIf="fMusico.nombre_representante.errors?.required && (fMusico.nombre_representante.touched || fMusico.nombre_representante.dirty)">Este campo es requerido</div>
 
-        <div class="formInput">
-            <label for="">Telefono:</label>
-            <input class="lInput" type="text" formControlName="telefono" name="" />
-        </div>
-        <div class="errorTag" *ngIf="fMusico.telefono.errors?.required && (fMusico.telefono.touched || fMusico.telefono.dirty)">Este campo es requerido</div>
-
-        <div class="formInput">
-            <label for="">Correo:</label>
-            <input class="lInput" type="text" formControlName="correo" name="" />
-        </div>
-        <div class="errorTag" *ngIf="fMusico.correo.errors?.required && (fMusico.correo.touched || fMusico.correo.dirty)">Este campo es requerido</div>
-        <div class="errorTag" *ngIf="fMusico.correo.errors?.email && (fMusico.correo.touched || fMusico.correo.dirty)">Por favor ingrese un correo válido</div>
-
         <div class="formDescripcion">
             <label for="">Descripción</label>
             <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>

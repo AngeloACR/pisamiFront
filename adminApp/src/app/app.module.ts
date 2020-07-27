@@ -39,11 +39,13 @@ import { EditarArtistasComponent } from './components/editar-artistas/editar-art
 import { EditarGenerosComponent } from './components/editar-generos/editar-generos.component';
 import { EditarNotificacionesComponent } from './components/editar-notificaciones/editar-notificaciones.component';
 import { EditarPoliticasComponent } from './components/editar-politicas/editar-politicas.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogoutComponent,
     RestorePassComponent,
     ResetPassComponent,
     ValidacionComponent,

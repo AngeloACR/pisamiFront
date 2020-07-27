@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+    <!--     <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+            <img class="toolbarLogo" src="assets/MENU/LOGOPIMU.png" alt="" />
+    </ion-toolbar> -->
+    <app-header [title]="selectedTitle"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="modBox">
+        <div class="logBox" *ngIf="isLista">
+            <div style="width: 100%;">
+                <img class="pageImg" src="assets/adicionales/favorito2.png" alt="favoritos">
+                <div class="cardBox" *ngFor="let artista of artistas">
+                    <div class="imgBox">
+                        <img class="imgResultados" [src]="artista.imagenes[0]" alt="" />
+                    </div>
+                    <div class="infoBox">
+                        <p>NOMBRE AGRUPACIÓN</p>
+                        <p>{{artista.nombre}}</p>
+                        <p>CATEGORÍAS</p>
+                        <p>{{artista.categorias}}</p>
+                    </div>
+                    <div class="moreBox">
+                        <button type="button" class="formButton" (click)="verArtista($event, artista)">
+                            <p>VER MÁS</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="logBox" *ngIf="isDetalle">
+            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (musica)="verMusica()"
+                (perfil)="verPerfil()" (videos)="verVideos()" (volver)="volverLista()"></app-detalle-artista>
+        </div>
+    </div>
+</ion-content>

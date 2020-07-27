@@ -14,6 +14,15 @@ export class DetalleArtistaComponent implements OnInit {
   @Output()
   volver = new EventEmitter<any>();
 
+  @Output()
+  musica = new EventEmitter<any>();
+
+  @Output()
+  videos = new EventEmitter<any>();
+
+  @Output()
+  perfil = new EventEmitter<any>();
+
   isVideos: boolean;
   isCanciones: boolean;
   hideBox: {};
@@ -77,12 +86,17 @@ export class DetalleArtistaComponent implements OnInit {
     //this.router.navigateByUrl('/buscador/');
   }
 
+  agregarFavorito(){
+    let artistaFavorito = this.artistaEscogido;
+  }
+
   mostrarCanciones(){
     this.isCanciones = true;
     this.isVideos = false;
     this.hideBox = {
       hideBox: true
     }
+    this.musica.emit()
   }
 
   mostrarPerfil(){
@@ -91,6 +105,7 @@ export class DetalleArtistaComponent implements OnInit {
     this.hideBox = {
       hideBox: false
     }
+    this.perfil.emit();
   }
 
   mostrarVideos(){
@@ -99,7 +114,7 @@ export class DetalleArtistaComponent implements OnInit {
     this.hideBox = {
       hideBox: true
     }
-    
+    this.videos.emit()
   }
 
 }

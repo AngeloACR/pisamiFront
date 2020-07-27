@@ -6,24 +6,29 @@
     <div class="pageBox">
         <div class="logBox">
             <div class="logoBox">
-                <img class="pageImg" src="assets/LOGIN/LOGO.png" alt="Logo" />
+                <img src="assets/logoblanco.png" alt="Logo" />
             </div>
             <div class="formBox">
                 <div class="textBanner">
                     <p>Restablece tu Contraseña</p>
-                </div>            
+                </div>
                 <form [formGroup]="restorePassword" (ngSubmit)="restorePass()">
                     <div class="formContent">
                         <div class="formInput">
-                            <input class="lInput" type="text" placeholder="Correo electrónico" formControlName="mail" name="mail" />
+                            <input class="lInput" type="text" placeholder="Correo electrónico" formControlName="mail"
+                                name="mail" />
                         </div>
-                        <div class="errorTag" *ngIf="fRestore.mail.errors?.required && (fRestore.mail.touched || fRestore.mail.dirty)">Este campo es requerido</div>
-                        <div class="errorTag" *ngIf="fRestore.mail.errors?.email && (fRestore.mail.touched || fRestore.mail.dirty)">Por favor ingrese un correo válido</div>
+                        <div class="errorTag"
+                            *ngIf="fRestore.mail.errors?.required && (fRestore.mail.touched || fRestore.mail.dirty)">
+                            Este campo es requerido</div>
+                        <div class="errorTag"
+                            *ngIf="fRestore.mail.errors?.email && (fRestore.mail.touched || fRestore.mail.dirty)">Por
+                            favor ingrese un correo válido</div>
 
                         <div class="buttonBox">
                             <button type="submit" class="formButton">
-                <p>Enviar</p>
-              </button>
+                                <p>Enviar</p>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -33,6 +38,7 @@
                 <p>Le hemos enviado un correo electrónico para poder restablecer su contraseña</p>
             </div>
             <div class="copyright">
+                <img src="assets/logos alcaldia.png" alt="Logo" />
                 <p>Copyright Alcaldia Municipal de Ibagué © PISAMI</p>
                 <p>Todos los Derechos Reservados</p>
             </div>

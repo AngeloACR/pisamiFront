@@ -31,46 +31,70 @@ export class AuthService {
     return this.http.post(address, body, { headers: headers });
   }
 
-
   restore(data: any) {
     let headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
     let body = {
-      mail: data.mail,
+      mail: data.mail
     };
     var address = this.mySource + this.endpoint + "/restore";
     return this.http.post(address, body, { headers: headers });
   }
-
-  reset(data: any) {
+  resetPass(data: any) {
     let headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
     let body = {
-      password: data.password,
+      mail: data.mail
     };
     var address = this.mySource + this.endpoint + "/reset";
     return this.http.post(address, body, { headers: headers });
   }
 
-
-  logout() {
-    this.storage.remove("loggedIn");
-    this.storage.remove("token");
-    this.storage.clear();
-    window.location.reload();
+  restorePass(data: any) {
+    let headers = new HttpHeaders();
+    headers.append("Content-Type", "application/json");
+    let body = {
+      password: data.password
+    };
+    var address = this.mySource + this.endpoint + "/restore";
+    return this.http.post(address, body, { headers: headers });
   }
 
-  storeData(storeData: any) {
-    this.storage.set("token", storeData.token);
-    this.storage.set("loggedIn", "true");
-  }
+  logout = async function() {
+    await this.storage.remove("loggedIn");
+    await this.storage.remove("token");
+    await this.storage.clear();
+  };
 
-  resetPass(resetData: any) {}
+  storeData = async function(storeData: any) {
+    await this.storage.set("token", storeData.token);
+    await this.storage.set("loggedIn", "true");
+  };
 
   decode = async function() {
     try {
       let token = await this.storage.get("token");
       return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
+  };
+
+  getType = async function() {
+    try {
+      let user = await this.decode();
+      let type = user.tipoUsuario;
+      return type;
+    } catch (Error) {
+      return null;
+    }
+  };
+
+  primerInicio = async function() {
+    try {
+      let user = await this.decode();
+      let primerInicio = user.primerInicio;
+      return primerInicio;
     } catch (Error) {
       return null;
     }

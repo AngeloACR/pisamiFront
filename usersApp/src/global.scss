@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,47 +25,68 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@font-face {
+  font-family: CreamCake;
+  src: url("/assets/fonts/Cream Cake.ttf");
+}
+
+.menu-inner {
+  width: 100% !important;
+}
+
+.copyright img {
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+ion-content {
+  --ion-background-color: white;
+}
+
 ion-toolbar {
-    --background: #F68522 !important;
-    --color: white;
+  --background: #f68522 !important;
+  --color: white;
+  opacity: 1 !important;
+  border-width: 0 !important;
 }
 
 ion-menu-button {
-    --color: white;
+  --color: white;
 }
 
 ion-title {
-    --color: white;
-    font-size: 12px;
-    padding-left: 42px;
-    padding-right: 42px;
+  --color: white;
+  font-size: 12px;
+  padding-left: 42px;
+  padding-right: 42px;
 }
 
-.pageImg{
-    position: relative;
-    height: 25vh;
-    margin-bottom: 30px;
-    margin-top: 42px;
-    left: 50%;
-    transform: translatex(-50%);
+.pageImg {
+  position: relative;
+  left: 50%;
+  transform: translatex(-50%);
 }
 
-.modBox{
+.modBox {
   width: 100%;
   height: 100%;
   background-color: white;
 }
 
+.logoBox {
+  width: 70%;
+}
+
 .logBox {
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    padding-top: 10px;
-    border-radius: 3px;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+  border-radius: 3px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 .errorTag {
@@ -77,9 +98,9 @@ ion-title {
 }
 
 .formContent {
-    padding: 0;
-    margin: auto;
-    width: 90%;
+  padding: 0;
+  margin: auto;
+  width: 90%;
 }
 
 .formInput {
@@ -105,6 +126,7 @@ ion-title {
 
 .lInput {
   width: 100%;
+  color: black;
   flex-basis: 100%;
   font-size: 14px;
   padding-left: 16px;
@@ -116,7 +138,6 @@ ion-title {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-
 
 /* The checkContainer */
 
@@ -169,7 +190,7 @@ ion-title {
 /* When the checkbox is checked, add a blue background */
 
 .checkContainer input:checked ~ .checkmark {
-  background-color: #F24E2B;
+  background-color: #f24e2b;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -200,7 +221,7 @@ ion-title {
   transform: rotate(45deg);
 }
 
-.formBox{
+.formBox {
   margin: auto;
 }
 
@@ -213,19 +234,19 @@ ion-title {
   width: auto;
   color: white;
   font-weight: bold;
-  background-color: #F24E2B;
+  background-color: #f24e2b;
   margin: auto;
   margin-top: 2vh;
   margin-bottom: 2vh;
   border-style: solid;
   border-width: 3px;
-  border-color: #F24E2B;
+  border-color: #f24e2b;
   border-radius: 60px;
   cursor: pointer;
 }
 
 .formButton:active {
-  color: #F24E2B;
+  color: #f24e2b;
   background-color: white;
 }
 
@@ -239,7 +260,7 @@ ion-title {
 }
 
 .formButton:active p {
-  color: #F24E2B;
+  color: #f24e2b;
 }
 
 .buttonBox {

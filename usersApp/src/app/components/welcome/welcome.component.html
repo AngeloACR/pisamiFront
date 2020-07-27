@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+    <app-header [title]="selectedTitle"></app-header>
+</ion-header>
+
+<ion-content>      
+  <div class="modBox">
+      <div class="logBox">
+        <div style="width: 100%">
+          <img class="pageImg" src="assets/" alt="Bienvenido">
+          <div class="welcomeBox">
+              {{welcomeMsg}}   
+          </div>
+          <button type="button" class="welcomeButton" *ngIf="isPrimerInicio" (click)="welcomeUser()">
+            <p>COMPLETAR PERFIL</p>
+          </button>
+        </div>
+      </div>
+  </div>
+</ion-content>

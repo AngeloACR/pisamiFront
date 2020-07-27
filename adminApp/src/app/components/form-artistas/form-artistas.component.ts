@@ -115,14 +115,11 @@ tipo: string;
 
   initForm(editMode) {
     this.registroMusico = new FormGroup({
-      nombreReal: new FormControl("", Validators.required),
       nombreArtistico: new FormControl("", Validators.required),
       salir: new FormControl("", Validators.required),
       ciudadOrigen: new FormControl("", Validators.required),
       tieneRepresentante: new FormControl("", Validators.required),
       nombreRepresentante: new FormControl("", Validators.required),
-      telefono: new FormControl("", Validators.required),
-      correo: new FormControl("", [Validators.required, Validators.email]),
       descripcion: new FormControl("", Validators.required),
       instagram: new FormControl(""),
       facebook: new FormControl(""),
@@ -141,15 +138,12 @@ tipo: string;
     });
     if(editMode){
       this.registroMusico.controls['numeroIntegrantes'].setValue(this.user.numeroIntegrantes);
-      this.registroMusico.controls['nombreReal'].setValue(this.user.nombreReal);
       this.registroMusico.controls['nombreArtistico'].setValue(this.user.nombreArtistico);
       this.registroMusico.controls['salir'].setValue(this.user.salir);
       this.registroMusico.controls['ciudadOrigen'].setValue(this.user.ciudadOrigen);
       this.registroMusico.controls['tieneRepresentante'].setValue(this.user.tieneRepresentante);
       this.registroMusico.controls['nombreRepresentante'].setValue(this.user.nombreRepresentante);
-      this.registroMusico.controls['telefono'].setValue(this.user.telefono);
       this.registroMusico.controls['generos'].setValue(this.user.generos);
-      this.registroMusico.controls['correo'].setValue(this.user.correo);
       this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
       this.registroMusico.controls['instagram'].setValue(this.user.instagram);
       this.registroMusico.controls['facebook'].setValue(this.user.facebook);

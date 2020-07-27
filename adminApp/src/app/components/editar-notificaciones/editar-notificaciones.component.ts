@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class EditarNotificacionesComponent implements OnInit {
   notificacion: any;
-
+  selectedTitle
   constructor(
     private actRoute: ActivatedRoute,
   ) { 
@@ -19,6 +19,8 @@ this.actRoute.params.subscribe(params => {
     });    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.selectedTitle = 'Editar Notificación'
+  }
 
 }

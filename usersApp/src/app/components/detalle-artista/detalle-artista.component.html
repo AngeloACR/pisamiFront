@@ -4,11 +4,12 @@
     </div>
     <div class="imgList">
         <div class="arrowBox">
-            <img class="imgArrow" src="assets/10-perfil artista/izq.png" alt="" *ngIf="!isStartOfList" (click)="prev()"/>
+            <img class="imgArrow" src="assets/10-perfil artista/izq.png" alt="" *ngIf="!isStartOfList"
+                (click)="prev()" />
         </div>
         <img class="artistaImg" [src]="currentImage" alt="" />
         <div class="arrowBox">
-            <img class="imgArrow" src="assets/10-perfil artista/der.png" alt="" *ngIf="!isEndOfList" (click)="next()"/>
+            <img class="imgArrow" src="assets/10-perfil artista/der.png" alt="" *ngIf="!isEndOfList" (click)="next()" />
         </div>
     </div>
     <div class="verBox">
@@ -34,34 +35,38 @@
         <div class="detailsBBox">
             <p class="detailTitle">DESCRIPCIÓN</p>
             <p>{{artistaEscogido.descripcion}}</p>
-            <p class="detailTitle">REPRESENTANTE: <span class="detailContent">{{artistaEscogido.representante}}</span></p>
+            <p class="detailTitle">REPRESENTANTE: <span class="detailContent">{{artistaEscogido.representante}}</span>
+            </p>
             <p class="detailTitle">INTEGRANTES: <span class="detailContent">{{artistaEscogido.integrantes}}</span></p>
             <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.salen}}</span></p>
         </div>
         <div class="detailsDBox">
             <div class="musicItem">
-                <img src="assets/10-perfil artista/video.png" alt="video" (click)="mostrarVideos()"/>
+                <img src="assets/10-perfil artista/video.png" alt="video" (click)="mostrarVideos()" />
             </div>
             <div class="musicItem">
-                <img src="assets/10-perfil artista/musica.png" alt="musica" (click)="mostrarCanciones()"/>
+                <img src="assets/10-perfil artista/musica.png" alt="musica" (click)="mostrarCanciones()" />
+            </div>
+            <div class="musicItem">
+                <img src="assets/adicionales/agrgarfavori.png" alt="favorito" (click)="agregarFavorito()" />
             </div>
         </div>
         <div class="detailsCBox">
             <p style="width: 100%; text-align: center; font-size: 16px;">CONTACTO</p>
             <div class="contactItem">
-                <img src="assets/10-perfil artista/tele.png" alt="telefono"/>
+                <img src="assets/10-perfil artista/tele.png" alt="telefono" />
                 <p class="detailContent">{{artistaEscogido.telefono}}</p>
             </div>
             <div class="contactItem">
-                <img src="assets/10-perfil artista/correo.png" alt="correo"/>
+                <img src="assets/10-perfil artista/correo.png" alt="correo" />
                 <p class="detailContent">{{artistaEscogido.correo}}</p>
             </div>
             <div class="contactItem" *ngIf="artistaEscogido.facebook">
-                <img src="assets/10-perfil artista/facebbok.png" alt="facebook"/>
+                <img src="assets/10-perfil artista/facebbok.png" alt="facebook" />
                 <p class="detailContent">{{artistaEscogido.facebook}}</p>
             </div>
             <div class="contactItem" *ngIf="artistaEscogido.instagram">
-                <img src="assets/10-perfil artista/instagram.png" alt="instagram"/>
+                <img src="assets/10-perfil artista/instagram.png" alt="instagram" />
                 <p class="detailContent">{{artistaEscogido.instagram}}</p>
             </div>
         </div>
@@ -75,8 +80,10 @@
 </div>
 
 <div class="logBox" *ngIf="isVideos">
-    <app-videos style="width: 100%;"  [videos]="artistaEscogido.youtube" (verCanciones)="mostrarCanciones()" (volver)="mostrarPerfil()"></app-videos>
+    <app-videos style="width: 100%;" [videos]="artistaEscogido.youtube" (verCanciones)="mostrarCanciones()"
+        (volver)="mostrarPerfil()"></app-videos>
 </div>
 <div class="logBox" *ngIf="isCanciones">
-    <app-canciones style="width: 100%;" [canciones]="artistaEscogido.soundcloud" (verVideos)="mostrarVideos()" (volver)="mostrarPerfil()"></app-canciones>
+    <app-canciones style="width: 100%;" [canciones]="artistaEscogido.soundcloud" (verVideos)="mostrarVideos()"
+        (volver)="mostrarPerfil()"></app-canciones>
 </div>
