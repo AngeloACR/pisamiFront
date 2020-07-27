@@ -7,18 +7,16 @@
         <div class="selectionBox" *ngIf="!isMusico">
             <div class="optionsBox" [ngClass]="hideOption">
                 <div class="logoBox">
-                    <img class="pageImg" src="assets/logoblanco.png" alt="Logo" />
+                    <img src="assets/logoblanco.png" alt="Logo" />
                 </div>
                 <p><b>Elige una de las dos opciones <br>
                         con la que te quieres registrar</b></p>
                 <div class="iconsBox">
                     <div class="iconBox">
-                        <img style="width: 23vh;" class="iconImg" [src]="musicoImg" alt="Logo"
-                            (click)="firstToggle($event, 'musico')" />
+                        <img class="iconImg" [src]="musicoImg" alt="Logo" (click)="firstToggle($event, 'musico')" />
                     </div>
                     <div class="iconBox">
-                        <img style="width: 23vh;" class="iconImg" [src]="userImg" alt="Logo"
-                            (click)="firstToggle($event, 'usuario')" />
+                        <img class="iconImg" [src]="userImg" alt="Logo" (click)="firstToggle($event, 'usuario')" />
                     </div>
                 </div>
             </div>
@@ -26,7 +24,7 @@
         <div class="selectionBox" *ngIf="isMusico">
             <div class="optionsBox" [ngClass]="hideOption">
                 <div class="logoBox">
-                    <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                    <img src="assets/logoblanco.png" alt="Logo" />
                 </div>
                 <img class="imgTitle" src="assets/5-tipo/tipo.png" alt="tipo" (click)="regisGmail()" />
                 <div class="iconsBox">
@@ -46,7 +44,7 @@
 
         <div class="logBox" [ngClass]="showForm">
             <div class="formBox">
-                <img class="pageImg" src="assets/4-registro/LOGOREGIS.png" alt="Logo" />
+                <img class="pageImg" src="assets/usuario/5- registro usuario/cuenta.png" alt="Logo" />
                 <app-form-usuarios [editMode]="0" [tipo]="tipoSelected" (registerCompleted)="registerCompleted()"
                     *ngIf="tipoSelected"></app-form-usuarios>
                 <!--                 <app-form-artistas [editMode]="0" [tipo]="tipoSelected" *ngIf="tipoSelected && isMusico"></app-form-artistas>
