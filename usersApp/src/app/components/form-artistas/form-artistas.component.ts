@@ -121,7 +121,6 @@ export class FormArtistasComponent implements OnInit {
 
   initForm(editMode) {
     this.registroMusico = new FormGroup({
-      nombre_real: new FormControl("", Validators.required),
       nombre_artistico: new FormControl("", Validators.required),
       dispuesto_salir: new FormControl("", Validators.required),
       ciudad_origen: new FormControl("", Validators.required),
@@ -142,13 +141,12 @@ export class FormArtistasComponent implements OnInit {
       youFrames: this.youFrames,
     });
     if(editMode){
-      this._userService.perfilId('121').subscribe(
+      this._userService.perfilId(this._userService.getIdentity().userId).subscribe(
         response => {
           if(response.status == "success"){
            this.status = response.status;
            console.log(response.perfiles[0]);
            this.registroMusico.controls['num_integrantes'].setValue(response.perfiles[0].num_integrantes);
-      this.registroMusico.controls['nombre_real'].setValue(response.perfiles[0].nombre_real);
       this.registroMusico.controls['nombre_artistico'].setValue(response.perfiles[0].nombre_artistico);
       this.registroMusico.controls['dispuesto_salir'].setValue(response.perfiles[0].dispuesto_salir);
       this.registroMusico.controls['ciudad_origen'].setValue(response.perfiles[0].ciudad_origen);
@@ -316,7 +314,6 @@ export class FormArtistasComponent implements OnInit {
       let dataAux = this.registroMusico.value;
       
       let dataValues = {
-        nombre_real: dataAux.nombre_real,
         nombre_artistico: dataAux.nombre_artistico,
         num_integrantes: dataAux.num_integrantes,
         ciudad_origen: dataAux.ciudad_origen,
@@ -327,9 +324,6 @@ export class FormArtistasComponent implements OnInit {
         correo: dataAux.correo,
         descripcion: dataAux.descripcion,
         genero: dataAux.genero,
-        estado_perfil: dataAux.estado_perfil,
-        tipo: dataAux.tipo,
-
 
       };
       console.log(dataAux);
@@ -394,9 +388,7 @@ export class FormArtistasComponent implements OnInit {
 
   catchUserErrors() {
 
-      let aux1 = this.fMusico.nombre_real.errors
-        ? this.fMusico.nombre_real.errors.required
-        : false;
+
       let aux2 = this.fMusico.nombre_artistico.errors
         ? this.fMusico.nombre_artistico.errors.required
         : false;

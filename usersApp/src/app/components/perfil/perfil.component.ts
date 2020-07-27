@@ -65,12 +65,6 @@ export class PerfilComponent implements OnInit {
         //AQUI HAY QUE DEFINIR EL TIPO DE USUARIO
         let tipoUsuario = this.identity.tipo_usuario;
         if(tipoUsuario == 2){
-          this.selectedImg = '';
-        let primerInicio = await this.auth.primerInicio();
-
-        //let tipoUsuario = await this.auth.getType();
-        let tipoUsuario = 1;
-        if(tipoUsuario){
           this.selectedImg = 'assets/usuario/14- mi cuenta/perfil.png';
           this.isMusico = false;
           this.isUser = true;
@@ -83,6 +77,8 @@ export class PerfilComponent implements OnInit {
           }
           this.selectedItem = userValues;
         }else {
+          
+        let primerInicio = await this.auth.primerInicio();
           this.selectedImg = '';
           this.isMusico = true;
           this.isUser = false;
@@ -108,5 +104,5 @@ export class PerfilComponent implements OnInit {
 
   }
 
-}
+
 }

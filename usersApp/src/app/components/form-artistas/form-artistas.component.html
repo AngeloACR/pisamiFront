@@ -1,12 +1,6 @@
 <form [formGroup]="registroMusico">
     <div class="formContent" *ngIf="!isInfo">
         <div class="formInput">
-            <label for="">Nombre real</label>
-            <input class="lInput" type="text" formControlName="nombre_real" name="" />
-        </div>
-        <div class="errorTag" *ngIf="fMusico.nombre_real.errors?.required && (fMusico.nombre_real.touched || fMusico.nombre_real.dirty)">Este campo es requerido</div>
-
-        <div class="formInput">
             <label for="">Nombre artístico</label>
             <input class="lInput" type="text" formControlName="nombre_artistico" name="" />
         </div>
@@ -27,8 +21,8 @@
         <div style="border: none !important;" class="formInput">
             <label for="">¿Esta dispuesto a salir de la ciudad?</label>
             <select name="" formControlName="dispuesto_salir">
-                <option selected="true">Sí</option>
-                <option>No</option>
+                <option selected="true" value="1">Sí</option>
+                <option value="0">No</option>
             </select>
         </div>
         <div class="errorTag" *ngIf="fMusico.dispuesto_salir.errors?.required && (fMusico.dispuesto_salir.touched || fMusico.dispuesto_salir.dirty)">Este campo es requerido</div>
@@ -77,7 +71,7 @@
             <div class="formInput">
                 <label for="">Estilos de música</label>
                 <select class="lInput" name="genero" formControlName="genero">
-                <option *ngFor="let genero of generos">{{genero}}</option>
+                <option *ngFor="let genero of generos" value="{{genero}}">{{genero}}</option>
                 </select>
             </div>
             <div class="formImagenes">

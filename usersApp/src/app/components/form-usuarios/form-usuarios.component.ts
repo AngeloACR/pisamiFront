@@ -104,13 +104,19 @@ tipo: any;
       console.log("Registrando");
       let endpoint = '/usuario'
       let dataAux = this.registroUser.value;
+      if(this.tipo == "user"){
+        this.tipo = 2;
+      }
+      else{
+        this.tipo = 1;
+      }
       let dataValues = {
         nombre: dataAux.nombre,
         apellido: dataAux.apellido,
         telefono: dataAux.tlf,
         correo: dataAux.correo,
         contrasena: dataAux.password,
-        tipo_usuario: 1,
+        tipo_usuario: this.tipo,
       };
       this._userService.register(dataValues).subscribe(
          response => {
@@ -147,13 +153,19 @@ tipo: any;
       console.log("Registrando");
       let endpoint = '/usuario'
       let dataAux = this.registroUser.value;
+      if(this.tipo == "user"){
+        this.tipo = 2;
+      }
+      else{
+        this.tipo = 1;
+      }
       let dataValues = {
-        nombredeusuario: dataAux.nombre,
-        apellidodeusuario: dataAux.apellido,
-        tlf: dataAux.tlf,
+        nombre: dataAux.nombre,
+        apellido: dataAux.apellido,
+        telefono: dataAux.tlf,
         correo: dataAux.correo,
-        password: dataAux.password,
-        tipoUsuario: this.tipo,
+        contrasena: dataAux.password,
+        tipo_usuario: this.tipo,
       };
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
