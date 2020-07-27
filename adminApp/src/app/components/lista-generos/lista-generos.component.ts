@@ -9,11 +9,13 @@ import {
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { GenreService } from 'src/app/services/genres.service';
 
 @Component({
   selector: 'app-lista-generos',
   templateUrl: './lista-generos.component.html',
   styleUrls: ['./lista-generos.component.scss'],
+  providers: [GenreService],
 })
 export class ListaGenerosComponent implements OnInit {
 
@@ -21,31 +23,20 @@ export class ListaGenerosComponent implements OnInit {
   fields: any;
   buscarGenero: FormGroup;
   listData: any;
+  status;
 
   constructor(
     private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
+    private _genreService: GenreService,
   ) { }
 
   ngOnInit() {
     this.generos = [{
-      id: '29384',
-      nombre: 'Cumbia',
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      },{
-      id: '29385',
-      nombre: 'Bachata', 
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      }, {
-      id: '29386',
+      id: '41',
       nombre: 'Vallenato', 
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      }, {
-      id: '29387',
-      nombre: 'Rock',
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      }
+      },
     ];
 
     /* let endpoint = `/generos`    
@@ -71,6 +62,22 @@ export class ListaGenerosComponent implements OnInit {
       this.listData.push(aux)
     });
     this.initForm();
+    this._genreService.listGenre().subscribe(
+      response => {
+        if(response.status != 'error'){
+          console.log(response.generos);
+          this.status = 'success';
+        }
+        else{
+          this.status = 'error';
+
+        }
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error)
+      }
+    );
   }
 
   initForm() {
@@ -112,6 +119,7 @@ export class ListaGenerosComponent implements OnInit {
 
   eliminarGenero(event){
         let id = event.id;
+        console.log(event);
     let endpoint = `/perfiles/delete/${id}`;
         this.dbHandler.deleteSomething(endpoint).then((data: any) => {
         // data is already a JSON object

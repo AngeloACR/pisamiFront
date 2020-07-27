@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
             this.identity = response;
             localStorage.setItem('token',this.token);
             localStorage.setItem('identity', JSON.stringify(this.identity));
+            this.router.navigate(['perfil/0']);
+
           }
           else{
             this.status = 'error';

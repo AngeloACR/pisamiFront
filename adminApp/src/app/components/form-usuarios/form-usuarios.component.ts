@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
+import { UserService } from '../../services/user.service';
 import {
   FormBuilder,
   FormGroup,
@@ -18,6 +19,7 @@ import { ActionSheetController } from "@ionic/angular";
   selector: 'app-form-usuarios',
   templateUrl: './form-usuarios.component.html',
   styleUrls: ['./form-usuarios.component.scss'],
+  providers : [UserService]
 })
 export class FormUsuariosComponent implements OnInit {
   
@@ -28,6 +30,7 @@ export class FormUsuariosComponent implements OnInit {
   user: any;
 
   id: string;
+  status;
 
   registroUser: FormGroup;
 
@@ -36,6 +39,7 @@ export class FormUsuariosComponent implements OnInit {
     private dbHandler: DbHandlerService,
     private fileHandler: FileHandlerService,
     public actionSheetController: ActionSheetController,
+    private _userService : UserService,
   ) { }
 
   ngOnInit() {
@@ -47,9 +51,9 @@ export class FormUsuariosComponent implements OnInit {
       {
         nombre: new FormControl("", Validators.required),
         apellido: new FormControl("", Validators.required),
-        tlf: new FormControl("", Validators.required),
+        telefono: new FormControl("", Validators.required),
         correo: new FormControl("", [Validators.required, Validators.email]),
-        password: new FormControl("", [
+        contrasena: new FormControl("", [
           Validators.required,
           Validators.minLength(6)
         ]),
@@ -61,10 +65,10 @@ export class FormUsuariosComponent implements OnInit {
     if(editMode){
     this.registroUser.controls['nombre'].setValue(this.user.nombre)
     this.registroUser.controls['apellido'].setValue(this.user.apellido)
-    this.registroUser.controls['tlf'].setValue(this.user.telefono)
+    this.registroUser.controls['telefono'].setValue(this.user.telefono)
     this.registroUser.controls['correo'].setValue(this.user.correo)
     this.registroUser.controls['correo'].disable()
-    this.registroUser.controls['password'].setValue(this.user.password)
+    this.registroUser.controls['contrasena'].setValue(this.user.contrasena)
 
     }
   }
@@ -82,12 +86,27 @@ export class FormUsuariosComponent implements OnInit {
       let endpoint = '/usuario'
       let dataAux = this.registroUser.value;
       let dataValues = {
-        nombredeusuario: dataAux.nombre,
-        apellidodeusuario: dataAux.apellido,
-        tlf: dataAux.tlf,
+        nombre: dataAux.nombre,
+        apellido: dataAux.apellido,
+        telefono: dataAux.telefono,
         correo: dataAux.correo,
-        password: dataAux.password,
+        contrasena: dataAux.contrasena,
+        tipo_usuario: 0,
       };
+      this._userService.register(dataValues).subscribe(
+         response => {
+           if(response.status == "success"){
+            this.status = response.status;
+           }
+           else{
+            this.status = 'error';
+           }
+         },
+         error => {
+          this.status = 'error';
+          console.log(<any>error);
+         }
+      );
       this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -109,11 +128,11 @@ export class FormUsuariosComponent implements OnInit {
       let endpoint = '/usuario'
       let dataAux = this.registroUser.value;
       let dataValues = {
-        nombredeusuario: dataAux.nombre,
-        apellidodeusuario: dataAux.apellido,
-        tlf: dataAux.tlf,
+        nombre: dataAux.nombre,
+        apellido: dataAux.apellido,
+        telefono: dataAux.telefono,
         correo: dataAux.correo,
-        password: dataAux.password,
+        contrasena: dataAux.contrasena,
       };
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
@@ -154,12 +173,12 @@ export class FormUsuariosComponent implements OnInit {
       let aux3 = this.fUser.apellido.errors
         ? this.fUser.apellido.errors.required
         : false;
-      let aux4 = this.fUser.tlf.errors ? this.fUser.tlf.errors.required : false;
-      let aux5 = this.fUser.password.errors
-        ? this.fUser.password.errors.required
+      let aux4 = this.fUser.telefono.errors ? this.fUser.telefono.errors.required : false;
+      let aux5 = this.fUser.contrasena.errors
+        ? this.fUser.contrasena.errors.required
         : false;
-      let aux6 = this.fUser.password.errors
-        ? this.fUser.password.errors.minlength
+      let aux6 = this.fUser.contrasena.errors
+        ? this.fUser.contrasena.errors.minlength
         : false;
       let error = aux1 || aux2 || aux3 || aux4 || aux5 || aux6;
       return error;

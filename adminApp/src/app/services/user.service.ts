@@ -60,4 +60,9 @@ export class UserService{
 
     }
 
+    listaUsuarios(): Observable<any>{
+        let headers = new HttpHeaders().set('Authorization','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMiwiZW1haWwiOiJ1c3VhcmlvcHJ1ZWJhMkBob3RtYWlsLmNvbSIsIm5hbWUiOiJ1c3VhcmlvIiwiaWF0IjoxNTk0NjUyNjQ4LCJleHAiOjE1OTUyNTc0NDh9._XmlwjeASZz55VHzkIfUqukMr72atKu61mmt5exFOuc');
+        return this._http.get('http://localhost:8000/api/users',{headers : headers});
+    } 
+
 }

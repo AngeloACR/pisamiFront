@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 //import { DbHandlerService } from '../../services/db-handler.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,14 +10,18 @@ import { ActionSheetController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers : [UserService],
 })
 export class LoginComponent implements OnInit {
 
   login: FormGroup;
-
+  status;
+  token;
+  identity;
   constructor(
     private auth: AuthService,
+    private _userService : UserService,
     //    private dbHandler: DbHandlerService,
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
@@ -25,8 +30,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.login = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      correo: new FormControl('', Validators.required),
+      contrasena: new FormControl('', Validators.required),
     });
 
   }
@@ -36,12 +41,30 @@ export class LoginComponent implements OnInit {
       this.toggleError();
     } else{    
     var data = this.login.value;
-    this.auth.login(data).subscribe((logData: any) => {
-      if (logData.auth) {
-        this.auth.storeData(logData);
-        //        this.actualizar();
+    this._userService.signup(data).subscribe(
+      response => {
+        //token
+        if(response.status != 'error' && response.tipo_usuario == 0){
+          console.log(response);
+          this.status = 'success';
+          this.token = response.token;
+          this.identity = response;
+          localStorage.setItem('token',this.token);
+          localStorage.setItem('identity', JSON.stringify(this.identity));
+          this.router.navigate(['admin']);
+
+        }
+        else{
+          this.status = 'error';
+
+        }
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error)
       }
-    });
+    );
+    
     }
   }
 
@@ -51,8 +74,8 @@ export class LoginComponent implements OnInit {
 
   flush() {
     this.login.setValue({
-      username: '',
-      password: ''
+      correo: '',
+      contrasena: ''
     });
   }
   registro() {
@@ -78,8 +101,8 @@ export class LoginComponent implements OnInit {
     await actionSheet.present();
   }
     catchUserErrors(){
-        let aux1 = this.fLogin.username.errors ? this.fLogin.username.errors.required : false;
-        let aux2 = this.fLogin.password.errors ? this.fLogin.password.errors.required : false;
+        let aux1 = this.fLogin.correo.errors ? this.fLogin.correo.errors.required : false;
+        let aux2 = this.fLogin.contrasena.errors ? this.fLogin.contrasena.errors.required : false;
         let error = aux1 || aux2;
         return error
       

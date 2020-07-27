@@ -15,10 +15,14 @@ import {
   Validators
 } from "@angular/forms";
 import { forkJoin } from "rxjs";
+import { UserService } from "../../services/user.service";
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
+  providers: [UserService],
+
 })
 export class PerfilComponent implements OnInit {
   id: string;
@@ -26,6 +30,7 @@ export class PerfilComponent implements OnInit {
   selectedItem: any;
   isUser: boolean;
   isMusico: boolean;
+  public identity;
   
 
   selectedImg: String;
@@ -34,8 +39,10 @@ export class PerfilComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private platform: Platform
+    private platform: Platform,
+    private _userService: UserService,
   ) {
+    this.identity = this._userService.getIdentity();
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
     });
@@ -53,17 +60,17 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
 
         //AQUI HAY QUE DEFINIR EL TIPO DE USUARIO
-        let tipoUsuario = 1;
-        if(tipoUsuario){
+        let tipoUsuario = this.identity.tipo_usuario;
+        if(tipoUsuario == 2){
           this.selectedImg = '';
           this.isMusico = false;
           this.isUser = true;
 
           let userValues = {
-            nombre: 'Angelo',
-            apellido: 'Espinoza', 
-            tlf: '+689256542',
-            correo: 'angelo@angelo',
+            nombre: this.identity.nombre,
+            apellido: this.identity.apellido, 
+            tlf: this.identity.telefono,
+            correo: this.identity.correo,
           }
           this.selectedItem = userValues;
         }else {

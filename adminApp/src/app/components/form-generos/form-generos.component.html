@@ -1,11 +1,6 @@
 <form [formGroup]="registroGenero">
   <div class="formContent">
     <div class="formInput">
-      <label for="">Id</label>
-      <input class="lInput" type="text" formControlName="id" name="" />
-    </div>
-    <div class="errorTag" *ngIf="fGenero.id.errors?.required && (fGenero.id.touched || fGenero.id.dirty)">Este campo es requerido</div>
-    <div class="formInput">
       <label class="nameLabel" for="">Nombre del Género Musical</label>
       <input
         class="lInput"
