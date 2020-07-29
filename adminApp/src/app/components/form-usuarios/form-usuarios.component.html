@@ -12,9 +12,9 @@
         <div class="errorTag" *ngIf="fUser.apellido.errors?.required && (fUser.apellido.touched || fUser.apellido.dirty)">Este campo es requerido</div>
         <div class="formInput">
             <label for="">Teléfono</label>
-            <input class="lInput" type="text" formControlName="tlf" name="tlf" />
+            <input class="lInput" type="text" formControlName="telefono" name="telefono" />
         </div>
-        <div class="errorTag" *ngIf="fUser.tlf.errors?.required && (fUser.tlf.touched || fUser.tlf.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fUser.telefono.errors?.required && (fUser.telefono.touched || fUser.telefono.dirty)">Este campo es requerido</div>
         <div class="formInput">
             <label for="">Correo</label>
             <input class="lInput" type="text" formControlName="correo" name="correo" />
@@ -23,10 +23,10 @@
         <div class="errorTag" *ngIf="fUser.correo.errors?.email && (fUser.correo.touched || fUser.correo.dirty)">Por favor ingrese un correo válido</div>
         <div class="formInput">
             <label for="">Contraseña</label>
-            <input class="lInput" type="password" formControlName="password" name="password" />
+            <input class="lInput" type="password" formControlName="contrasena" name="contrasena" />
         </div>
-        <div class="errorTag" *ngIf="fUser.password.errors?.required && (fUser.password.touched || fUser.password.dirty)">Este campo es requerido</div>
-        <div class="errorTag" *ngIf="fUser.password.errors?.minlenght && (fUser.password.touched || fUser.password.dirty)">La contraseña debe contener al menos 6 carácteres</div>
+        <div class="errorTag" *ngIf="fUser.contrasena.errors?.required && (fUser.contrasena.touched || fUser.contrasena.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fUser.contrasena.errors?.minlenght && (fUser.contrasena.touched || fUser.contrasena.dirty)">La contraseña debe contener al menos 6 carácteres</div>
 
         <button *ngIf="!editMode" type="button" (click)="endRegistro()" class="formButton">
             <p>Crear</p>

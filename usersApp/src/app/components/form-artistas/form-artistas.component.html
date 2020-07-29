@@ -1,47 +1,46 @@
 <form [formGroup]="registroMusico">
     <div class="formContent" *ngIf="!isInfo">
-
         <div class="formInput">
             <label for="">Nombre artístico</label>
-            <input class="lInput" type="text" formControlName="nombreArtistico" name="" />
+            <input class="lInput" type="text" formControlName="nombre_artistico" name="" />
         </div>
-        <div class="errorTag" *ngIf="fMusico.nombreArtistico.errors?.required && (fMusico.nombreArtistico.touched || fMusico.nombreArtistico.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.nombre_artistico.errors?.required && (fMusico.nombre_artistico.touched || fMusico.nombre_artistico.dirty)">Este campo es requerido</div>
 
         <div class="formInput" *ngIf="isOrquesta">
             <label for="">Número de integrantes</label>
-            <input class="lInput" type="number" formControlName="numeroIntegrantes" name="" />
+            <input class="lInput" type="number" formControlName="num_integrantes" name="" />
         </div>
-        <div class="errorTag" *ngIf="fMusico.numeroIntegrantes.errors?.required && (fMusico.numeroIntegrantes.touched || fMusico.numeroIntegrantes.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.num_integrantes.errors?.required && (fMusico.num_integrantes.touched || fMusico.num_integrantes.dirty)">Este campo es requerido</div>
 
         <div class="formInput">
             <label for="">Ciudad de origen</label>
-            <input class="lInput" type="text" formControlName="ciudadOrigen" name="" />
+            <input class="lInput" type="text" formControlName="ciudad_origen" name="" />
         </div>
-        <div class="errorTag" *ngIf="fMusico.ciudadOrigen.errors?.required && (fMusico.ciudadOrigen.touched || fMusico.ciudadOrigen.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.ciudad_origen.errors?.required && (fMusico.ciudad_origen.touched || fMusico.ciudad_origen.dirty)">Este campo es requerido</div>
 
         <div style="border: none !important;" class="formInput">
             <label for="">¿Esta dispuesto a salir de la ciudad?</label>
-            <select name="" formControlName="salir">
-                <option selected="true">Sí</option>
-                <option>No</option>
+            <select name="" formControlName="dispuesto_salir">
+                <option selected="true" value="1">Sí</option>
+                <option value="0">No</option>
             </select>
         </div>
-        <div class="errorTag" *ngIf="fMusico.salir.errors?.required && (fMusico.salir.touched || fMusico.salir.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.dispuesto_salir.errors?.required && (fMusico.dispuesto_salir.touched || fMusico.dispuesto_salir.dirty)">Este campo es requerido</div>
 
         <div style="border: none !important;" class="formInput">
             <label for="">¿Tiene representante?</label>
-            <select name="" formControlName="tieneRepresentante">
-                <option selected="true">Sí</option>
-                <option>No</option>
+            <select name="" formControlName="representante">
+                <option selected="true" value="1">Sí</option>
+                <option value="0">No</option>
             </select>
         </div>
-        <div class="errorTag" *ngIf="fMusico.tieneRepresentante.errors?.required && (fMusico.tieneRepresentante.touched || fMusico.tieneRepresentante.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.representante.errors?.required && (fMusico.representante.touched || fMusico.representante.dirty)">Este campo es requerido</div>
 
         <div class="formInput">
             <label for="">Nombre Representante</label>
-            <input class="lInput" type="text" formControlName="nombreRepresentante" name="" />
+            <input class="lInput" type="text" formControlName="nombre_representante" name="" />
         </div>
-        <div class="errorTag" *ngIf="fMusico.nombreRepresentante.errors?.required && (fMusico.nombreRepresentante.touched || fMusico.nombreRepresentante.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.nombre_representante.errors?.required && (fMusico.nombre_representante.touched || fMusico.nombre_representante.dirty)">Este campo es requerido</div>
 
         <div class="formDescripcion">
             <label for="">Descripción</label>
@@ -59,9 +58,9 @@
         </div>
         <div class="formInput">
             <label for="">Página Web</label>
-            <input class="lInput" type="text" formControlName="paginaWeb" name="" />
+            <input class="lInput" type="text" formControlName="pagina_web" name="" />
         </div>
-        <div class="errorTag" *ngIf="fMusico.paginaWeb.errors?.required && (fMusico.paginaWeb.touched || fMusico.paginaWeb.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fMusico.pagina_web.errors?.required && (fMusico.pagina_web.touched || fMusico.pagina_web.dirty)">Este campo es requerido</div>
 
         <button type="button" class="formButton" (click)="toggleInfo()">
             <p>Siguiente</p>
@@ -71,8 +70,8 @@
         <div class="formContent">
             <div class="formInput">
                 <label for="">Estilos de música</label>
-                <select class="lInput" name="" formControlName="generos">
-                <option *ngFor="let genero of generos">{{genero}}</option>
+                <select class="lInput" name="genero" formControlName="genero">
+                <option *ngFor="let genero of generos" value="{{genero}}">{{genero}}</option>
                 </select>
             </div>
             <div class="formImagenes">

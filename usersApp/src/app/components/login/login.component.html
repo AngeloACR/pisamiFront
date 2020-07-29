@@ -15,20 +15,16 @@
                 <form [formGroup]="login" (ngSubmit)="logUser()">
                     <div class="formContent">
                         <div class="formInput">
-                            <!--                             <label for="">Usuario</label>
- --> <input class="lInput" type="text" placeholder="Usuario" formControlName="username" name="username" />
+<!--                             <label for="">Usuario</label>
+ -->                            <input class="lInput" type="text" placeholder="Usuario" formControlName="correo" name="correo" />
                         </div>
-                        <div class="errorTag"
-                            *ngIf="fLogin.username.errors?.required && (fLogin.username.touched || fLogin.username.dirty)">
-                            Este campo es requerido</div>
+                        <div class="errorTag" *ngIf="fLogin.correo.errors?.required && (fLogin.correo.touched || fLogin.correo.dirty)">Este campo es requerido</div>
 
                         <div class="formInput">
-                            <!--                             <label for="">Contraseña</label>
- --> <input class="lInput" type="password" placeholder="Contraseña" formControlName="password" name="password" />
+<!--                             <label for="">Contraseña</label>
+ -->                            <input class="lInput" type="password" placeholder="Contraseña" formControlName="contrasena" name="contrasena" />
                         </div>
-                        <div class="errorTag"
-                            *ngIf="fLogin.password.errors?.required && (fLogin.password.touched || fLogin.password.dirty)">
-                            Este campo es requerido</div>
+                        <div class="errorTag" *ngIf="fLogin.contrasena.errors?.required && (fLogin.contrasena.touched || fLogin.contrasena.dirty)">Este campo es requerido</div>
 
                         <div class="buttonBox">
                             <button type="submit" class="formButton">

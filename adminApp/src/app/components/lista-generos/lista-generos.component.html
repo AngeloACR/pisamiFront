@@ -24,7 +24,41 @@
                     </button>
                     </div>
                 </form>
-                <app-lista [fields]="fields" [values]="listData" (habilitar)="habilitarGenero($event)" (eliminar)="eliminarGenero($event)"  (editar)="editarGenero($event)" style="width: 100%;"></app-lista>
+                <div class="listBox">
+                    <div class="titleRow">
+                      
+                      <p>ID</p>
+                      <p>NOMBRE</p>
+                      <p style="width: 250px;">ACCION</p>
+                    </div>
+                    <div class="contentRow" *ngFor="let genero of generos;let i = index">
+                      <div>
+                        <p>{{genero.id}}</p>
+                      </div>
+                      <div>
+                        <p>{{genero.nombre}}</p>
+                      </div>
+                      <div style="width: 250px;"  class="actionBox">
+                        <button
+                          style="background-color: orange"
+                          type="button"
+                          class="actionButton"
+                          (click)="editarElemento(genero.id)"
+                        >
+                          <p>EDITAR</p>
+                        </button>
+                        <button
+                          style="background-color: red"
+                          type="button"
+                          class="actionButton"
+                          (click)="eliminarGenero(genero.id)"
+                        >
+                          <p>Eliminar</p>
+                        </button>
+                      </div>
+                      
+                    </div>
+                  </div>
             </div>
         </div>
     </div>

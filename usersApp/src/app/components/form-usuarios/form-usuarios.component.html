@@ -1,7 +1,12 @@
 <p *ngIf="editMode" class="titleText">
     Por favor llene el siguiente formulario:
 </p>
-
+<div class="alert alert-success" *ngIf="status == 'success'">
+    El registro se ha completado correctamente <a [routerLink]="['/']">Iniciar Sesion</a> 
+</div> 
+<div class="alert alert-danger" *ngIf="status == 'error'">
+    Error vuelva a completar el registro  
+</div> 
 <form [formGroup]="registroUser">
     <div class="formContent">
         <div class="formInput">
@@ -16,9 +21,9 @@
         <div class="errorTag" *ngIf="fUser.apellido.errors?.required && (fUser.apellido.touched || fUser.apellido.dirty)">Este campo es requerido</div>
         <div class="formInput">
             <label for="">Teléfono</label>
-            <input class="lInput" type="text" formControlName="tlf" name="tlf" />
+            <input class="lInput" type="text" formControlName="telefono" name="tlf" />
         </div>
-        <div class="errorTag" *ngIf="fUser.tlf.errors?.required && (fUser.tlf.touched || fUser.tlf.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fUser.telefono.errors?.required && (fUser.telefono.touched || fUser.telefono.dirty)">Este campo es requerido</div>
         <div class="formInput">
             <label for="">Correo</label>
             <input class="lInput" type="text" formControlName="correo" name="correo" />

@@ -4,11 +4,16 @@ import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms
 import { forkJoin } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
 import { DbHandlerService } from "../../services/db-handler.service";
+import {NotificacionService} from "../../services/notificacion.service";
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-form-notificaciones',
   templateUrl: './form-notificaciones.component.html',
   styleUrls: ['./form-notificaciones.component.scss'],
+  providers: [NotificacionService]
 })
 export class FormNotificacionesComponent implements OnInit {
   @Input()
@@ -17,29 +22,44 @@ export class FormNotificacionesComponent implements OnInit {
   @Input()
   notificacion: any;
 
+  notificacionId;
+  status;
   registroNotificacion: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
-    public dbHandler: DbHandlerService   
+    public dbHandler: DbHandlerService,
+    public _notificacionService: NotificacionService,
+    public router : Router,
   ) {
    }
 
   ngOnInit() {
     this.initForm(this.editMode);
+    if(this.editMode == 1){
+      if(JSON.parse(localStorage.getItem('notificacionEdit'))){
+        this.notificacionId = JSON.parse(localStorage.getItem('notificacionEdit'));
+        localStorage.removeItem("notificacionEdit");
+        this._notificacionService.notificacionById(this.notificacionId).subscribe(data =>{
+          console.log(data);
+          let notificacion = data['notificacion'];
+          this.registroNotificacion.controls['nombre'].setValue(notificacion.nombre);
+          this.registroNotificacion.controls['mensaje'].setValue(notificacion.mensaje)       
+        });
+      }
+    }
   }
 
 
-  initForm(editMode) {
+  initForm(editMode, idNotificacion?) {
     this.registroNotificacion = new FormGroup({
       nombre: new FormControl('', Validators.required),
-      descripcion: new FormControl('', Validators.required),
+      mensaje: new FormControl('', Validators.required),
     });
 
-    if(editMode){
-      this.registroNotificacion.controls['nombre'].setValue(this.notificacion.nombre);
-      this.registroNotificacion.controls['descripcion'].setValue(this.notificacion.descripcion);
+    if(idNotificacion){
+      localStorage.setItem('notificacionEdit',idNotificacion);
     }
   }
 
@@ -57,7 +77,23 @@ export class FormNotificacionesComponent implements OnInit {
             let endpoint = '/notificaciones'
       let dataAux = this.registroNotificacion.value;
       let dataValues = {
+        nombre: dataAux.nombre,
+        mensaje: dataAux.mensaje,
       };
+      this._notificacionService.addNotificacion(dataValues).subscribe(
+        response => {
+          if(response.status == "success"){
+           this.status = response.status;
+          }
+          else{
+           this.status = 'error';
+          }
+        },
+        error => {
+         this.status = 'error';
+         console.log(<any>error);
+        }
+     );
       this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -79,7 +115,25 @@ export class FormNotificacionesComponent implements OnInit {
       let endpoint = '/notificaciones'
       let dataAux = this.registroNotificacion.value;
       let dataValues = {
+        nombre: dataAux.nombre,
+        mensaje: dataAux.mensaje,
       };
+      this._notificacionService.updateNotificacion(this.notificacionId,dataValues).subscribe(
+        response => {
+          if(response.status != 'error'){
+            this.status = 'success';
+            this.router.navigate(['listanotificaciones']);
+          }
+          else{
+            this.status = 'error';
+  
+          }
+        },
+        error => {
+          this.status = 'error';
+          console.log(<any>error)
+        }
+      );
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -113,7 +167,7 @@ export class FormNotificacionesComponent implements OnInit {
 
     catchUserErrors(){
         let aux1 = this.fNotificacion.nombre.errors ? this.fNotificacion.nombre.errors.required : false;
-        let aux2 = this.fNotificacion.descripcion.errors ? this.fNotificacion.descripcion.errors.required : false;
+        let aux2 = this.fNotificacion.mensaje.errors ? this.fNotificacion.mensaje.errors.required : false;
         let error = aux1 || aux2;
         return error
       

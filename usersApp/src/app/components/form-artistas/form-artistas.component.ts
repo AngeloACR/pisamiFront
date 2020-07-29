@@ -7,6 +7,8 @@ import {
   NavigationEnd
 } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
+import { UserService } from "../../services/user.service";
+import {LinkService} from "../../services/link.service";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { FileHandlerService } from "../../services/file-handler.service";
 import { FileValidator } from "../../directives/fileValidator";
@@ -19,11 +21,14 @@ import {
 } from "@angular/forms";
 import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
+import * as crypto from 'crypto-js'; 
+
 
 @Component({
   selector: 'app-form-artistas',
   templateUrl: './form-artistas.component.html',
   styleUrls: ['./form-artistas.component.scss'],
+  providers: [UserService,LinkService],
 })
 export class FormArtistasComponent implements OnInit {
     
@@ -38,7 +43,8 @@ export class FormArtistasComponent implements OnInit {
 
 
   id: string;
-  generos = ["Cumbia", "Bachata", "Vallenato", "Rock"];
+  generos = [1, 2, 3, 4];
+  status;
 
   registroMusico: FormGroup;
 
@@ -63,6 +69,7 @@ export class FormArtistasComponent implements OnInit {
 
   soundFrames = new FormArray([]);
   youFrames = new FormArray([]);
+  IdPerfil: string;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -71,6 +78,8 @@ export class FormArtistasComponent implements OnInit {
     private dbHandler: DbHandlerService,
     private fileHanlder: FileHandlerService,
     public actionSheetController: ActionSheetController,
+    private _userService : UserService,
+    private _linkService : LinkService,
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
@@ -117,17 +126,19 @@ export class FormArtistasComponent implements OnInit {
 
   initForm(editMode) {
     this.registroMusico = new FormGroup({
-      nombreArtistico: new FormControl("", Validators.required),
-      salir: new FormControl("", Validators.required),
-      ciudadOrigen: new FormControl("", Validators.required),
-      tieneRepresentante: new FormControl("", Validators.required),
-      nombreRepresentante: new FormControl("", Validators.required),
+      nombre_artistico: new FormControl("", Validators.required),
+      dispuesto_salir: new FormControl("", Validators.required),
+      ciudad_origen: new FormControl("", Validators.required),
+      representante: new FormControl("", Validators.required),
+      nombre_representante: new FormControl("", Validators.required),
+      telefono: new FormControl("", Validators.required),
+      correo: new FormControl("", [Validators.required, Validators.email]),
       descripcion: new FormControl("", Validators.required),
       instagram: new FormControl("", Validators.required),
       facebook: new FormControl(""),
-      paginaWeb: new FormControl(""),
-      numeroIntegrantes: new FormControl("", Validators.required),
-      generos: new FormControl("", Validators.required),
+      pagina_web: new FormControl(""),
+      num_integrantes: new FormControl("", Validators.required),
+      genero: new FormControl("", Validators.required),
       imagen1: new FormControl("", [FileValidator.validate]),
       imagen2: new FormControl("", [FileValidator.validate]),
       imagen3: new FormControl("", [FileValidator.validate]),
@@ -135,49 +146,74 @@ export class FormArtistasComponent implements OnInit {
       youFrames: this.youFrames,
     });
     if(editMode){
-      this.registroMusico.controls['numeroIntegrantes'].setValue(this.user.numeroIntegrantes);
-      this.registroMusico.controls['nombreArtistico'].setValue(this.user.nombreArtistico);
-      this.registroMusico.controls['salir'].setValue(this.user.salir);
-      this.registroMusico.controls['ciudadOrigen'].setValue(this.user.ciudadOrigen);
-      this.registroMusico.controls['tieneRepresentante'].setValue(this.user.tieneRepresentante);
-      this.registroMusico.controls['nombreRepresentante'].setValue(this.user.nombreRepresentante);
-      this.registroMusico.controls['generos'].setValue(this.user.generos);
-      this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
-      this.registroMusico.controls['instagram'].setValue(this.user.instagram);
-      this.registroMusico.controls['facebook'].setValue(this.user.facebook);
-      this.registroMusico.controls['paginaWeb'].setValue(this.user.paginaWeb);
-        let soundAuxs = this.user.soundFrames;
-        soundAuxs.forEach(soundAux => {
-          this.addSoundcloud()
-        });
+      this._userService.perfilId(this._userService.getIdentity().userId).subscribe(
+        response => {
+          if(response.status == "success"){
+           this.status = response.status;
+           console.log(response.perfiles[0]);
+            localStorage.setItem('idPerfil',response.perfiles[0].id);
+            this.registroMusico.controls['num_integrantes'].setValue(response.perfiles[0].num_integrantes);
+            this.registroMusico.controls['nombre_artistico'].setValue(response.perfiles[0].nombre_artistico);
+            this.registroMusico.controls['dispuesto_salir'].setValue(response.perfiles[0].dispuesto_salir);
+            this.registroMusico.controls['ciudad_origen'].setValue(response.perfiles[0].ciudad_origen);
+            this.registroMusico.controls['representante'].setValue(response.perfiles[0].representante);
+            this.registroMusico.controls['nombre_representante'].setValue(response.perfiles[0].nombre_representante);
+            this.registroMusico.controls['telefono'].setValue(response.perfiles[0].telefono);
+            this.registroMusico.controls['correo'].setValue(response.perfiles[0].correo);
+            this.registroMusico.controls['descripcion'].setValue(response.perfiles[0].descripcion);
+            this.registroMusico.controls['instagram'].setValue(response.perfiles[0].instagram);
+            this.registroMusico.controls['facebook'].setValue(response.perfiles[0].facebook);
+            this.registroMusico.controls['pagina_web'].setValue(response.perfiles[0].pagina_web);
+            this.registroMusico.controls['genero'].setValue(response.perfiles[0].genero);
+            this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
+            this.registroMusico.controls['instagram'].setValue("n/a");
+            this.registroMusico.controls['facebook'].setValue("n/a");
+            this.registroMusico.controls['pagina_web'].setValue("n/a");
+            let soundAuxs = this.user.soundFrames;
+            soundAuxs.forEach(soundAux => {
+              this.addSoundcloud()
+            });
 
-       var soundControls = this.soundFrames.controls;
-        let i = 0;
-       for (let control of soundControls) {
-        if (control instanceof FormGroup) {
-          let nombre = this.user.soundFrames[i].nombre;
-          let iframe = this.user.soundFrames[i].iframe;
-          control.controls['nombre'].setValue(nombre);
-          control.controls['iframe'].setValue(iframe);
-          i++;
+          var soundControls = this.soundFrames.controls;
+            let i = 0;
+          for (let control of soundControls) {
+            if (control instanceof FormGroup) {
+              let nombre = this.user.soundFrames[i].nombre;
+              let iframe = this.user.soundFrames[i].iframe;
+              control.controls['nombre'].setValue(nombre);
+              control.controls['iframe'].setValue(iframe);
+              i++;
+            }
+          }
+            
+            let youAuxs = this.user.youFrames;
+            youAuxs.forEach(youAux => {
+              this.addYoutube()
+            });
+            let j = 0;
+          var youControls = this.youFrames.controls;
+          for (let control of youControls) {
+            if (control instanceof FormGroup) {
+              let nombre = this.user.youFrames[j].nombre
+              let iframe = this.user.youFrames[j].iframe
+              control.controls['nombre'].setValue(nombre);
+              control.controls['iframe'].setValue(iframe);
+              j++
+            }
+          }
+
+
         }
-       }
-        
-        let youAuxs = this.user.youFrames;
-        youAuxs.forEach(youAux => {
-          this.addYoutube()
-        });
-        let j = 0;
-       var youControls = this.youFrames.controls;
-       for (let control of youControls) {
-        if (control instanceof FormGroup) {
-          let nombre = this.user.youFrames[j].nombre
-          let iframe = this.user.youFrames[j].iframe
-          control.controls['nombre'].setValue(nombre);
-          control.controls['iframe'].setValue(iframe);
-          j++
+        else{
+        this.status = 'error';
         }
-       }
+      },
+      error => {
+      this.status = 'error';
+      console.log(<any>error);
+      }
+    );
+    this.IdPerfil = localStorage.getItem("idPerfil");
     }
   }
 
@@ -282,8 +318,92 @@ export class FormArtistasComponent implements OnInit {
       console.log("Registrando");
       let endpoint = '/artista'
       let dataAux = this.registroMusico.value;
+      
       let dataValues = {
+        nombre_artistico: dataAux.nombre_artistico,
+        num_integrantes: dataAux.num_integrantes,
+        ciudad_origen: dataAux.ciudad_origen,
+        dispuesto_salir: dataAux.dispuesto_salir,
+        representante: dataAux.representante,
+        nombre_representante: dataAux.nombre_representante,
+        telefono: dataAux.telefono,
+        correo: dataAux.correo,
+        descripcion: dataAux.descripcion,
+        genero: dataAux.genero,
+
       };
+      //subir musica de soundcloud
+      let soundLinks = []
+      var soundControls = this.soundFrames.controls;
+       for (let control of soundControls) {
+        if (control instanceof FormGroup) {
+          let soundFrame = control.controls['iframe'].value;
+          let soundLink = soundFrame.substring(
+            soundFrame.lastIndexOf("src=\"") + 5, 
+            soundFrame.lastIndexOf("\"></iframe>")
+        );
+        //soundLinks.push(soundLink);
+        let nameFrame = control.controls['nombre'].value;
+        let plataforma = "SoundCloud";
+        soundLink = btoa(soundLink);
+        console.log(soundLink);
+        let linksSouncloud = {
+          nombre_cancion: nameFrame,
+          plataforma: plataforma,
+          link: soundLink,
+          perfil_id: this.IdPerfil,
+        };
+        this._linkService.register(linksSouncloud).subscribe(response =>{
+          console.log("ok");
+        });
+
+        }
+      }
+      //subir videos de youtube
+      let youLinks = []
+      var youControls = this.youFrames.controls;
+       for (let control of youControls) {
+        if (control instanceof FormGroup) {
+          let youFrame = control.controls['iframe'].value;
+          let youLink = youFrame.substring(
+            youFrame.lastIndexOf("http"), 
+
+            youFrame.lastIndexOf("\" frameborder")
+        );
+        //soundLinks.push(soundLink);
+        let nameFrame = control.controls['nombre'].value;
+        let plataforma = "Youtube";
+        youLink = btoa(youLink);
+        console.log(youLink);
+        let linksYoutube = {
+          nombre_cancion: nameFrame,
+          plataforma: plataforma,
+          link: youLink,
+          perfil_id: this.IdPerfil,
+        };
+        this._linkService.register(linksYoutube).subscribe(response =>{
+          console.log("ok");
+        });
+        }
+      }
+      
+      this._userService.actualizarPerfil(this.IdPerfil,dataValues).subscribe(
+        response => {
+          if(response.status == "success"){
+           this.status = response.status;
+           this.router.navigate(['perfil/0']);
+           console.log("ok");
+          }
+          else{
+           this.status = 'error';
+           console.log(this.status);
+          }
+        },
+        error => {
+         this.status = 'error';
+         console.log(<any>error);
+        }
+     );
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -330,14 +450,15 @@ export class FormArtistasComponent implements OnInit {
 
   catchUserErrors() {
 
-      let aux2 = this.fMusico.nombreArtistico.errors
-        ? this.fMusico.nombreArtistico.errors.required
+
+      let aux2 = this.fMusico.nombre_artistico.errors
+        ? this.fMusico.nombre_artistico.errors.required
         : false;
-      let aux3 = this.fMusico.ciudadOrigen.errors
-        ? this.fMusico.ciudadOrigen.errors.required
+      let aux3 = this.fMusico.ciudad_origen.errors
+        ? this.fMusico.ciudad_origen.errors.required
         : false;
-      let aux4 = this.fMusico.nombreRepresentante.errors
-        ? this.fMusico.nombreRepresentante.errors.required
+      let aux4 = this.fMusico.nombre_representante.errors
+        ? this.fMusico.nombre_representante.errors.required
         : false;
       let aux7 = this.fMusico.correo.errors
         ? this.fMusico.correo.errors.email
@@ -345,7 +466,7 @@ export class FormArtistasComponent implements OnInit {
       let aux8 = this.fMusico.descripcion.errors
         ? this.fMusico.descripcion.errors.required
         : false;
-      let aux9 = this.fMusico.paginaWeb.errors
+      let aux9 = this.fMusico.pagina_web.errors
         ? this.fMusico.paginaWeb.errors.required
         : false;
 

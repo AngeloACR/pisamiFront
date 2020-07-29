@@ -1,18 +1,24 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import {DomSanitizer} from '@angular/platform-browser';
+import {LinkService} from "../../services/link.service";
+import {DomSanitizer,SafeResourceUrl,} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-buscador-videos',
   templateUrl: './buscador-videos.component.html',
   styleUrls: ['./buscador-videos.component.scss'],
+  providers : [LinkService]
 })
 export class BuscadorVideosComponent implements OnInit {
+
 
   videos: any;
   buscarVideos: FormGroup;
   isResultados: boolean;
   selectedTitle: any;
+
+  url: SafeResourceUrl;
 
   @Output()
   volver = new EventEmitter<any>();
@@ -21,27 +27,16 @@ export class BuscadorVideosComponent implements OnInit {
   verCanciones = new EventEmitter<any>();
 
   constructor(
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _linkService : LinkService
     ) { }
 
 
   ngOnInit() {
         this.selectedTitle = 'Videos'
-    this.isResultados = false;
-    this.initForm();
-    this.videos = [{
-
-        nombre: 'La Flaca',
-        link: 'https://www.youtube.com/embed/r2g0pM3PMNQ'}, {
-        nombre: 'La Flaca',
-        link: 'https://www.youtube.com/embed/r2g0pM3PMNQ',
-      }];      
-         /*  this.videos.forEach(video => {
-      let videoLink = video.link;
-      let videoId = videoLink.split('watch?v=')[1];
-      let videoEmbed = `https://www.youtube.com/embed/${videoId}`
-      video.link = videoEmbed
-    }); */
+        this.isResultados = false;
+        this.initForm();
+    
   }
 
   initForm() {
@@ -58,6 +53,20 @@ export class BuscadorVideosComponent implements OnInit {
     this.volver.emit()
   }
   buscar(){
+    let dataAux = this.buscarVideos.value;
+    console.log(dataAux.nombre);
+    this._linkService.listByName(dataAux.nombre).subscribe(response => {
+      response['links'].forEach(response => {
+       var link = atob(response.link);
+        
+        response.link = this.sanitizer.bypassSecurityTrustResourceUrl(link);
+        this.url = response.link; 
+        console.log(this.url);
+        
+      });
+      this.videos = response['links'];
+      console.log(this.videos);
+    });
     this.isResultados = true;
   }
 

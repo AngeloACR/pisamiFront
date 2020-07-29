@@ -14,6 +14,7 @@ export class EditarUsuariosComponent implements OnInit {
 
   ) {
     this.actRoute.params.subscribe(params => {
+      console.log(params['user'])
       if (params['user']) {
         this.user = JSON.parse(params['user']);
       }

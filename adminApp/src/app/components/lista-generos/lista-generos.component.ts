@@ -9,11 +9,13 @@ import {
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
-
+import { GenreService } from 'src/app/services/genres.service';
+import {FormGenerosComponent} from "../form-generos/form-generos.component";
 @Component({
   selector: 'app-lista-generos',
   templateUrl: './lista-generos.component.html',
   styleUrls: ['./lista-generos.component.scss'],
+  providers: [GenreService,FormGenerosComponent],
 })
 export class ListaGenerosComponent implements OnInit {
 
@@ -21,34 +23,19 @@ export class ListaGenerosComponent implements OnInit {
   fields: any;
   buscarGenero: FormGroup;
   listData: any;
+  status;
   selectedTitle: any;
 
   constructor(
     private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
+    private _genreService: GenreService,
+    private _genreComponent: FormGenerosComponent
   ) { }
 
   ngOnInit() {
     this.selectedTitle = 'Lista de Géneros'
-    this.generos = [{
-      id: '29384',
-      nombre: 'Cumbia',
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      },{
-      id: '29385',
-      nombre: 'Bachata', 
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      }, {
-      id: '29386',
-      nombre: 'Vallenato', 
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      }, {
-      id: '29387',
-      nombre: 'Rock',
-      descripcion: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      }
-    ];
 
     /* let endpoint = `/generos`    
         this.dbHandler.getSomething(endpoint).then((data: any) => {
@@ -60,19 +47,43 @@ export class ListaGenerosComponent implements OnInit {
           this.generos = data;
         }
       }); */
-    this.fields = [
-      'Id', 'Nombre', 'Descripción'
-    ]    
-        this.listData = []
-    this.generos.forEach(genero => {
-      let aux = {
-        id: genero.id,
-        nombre: genero.nombre,
-        descripcion: genero.descripcion,
+    
+    this._genreService.listGenre().subscribe(
+      response => {
+        if(response.status != 'error'){
+          this.generos = response.generos;
+          this.status = 'success';
+          this.fields = [
+            'Id', 'Nombre', 'Descripción'
+          ]    
+              this.listData = []
+          this.generos.forEach(genero => {
+            let aux = {
+              id: genero.id,
+              nombre: genero.nombre,
+              descripcion: genero.descripcion,
+            }
+            this.listData.push(aux)
+          });
+        }
+        else{
+          this.status = 'error';
+
+        }
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error)
       }
-      this.listData.push(aux)
-    });
+    );
+
     this.initForm();
+
+  }
+  editarElemento(id){
+    let idGenero = id;
+    this.router.navigate(['editargenero']);
+    return this._genreComponent.initForm(1,idGenero);
   }
 
   initForm() {
@@ -112,18 +123,23 @@ export class ListaGenerosComponent implements OnInit {
     
   }
 
-  eliminarGenero(event){
-        let id = event.id;
-    let endpoint = `/perfiles/delete/${id}`;
-        this.dbHandler.deleteSomething(endpoint).then((data: any) => {
-        // data is already a JSON object
-        if(!data.status){
-          let errorMsg = data.msg;
-          this.toggleError(errorMsg)
-        } else{
-          this.ngOnInit();
+  eliminarGenero(id){
+    this._genreService.deleteGenre(id).subscribe(
+      response => {
+        if(response.status != 'error'){
+          this.status = 'success';
+          this.router.navigate(['listageneros']);
         }
-      });
+        else{
+          this.status = 'error';
+
+        }
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error)
+      }
+    );
   }
 
   async toggleError(msg) {
