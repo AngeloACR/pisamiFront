@@ -1,10 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import {LinkService} from "../../services/link.service";
+import * as crypto from 'crypto-js'; 
+import {DomSanitizer,SafeResourceUrl,} from '@angular/platform-browser';
+
+
 
 @Component({
   selector: "app-buscador-canciones",
   templateUrl: "./buscador-canciones.component.html",
-  styleUrls: ["./buscador-canciones.component.scss"]
+  styleUrls: ["./buscador-canciones.component.scss"],
+  providers: [LinkService]
 })
 export class BuscadorCancionesComponent implements OnInit {
   canciones: any;
@@ -18,7 +24,11 @@ export class BuscadorCancionesComponent implements OnInit {
   @Output()
   verVideos = new EventEmitter<any>();
 
-  constructor() {}
+  url: SafeResourceUrl;
+  constructor(
+    public _linkService : LinkService,
+    public sanitizer:DomSanitizer
+    ) {}
 
   ngOnInit() {
     this.selectedTitle = "Canciones";
@@ -41,19 +51,23 @@ export class BuscadorCancionesComponent implements OnInit {
 
   buscar() {
     //get canciones segun filtro
-    this.canciones = [
-      {
-        nombre: "La Flaca",
-        link:
-          "https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true"
-      },
-      {
-        nombre: "La Flaca",
-        link:
-          "https://w.soundcloud.com/player/?url=https%3A//api…e&show_reposts=false&show_teaser=true&visual=true"
-      },
-      {}
-    ];
+    let dataAux = this.buscarCanciones.value;
+    console.log(dataAux.nombre);
+    this._linkService.listByName(dataAux.nombre).subscribe(response => {
+      response['links'].forEach(response => {
+       var link = atob(response.link);
+        
+        response.link = this.sanitizer.bypassSecurityTrustResourceUrl(link);
+        this.url = response.link; 
+        console.log(this.url);
+        
+      });
+      this.canciones = response['links'];
+      console.log(this.canciones);
+    });
+    
+  
     this.isResultados = true;
   }
+
 }

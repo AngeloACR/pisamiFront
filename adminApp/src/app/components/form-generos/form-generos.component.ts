@@ -5,7 +5,8 @@ import { forkJoin } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
 import { DbHandlerService } from "../../services/db-handler.service";
 import { GenreService } from 'src/app/services/genres.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-form-generos',
@@ -24,6 +25,7 @@ export class FormGenerosComponent implements OnInit {
   title: string;
   generos: any;
   status;
+  generoId;
 
   registroGenero: FormGroup;
 
@@ -33,21 +35,33 @@ export class FormGenerosComponent implements OnInit {
     private dbHandler: DbHandlerService,
     private _genreService: GenreService,
     private route: ActivatedRoute,
-  ) { }
+    private router: Router,
+    ) { }
 
   ngOnInit() {
     this.initForm(this.editMode)
+    if(this.editMode == 1){
+      if(JSON.parse(localStorage.getItem('generoEdit'))){
+        this.generoId = JSON.parse(localStorage.getItem('generoEdit'));
+        localStorage.removeItem("generoEdit");
+        this._genreService.genreById(this.generoId).subscribe(data =>{
+          console.log(data);
+          let genero = data['genero'];
+          this.registroGenero.controls['nombre'].setValue(genero.nombre);
+          this.registroGenero.controls['descripcion'].setValue(genero.descripcion);        
+        });
+      }
+    }
   }
 
-  initForm(editMode) {
+  initForm(editMode,generoId?) {
     this.registroGenero = new FormGroup({
       nombre: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
     });
 
-    if(editMode){
-      this.registroGenero.controls['nombre'].setValue(this.genero.nombre);
-      this.registroGenero.controls['descripcion'].setValue(this.genero.descripcion);
+    if(generoId){
+      localStorage.setItem('generoEdit',generoId);
     }
   
   }
@@ -107,14 +121,13 @@ export class FormGenerosComponent implements OnInit {
       let endpoint = '/generos'
       let dataAux = this.registroGenero.value;
       let dataValues = {
-        id: this.genero.id,
         nombre: dataAux.nombre,
         descripcion: dataAux.descripcion,
       };
-      this._genreService.updateGenre(dataValues).subscribe(
+      this._genreService.updateGenre(this.generoId,dataValues).subscribe(
         response => {
           if(response.status != 'error'){
-            console.log(response);
+            this.router.navigate(['listageneros']);
             this.status = 'success';
           }
           else{

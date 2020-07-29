@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,15 +9,24 @@ import {
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import {UserService} from "../../services/user.service";
+import {FormUsuariosComponent} from "../form-usuarios/form-usuarios.component";
+
+
 
 @Component({
   selector: 'app-lista-usuarios',
   templateUrl: './lista-usuarios.component.html',
   styleUrls: ['./lista-usuarios.component.scss'],
+  providers: [UserService,FormUsuariosComponent],
 })
 export class ListaUsuariosComponent implements OnInit {
 
   usuarios: any;
+
+  @Output()
+  editar = new EventEmitter<any>();
+
   fields: any;
   buscarUsuario: FormGroup;
   listData: any;
@@ -26,26 +35,32 @@ export class ListaUsuariosComponent implements OnInit {
     private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
+    private _userService: UserService,
+    private _usuarioComponent: FormUsuariosComponent
   ) { }
 
   ngOnInit() {
     this.selectedTitle = 'Lista de Usuarios'
-    this.usuarios = [
-      {
-        id: "539524",
-        nombre: "Juanito",
-        apellido: "Alimaña",
-        correo: "juanitoalimaña@gmail.com",
-        telefono: "553-6989597"
-      },
-      {
-        id: "539524",
-        nombre: "Juanito",
-        apellido: "Alimaña",
-        correo: "juanitoalimaña@gmail.com",
-        telefono: "553-6989597"
-      }
-    ];
+    this._userService.listaUsuarios().subscribe(data =>{
+      this.usuarios = data['user'];
+      this.fields = [
+        'Id', 'Nombre', 'Apellido', 'Correo', 'Teléfono'      
+      ]    
+          this.listData = []
+      this.usuarios.forEach(usuario => {
+        let aux = {
+          id: usuario.id,
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+          correo: usuario.correo,
+          telefono: usuario.telefono,
+        }
+        this.listData.push(aux)
+      });
+    });
+    this.initForm();
+
+    
 
     /* let endpoint = `/usuarios`
       this.dbHandler.getSomething(endpoint).then((data: any) => {
@@ -57,21 +72,18 @@ export class ListaUsuariosComponent implements OnInit {
           this.usuarios = data;
         }
       }); */
-    this.fields = [
-      'Id', 'Nombre', 'Apellido', 'Correo', 'Teléfono'      
-    ]    
-        this.listData = []
-    this.usuarios.forEach(usuario => {
-      let aux = {
-        id: usuario.id,
-        nombre: usuario.nombre,
-        apellido: usuario.apellido,
-        correo: usuario.correo,
-        telefono: usuario.telefono,
-      }
-      this.listData.push(aux)
+  
+  }
+  editarElemento(id){
+    let iduser = id;
+    this.router.navigate(['editarusuario']);
+    return this._usuarioComponent.initForm(1,iduser);
+  }
+  getData(){
+    this._userService.listaUsuarios().subscribe(data =>{
+      let usuarios = data['user'];
+      return usuarios;
     });
-    this.initForm();
   }
 
   initForm() {

@@ -43,6 +43,7 @@ tipo: any;
 
   id: string;
   status: any;
+  identity;
 
   registroUser: FormGroup;
 
@@ -54,7 +55,10 @@ tipo: any;
     private fileHandler: FileHandlerService,
     public actionSheetController: ActionSheetController,
     private _userService: UserService,
-  ) { }
+  ) {
+    this.identity = this._userService.getIdentity(); 
+
+   }
 
   ngOnInit() {
     this.initForm(this.editMode);
@@ -70,7 +74,7 @@ tipo: any;
       {
         nombre: new FormControl("", Validators.required),
         apellido: new FormControl("", Validators.required),
-        tlf: new FormControl("", Validators.required),
+        telefono: new FormControl("", Validators.required),
         correo: new FormControl("", [Validators.required, Validators.email]),
         password: new FormControl("", [
           Validators.required,
@@ -82,12 +86,14 @@ tipo: any;
       ConfirmPasswordValidator.MatchPassword
     );
     if(editMode){
-    this.registroUser.controls['nombre'].setValue(this.user.nombre)
-    this.registroUser.controls['apellido'].setValue(this.user.apellido)
-    this.registroUser.controls['tlf'].setValue(this.user.tlf)
-    this.registroUser.controls['correo'].setValue(this.user.correo)
-    this.registroUser.controls['correo'].disable()
-    this.registroUser.controls['password'].setValue(this.user.password)
+      console.log(this.user);
+      this._userService.userId(this.identity.userId).subscribe(response =>{
+        this.registroUser.controls['nombre'].setValue(response['user'].nombre)
+        this.registroUser.controls['apellido'].setValue(response['user'].apellido)
+        this.registroUser.controls['telefono'].setValue(response['user'].telefono)
+        this.registroUser.controls['correo'].setValue(response['user'].correo)
+        this.registroUser.controls['password'].setValue(response['user'].password)
+      }); 
 
     }
   }
@@ -113,7 +119,7 @@ tipo: any;
       let dataValues = {
         nombre: dataAux.nombre,
         apellido: dataAux.apellido,
-        telefono: dataAux.tlf,
+        telefono: dataAux.telefono,
         correo: dataAux.correo,
         contrasena: dataAux.password,
         tipo_usuario: this.tipo,
@@ -162,11 +168,15 @@ tipo: any;
       let dataValues = {
         nombre: dataAux.nombre,
         apellido: dataAux.apellido,
-        telefono: dataAux.tlf,
+        telefono: dataAux.telefono,
         correo: dataAux.correo,
         contrasena: dataAux.password,
         tipo_usuario: this.tipo,
       };
+      let userdata = JSON.parse(localStorage.getItem('identity'));
+      this._userService.actualizarUsuario(userdata.userId,dataValues).subscribe(response =>{
+        console.log("ok");
+      });
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
@@ -206,14 +216,14 @@ tipo: any;
       let aux3 = this.fUser.apellido.errors
         ? this.fUser.apellido.errors.required
         : false;
-      let aux4 = this.fUser.tlf.errors ? this.fUser.tlf.errors.required : false;
-      let aux5 = this.fUser.password.errors
+      let aux4 = this.fUser.telefono.errors ? this.fUser.telefono.errors.required : false;
+      /*let aux5 = this.fUser.password.errors
         ? this.fUser.password.errors.required
-        : false;
+        : false;*/
       let aux6 = this.fUser.password.errors
         ? this.fUser.password.errors.minlength
         : false;
-      let error = aux1 || aux2 || aux3 || aux4 || aux5 || aux6;
+      let error = aux1 || aux2 || aux3 || aux4 || aux6;
       return error;
   }
 }

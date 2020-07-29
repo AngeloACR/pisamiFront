@@ -1,0 +1,107 @@
+
+.listBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+  
+  .titleRow {
+    white-space: nowrap;
+    height: 23px;
+    line-height: 23px;
+  }
+  
+  .titleRow p {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    width: 200px;
+    background-color:#F24E2B;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    font-size: 12px;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .titleRow p:first-child {
+    width: 108px;
+  }
+  
+  .contentRow div:first-child {
+    width: 108px;
+  }
+  
+  .contentRow {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .contentRow div {
+      display: inline-block;
+      flex-shrink: 0;
+      text-align: center;
+      color: #F24E2B;
+      background-color: white;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #F24E2B;
+      font-size: 12px;
+      margin: 0;
+      white-space: normal;
+      font-weight: bold;
+      width: 200px;
+    }
+    
+    .contentRow p {
+      width: 100%;
+      line-height: 100%;
+    }
+    
+    .actionBox {
+      display: flex !important;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+    }
+    
+  .actionButton {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    height: 80%;
+    width: 30%;
+    color: black;
+    margin-right: 5px;
+    border-radius: 42px;
+    cursor: pointer;
+  }
+  
+  .actionButton:active {
+    background-color: white;
+  }
+  
+  .actionButton:active {
+    background-color: white;
+  }
+  
+  .actionButton p {
+    color: white !important;
+    margin: 0;
+    font-size: 8px !important;
+    border: none !important;
+    background-color: transparent !important;
+    font-weight: bold;
+    min-width: 10px !important;
+    width: 100% !important;
+    text-decoration: none !important;
+  }
+  
+  .actionButton:active p {
+    color: #F24E2B;
+  }
+  

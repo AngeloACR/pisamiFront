@@ -21,9 +21,9 @@
         <div class="errorTag" *ngIf="fUser.apellido.errors?.required && (fUser.apellido.touched || fUser.apellido.dirty)">Este campo es requerido</div>
         <div class="formInput">
             <label for="">Teléfono</label>
-            <input class="lInput" type="text" formControlName="tlf" name="tlf" />
+            <input class="lInput" type="text" formControlName="telefono" name="tlf" />
         </div>
-        <div class="errorTag" *ngIf="fUser.tlf.errors?.required && (fUser.tlf.touched || fUser.tlf.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fUser.telefono.errors?.required && (fUser.telefono.touched || fUser.telefono.dirty)">Este campo es requerido</div>
         <div class="formInput">
             <label for="">Correo</label>
             <input class="lInput" type="text" formControlName="correo" name="correo" />

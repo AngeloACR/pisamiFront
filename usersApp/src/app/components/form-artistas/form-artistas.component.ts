@@ -8,6 +8,7 @@ import {
 } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UserService } from "../../services/user.service";
+import {LinkService} from "../../services/link.service";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { FileHandlerService } from "../../services/file-handler.service";
 import { FileValidator } from "../../directives/fileValidator";
@@ -20,12 +21,14 @@ import {
 } from "@angular/forms";
 import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
+import * as crypto from 'crypto-js'; 
+
 
 @Component({
   selector: 'app-form-artistas',
   templateUrl: './form-artistas.component.html',
   styleUrls: ['./form-artistas.component.scss'],
-  providers: [UserService],
+  providers: [UserService,LinkService],
 })
 export class FormArtistasComponent implements OnInit {
     
@@ -66,6 +69,7 @@ export class FormArtistasComponent implements OnInit {
 
   soundFrames = new FormArray([]);
   youFrames = new FormArray([]);
+  IdPerfil: string;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -75,6 +79,7 @@ export class FormArtistasComponent implements OnInit {
     private fileHanlder: FileHandlerService,
     public actionSheetController: ActionSheetController,
     private _userService : UserService,
+    private _linkService : LinkService,
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
@@ -146,68 +151,69 @@ export class FormArtistasComponent implements OnInit {
           if(response.status == "success"){
            this.status = response.status;
            console.log(response.perfiles[0]);
-           this.registroMusico.controls['num_integrantes'].setValue(response.perfiles[0].num_integrantes);
-      this.registroMusico.controls['nombre_artistico'].setValue(response.perfiles[0].nombre_artistico);
-      this.registroMusico.controls['dispuesto_salir'].setValue(response.perfiles[0].dispuesto_salir);
-      this.registroMusico.controls['ciudad_origen'].setValue(response.perfiles[0].ciudad_origen);
-      this.registroMusico.controls['representante'].setValue(response.perfiles[0].representante);
-      this.registroMusico.controls['nombre_representante'].setValue(response.perfiles[0].nombre_representante);
-      this.registroMusico.controls['telefono'].setValue(response.perfiles[0].telefono);
-      this.registroMusico.controls['correo'].setValue(response.perfiles[0].correo);
-      this.registroMusico.controls['descripcion'].setValue(response.perfiles[0].descripcion);
-      this.registroMusico.controls['instagram'].setValue(response.perfiles[0].instagram);
-      this.registroMusico.controls['facebook'].setValue(response.perfiles[0].facebook);
-      this.registroMusico.controls['pagina_web'].setValue(response.perfiles[0].pagina_web);
-      this.registroMusico.controls['genero'].setValue(response.perfiles[0].genero);
-      this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
-      this.registroMusico.controls['instagram'].setValue(this.user.instagram);
-      this.registroMusico.controls['facebook'].setValue(this.user.facebook);
-      this.registroMusico.controls['paginaWeb'].setValue(this.user.paginaWeb);
-        let soundAuxs = this.user.soundFrames;
-        soundAuxs.forEach(soundAux => {
-          this.addSoundcloud()
-        });
+            localStorage.setItem('idPerfil',response.perfiles[0].id);
+            this.registroMusico.controls['num_integrantes'].setValue(response.perfiles[0].num_integrantes);
+            this.registroMusico.controls['nombre_artistico'].setValue(response.perfiles[0].nombre_artistico);
+            this.registroMusico.controls['dispuesto_salir'].setValue(response.perfiles[0].dispuesto_salir);
+            this.registroMusico.controls['ciudad_origen'].setValue(response.perfiles[0].ciudad_origen);
+            this.registroMusico.controls['representante'].setValue(response.perfiles[0].representante);
+            this.registroMusico.controls['nombre_representante'].setValue(response.perfiles[0].nombre_representante);
+            this.registroMusico.controls['telefono'].setValue(response.perfiles[0].telefono);
+            this.registroMusico.controls['correo'].setValue(response.perfiles[0].correo);
+            this.registroMusico.controls['descripcion'].setValue(response.perfiles[0].descripcion);
+            this.registroMusico.controls['instagram'].setValue(response.perfiles[0].instagram);
+            this.registroMusico.controls['facebook'].setValue(response.perfiles[0].facebook);
+            this.registroMusico.controls['pagina_web'].setValue(response.perfiles[0].pagina_web);
+            this.registroMusico.controls['genero'].setValue(response.perfiles[0].genero);
+            this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
+            this.registroMusico.controls['instagram'].setValue("n/a");
+            this.registroMusico.controls['facebook'].setValue("n/a");
+            this.registroMusico.controls['pagina_web'].setValue("n/a");
+            let soundAuxs = this.user.soundFrames;
+            soundAuxs.forEach(soundAux => {
+              this.addSoundcloud()
+            });
 
-       var soundControls = this.soundFrames.controls;
-        let i = 0;
-       for (let control of soundControls) {
-        if (control instanceof FormGroup) {
-          let nombre = this.user.soundFrames[i].nombre;
-          let iframe = this.user.soundFrames[i].iframe;
-          control.controls['nombre'].setValue(nombre);
-          control.controls['iframe'].setValue(iframe);
-          i++;
-        }
-       }
-        
-        let youAuxs = this.user.youFrames;
-        youAuxs.forEach(youAux => {
-          this.addYoutube()
-        });
-        let j = 0;
-       var youControls = this.youFrames.controls;
-       for (let control of youControls) {
-        if (control instanceof FormGroup) {
-          let nombre = this.user.youFrames[j].nombre
-          let iframe = this.user.youFrames[j].iframe
-          control.controls['nombre'].setValue(nombre);
-          control.controls['iframe'].setValue(iframe);
-          j++
-        }
-       }
-
-
+          var soundControls = this.soundFrames.controls;
+            let i = 0;
+          for (let control of soundControls) {
+            if (control instanceof FormGroup) {
+              let nombre = this.user.soundFrames[i].nombre;
+              let iframe = this.user.soundFrames[i].iframe;
+              control.controls['nombre'].setValue(nombre);
+              control.controls['iframe'].setValue(iframe);
+              i++;
+            }
           }
-          else{
-           this.status = 'error';
+            
+            let youAuxs = this.user.youFrames;
+            youAuxs.forEach(youAux => {
+              this.addYoutube()
+            });
+            let j = 0;
+          var youControls = this.youFrames.controls;
+          for (let control of youControls) {
+            if (control instanceof FormGroup) {
+              let nombre = this.user.youFrames[j].nombre
+              let iframe = this.user.youFrames[j].iframe
+              control.controls['nombre'].setValue(nombre);
+              control.controls['iframe'].setValue(iframe);
+              j++
+            }
           }
-        },
-        error => {
-         this.status = 'error';
-         console.log(<any>error);
+
+
         }
-     );
-     
+        else{
+        this.status = 'error';
+        }
+      },
+      error => {
+      this.status = 'error';
+      console.log(<any>error);
+      }
+    );
+    this.IdPerfil = localStorage.getItem("idPerfil");
     }
   }
 
@@ -326,15 +332,71 @@ export class FormArtistasComponent implements OnInit {
         genero: dataAux.genero,
 
       };
-      console.log(dataAux);
-      this._userService.actualizarPerfil(dataValues).subscribe(
+      //subir musica de soundcloud
+      let soundLinks = []
+      var soundControls = this.soundFrames.controls;
+       for (let control of soundControls) {
+        if (control instanceof FormGroup) {
+          let soundFrame = control.controls['iframe'].value;
+          let soundLink = soundFrame.substring(
+            soundFrame.lastIndexOf("src=\"") + 5, 
+            soundFrame.lastIndexOf("\"></iframe>")
+        );
+        //soundLinks.push(soundLink);
+        let nameFrame = control.controls['nombre'].value;
+        let plataforma = "SoundCloud";
+        soundLink = btoa(soundLink);
+        console.log(soundLink);
+        let linksSouncloud = {
+          nombre_cancion: nameFrame,
+          plataforma: plataforma,
+          link: soundLink,
+          perfil_id: this.IdPerfil,
+        };
+        this._linkService.register(linksSouncloud).subscribe(response =>{
+          console.log("ok");
+        });
+
+        }
+      }
+      //subir videos de youtube
+      let youLinks = []
+      var youControls = this.youFrames.controls;
+       for (let control of youControls) {
+        if (control instanceof FormGroup) {
+          let youFrame = control.controls['iframe'].value;
+          let youLink = youFrame.substring(
+            youFrame.lastIndexOf("http"), 
+
+            youFrame.lastIndexOf("\" frameborder")
+        );
+        //soundLinks.push(soundLink);
+        let nameFrame = control.controls['nombre'].value;
+        let plataforma = "Youtube";
+        youLink = btoa(youLink);
+        console.log(youLink);
+        let linksYoutube = {
+          nombre_cancion: nameFrame,
+          plataforma: plataforma,
+          link: youLink,
+          perfil_id: this.IdPerfil,
+        };
+        this._linkService.register(linksYoutube).subscribe(response =>{
+          console.log("ok");
+        });
+        }
+      }
+      
+      this._userService.actualizarPerfil(this.IdPerfil,dataValues).subscribe(
         response => {
           if(response.status == "success"){
            this.status = response.status;
            this.router.navigate(['perfil/0']);
+           console.log("ok");
           }
           else{
            this.status = 'error';
+           console.log(this.status);
           }
         },
         error => {

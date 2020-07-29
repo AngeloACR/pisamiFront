@@ -31,7 +31,13 @@ export class UserService{
         let headers = new HttpHeaders().set('Authorization',token);
         return this._http.get('http://localhost:8000/api/perfiles/usuario_id/'+ user_id,{headers : headers});
     } 
-    actualizarPerfil(user): Observable<any>{
+    userId(id){
+        let token = this.getIdentity().token;
+        let user_id = this.getIdentity().userId;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/users/id/'+ id,{headers : headers});
+    }
+    actualizarUsuario(idUsuario,user): Observable<any>{
         let token = this.getIdentity().token;
         let user_id = this.getIdentity().userId;
         let json = JSON.stringify(user);
@@ -39,7 +45,17 @@ export class UserService{
         console.log(params);
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
         .set('Authorization',token);
-        return this._http.put('http://localhost:8000/api/perfiles/update/'+185,params , {headers : headers});
+        return this._http.put('http://localhost:8000/api/users/update/'+idUsuario,params , {headers : headers});
+    }
+    actualizarPerfil(idPerfil,user): Observable<any>{
+        let token = this.getIdentity().token;
+        let user_id = this.getIdentity().userId;
+        let json = JSON.stringify(user);
+        let params = 'json='+json;
+        console.log(params);
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+        .set('Authorization',token);
+        return this._http.put('http://localhost:8000/api/perfiles/update/'+idPerfil,params , {headers : headers});
     }   
     getIdentity(){
         let identity = JSON.parse(localStorage.getItem('identity'));

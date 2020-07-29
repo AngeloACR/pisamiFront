@@ -44,7 +44,7 @@ export class PerfilComponent implements OnInit {
     private _userService: UserService,
     private auth: AuthService,
   ) {
-    this.identity = this._userService.getIdentity();
+    this.identity = this._userService.getIdentity(); 
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
     });
@@ -72,7 +72,7 @@ export class PerfilComponent implements OnInit {
           let userValues = {
             nombre: this.identity.nombre,
             apellido: this.identity.apellido, 
-            tlf: this.identity.telefono,
+            telefono: this.identity.telefono,
             correo: this.identity.correo,
           }
           this.selectedItem = userValues;
@@ -91,7 +91,7 @@ export class PerfilComponent implements OnInit {
             nombreRepresentante: 'Raul Leoni',
             telefono: '+525896595',
             correo:'gonzalo@gonzale.net',
-            descripcion: 'La banda mas bohemia de ibague',
+            descripcion1: 'La banda mas bohemia de ibague',
             instagram: 'Jamaica_16',
             facebook: 'Jamaicajg',
             paginaWeb: 'jamaica.jg',

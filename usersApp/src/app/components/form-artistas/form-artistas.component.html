@@ -30,8 +30,8 @@
         <div style="border: none !important;" class="formInput">
             <label for="">¿Tiene representante?</label>
             <select name="" formControlName="representante">
-                <option selected="true">Sí</option>
-                <option>No</option>
+                <option selected="true" value="1">Sí</option>
+                <option value="0">No</option>
             </select>
         </div>
         <div class="errorTag" *ngIf="fMusico.representante.errors?.required && (fMusico.representante.touched || fMusico.representante.dirty)">Este campo es requerido</div>

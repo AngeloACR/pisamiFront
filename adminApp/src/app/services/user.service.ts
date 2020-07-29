@@ -38,6 +38,15 @@ export class UserService{
         .set('Authorization','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMiwiZW1haWwiOiJ1c3VhcmlvcHJ1ZWJhMkBob3RtYWlsLmNvbSIsIm5hbWUiOiJ1c3VhcmlvIiwiaWF0IjoxNTk0NjUyNjQ4LCJleHAiOjE1OTUyNTc0NDh9._XmlwjeASZz55VHzkIfUqukMr72atKu61mmt5exFOuc');
         return this._http.put('http://localhost:8000/api/perfiles/update/21',params , {headers : headers});
     }   
+    actualizarUsuario(userId,user): Observable<any>{
+        let token = this.getIdentity().token;
+        let json = JSON.stringify(user);
+        let params = 'json='+json;
+        console.log(params);
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+        .set('Authorization',token);
+        return this._http.put('http://localhost:8000/api/users/update/'+userId,params , {headers : headers});       
+    }
     getIdentity(){
         let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity && identity != "undefined"){
@@ -57,12 +66,25 @@ export class UserService{
             this.token = null;
         }
         return this.token;
-
+ 
     }
 
     listaUsuarios(): Observable<any>{
-        let headers = new HttpHeaders().set('Authorization','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMiwiZW1haWwiOiJ1c3VhcmlvcHJ1ZWJhMkBob3RtYWlsLmNvbSIsIm5hbWUiOiJ1c3VhcmlvIiwiaWF0IjoxNTk0NjUyNjQ4LCJleHAiOjE1OTUyNTc0NDh9._XmlwjeASZz55VHzkIfUqukMr72atKu61mmt5exFOuc');
-        return this._http.get('http://localhost:8000/api/users',{headers : headers});
+        let token = this.getIdentity().token;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/users/tipo_usuario/2',{headers : headers});
     } 
+
+    listaArtistas(): Observable<any>{
+        let token = this.getIdentity().token;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/users/tipo_usuario/1',{headers : headers});
+    } 
+
+    userById(id): Observable<any>{
+        let token = this.getIdentity().token;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/users/id/'+ id,{headers : headers});
+    }
 
 }

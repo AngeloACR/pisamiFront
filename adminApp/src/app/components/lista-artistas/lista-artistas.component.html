@@ -30,7 +30,61 @@
         </div>
       </form>
             </div>
-            <app-lista [fields]="fields" [values]="listData" [isHabilitar]="true" (habilitar)="habilitarArtista($event)" (eliminar)="eliminarArtista($event)" (editar)="editarArtista($event)" style="width: 100%;"></app-lista>
-        </div>
+            <div class="listBox">
+              <div class="titleRow">
+                
+                <p>ID</p>
+                <p>NOMBRE</p>
+                <p>APELLIDO</p>
+                <p>CORREO</p>
+                <p>TELEFONO</p>
+                <p style="width: 250px;">ACCION</p>
+              </div>
+              <div class="contentRow" *ngFor="let artista of artistas;let i = index">
+                <div>
+                  <p>{{artista.id}}</p>
+                </div>
+                <div>
+                  <p>{{artista.nombre}}</p>
+                </div>
+                <div>
+                  <p>{{artista.apellido}}</p>
+                </div>
+                <div>
+                  <p>{{artista.correo}}</p>
+                </div>
+                <div>
+                  <p>{{artista.telefono}}</p>
+                </div>
+                <div style="width: 250px;"  class="actionBox">
+                  <button
+                    style="background-color: orange"
+                    type="button"
+                    class="actionButton"
+                    (click)="editarElemento(artista.id)"
+                  >
+                    <p>EDITAR</p>
+                  </button>
+                  <button
+                    style="background-color: green"
+                    type="button"
+                    class="actionButton"
+                    (click)="editarElemento($event, i)"
+                    >
+                    <p>HABILITAR</p>
+                  </button>
+                  <button
+                    style="background-color: red"
+                    type="button"
+                    class="actionButton"
+                    (click)="habilitarElemento($event)"
+                  >
+                    <p>DESHABILITAR</p>
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
         </div>
 </ion-content>

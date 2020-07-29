@@ -7,9 +7,9 @@
       </div>
       <div class="errorTag" *ngIf="fNotificacion.nombre.errors?.required && (fNotificacion.nombre.touched || fNotificacion.nombre.dirty)">Este campo es requerido</div>
         <div class="formDescripcion">
-            <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
+            <textarea rows="6" type="text" formControlName="mensaje" name=""></textarea>
         </div>
-        <div class="errorTag" *ngIf="fNotificacion.descripcion.errors?.required && (fNotificacion.descripcion.touched || fNotificacion.descripcion.dirty)">Este campo es requerido</div>
+        <div class="errorTag" *ngIf="fNotificacion.mensaje.errors?.required && (fNotificacion.mensaje.touched || fNotificacion.mensaje.dirty)">Este campo es requerido</div>
 
         <button type="button" class="formButton" *ngIf="!editMode" (click)="endRegistro()">
           <p>CREAR</p>

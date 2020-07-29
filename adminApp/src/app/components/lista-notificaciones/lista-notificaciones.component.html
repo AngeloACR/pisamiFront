@@ -20,7 +20,45 @@
                 </div>
             </form>
             </div>
-            <app-lista [fields]="fields" [values]="listData" (habilitar)="habilitarNotificacion($event)" (eliminar)="eliminarNotificacion($event)"  (editar)="editarNotificacion($event)" style="width: 100%;"></app-lista>
+            <div class="listBox">
+                <div class="titleRow">
+                  
+                  <p>ID</p>
+                  <p>NOMBRE</p>
+                  <p>Mensaje</p>
+                  <p style="width: 250px;">ACCION</p>
+                </div>
+                <div class="contentRow" *ngFor="let notificacion of notificaciones;let i = index">
+                  <div>
+                    <p>{{notificacion.id}}</p>
+                  </div>
+                  <div>
+                    <p>{{notificacion.nombre}}</p>
+                  </div>
+                  <div>
+                    <p>{{notificacion.mensaje}}</p>
+                  </div>
+                  <div style="width: 250px;"  class="actionBox">
+                    <button
+                      style="background-color: orange"
+                      type="button"
+                      class="actionButton"
+                      (click)="editarElemento(notificacion.id)"
+                    >
+                      <p>EDITAR</p>
+                    </button>
+                    <button
+                      style="background-color: red"
+                      type="button"
+                      class="actionButton"
+                      (click)="eliminarNotificacion(notificacion.id)"
+                    >
+                      <p>Eliminar</p>
+                    </button>
+                  </div>
+                  
+                </div>
+              </div>
         </div>
     </div>
 </ion-content>
