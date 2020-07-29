@@ -105,22 +105,24 @@ export class ListaNotificacionesComponent implements OnInit {
   }
 
   eliminarNotificacion(id){
-    this._notificacionService.deleteNotificacion(id).subscribe(
-      response => {
-        if(response.status != 'error'){
-          this.status = 'success';
-          this.router.navigate(['listanotificaciones']);
-        }
-        else{
-          this.status = 'error';
+    if(confirm("Are you sure to delete ")) {    
+      this._notificacionService.deleteNotificacion(id).subscribe(
+        response => {
+          if(response.status != 'error'){
+            this.status = 'success';
+            this.router.navigate(['listanotificaciones']);
+          }
+          else{
+            this.status = 'error';
 
+          }
+        },
+        error => {
+          this.status = 'error';
+          console.log(<any>error)
         }
-      },
-      error => {
-        this.status = 'error';
-        console.log(<any>error)
-      }
-    );
+      );
+    }
   }
 
   async toggleError(msg) {
