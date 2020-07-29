@@ -3,57 +3,31 @@
 </ion-header>
 
 <ion-content>
-    <div class="modBox">
-      <div class="logBox">
-        <div class="selectionBox">
-          <div class="optionsBox" [ngClass]="hideOption">
-            <img
-              class="imgTitle"
-              src="assets/5-tipo/tipo.png"
-              alt="tipo"
-            />
-            <div class="iconsBox">
-              <div class="iconBox">
-                <img
-                  class="iconImg"
-                  [src]="solistaImg"
-                  alt="solista"
-                  (click)="toggleForm($event, 'solista')"
-                />
-              </div>
-              <div class="iconBox">
-                <img
-                  class="iconImg"
-                  [src]="duoImg"
-                  alt="duo"
-                  (click)="toggleForm($event, 'duo')"
-                />
-              </div>
-              <div class="iconBox">
-                <img
-                  class="iconImg"
-                  [src]="orquestaImg"
-                  alt="orquesta"
-                  (click)="toggleForm($event, 'orquesta')"
-                />
-              </div>
+  <div class="modBox">
+    <div class="logBox">
+      <div class="selectionBox">
+        <div class="optionsBox" [ngClass]="hideOption">
+          <img class="imgTitle" src="assets/5-tipo/tipo.png" alt="tipo" />
+          <div class="iconsBox">
+            <div class="iconBox">
+              <img class="iconImg" [src]="solistaImg" alt="solista" (click)="toggleForm($event, 'solista')" />
+            </div>
+            <div class="iconBox">
+              <img class="iconImg" [src]="duoImg" alt="duo" (click)="toggleForm($event, 'duo')" />
+            </div>
+            <div class="iconBox">
+              <img class="iconImg" [src]="orquestaImg" alt="orquesta" (click)="toggleForm($event, 'orquesta')" />
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="formBox" [ngClass]="showForm">
-          <div class="registroFilter">
-            <img
-              class="pageImg"
-              src="assets/6-formulario de registro/cantante.png"
-            />
-            <app-form-artistas
-              [editMode]="0"
-              [tipo]="tipoSelected"
-              *ngIf="tipoSelected"
-            ></app-form-artistas>
-          </div>
+      <div class="formBox" [ngClass]="showForm">
+        <div class="registroFilter">
+          <img class="pageImg" src="assets/6-formulario de registro/cantante.png" />
+          <app-form-usuarios [editMode]="0" [tipo]="tipoSelected" *ngIf="tipoSelected"></app-form-usuarios>
         </div>
       </div>
     </div>
+  </div>
 </ion-content>

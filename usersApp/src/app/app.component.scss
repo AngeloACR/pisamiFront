@@ -1,94 +1,102 @@
+.splash {
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
 ion-menu ion-content {
-//    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
-    --ion-background-color: #F24E2B !important;
+  //    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
+  --ion-background-color: #f24e2b !important;
 }
 
-ion-menu{
-    --width: 100% !important;
-    --max-width:500px !important;
+ion-menu {
+  --width: 100% !important;
+  --max-width: 500px !important;
 }
 
-ion-menu-toggle{
-    width: 42%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color:  #F24E2B;
-
+ion-menu-toggle {
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f24e2b;
 }
 
-ion-menu-toggle ion-item{
---padding-bottom: 0 !important;
---padding-end: 0 !important;
---padding-start: 0 !important;
---padding-top: 0 !important;
---inner-padding-bottom: 0 !important;
---inner-padding-end: 0 !important;
---inner-padding-start: 0 !important;
---inner-padding-top: 0 !important;
-background-color:  #F24E2B;
+ion-menu-toggle ion-item {
+  --padding-bottom: 0 !important;
+  --padding-end: 0 !important;
+  --padding-start: 0 !important;
+  --padding-top: 0 !important;
+  --inner-padding-bottom: 0 !important;
+  --inner-padding-end: 0 !important;
+  --inner-padding-start: 0 !important;
+  --inner-padding-top: 0 !important;
+  background-color: #f24e2b;
 }
-
 
 .menuItem {
-    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
-    margin-bottom: 42px;
+  --background: var(
+    --ion-item-background,
+    var(--ion-background-color, #f24e2b)
+  );
+  margin-bottom: 42px;
 }
 
 .menuList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  background-color: #F24E2B;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #f24e2b;
 }
 
-.menuImg{
-    height: 20vw;
-    margin: 0;
-    background-color: #f24e2B;
+.menuImg {
+  height: 20vw;
+  margin: 0;
+  background-color: #f24e2b;
 }
 
-ion-menu-toggle:nth-child(odd){
-    align-self: flex-start;
-
+ion-menu-toggle:nth-child(odd) {
+  align-self: flex-start;
 }
 
-ion-menu-toggle:nth-child(even){
-    align-self: flex-end;
+ion-menu-toggle:nth-child(even) {
+  align-self: flex-end;
 }
 
 .childItem {
-    display: none;
-    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
+  display: none;
+  --background: var(
+    --ion-item-background,
+    var(--ion-background-color, #f24e2b)
+  );
 }
 
 ion-menu.md ion-content {
-    --padding-start: 8px;
-    --padding-end: 8px;
-    --padding-top: 20px;
-    --padding-bottom: 20px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
 }
 
 ion-menu.md ion-list {
-    padding: 0;
+  padding: 0;
 }
 
 ion-menu.md ion-note {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 ion-menu.md ion-list-header,
 ion-menu.md ion-note {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 ion-menu.md ion-item {
-    --padding-start: 10px;
-    --padding-end: 10px;
-    --min-height: 50px;
-    
-    background-color:  #F24E2B;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --min-height: 50px;
+
+  background-color: #f24e2b;
 }
 
 /* ion-menu.md ion-item.selected ion-icon {
@@ -101,52 +109,49 @@ ion-menu.md ion-item ion-icon {
 */
 
 .childList {
-    padding-left: 23px !important;
-    background-color:  #F24E2B;;
+  padding-left: 23px !important;
+  background-color: #f24e2b;
 }
 
 .aBox {
-    display: inline-flex;
-    max-height: 200vh;
+  display: inline-flex;
+  max-height: 200vh;
 }
 
 .mainLabel {
-    font-size: 12px !important;
-    color: white !important;
-    font-weight: bolder !important;
+  font-size: 12px !important;
+  color: white !important;
+  font-weight: bolder !important;
 }
 
 .childLabel {
-    font-size: 10px !important;
-    color: white !important;
-    font-weight: bolder !important;
+  font-size: 10px !important;
+  color: white !important;
+  font-weight: bolder !important;
 }
 
 ion-menu.ios ion-content {
-    --padding-bottom: 20px;
-    background-color:  #F24E2B;
+  --padding-bottom: 20px;
+  background-color: #f24e2b;
 }
 
 ion-menu.ios ion-list {
-    padding: 0;
-    background-color:  #F24E2B;
+  padding: 0;
+  background-color: #f24e2b;
 }
 
 ion-menu.ios ion-note {
-    line-height: 24px;
-    margin-bottom: 20px;
-    background-color:  #F24E2B;
+  line-height: 24px;
+  margin-bottom: 20px;
+  background-color: #f24e2b;
 }
 
 ion-menu.ios ion-item {
-    --padding-start: 16px;
-    --padding-end: 16px;
-    --min-height: 50px;
-    background-color:  #F24E2B;
-    
-
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 50px;
+  background-color: #f24e2b;
 }
-
 
 /* ion-menu.ios ion-item.selected ion-icon {
   color: var(--ion-color-primary);
@@ -159,42 +164,41 @@ ion-menu.ios ion-item ion-icon {
 
 ion-menu.ios ion-list-header,
 ion-menu.ios ion-note {
-    padding-left: 16px;
-    padding-right: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 ion-menu.ios ion-note {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 ion-note {
-    display: inline-block;
-    font-size: 16px;
-    color: var(--ion-color-medium-shade);
+  display: inline-block;
+  font-size: 16px;
+  color: var(--ion-color-medium-shade);
 }
 
 ion-item.selected {
-    --color: var(--ion-color-primary);
-    
-    background-color:  #F24E2B;
+  --color: var(--ion-color-primary);
 
+  background-color: #f24e2b;
 }
 
-.slideMenu{
-    top: 50%;
-    transform: translatey(-50%);
-    background-color: #f24e2B;
+.slideMenu {
+  top: 50%;
+  transform: translatey(-50%);
+  background-color: #f24e2b;
 }
 
-.configItem{
-    width: 100%;
-    position: absolute;
-    bottom: 8%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.configItem {
+  width: 100%;
+  position: absolute;
+  bottom: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.configItem .menuImg{
-    height: 15vw;
+.configItem .menuImg {
+  height: 15vw;
 }
