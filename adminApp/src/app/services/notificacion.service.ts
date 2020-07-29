@@ -41,11 +41,12 @@ export class NotificacionService {
 
 
   updateNotificacion (id,notificacion): Observable<any>{
+    let token = JSON.parse(localStorage.getItem('identity'));
     let json = JSON.stringify(notificacion);
     let params = 'json='+json;
     console.log(notificacion);
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
-    .set('Authorization','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMiwiZW1haWwiOiJ1c3VhcmlvcHJ1ZWJhMkBob3RtYWlsLmNvbSIsIm5hbWUiOiJ1c3VhcmlvIiwiaWF0IjoxNTk1MzYxODM3LCJleHAiOjE1OTU5NjY2Mzd9.zbhRyho9tWUrgTLeqHu7aX6fydkOHeivVcstrkmrZe4');
+    .set('Authorization',token.token);
     return this._http.put('http://localhost:8000/api/notificaciones/update/'+id,params , {headers : headers});
   }
 

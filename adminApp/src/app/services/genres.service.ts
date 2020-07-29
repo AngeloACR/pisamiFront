@@ -17,10 +17,11 @@ export class GenreService {
   constructor(private _http: HttpClient, private storage: Storage) {}
 
   addGenre (genre): Observable<any>{
+    let token = JSON.parse(localStorage.getItem('identity'));
     let json = JSON.stringify(genre);
     let params = 'json='+json;
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
-    .set('Authorization','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMiwiZW1haWwiOiJ1c3VhcmlvcHJ1ZWJhMkBob3RtYWlsLmNvbSIsIm5hbWUiOiJ1c3VhcmlvIiwiaWF0IjoxNTk1MzYxODM3LCJleHAiOjE1OTU5NjY2Mzd9.zbhRyho9tWUrgTLeqHu7aX6fydkOHeivVcstrkmrZe4');
+    .set('Authorization',token.token);
     return this._http.post('http://localhost:8000/api/generos/register',params , {headers : headers});
   }
 
