@@ -1,13 +1,15 @@
 <app-splash class="splash" *ngIf="showSplash"></app-splash>
 
-<ion-app>
+<ion-app *ngIf="!showSplash">
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
             <ion-header [translucent]="true">
                 <app-header [title]="selectedTitle"></app-header>
+                <div class="circularBox">
+                    <img class="closeImg" src="assets/X.png" *ngIf="!mainMenu" (click)="volverMenu()" />
+                </div>
             </ion-header>
             <ion-content id="adminMenu">
-                <img class="closeImg" src="assets/X.png" *ngIf="!mainMenu" (click)="volverMenu()" />
                 <ion-slides class="slideMenu" *ngIf="mainMenu" [options]="slideOptsOne" #slideWithNav>
                     <ion-slide *ngFor="let s of menuSlider.slidesItems">
                         <ion-list class="menuList">

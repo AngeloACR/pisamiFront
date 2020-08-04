@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { CommonService } from "../../services/common.service";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-detalle-artista',
-  templateUrl: './detalle-artista.component.html',
-  styleUrls: ['./detalle-artista.component.scss'],
+  selector: "app-detalle-artista",
+  templateUrl: "./detalle-artista.component.html",
+  styleUrls: ["./detalle-artista.component.scss"]
 })
 export class DetalleArtistaComponent implements OnInit {
-
   @Input()
   artistaEscogido: any;
 
@@ -27,16 +27,13 @@ export class DetalleArtistaComponent implements OnInit {
   isCanciones: boolean;
   hideBox: {};
 
-
   isEndOfList: boolean;
   isStartOfList: boolean;
   currentImageIndex: number;
   currentImage: string;
   imageList: [];
 
-  constructor(
-    private sanitizer: DomSanitizer
-    ) { }
+  constructor(private common: CommonService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.isVideos = false;
@@ -47,28 +44,27 @@ export class DetalleArtistaComponent implements OnInit {
     this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
     this.hideBox = {
       hideBox: false
-    }
+    };
   }
 
-
-  prev(){
+  prev() {
     this.currentImageIndex -= 1;
-    if(this.currentImageIndex == 0){
+    if (this.currentImageIndex == 0) {
       this.isStartOfList = true;
     }
     this.isEndOfList = false;
-    console.log(this.currentImageIndex)
+    console.log(this.currentImageIndex);
     this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
   }
 
-  next(){
+  next() {
     this.currentImageIndex += 1;
-    let finalIndex =  this.artistaEscogido.imagenes.length - 1;
-    if(this.currentImageIndex == finalIndex){
+    let finalIndex = this.artistaEscogido.imagenes.length - 1;
+    if (this.currentImageIndex == finalIndex) {
       this.isEndOfList = true;
     }
     this.isStartOfList = false;
-    console.log(this.currentImageIndex)
+    console.log(this.currentImageIndex);
     this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
   }
 
@@ -80,41 +76,39 @@ export class DetalleArtistaComponent implements OnInit {
     this.volver.emit();
   }
 
-
   volverLista() {
-    console.log('Volver a resultados');
+    console.log("Volver a resultados");
     //this.router.navigateByUrl('/buscador/');
   }
 
-  agregarFavorito(){
+  agregarFavorito() {
     let artistaFavorito = this.artistaEscogido;
   }
 
-  mostrarCanciones(){
+  mostrarCanciones() {
     this.isCanciones = true;
     this.isVideos = false;
     this.hideBox = {
       hideBox: true
-    }
-    this.musica.emit()
+    };
+    this.musica.emit();
   }
 
-  mostrarPerfil(){
+  mostrarPerfil() {
     this.isCanciones = false;
     this.isVideos = false;
     this.hideBox = {
       hideBox: false
-    }
+    };
     this.perfil.emit();
   }
 
-  mostrarVideos(){
+  mostrarVideos() {
     this.isCanciones = false;
     this.isVideos = true;
     this.hideBox = {
       hideBox: true
-    }
-    this.videos.emit()
+    };
+    this.videos.emit();
   }
-
 }

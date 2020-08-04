@@ -9,11 +9,23 @@ ion-menu ion-content {
   //    --background: var( --ion-item-background, var(--ion-background-color,  #F24E2B));
 }
 
-.closeImg {
+.circularBox {
+  background-color: #f68522;
   position: absolute;
-  left: 20px;
-  height: 15vw;
-  top: 40px;
+  border-radius: 84px;
+  top: 0;
+  right: -2px;
+  z-index: 25;
+  width: 82px;
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeImg {
+  height: 50%;
 }
 
 ion-menu {
@@ -212,4 +224,10 @@ ion-item.selected {
 
 .configItem .menuImg {
   height: 15vw;
+}
+
+@media (min-width: 768px) {
+  .menuImg {
+    height: 8vw;
+  }
 }

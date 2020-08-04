@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import {
@@ -32,7 +33,7 @@ export class RegistroComponent implements OnInit {
   isDuo: Boolean;
   isInfo: Boolean;
   isOrquesta: Boolean;
-  
+
   showForm: {};
   hideOption: {};
   selectedImg: String;
@@ -44,6 +45,7 @@ export class RegistroComponent implements OnInit {
 
   constructor(
     private actRoute: ActivatedRoute,
+    private common: CommonService,
     private router: Router,
     private fb: FormBuilder,
     private platform: Platform
@@ -64,7 +66,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
-        this.selectedTitle = 'Regístrate'
+    this.selectedTitle = "Regístrate";
     this.isUser = false;
     this.isSolista = false;
     this.isDuo = false;
@@ -81,7 +83,7 @@ export class RegistroComponent implements OnInit {
     let img;
     switch (tipo) {
       case "user":
-        this.selectedTitle = 'Registro de Usuario'
+        this.selectedTitle = "Registro de Usuario";
         this.isUser = true;
         this.isMusico = false;
         this.isSolista = false;
@@ -90,7 +92,7 @@ export class RegistroComponent implements OnInit {
         img = this.userImg;
         break;
       case "solista":
-        this.selectedTitle = 'Registro de Músico Cantante'
+        this.selectedTitle = "Registro de Músico Cantante";
         this.isUser = false;
         this.isSolista = true;
         this.isDuo = false;
@@ -98,7 +100,7 @@ export class RegistroComponent implements OnInit {
         img = this.solistaImg;
         break;
       case "duo":
-        this.selectedTitle = 'Registro de Dúo'
+        this.selectedTitle = "Registro de Dúo";
         this.isUser = false;
         this.isSolista = false;
         this.isDuo = true;
@@ -106,7 +108,7 @@ export class RegistroComponent implements OnInit {
         img = this.duoImg;
         break;
       default:
-        this.selectedTitle = 'Registro de Orquesta'
+        this.selectedTitle = "Registro de Orquesta";
         this.isUser = false;
         this.isSolista = false;
         this.isDuo = false;
@@ -159,8 +161,7 @@ export class RegistroComponent implements OnInit {
     this.isOrquesta = false;
   }
 
-  registerCompleted(){
+  registerCompleted() {
     this.router.navigateByUrl("/login");
   }
-
 }

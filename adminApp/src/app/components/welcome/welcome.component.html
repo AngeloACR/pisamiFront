@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <app-header [title]="selectedTitle"></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="pageBox">
+    <div class="logBox">
+      <div class="logoBox">
+        <img src="assets/img/logonaranja.png" alt="Logo" />
+      </div>
+      <div class="welcomeBox">
+        <div class="welcomeText">
+          {{welcomeMsg}}
+        </div>
+        <div class="welcomeButton">
+
+          <button type="button" (click)="welcomeUser()">
+            <p>CONTINUAR</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="assets/img/montañas.png" style="width: 100%; position: absolute; left: 0; bottom: 0;">
+</ion-content>

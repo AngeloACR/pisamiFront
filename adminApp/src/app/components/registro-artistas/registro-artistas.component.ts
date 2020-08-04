@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import {
@@ -30,7 +31,7 @@ export class RegistroArtistasComponent implements OnInit {
   isInfo: Boolean;
   isOrquesta: Boolean;
   selectedTitle: any;
-  
+
   showForm: {};
   hideOption: {};
   selectedImg: String;
@@ -43,6 +44,7 @@ export class RegistroArtistasComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
+    private common: CommonService,
     private fb: FormBuilder,
     private platform: Platform
   ) {
@@ -62,7 +64,7 @@ export class RegistroArtistasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedTitle = 'Registro de Artistas'
+    this.selectedTitle = "Registro de Artistas";
     this.solistaImg = "assets/5-tipo/musicao.png";
     this.duoImg = "assets/5-tipo/duo.png";
     this.orquestaImg = "assets/5-tipo/orquesta.png";
@@ -72,7 +74,7 @@ export class RegistroArtistasComponent implements OnInit {
     let img;
     switch (tipo) {
       case "solista":
-        this.selectedTitle = 'Registro de Músico Cantante';
+        this.selectedTitle = "Registro de Músico Cantante";
 
         this.isSolista = true;
         this.isDuo = false;
@@ -80,14 +82,14 @@ export class RegistroArtistasComponent implements OnInit {
         img = this.solistaImg;
         break;
       case "duo":
-        this.selectedTitle = 'Registro de Dúo'
+        this.selectedTitle = "Registro de Dúo";
         this.isSolista = false;
         this.isDuo = true;
         this.isOrquesta = false;
         img = this.duoImg;
         break;
       default:
-        this.selectedTitle = 'Registro de Orquesta'
+        this.selectedTitle = "Registro de Orquesta";
         this.isSolista = false;
         this.isDuo = false;
         this.isOrquesta = true;
@@ -127,7 +129,6 @@ export class RegistroArtistasComponent implements OnInit {
     this.isOrquesta = false;
   }
 
-
   soundLinks = new FormArray([]);
   youLinks = new FormArray([]);
   addYoutube() {
@@ -146,5 +147,4 @@ export class RegistroArtistasComponent implements OnInit {
 
     this.soundLinks.push(group);
   }
-
 }

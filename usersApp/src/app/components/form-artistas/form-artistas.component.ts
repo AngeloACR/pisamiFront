@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import {
@@ -75,6 +76,7 @@ export class FormArtistasComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private common: CommonService,
     private dbHandler: DbHandlerService,
     private fileHanlder: FileHandlerService,
     public actionSheetController: ActionSheetController,

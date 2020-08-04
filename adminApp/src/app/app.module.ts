@@ -40,6 +40,7 @@ import { EditarNotificacionesComponent } from "./components/editar-notificacione
 import { EditarPoliticasComponent } from "./components/editar-politicas/editar-politicas.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { SplashComponent } from "./components/splash/splash.component";
+import { WelcomeComponent } from "./components/welcome/welcome.component";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { SplashComponent } from "./components/splash/splash.component";
     RegistroNotificacionesComponent,
     EditarPoliticasComponent,
     RegistroPoliticasComponent,
-    SplashComponent
+    SplashComponent,
+    WelcomeComponent
   ],
   entryComponents: [
     FormArtistasComponent,

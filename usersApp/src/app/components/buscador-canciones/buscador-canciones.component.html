@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-<!--     <ion-toolbar>
+    <!--     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -9,48 +9,63 @@
 </ion-header>
 
 <ion-content>
-    <div class="modBox">
-
-<div class="logBox">
-    <div style="width: 100%;">
-    <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
-
-    <form class="musicForm" [formGroup]="buscarCanciones">
-        <div class="formContent">
-            <div class="formInput nombreArtista">
-                <label for="">Nombre de la Canción</label>
-                <input class="lInput" type="text" formControlName="nombre" name="" />
-            </div>
+    <div class="modBox" *ngIf="artistaSelected">
+        <div class="logBox" *ngIf="isVideos">
+            <app-videos style="width: 100%;" [videos]="artistaEscogido.youtube" (verCanciones)="mostrarCanciones()"
+                (volver)="mostrarBuscador()"></app-videos>
         </div>
-        <button type="button" class="formButton" (click)="buscar()">
-        <p>BUSCAR</p>
-        </button>
-    </form>
-    </div>
-
-    <div *ngIf="isResultados" style="width: 100%;">
-    <p class="resultadosTitle">Resultados de búsqueda</p>    
-    <div class="contentBox"  *ngFor="let canciones of canciones">
-        <div class="contentItem">
-            <iframe 
-            width="100%" 
-            height="300" 
-            scrolling="no" 
-            frameborder="no" 
-            allow="autoplay" 
-            [src]="canciones.link"
-            ></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/wooden-box" title="canciones.nombre" target="_blank" style="color: #cccccc; text-decoration: none;">{{canciones.nombre}}</a> · <a href="https://soundcloud.com/wooden-box/la-flaca-jarabe-de-palo" title="La Flaca - Jarabe de palo" target="_blank" style="color: #cccccc; text-decoration: none;">{{canciones.nombre_cancion}}</a></div>
+        <div class="logBox" *ngIf="isCanciones">
+            <app-canciones style="width: 100%;" [canciones]="artistaEscogido.soundcloud" (verVideos)="mostrarVideos()"
+                (volver)="mostrarBuscador()"></app-canciones>
         </div>
-        <div class="outBox">
-            <div class="musicItem">
-                <img src="assets/13-musica/video.png" alt="video" (click)="mostrarVideos()"/>
-            </div>
-            <div class="musicItem">
-                <img src="assets/13-musica/perfil.png" alt="perfil" (click)="mostrarPerfil()"/>
-            </div>
+        <div class="logBox" *ngIf="isPerfil">
+            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (musica)="verMusica()"
+                (perfil)="verPerfil()" (videos)="verVideos()" (volver)="mostrarBuscador()"></app-detalle-artista>
         </div>
     </div>
+    <div class="modBox" *ngIf="!artistaSelected">
+
+        <div class="logBox">
+            <div style="width: 100%;">
+                <img class="pageImg" src="assets/13-musica/cancio.png" alt="musica">
+
+                <form class="musicForm" [formGroup]="buscarCanciones">
+                    <div class="formContent">
+                        <div class="formInput nombreArtista">
+                            <label for="">Nombre de la Canción</label>
+                            <input class="lInput" type="text" formControlName="nombre" name="" />
+                        </div>
+                    </div>
+                    <button type="button" class="formButton" (click)="buscar()">
+                        <p>BUSCAR</p>
+                    </button>
+                </form>
+            </div>
+
+            <div *ngIf="isResultados" style="width: 100%;">
+                <p class="resultadosTitle">Resultados de búsqueda</p>
+                <div class="contentBox" *ngFor="let canciones of canciones">
+                    <div class="contentItem">
+                        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+                            [src]="canciones.link"></iframe>
+                        <div
+                            style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                            <a href="https://soundcloud.com/wooden-box" title="canciones.nombre" target="_blank"
+                                style="color: #cccccc; text-decoration: none;">{{canciones.nombre}}</a> · <a
+                                href="https://soundcloud.com/wooden-box/la-flaca-jarabe-de-palo"
+                                title="La Flaca - Jarabe de palo" target="_blank"
+                                style="color: #cccccc; text-decoration: none;">{{canciones.nombre_cancion}}</a></div>
+                    </div>
+                    <div class="outBox">
+                        <div class="musicItem">
+                            <img src="assets/13-musica/video.png" alt="video" (click)="mostrarVideos()" />
+                        </div>
+                        <div class="musicItem">
+                            <img src="assets/13-musica/perfil.png" alt="perfil" (click)="mostrarPerfil()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </ion-content>

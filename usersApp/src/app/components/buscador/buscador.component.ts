@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { CommonService } from "../../services/common.service";
 
 @Component({
-  selector: 'app-buscador',
-  templateUrl: './buscador.component.html',
-  styleUrls: ['./buscador.component.scss'],
+  selector: "app-buscador",
+  templateUrl: "./buscador.component.html",
+  styleUrls: ["./buscador.component.scss"]
 })
 export class BuscadorComponent implements OnInit {
-
   artistas: any;
   artistaEscogido: any;
   isVer: boolean;
@@ -14,45 +14,44 @@ export class BuscadorComponent implements OnInit {
   selectedTitle: any;
   isResultados: boolean;
 
-  constructor() { }
+  constructor(private common: CommonService) {}
 
   ngOnInit() {
-        this.selectedTitle = 'Búsqueda'
+    this.selectedTitle = "Búsqueda";
     this.isBuscar = true;
     this.isVer = false;
     this.isResultados = false;
   }
 
-  abrirResultados(resultados){
-        this.selectedTitle = 'Resultados de Búsqueda'
+  abrirResultados(resultados) {
+    this.selectedTitle = "Resultados de Búsqueda";
     this.artistas = resultados;
     this.isBuscar = false;
     this.isVer = false;
     this.isResultados = true;
   }
 
-  volverResultados(){
-    this.abrirResultados(this.artistas)
+  volverResultados() {
+    this.abrirResultados(this.artistas);
   }
 
-  mostrarArtista(artista){
-    this.selectedTitle = 'Perfil del Artista'
+  mostrarArtista(artista) {
+    this.selectedTitle = "Perfil del Artista";
     this.artistaEscogido = artista;
     this.isBuscar = false;
     this.isVer = true;
     this.isResultados = false;
   }
 
-  verMusica(){
-        this.selectedTitle = 'Música del Artista'
+  verMusica() {
+    this.selectedTitle = "Música del Artista";
   }
 
-  verVideos(){
-        this.selectedTitle = 'Videos del Artista'
+  verVideos() {
+    this.selectedTitle = "Videos del Artista";
   }
 
-  verPerfil(){
-        this.selectedTitle = 'Perfil del Artista'
+  verPerfil() {
+    this.selectedTitle = "Perfil del Artista";
   }
-
 }

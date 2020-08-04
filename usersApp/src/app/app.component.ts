@@ -1,17 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { IonSlides } from '@ionic/angular';
-import { UserService } from './services/user.service';
-
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { IonSlides } from "@ionic/angular";
+import { UserService } from "./services/user.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-  providers : [UserService]
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
+  providers: [UserService]
 })
 export class AppComponent implements OnInit {
   currentMenu: any;
@@ -78,14 +77,12 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public _userService : UserService
+    public _userService: UserService
   ) {
     this.initializeApp();
     this.initSlider();
     this.identity = this._userService.getIdentity();
-  //Item object for Nature
-
-  
+    //Item object for Nature
   }
 
   initSlider() {
@@ -110,10 +107,9 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
       setTimeout(() => {
         this.showSplash = false;
-      }, 8000);
+      }, 2500);
     });
   }
 

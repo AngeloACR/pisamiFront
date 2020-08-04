@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-<!--     <ion-toolbar>
+    <!--     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -8,49 +8,58 @@
     <app-header [title]="selectedTitle"></app-header>
 </ion-header>
 
-    <ion-content>
-
-    <div class="modBox">
-
-<div class="logBox">
-    <div style="width: 100%;">
-    <img class="pageImg" src="assets/14 -video/video.png" alt="video">
-
-    <form [formGroup]="buscarVideos">
-        <div class="formContent">
-            <div class="formInput nombreArtista">
-                <label for="">Nombre del Video</label>
-                <input class="lInput" type="text" formControlName="nombre" name="" />
-            </div>
+<ion-content>
+    <div class="modBox" *ngIf="artistaSelected">
+        <div class="logBox" *ngIf="isVideos">
+            <app-videos style="width: 100%;" [videos]="artistaEscogido.youtube" (verCanciones)="mostrarCanciones()"
+                (volver)="mostrarBuscador()"></app-videos>
         </div>
-        <button type="button" class="formButton" (click)="buscar()">
-        <p>BUSCAR</p>
-        </button>
-    </form>
-    </div>
-
-    <div *ngIf="isResultados" style="width: 100%;">
-    <p class="resultadosTitle">Resultados de búsqueda</p>    
-    <div class="contentBox" *ngFor="let video of videos">
-        <div class="contentItem">
-            <iframe 
-            class="videoFrame"
-            [src]="video.link"
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
+        <div class="logBox" *ngIf="isCanciones">
+            <app-canciones style="width: 100%;" [canciones]="artistaEscogido.soundcloud" (verVideos)="mostrarVideos()"
+                (volver)="mostrarBuscador()"></app-canciones>
         </div>
-        <div class="outBox">
-            <div class="musicItem">
-                <img src="assets/14 -video/musica.png" alt="musica" (click)="mostrarCanciones()"/>
-            </div>
-            <div class="musicItem">
-                <img src="assets/14 -video/perfil.png" alt="perfil" (click)="mostrarperfil()"/>
-            </div>
+        <div class="logBox" *ngIf="isPerfil">
+            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (musica)="verMusica()"
+                (perfil)="verPerfil()" (videos)="verVideos()" (volver)="mostrarBuscador()"></app-detalle-artista>
         </div>
     </div>
-    </div>
-</div>
+    <div class="modBox" *ngIf="!artistaSelected">
+        <div class="logBox">
+            <div style="width: 100%;">
+                <img class="pageImg" src="assets/14 -video/video.png" alt="video">
+
+                <form [formGroup]="buscarVideos">
+                    <div class="formContent">
+                        <div class="formInput nombreArtista">
+                            <label for="">Nombre del Video</label>
+                            <input class="lInput" type="text" formControlName="nombre" name="" />
+                        </div>
+                    </div>
+                    <button type="button" class="formButton" (click)="buscar()">
+                        <p>BUSCAR</p>
+                    </button>
+                </form>
+            </div>
+
+            <div *ngIf="isResultados" style="width: 100%;">
+                <p class="resultadosTitle">Resultados de búsqueda</p>
+                <div class="contentBox" *ngFor="let video of videos">
+                    <div class="contentItem">
+                        <iframe class="videoFrame" [src]="video.link" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="outBox">
+                        <div class="musicItem">
+                            <img src="assets/14 -video/musica.png" alt="musica" (click)="mostrarCanciones()" />
+                        </div>
+                        <div class="musicItem">
+                            <img src="assets/14 -video/perfil.png" alt="perfil" (click)="mostrarperfil()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-    </ion-content>
+</ion-content>

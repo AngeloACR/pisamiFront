@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -16,6 +17,7 @@ artistas: any;
 artistaEscogido = new EventEmitter<any>();
 
   constructor(
+    private common: CommonService,
     private sanitizer: DomSanitizer
     ) { }
 

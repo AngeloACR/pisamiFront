@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
+import { CommonService } from "../../services/common.service";
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../../services/auth.service";
+import { UserService } from "../../services/user.service";
 //import { DbHandlerService } from '../../services/db-handler.service';
+import { MenuController } from "@ionic/angular";
 import {
   FormBuilder,
   FormGroup,
@@ -13,10 +15,10 @@ import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers : [UserService],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
+  providers: [UserService]
 })
 export class LoginComponent implements OnInit {
   login: FormGroup;
@@ -25,49 +27,48 @@ export class LoginComponent implements OnInit {
   identity;
   constructor(
     private auth: AuthService,
-    private _userService : UserService,
+    private _userService: UserService,
     //    private dbHandler: DbHandlerService,
+    private common: CommonService,
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
+    private menuCtrl: MenuController,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.menuCtrl.enable(false);
     this.login = new FormGroup({
-      correo: new FormControl('', Validators.required),
-      contrasena: new FormControl('', Validators.required),
+      correo: new FormControl("", Validators.required),
+      contrasena: new FormControl("", Validators.required)
     });
   }
 
   logUser() {
     if (this.catchUserErrors()) {
       this.toggleError();
-    } else{    
-    var data = this.login.value;
-    this._userService.signup(data).subscribe(
-      response => {
-        //token
-        if(response.status != 'error' && response.tipo_usuario == 0){
-          console.log(response);
-          this.status = 'success';
-          this.token = response.token;
-          this.identity = response;
-          localStorage.setItem('token',this.token);
-          localStorage.setItem('identity', JSON.stringify(this.identity));
-          this.router.navigate(['admin']);
-
+    } else {
+      var data = this.login.value;
+      this._userService.signup(data).subscribe(
+        response => {
+          //token
+          if (response.status != "error" && response.tipo_usuario == 0) {
+            console.log(response);
+            this.status = "success";
+            this.token = response.token;
+            this.identity = response;
+            localStorage.setItem("token", this.token);
+            localStorage.setItem("identity", JSON.stringify(this.identity));
+            this.router.navigate(["welcome"]);
+          } else {
+            this.status = "error";
+          }
+        },
+        error => {
+          this.status = "error";
+          console.log(<any>error);
         }
-        else{
-          this.status = 'error';
-
-        }
-      },
-      error => {
-        this.status = 'error';
-        console.log(<any>error)
-      }
-    );
-    
+      );
     }
   }
 
@@ -77,8 +78,8 @@ export class LoginComponent implements OnInit {
 
   flush() {
     this.login.setValue({
-      correo: '',
-      contrasena: ''
+      correo: "",
+      contrasena: ""
     });
   }
   registro() {
@@ -106,11 +107,14 @@ export class LoginComponent implements OnInit {
     });
     await actionSheet.present();
   }
-    catchUserErrors(){
-        let aux1 = this.fLogin.correo.errors ? this.fLogin.correo.errors.required : false;
-        let aux2 = this.fLogin.contrasena.errors ? this.fLogin.contrasena.errors.required : false;
-        let error = aux1 || aux2;
-        return error
-      
+  catchUserErrors() {
+    let aux1 = this.fLogin.correo.errors
+      ? this.fLogin.correo.errors.required
+      : false;
+    let aux2 = this.fLogin.contrasena.errors
+      ? this.fLogin.contrasena.errors.required
+      : false;
+    let error = aux1 || aux2;
+    return error;
   }
 }

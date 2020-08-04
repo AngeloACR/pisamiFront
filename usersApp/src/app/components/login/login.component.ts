@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../services/user.service";
+import { CommonService } from "../../services/common.service";
 import { AuthService } from "../../services/auth.service";
 
 //import { DbHandlerService } from '../../services/db-handler.service';
@@ -17,11 +18,11 @@ import { ActionSheetController } from "@ionic/angular";
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
-  providers: [UserService],
+  providers: [UserService]
 })
 export class LoginComponent implements OnInit {
   login: FormGroup;
-  status : string;
+  status: string;
   token;
   identity;
   selectedTitle: any;
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private authService: AuthService,
-
+    private common: CommonService,
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
     private router: Router
@@ -47,32 +48,30 @@ export class LoginComponent implements OnInit {
       this.toggleError();
     } else {
       var data = this.login.value;
+      await this.common.showLoader(); /****************** MOSTRANDO LOADER******************/
       this._userService.signup(data).subscribe(
         response => {
           //token
-          if(response.status != 'error'){
-            this.status = 'success';
+          this.common.hideLoader(); /****************** OCULTANDO LOADER******************/
+          if (response.status != "error") {
+            this.status = "success";
             this.token = response.token;
             this.identity = response;
-            localStorage.setItem('token',this.token);
-            localStorage.setItem('identity', JSON.stringify(this.identity));
-            this.router.navigate(['perfil/0']);
-
-          }
-          else{
-            this.status = 'error';
-
+            localStorage.setItem("token", this.token);
+            localStorage.setItem("identity", JSON.stringify(this.identity));
+            this.router.navigate(["welcome"]);
+          } else {
+            this.status = "error";
           }
         },
         error => {
-          this.status = 'error';
-          console.log(<any>error)
+          this.common.hideLoader(); /****************** OCULTANDO LOADER******************/
+          this.status = "error";
+          console.log(<any>error);
         }
       );
-        
-      }
     }
-  
+  }
 
   flush() {
     this.login.setValue({

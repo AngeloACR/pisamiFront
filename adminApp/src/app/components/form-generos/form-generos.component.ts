@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
@@ -33,6 +34,7 @@ export class FormGenerosComponent implements OnInit {
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
     private dbHandler: DbHandlerService,
+    private common: CommonService,
     private _genreService: GenreService,
     private route: ActivatedRoute,
     private router: Router,

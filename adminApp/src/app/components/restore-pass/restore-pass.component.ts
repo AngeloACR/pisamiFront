@@ -1,5 +1,7 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
+import { MenuController } from "@ionic/angular";
 //import { DbHandlerService } from '../../services/db-handler.service';
 import {
   FormBuilder,
@@ -24,6 +26,8 @@ export class RestorePassComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private fb: FormBuilder,
+    private common: CommonService,
+    private menuCtrl: MenuController,
     public actionSheetController: ActionSheetController,
     private router: Router
   ) {}

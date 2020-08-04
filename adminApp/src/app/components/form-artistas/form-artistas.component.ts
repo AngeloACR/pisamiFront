@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import {
@@ -69,6 +70,7 @@ tipo: string;
     private router: Router,
     private fb: FormBuilder,
     private dbHandler: DbHandlerService,
+    private common: CommonService,
     private fileHanlder: FileHandlerService,
     public actionSheetController: ActionSheetController,
   ) {

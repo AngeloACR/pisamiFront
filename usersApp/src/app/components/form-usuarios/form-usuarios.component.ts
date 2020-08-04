@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import {
   Router,
@@ -49,6 +50,7 @@ export class FormUsuariosComponent implements OnInit {
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
+    private common: CommonService,
     private fb: FormBuilder,
     private dbHandler: DbHandlerService,
     private fileHandler: FileHandlerService,

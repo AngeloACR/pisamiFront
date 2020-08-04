@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,7 +15,10 @@ export class FavoritosComponent implements OnInit {
   selectedTitle: any;
   isResultados: boolean;
 
-  constructor() { }
+  constructor(
+    private common: CommonService,
+
+  ) { }
   ngOnInit() {
     this.selectedTitle = 'Favoritos'
     this.isLista = true;

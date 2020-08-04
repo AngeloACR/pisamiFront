@@ -1,28 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { CommonService } from "../../services/common.service";
+import { Component, OnInit } from "@angular/core";
+import {
+  Router,
+  ActivatedRoute,
+  ParamMap,
+  NavigationEnd
+} from "@angular/router";
 
 @Component({
-  selector: 'app-editar-artistas',
-  templateUrl: './editar-artistas.component.html',
-  styleUrls: ['./editar-artistas.component.scss'],
+  selector: "app-editar-artistas",
+  templateUrl: "./editar-artistas.component.html",
+  styleUrls: ["./editar-artistas.component.scss"]
 })
 export class EditarArtistasComponent implements OnInit {
   artista: any;
   selectedTitle: any;
 
-  constructor(
-    private actRoute: ActivatedRoute,
-
-  ) {
+  constructor(private common: CommonService, private actRoute: ActivatedRoute) {
     this.actRoute.params.subscribe(params => {
-      if (params['artista']) {
-        this.artista = JSON.parse(params['artista']);
+      if (params["artista"]) {
+        this.artista = JSON.parse(params["artista"]);
       }
     });
-   }
-
-  ngOnInit() {
-    this.selectedTitle = 'Editar Artista'
   }
 
+  ngOnInit() {
+    this.selectedTitle = "Editar Artista";
+  }
 }

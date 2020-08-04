@@ -1,0 +1,82 @@
+.logBox {
+  background-color: transparent;
+  width: 100%;
+  border-radius: 3px;
+  height: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageBox {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.logoBox {
+  width: 95%;
+  margin-bottom: 70px;
+}
+
+.welcomeBox {
+  width: 95%;
+  border-style: solid;
+  padding-bottom: 1px;
+  border-width: 3px;
+  border-radius: 26px;
+  border-color: #f68522;
+}
+
+.welcomeText {
+  min-height: 100px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomeButton {
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #f68522;
+  background-color: white;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+}
+
+.welcomeButton button {
+  width: 100%;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+  background-color: white;
+}
+
+.welcomeButton button p {
+  width: 100%;
+  color: #f24e2b;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .logoBox {
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  .welcomeBox {
+    width: 60%;
+  }
+}

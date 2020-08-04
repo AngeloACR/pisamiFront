@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CommonService } from "../../services/common.service";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-lista',
-  templateUrl: './lista.component.html',
-  styleUrls: ['./lista.component.scss'],
+  selector: "app-lista",
+  templateUrl: "./lista.component.html",
+  styleUrls: ["./lista.component.scss"]
 })
 export class ListaComponent implements OnInit {
-
   @Input()
   fields: any;
 
@@ -25,37 +25,36 @@ export class ListaComponent implements OnInit {
   @Output()
   eliminar = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private common: CommonService) {}
 
   ngOnInit() {
-    let auxValues = []
+    let auxValues = [];
     this.values.forEach(value => {
       console.log(value);
-    let auxItems = []
-      Object.keys(value).forEach(function (key){
-          auxItems.push(value[key]);
+      let auxItems = [];
+      Object.keys(value).forEach(function(key) {
+        auxItems.push(value[key]);
       });
       auxValues.push(auxItems);
     });
-    this.values = auxValues
+    this.values = auxValues;
     console.log(this.values);
   }
 
-  editarElemento(event, value){
-    console.log(value)
+  editarElemento(event, value) {
+    console.log(value);
     this.editar.emit(value);
   }
 
-  habilitarElemento(event, value, habilitar){
+  habilitarElemento(event, value, habilitar) {
     let response = {
       value: value,
       habilitar: habilitar
-    }
-    this.habilitar.emit(response);    
+    };
+    this.habilitar.emit(response);
   }
 
-  eliminarElemento(event, value){
-    this.eliminar.emit(value);    
+  eliminarElemento(event, value) {
+    this.eliminar.emit(value);
   }
-
 }

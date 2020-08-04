@@ -1,3 +1,4 @@
+import { CommonService } from "../../services/common.service";
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
 //import { DbHandlerService } from '../../services/db-handler.service';
@@ -11,7 +12,6 @@ import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { ActionSheetController } from "@ionic/angular";
 import { ConfirmPasswordValidator } from '../../directives/must-match.validator';
-
 
 @Component({
   selector: 'app-reset-pass',
@@ -28,6 +28,7 @@ export class ResetPassComponent implements OnInit {
     private auth: AuthService,
     private fb: FormBuilder,
     public actionSheetController: ActionSheetController,
+    private common: CommonService,
     private router: Router
   ) {}
 
