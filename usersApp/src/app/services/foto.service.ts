@@ -25,11 +25,11 @@ export class FotoService{
         .set('Authorization',token.token);
         return this._http.get('http://localhost:8000/api/links' , {headers : headers});
     }
-    listByName (nombre): Observable<any>{
+    listById (id): Observable<any>{
         let token = JSON.parse(localStorage.getItem('identity'));
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
         .set('Authorization',token.token);
-        return this._http.get('http://localhost:8000/api/links/name/'+nombre , {headers : headers});
+        return this._http.get('http://localhost:8000/api/fotos/perfil/'+id , {headers : headers});
     }
 
    

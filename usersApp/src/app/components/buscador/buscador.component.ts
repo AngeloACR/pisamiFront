@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GenreService} from "../../services/genres.service";
 import {UserService} from "../../services/user.service";
+import {FotoService} from "../../services/foto.service";
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { UrlSegment } from '@angular/router';
 
@@ -9,7 +10,7 @@ import { UrlSegment } from '@angular/router';
   selector: 'app-buscador',
   templateUrl: './buscador.component.html',
   styleUrls: ['./buscador.component.scss'],
-  providers: [GenreService,UserService],
+  providers: [GenreService,UserService,FotoService],
 })
 export class BuscadorComponent implements OnInit {
 
@@ -21,10 +22,14 @@ export class BuscadorComponent implements OnInit {
   isResultados: boolean;
   generos;
   buscarArtista: FormGroup;
+  foto;
+  url;
+  artista: any;
 
   constructor(
     private _genreService : GenreService,
-    private _userService : UserService
+    private _userService : UserService,
+    private _fotoService : FotoService
   ) { }
 
   ngOnInit() {
@@ -46,15 +51,24 @@ export class BuscadorComponent implements OnInit {
 
   abrirResultados(){
     this.selectedTitle = 'Resultados de Búsqueda'
+    this.url = "http://localhost:8000/api/";
     let dataAux = this.buscarArtista.value;
     if(dataAux.genero){
       this._userService.perfilBy("genero",dataAux.genero).subscribe(response =>{
         this.artistas = response['perfiles'];
+        this._fotoService.listById(response['perfiles'].id).subscribe(response =>{
+          this.foto = response['fotos'];
+        });
       });
     }
     else if(dataAux.nombre){
       this._userService.perfilBy("nombre_artistico",dataAux.nombre).subscribe(response =>{
         this.artistas = response['perfiles'];
+        let index = response['perfiles'].indexOf() + 1;
+        this._fotoService.listById(45).subscribe(response =>{
+          this.foto = response['fotos'][0].foto;
+        });
+        console.log(this.foto) 
         console.log(this.artistas);
       });
     }
@@ -71,7 +85,10 @@ export class BuscadorComponent implements OnInit {
 
   mostrarArtista(artista){
     this.selectedTitle = 'Perfil del Artista'
-    this.artistaEscogido = artista;
+    this._userService.perfilBy("id",artista).subscribe(response =>{
+      this.artistaEscogido = response['perfiles'][0];
+      console.log(this.artistaEscogido);
+    });
     this.isBuscar = false;
     this.isVer = true;
     this.isResultados = false;
