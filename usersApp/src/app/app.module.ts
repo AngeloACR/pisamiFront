@@ -34,6 +34,8 @@ import { FavoritosComponent } from "./components/favoritos/favoritos.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { SplashComponent } from "./components/splash/splash.component";
+import { AngularFileUploaderModule } from "angular-file-uploader";
+
 
 @NgModule({
   declarations: [
@@ -83,7 +85,8 @@ import { SplashComponent } from "./components/splash/splash.component";
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFileUploaderModule,
   ],
   providers: [
     StatusBar,

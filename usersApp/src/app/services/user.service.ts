@@ -31,6 +31,12 @@ export class UserService{
         let headers = new HttpHeaders().set('Authorization',token);
         return this._http.get('http://localhost:8000/api/perfiles/usuario_id/'+ user_id,{headers : headers});
     } 
+    perfilBy(filtro,valor): Observable<any>{
+        let token = this.getIdentity().token;
+        let user_id = this.getIdentity().userId;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/perfiles/'+filtro+'/'+valor,{headers : headers});
+    } 
     userId(id){
         let token = this.getIdentity().token;
         let user_id = this.getIdentity().userId;

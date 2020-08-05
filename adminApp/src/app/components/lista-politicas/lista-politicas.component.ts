@@ -9,11 +9,17 @@ import {
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { PoliticaService } from '../../services/politica.service';
+import { UserService } from '../../services/user.service';
+import {FormPoliticasComponent} from "../form-politicas/form-politicas.component";
+
+
 
 @Component({
   selector: 'app-lista-politicas',
   templateUrl: './lista-politicas.component.html',
   styleUrls: ['./lista-politicas.component.scss'],
+  providers: [PoliticaService,FormPoliticasComponent,UserService] 
 })
 export class ListaPoliticasComponent implements OnInit {
 
@@ -27,11 +33,17 @@ export class ListaPoliticasComponent implements OnInit {
     private router: Router,
     private dbHandler: DbHandlerService,
     private actionSheetController: ActionSheetController,
+    private _politicaService: PoliticaService,
+    private _politicaComponent: FormPoliticasComponent
   ) { }
 
   ngOnInit() {
-    this.selectedTitle = 'Lista de Políticas'
-    this.politicas = [{
+    this.selectedTitle = 'Lista de Políticas';
+
+    this._politicaService.listPoliticas().subscribe(response =>{
+      this.politicas = response['politicas'];
+    })
+    /*this.politicas = [{
       id: '29384',
       nombre: 'TRATO DE DATOS PERSONALES',
       },{
@@ -47,7 +59,7 @@ export class ListaPoliticasComponent implements OnInit {
     ];
     let endpoint = `/politicas`    
 
-    /* this.dbHandler.getSomething(endpoint).then((data: any) => {
+     this.dbHandler.getSomething(endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){
           let errorMsg = data.msg;
@@ -55,7 +67,7 @@ export class ListaPoliticasComponent implements OnInit {
         } else{
           this.politicas = data;
         }
-      }); */
+      }); 
     this.fields = [
       'Id', 'Nombre'
     ];    
@@ -67,6 +79,7 @@ export class ListaPoliticasComponent implements OnInit {
       }
       this.listData.push(aux)
     });
+    */
     this.initForm();
   }
 
@@ -75,6 +88,11 @@ export class ListaPoliticasComponent implements OnInit {
       nombre: new FormControl(''),
     });
   
+  }
+  editarElemento(id){
+    let idPolitica = id;
+    this.router.navigate(['editarpolitica']);
+    return this._politicaComponent.initForm(1,idPolitica);
   }
 
   filtrarPolitica() {

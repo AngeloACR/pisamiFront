@@ -79,6 +79,14 @@ export class ListaUsuariosComponent implements OnInit {
     this.router.navigate(['editarusuario']);
     return this._usuarioComponent.initForm(1,iduser);
   }
+  estado(usuario,estado){
+    let dataValues = {
+      estado : estado
+    };
+    this._userService.actualizarUsuario(usuario,dataValues).subscribe(response => {
+      console.log(response);
+    });
+  }
   getData(){
     this._userService.listaUsuarios().subscribe(data =>{
       let usuarios = data['user'];

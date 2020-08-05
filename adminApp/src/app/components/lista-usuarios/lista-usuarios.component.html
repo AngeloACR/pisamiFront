@@ -77,19 +77,19 @@
                       >
                         <p>EDITAR</p>
                       </button>
-                      <button
+                      <button *ngIf="user.estado == null || user.estado == 2"
                         style="background-color: green"
                         type="button"
                         class="actionButton"
-                        (click)="editarElemento($event, i)"
+                        (click)="estado(user.id,1)"
                         >
                         <p>HABILITAR</p>
                       </button>
-                      <button
+                      <button *ngIf="user.estado == 1"
                         style="background-color: red"
                         type="button"
                         class="actionButton"
-                        (click)="habilitarElemento($event)"
+                        (click)="estado(user.id,2)"
                       >
                         <p>DESHABILITAR</p>
                       </button>

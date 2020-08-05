@@ -10,6 +10,7 @@ import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { GenreService } from 'src/app/services/genres.service';
+
 import {FormGenerosComponent} from "../form-generos/form-generos.component";
 @Component({
   selector: 'app-lista-generos',

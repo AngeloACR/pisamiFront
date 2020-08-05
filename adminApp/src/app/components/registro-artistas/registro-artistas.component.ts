@@ -39,6 +39,7 @@ export class RegistroArtistasComponent implements OnInit {
   solistaImg: String;
   duoImg: String;
   orquestaImg: String;
+  tipoUsuario;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -70,6 +71,7 @@ export class RegistroArtistasComponent implements OnInit {
 
   toggleForm(event, tipo) {
     let img;
+    this.tipoUsuario = 1;
     switch (tipo) {
       case "solista":
         this.selectedTitle = 'Registro de Músico Cantante';

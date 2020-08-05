@@ -9,6 +9,8 @@ import {
 import { AuthService } from "../../services/auth.service";
 import { UserService } from "../../services/user.service";
 import {LinkService} from "../../services/link.service";
+import {FotoService} from "../../services/foto.service";
+import {GenreService} from "../../services/genres.service";
 import { DbHandlerService } from "../../services/db-handler.service";
 import { FileHandlerService } from "../../services/file-handler.service";
 import { FileValidator } from "../../directives/fileValidator";
@@ -28,7 +30,7 @@ import * as crypto from 'crypto-js';
   selector: 'app-form-artistas',
   templateUrl: './form-artistas.component.html',
   styleUrls: ['./form-artistas.component.scss'],
-  providers: [UserService,LinkService],
+  providers: [UserService,LinkService,FotoService,GenreService],
 })
 export class FormArtistasComponent implements OnInit {
     
@@ -41,9 +43,36 @@ export class FormArtistasComponent implements OnInit {
   @Input()
   tipo: string;
 
+  public afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png",
+    maxSize: "1",
+    uploadAPI:  {
+      url:"http://localhost:8000/api/politicas/upload",
+      method:"POST",
+      headers: {
+     "Authorization" : this._userService.getIdentity().token
+      },
+    },
+    theme: "attachPin",
+    hideProgressBar: true,
+    hideResetBtn: true,
+    hideSelectBtn: true,
+    fileNameIndex: true,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Foto',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !',
+      sizeLimit: 'Size Limit'
+    }
+};
 
   id: string;
-  generos = [1, 2, 3, 4];
+  generos;
   status;
 
   registroMusico: FormGroup;
@@ -80,6 +109,8 @@ export class FormArtistasComponent implements OnInit {
     public actionSheetController: ActionSheetController,
     private _userService : UserService,
     private _linkService : LinkService,
+    private _fotoService : FotoService,
+    private _genreService : GenreService
   ) {
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
@@ -105,6 +136,9 @@ export class FormArtistasComponent implements OnInit {
     console.log(this.editMode);    
     this.initForm(this.editMode);
     this.toggleForm(this.tipo);
+    this._genreService.listGenre().subscribe(response => {
+      this.generos = response['generos'];
+    });
   }
 
   addYoutube() {
@@ -221,6 +255,23 @@ export class FormArtistasComponent implements OnInit {
     return this.registroMusico.controls;
   }
 
+  subirFoto(datos,foto){
+    console.log(datos);
+    switch (foto){
+      case 1 :
+        this.file1 = datos['body'].file;
+        console.log(this.file1);
+        break;
+      case 2 :
+        this.file2 = datos['body'].file;
+        console.log(this.file2);
+        break;
+      default :
+        this.file3 = datos['body'].file;
+        console.log(this.file3);
+        break;
+    }
+  }
 
   toggleForm(tipo) {
     let img;
@@ -392,7 +443,7 @@ export class FormArtistasComponent implements OnInit {
           if(response.status == "success"){
            this.status = response.status;
            this.router.navigate(['perfil/0']);
-           console.log("ok");
+           console.log(response);
           }
           else{
            this.status = 'error';
@@ -404,6 +455,34 @@ export class FormArtistasComponent implements OnInit {
          console.log(<any>error);
         }
      );
+     if(this.file1){
+       let datos = {
+         perfil_id : this.IdPerfil,
+         foto : this.file1
+       };
+      this._fotoService.register(datos).subscribe(response =>{
+        console.log(response);
+      });
+     }
+     if(this.file2){
+      let datos = {
+        perfil_id : this.IdPerfil,
+        foto : this.file2
+      };
+     this._fotoService.register(datos).subscribe(response =>{
+       console.log(response);
+     });
+    }
+    if(this.file3){
+      let datos = {
+        perfil_id : this.IdPerfil,
+        foto : this.file3
+      };
+     this._fotoService.register(datos).subscribe(response =>{
+       console.log(response);
+     });
+    }
+
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         if(!data.status){

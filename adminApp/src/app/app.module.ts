@@ -40,6 +40,8 @@ import { EditarNotificacionesComponent } from "./components/editar-notificacione
 import { EditarPoliticasComponent } from "./components/editar-politicas/editar-politicas.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { SplashComponent } from "./components/splash/splash.component";
+import { AngularFileUploaderModule } from "angular-file-uploader";
+
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { SplashComponent } from "./components/splash/splash.component";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFileUploaderModule,
+
   ],
   providers: [
     StatusBar,

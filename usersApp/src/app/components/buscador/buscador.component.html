@@ -11,10 +11,45 @@
 <ion-content>
     <div class="modBox">
         <div class="logBox" *ngIf="isBuscar">
-            <app-form-buscador (resultados)="abrirResultados($event)" style="width: 100%;"></app-form-buscador>
+            <img class="pageImg" src="assets/8-busqueda/busqueda.png" alt="buscador">
+            <form [formGroup]="buscarArtista">
+                <div class="formContent">
+                    <div class="formInput nombreArtista">
+                        <label for="">Nombre del Artista o de la Orquesta</label>
+                        <input class="lInput" type="text" formControlName="nombre" name="" />
+                    </div>
+                    <div class="formInput" style="flex-wrap:nowrap;">
+                        <label for="">Género Musical</label>
+                        <select class="lInput" name="" formControlName="genero">
+                            <option></option>
+                            <option *ngFor="let genero of generos" value="{{genero.id}}">{{genero.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="formButton" (click)="abrirResultados()">
+                <p>BUSCAR</p>
+                </button>
+            </form>
         </div>
         <div class="logBox" *ngIf="isResultados">
-            <app-resultados-buscador (artistaEscogido)="mostrarArtista($event)" style="width: 100%;" [artistas]="artistas"></app-resultados-buscador>
+            <img class="pageImg" src="assets/9-resultado busqueda/resultados.png" alt="buscador">
+            <div class="cardBox" *ngFor="let artista of artistas">
+                <div class="imgBox">
+                    <!--<img class="imgResultados" [src]="artista.imagenes[0]" alt="" />-->
+                </div>
+                <div class="infoBox">
+                    <p>NOMBRE AGRUPACIÓN</p>
+                    <p>{{artista.nombre_artistico}}</p>
+                    <p>CATEGORÍAS</p>
+                    <p>{{artista.categorias}}</p>
+                </div>
+                <div class="moreBox">
+                    <button type="button" class="formButton" (click)="verArtista($event, artista)">
+                    <p>VER MÁS</p>
+                    </button>
+                    <app-rating [rating]="artista.rating"> </app-rating>
+                </div>
+            </div>
         </div>
         <div class="logBox" *ngIf="isVer">
             <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (musica)="verMusica()" (perfil)="verPerfil()" (videos)="verVideos()" (volver)="volverResultados()"></app-detalle-artista>
