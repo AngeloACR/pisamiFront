@@ -18,7 +18,13 @@
     <div class="formDescripcion">
       <label for="">Subir PDF</label>
       <div class="fileBox">
-        <img src="assets/13-crear politica/pdf.png" alt="" />
+        <angular-file-uploader
+        [config]="afuConfig"
+        [resetUpload]=resetVar
+        (ApiResponse)="subirPdf($event)">
+  
+
+        </angular-file-uploader>
         <p class="tagText">
           Nota: Se recomienda que el archivo no supere los 2 MB de
           tamaño

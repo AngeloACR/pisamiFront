@@ -112,13 +112,19 @@ export class FormUsuariosComponent implements OnInit {
       console.log("Registrando");
       let endpoint = "/usuario";
       let dataAux = this.registroUser.value;
+      if(this.tipo == "user"){
+        this.tipo = 2;
+      }
+      else{
+        this.tipo = 1;
+      }
       let dataValues = {
         nombre: dataAux.nombre,
         apellido: dataAux.apellido,
         telefono: dataAux.telefono,
         correo: dataAux.correo,
         contrasena: dataAux.contrasena,
-        tipo_usuario: 2
+        tipo_usuario: this.tipo,
       };
       this._userService.register(dataValues).subscribe(
         response => {

@@ -71,7 +71,7 @@
             <div class="formInput">
                 <label for="">Estilos de música</label>
                 <select class="lInput" name="genero" formControlName="genero">
-                <option *ngFor="let genero of generos" value="{{genero}}">{{genero}}</option>
+                <option *ngFor="let genero of generos" value="{{genero.id}}">{{genero.nombre}}</option>
                 </select>
             </div>
             <div class="formImagenes">
@@ -79,19 +79,25 @@
                 <h3>Fotos</h3>
                 <div class="formFiles">
                     <div class="formFile">
-                        <label for="documento1"></label>
-                        <input type="file" formControlName="imagen1" id="imagen1" (change)="fileProgress($event, 'imagen1')" />
-                        <span class="fileName" *ngIf="fileName1">{{fileName1}}</span>
+                        <angular-file-uploader
+                            [config]="afuConfig"
+                            [resetUpload]=resetVar
+                            (ApiResponse)="subirFoto($event,1)">
+                        </angular-file-uploader>
                     </div>
                     <div class="formFile">
-                        <label for="imagen2"></label>
-                        <input type="file" formControlName="imagen2" id="imagen2" (change)="fileProgress($event, 'imagen2')"/>
-                        <span class="fileName" *ngIf="fileName2">{{fileName2}}</span>
+                        <angular-file-uploader
+                            [config]="afuConfig"
+                            [resetUpload]=resetVar
+                            (ApiResponse)="subirFoto($event,2)">
+                        </angular-file-uploader>
                     </div>
                     <div class="formFile">
-                        <label for="imagen3"></label>
-                        <input type="file" formControlName="imagen3" id="imagen3" (change)="fileProgress($event, 'imagen3')"/>
-                        <span class="fileName" *ngIf="fileName3">{{fileName3}}</span>
+                        <angular-file-uploader
+                            [config]="afuConfig"
+                            [resetUpload]=resetVar
+                            (ApiResponse)="subirFoto($event,3)">
+                        </angular-file-uploader>
                     </div>
                 </div>
             </div>
