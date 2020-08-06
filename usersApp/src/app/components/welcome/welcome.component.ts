@@ -46,6 +46,10 @@ export class WelcomeComponent implements OnInit {
   }
 
   welcomeUser() {
-    this.router.navigateByUrl("/perfil/0");
+    if (this.isPrimerInicio) {
+      this.router.navigateByUrl("/perfil/0");
+    } else {
+      this.router.navigateByUrl("/buscador/0");
+    }
   }
 }
