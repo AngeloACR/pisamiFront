@@ -35,6 +35,7 @@ export class ResetPassComponent implements OnInit {
 
   ngOnInit() {
     this.selectedTitle = "Reestablecer contraseña";
+    this.menuCtrl.enable(false);
     this.resetPassword = new FormGroup(
       {
         password: new FormControl("", [

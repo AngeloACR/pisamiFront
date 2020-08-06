@@ -33,6 +33,7 @@ export class RestorePassComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.menuCtrl.enable(false);
     this.restorePassword = new FormGroup({
       mail: new FormControl("", [Validators.required, Validators.email])
     });

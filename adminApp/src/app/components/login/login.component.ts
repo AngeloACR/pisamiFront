@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("token", this.token);
             localStorage.setItem("identity", JSON.stringify(this.identity));
             this.common.showToast("Sesión iniciada con éxito");
+            this.menuCtrl.enable(true);
             this.router.navigate(["welcome"]);
           } else {
             this.common.showAlert("Error al iniciar sesión");
