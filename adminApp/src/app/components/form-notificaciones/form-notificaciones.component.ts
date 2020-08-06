@@ -42,10 +42,11 @@ export class FormNotificacionesComponent implements OnInit {
     public dbHandler: DbHandlerService,
     public _notificacionService: NotificacionService,
     public router: Router
-  ) {}
+  ) {
+    this.initForm(this.editMode);
+  }
 
   ngOnInit() {
-    this.initForm(this.editMode);
     if (this.editMode == 1) {
       if (JSON.parse(localStorage.getItem("notificacionEdit"))) {
         this.notificacionId = JSON.parse(

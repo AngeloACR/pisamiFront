@@ -38,7 +38,9 @@ export class ListaArtistasComponent implements OnInit {
     private common: CommonService,
     private _userService: UserService,
     private _usuarioComponent: FormUsuariosComponent
-  ) {}
+  ) {
+    this.initForm();
+  }
 
   ngOnInit() {
     this.selectedTitle = "Lista de Artistas";
@@ -57,7 +59,6 @@ export class ListaArtistasComponent implements OnInit {
         this.listData.push(aux);
       });
     });
-    this.initForm();
   }
 
   editarElemento(id) {

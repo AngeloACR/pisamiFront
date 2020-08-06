@@ -47,10 +47,11 @@ export class FormGenerosComponent implements OnInit {
     private _genreService: GenreService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.initForm(this.editMode);
+  }
 
   ngOnInit() {
-    this.initForm(this.editMode);
     if (this.editMode == 1) {
       if (JSON.parse(localStorage.getItem("generoEdit"))) {
         this.generoId = JSON.parse(localStorage.getItem("generoEdit"));

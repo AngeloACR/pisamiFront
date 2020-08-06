@@ -41,7 +41,9 @@ export class ListaUsuariosComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     private _userService: UserService,
     private _usuarioComponent: FormUsuariosComponent
-  ) {}
+  ) {
+    this.initForm(); //ESTO DEBE IR DE PRIMERO
+  }
 
   async ngOnInit() {
     this.selectedTitle = "Lista de Usuarios";
@@ -62,7 +64,6 @@ export class ListaUsuariosComponent implements OnInit {
         this.listData.push(aux);
       });
     });
-    this.initForm();
 
     /* let endpoint = `/usuarios`
       this.dbHandler.getSomething(endpoint).then((data: any) => {

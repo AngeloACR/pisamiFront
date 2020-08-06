@@ -39,7 +39,9 @@ export class ListaNotificacionesComponent implements OnInit {
     private common: CommonService,
     public _notificacionService: NotificacionService,
     public _notificacionComponent: FormNotificacionesComponent
-  ) {}
+  ) {
+    this.initForm();
+  }
 
   async ngOnInit() {
     this.selectedTitle = "Lista de Notificaciones";
@@ -79,7 +81,6 @@ export class ListaNotificacionesComponent implements OnInit {
         console.log(<any>error);
       }
     );
-    this.initForm();
   }
 
   editarElemento(id) {

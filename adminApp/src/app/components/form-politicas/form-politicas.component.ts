@@ -66,10 +66,11 @@ export class FormPoliticasComponent implements OnInit {
     public _userService: UserService,
     public _PoliticaService: PoliticaService,
     private common: CommonService
-  ) {}
+  ) {
+    this.initForm(this.editMode);
+  }
 
   ngOnInit() {
-    this.initForm(this.editMode);
     if (this.editMode == 1) {
       if (JSON.parse(localStorage.getItem("politicaEdit"))) {
         this.politicaId = JSON.parse(localStorage.getItem("politicaEdit"));

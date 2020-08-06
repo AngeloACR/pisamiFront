@@ -39,7 +39,10 @@ export class ListaPoliticasComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     private _politicaService: PoliticaService,
     private _politicaComponent: FormPoliticasComponent
-  ) {}
+  ) {
+    this.initForm();
+
+  }
 
   async ngOnInit() {
     this.selectedTitle = "Lista de Políticas";
@@ -86,7 +89,6 @@ export class ListaPoliticasComponent implements OnInit {
       this.listData.push(aux);
     });
     */
-    this.initForm();
   }
 
   initForm() {

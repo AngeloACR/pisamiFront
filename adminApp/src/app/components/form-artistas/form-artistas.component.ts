@@ -74,6 +74,7 @@ tipo: string;
     private fileHanlder: FileHandlerService,
     public actionSheetController: ActionSheetController,
   ) {
+    this.initForm(this.editMode);
     this.actRoute.params.subscribe(params => {
       this.id = params["id"];
     });
@@ -94,7 +95,6 @@ tipo: string;
     this.isSolista = false;
     this.isDuo = false;
     this.isOrquesta = false;
-    this.initForm(this.editMode);
     this.toggleForm(this.tipo);
   }
 

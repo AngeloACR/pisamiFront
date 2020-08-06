@@ -39,7 +39,9 @@ export class ListaGenerosComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     private _genreService: GenreService,
     private _genreComponent: FormGenerosComponent
-  ) {}
+  ) {
+    this.initForm();
+  }
 
   async ngOnInit() {
     this.selectedTitle = "Lista de Géneros";
@@ -82,8 +84,6 @@ export class ListaGenerosComponent implements OnInit {
         console.log(<any>error);
       }
     );
-
-    this.initForm();
   }
   editarElemento(id) {
     let idGenero = id;

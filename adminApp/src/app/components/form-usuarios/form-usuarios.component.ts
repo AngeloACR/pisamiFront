@@ -57,10 +57,11 @@ export class FormUsuariosComponent implements OnInit {
     private _userService: UserService,
     private router: Router,
     private _location: Location
-  ) {}
+  ) {
+    this.initForm(this.editMode);
+  }
 
   ngOnInit() {
-    this.initForm(this.editMode);
     if (this.editMode == 1) {
       if (JSON.parse(localStorage.getItem("userEdit"))) {
         this.userId = JSON.parse(localStorage.getItem("userEdit"));
