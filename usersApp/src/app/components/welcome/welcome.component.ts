@@ -18,7 +18,7 @@ export class WelcomeComponent implements OnInit {
   welcomeMsg: string;
   isUsuario: boolean;
   isMusico: boolean;
-  isPrimerInicio: boolean;
+  isPrimerInicio: boolean = false;
   constructor(
     private auth: AuthService,
     private common: CommonService,
@@ -32,15 +32,15 @@ export class WelcomeComponent implements OnInit {
     if (type == "usuario") {
       this.isUsuario = true;
       this.welcomeMsg =
-        "Bienvenido a Ibagué Music, explora todas las diferentes opciones que te ofrecemos a través del menú, el cual está ubicado arriba y a la izquierda de la pantalla, ¡y empieza a disfrutar de tu experiencia musical!";
+        "Bienvenido(a) a Ibagué Musical, una aplicación donde encontrarás un directorio musical a través de nuestro servicio. ¡Anímate a conocer más de tus artistas favoritos!";
     } else {
       this.isMusico = true;
       this.welcomeMsg =
-        "Bienvenido a Ibagué Music, explora todas las diferentes opciones que te ofrecemos a través del menú, el cual está ubicado arriba y a la izquierda de la pantalla, ¡y empieza a disfrutar de tu experiencia musical!";
+        "Bienvenido(a) a Ibagué Musical, una aplicación donde encontrarás un directorio musical a través de nuestro servicio. ¡Anímate a conocer más de tus artistas favoritos!";
       this.isPrimerInicio = await this.auth.primerInicio();
       if (this.isPrimerInicio) {
         this.welcomeMsg =
-          "Bienvenido a Ibagué Music, antes de explorar todas las cosas que tenemos para ofrecerte, por favor completa tu perfil dando click al siguiente botón:";
+          "Si eres solista, dúo o si cuentas con una banda, debes completar tu perfil seleccionando la opción de acuerdo a tu condición. De esta manera empezarás a disfrutar de los beneficios que tiene Ibagué Músical para ti.";
       }
     }
   }

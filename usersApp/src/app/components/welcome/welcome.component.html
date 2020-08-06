@@ -3,16 +3,24 @@
 </ion-header>
 
 <ion-content>
-  <div class="modBox">
+  <div class="pageBox">
     <div class="logBox">
-      <div style="width: 100%">
-        <img class="pageImg" src="assets/" alt="Bienvenido">
-        <div class="welcomeBox">
+      <div class="logoBox">
+        <img src="assets/logoblanco.png" alt="Logo" />
+      </div>
+      <div class="welcomeBox">
+        <div class="welcomeText">
           {{welcomeMsg}}
         </div>
-        <button type="button" class="welcomeButton" (click)="welcomeUser()">
-          <p>COMPLETAR PERFIL</p>
-        </button>
+        <div class="welcomeButton">
+
+          <button type="button" *ngIf="!isPrimerInicio" (click)="welcomeUser()">
+            <p>CONTINUAR</p>
+          </button>
+          <button type="button" *ngIf="isMusico && isPrimerInicio" (click)="welcomeUser()">
+            <p>COMPLETAR PERFIL</p>
+          </button>
+        </div>
       </div>
     </div>
   </div>
