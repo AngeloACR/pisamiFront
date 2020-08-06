@@ -43,9 +43,11 @@ export class ListaUsuariosComponent implements OnInit {
     private _usuarioComponent: FormUsuariosComponent
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.selectedTitle = "Lista de Usuarios";
+    await this.common.showLoader();
     this._userService.listaUsuarios().subscribe(data => {
+      this.common.hideLoader();
       this.usuarios = data["user"];
       this.fields = ["Id", "Nombre", "Apellido", "Correo", "Teléfono"];
       this.listData = [];
@@ -78,17 +80,19 @@ export class ListaUsuariosComponent implements OnInit {
     this.router.navigate(["editarusuario"]);
     return this._usuarioComponent.initForm(1, iduser);
   }
-  estado(usuario,estado){
+  estado(usuario, estado) {
     let dataValues = {
-      estado : estado
+      estado: estado
     };
-    this._userService.actualizarUsuario(usuario,dataValues).subscribe(response => {
-      console.log(response);
-    });
+    this._userService
+      .actualizarUsuario(usuario, dataValues)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
-  getData(){
-    this._userService.listaUsuarios().subscribe(data =>{
-      let usuarios = data['user'];
+  getData() {
+    this._userService.listaUsuarios().subscribe(data => {
+      let usuarios = data["user"];
       return usuarios;
     });
   }
@@ -124,10 +128,12 @@ export class ListaUsuariosComponent implements OnInit {
     this.router.navigate(["/editarusuario", { user: user }]);
   }
 
-  eliminarUsuario(event) {
+  async eliminarUsuario(event) {
     let id = event.id;
     let endpoint = `/perfiles/delete/${id}`;
+    await this.common.showLoader();
     this.dbHandler.deleteSomething(endpoint).then((data: any) => {
+      this.common.hideLoader();
       // data is already a JSON object
       if (!data.status) {
         let errorMsg = data.msg;

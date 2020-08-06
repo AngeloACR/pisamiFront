@@ -65,13 +65,17 @@ export class ListaArtistasComponent implements OnInit {
     this.router.navigate(["editarusuario"]);
     return this._usuarioComponent.initForm(1, idArtista);
   }
-  estado(usuario,estado){
+  async estado(usuario, estado) {
     let dataValues = {
-      estado : estado
+      estado: estado
     };
-    this._userService.actualizarUsuario(usuario,dataValues).subscribe(response => {
-      console.log(response);
-    });
+    await this.common.showLoader();
+    this._userService
+      .actualizarUsuario(usuario, dataValues)
+      .subscribe(response => {
+        this.common.hideLoader();
+        console.log(response);
+      });
   }
 
   initForm() {

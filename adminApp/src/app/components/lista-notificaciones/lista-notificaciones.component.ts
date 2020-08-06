@@ -41,7 +41,7 @@ export class ListaNotificacionesComponent implements OnInit {
     public _notificacionComponent: FormNotificacionesComponent
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.selectedTitle = "Lista de Notificaciones";
 
     let endpoint = `/notificaciones`;
@@ -56,8 +56,10 @@ export class ListaNotificacionesComponent implements OnInit {
         }
       }); */
 
+    await this.common.showLoader();
     this._notificacionService.listNotificacion().subscribe(
       response => {
+        this.common.hideLoader();
         if (response.status != "error") {
           this.notificaciones = response.notificaciones;
           this.fields = ["Id", "Nombre", "Mensaje"];
@@ -73,6 +75,7 @@ export class ListaNotificacionesComponent implements OnInit {
         }
       },
       error => {
+        this.common.hideLoader();
         console.log(<any>error);
       }
     );
@@ -104,18 +107,24 @@ export class ListaNotificacionesComponent implements OnInit {
     ]);
   }
 
-  eliminarNotificacion(id) {
+  async eliminarNotificacion(id) {
     if (confirm("Are you sure to delete ")) {
+      await this.common.showLoader();
       this._notificacionService.deleteNotificacion(id).subscribe(
         response => {
+          this.common.hideLoader();
           if (response.status != "error") {
             this.status = "success";
+            this.common.showToast("Notificación eliminada exitosamente");
             this.router.navigate(["listanotificaciones"]);
           } else {
+            this.common.showAlert("Error eliminando la notificación");
             this.status = "error";
           }
         },
         error => {
+          this.common.hideLoader();
+          this.common.showAlert("Error eliminando la notificación");
           this.status = "error";
           console.log(<any>error);
         }

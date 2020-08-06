@@ -54,7 +54,7 @@ export class ResetPassComponent implements OnInit {
     this.router.navigateByUrl("/");
   }
 
-  resetPass() {
+  async resetPass() {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {
@@ -62,7 +62,9 @@ export class ResetPassComponent implements OnInit {
       this.showConfirm = {
         showConfirm: true
       };
+      await this.common.showLoader();
       this.auth.resetPass(data).subscribe((data: any) => {
+        this.common.hideLoader();
         console.log("Reset succesful");
         this.showConfirm = {
           showConfirm: true

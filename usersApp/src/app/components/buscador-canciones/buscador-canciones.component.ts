@@ -74,11 +74,13 @@ export class BuscadorCancionesComponent implements OnInit {
     this.artistaSelected = false;
   }
 
-  buscar() {
+  async buscar() {
     //get canciones segun filtro
     let dataAux = this.buscarCanciones.value;
     console.log(dataAux.nombre);
+    await this.common.showLoader();
     this._linkService.listByName(dataAux.nombre).subscribe(response => {
+      this.common.hideLoader();
       response["links"].forEach(response => {
         var link = atob(response.link);
 

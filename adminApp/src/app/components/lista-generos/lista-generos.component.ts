@@ -9,10 +9,15 @@ import {
 } from "@angular/forms";
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
-import { GenreService } from 'src/app/services/genres.service';
+import {
+  Router,
+  ActivatedRoute,
+  ParamMap,
+  NavigationEnd
+} from "@angular/router";
+import { GenreService } from "src/app/services/genres.service";
 
-import {FormGenerosComponent} from "../form-generos/form-generos.component";
+import { FormGenerosComponent } from "../form-generos/form-generos.component";
 @Component({
   selector: "app-lista-generos",
   templateUrl: "./lista-generos.component.html",
@@ -36,7 +41,7 @@ export class ListaGenerosComponent implements OnInit {
     private _genreComponent: FormGenerosComponent
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.selectedTitle = "Lista de Géneros";
 
     /* let endpoint = `/generos`    
@@ -50,8 +55,10 @@ export class ListaGenerosComponent implements OnInit {
         }
       }); */
 
+    await this.common.showLoader();
     this._genreService.listGenre().subscribe(
       response => {
+        this.common.hideLoader();
         if (response.status != "error") {
           this.generos = response.generos;
           this.status = "success";
@@ -70,6 +77,7 @@ export class ListaGenerosComponent implements OnInit {
         }
       },
       error => {
+        this.common.hideLoader();
         this.status = "error";
         console.log(<any>error);
       }
@@ -116,17 +124,23 @@ export class ListaGenerosComponent implements OnInit {
     this.router.navigate(["/editargenero", { genero: genero }]);
   }
 
-  eliminarGenero(id) {
+  async eliminarGenero(id) {
+    await this.common.showLoader();
     this._genreService.deleteGenre(id).subscribe(
       response => {
+        this.common.hideLoader();
         if (response.status != "error") {
+          this.common.showToast("Género eliminado exitosamente");
           this.status = "success";
           this.router.navigate(["listageneros"]);
         } else {
+          this.common.showAlert("Error eliminando el género");
           this.status = "error";
         }
       },
       error => {
+        this.common.hideLoader();
+        this.common.showAlert("Error eliminando el género");
         this.status = "error";
         console.log(<any>error);
       }

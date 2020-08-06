@@ -231,7 +231,7 @@ tipo: string;
   }
 
 
-  endRegistro() {
+  async endRegistro() {
     if (this.catchUserErrors()) {
       let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
       this.toggleError(msg);
@@ -268,9 +268,11 @@ tipo: string;
         youLinks: youLinks,
         soundLinks: soundLinks,
       };
+      await this.common.showLoader();
       this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
-        if(!data.status){
+          this.common.hideLoader()
+          if(!data.status){
           let errorMsg = data.msg;
           this.toggleError(errorMsg)
         } else{
@@ -281,7 +283,7 @@ tipo: string;
     }
   }
 
-  endUpdate() {
+  async endUpdate() {
     if (this.catchUserErrors()) {
       let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
       this.toggleError(msg);
@@ -291,9 +293,11 @@ tipo: string;
       let dataAux = this.registroMusico.value;
       let dataValues = {
       };
+      await this.common.showLoader();
       this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
-        if(!data.status){
+          this.common.hideLoader()
+          if(!data.status){
           let errorMsg = data.msg;
           this.toggleError(errorMsg)
         } else{

@@ -44,14 +44,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logUser() {
+  async logUser() {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {
       var data = this.login.value;
+      await this.common.showLoader();
       this._userService.signup(data).subscribe(
         response => {
           //token
+          this.common.hideLoader();
           if (response.status != "error" && response.tipo_usuario == 0) {
             console.log(response);
             this.status = "success";
@@ -59,12 +61,16 @@ export class LoginComponent implements OnInit {
             this.identity = response;
             localStorage.setItem("token", this.token);
             localStorage.setItem("identity", JSON.stringify(this.identity));
+            this.common.showToast("Sesión iniciada con éxito");
             this.router.navigate(["welcome"]);
           } else {
+            this.common.showAlert("Error al iniciar sesión");
             this.status = "error";
           }
         },
         error => {
+          this.common.hideLoader();
+          this.common.showAlert("Error al iniciar sesión");
           this.status = "error";
           console.log(<any>error);
         }

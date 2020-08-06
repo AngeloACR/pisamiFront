@@ -83,7 +83,7 @@ export class FormNotificacionesComponent implements OnInit {
     return this.registroNotificacion.controls;
   }
 
-  endRegistro() {
+  async endRegistro() {
     if (this.catchUserErrors()) {
       let msg =
         "Hay errores en el formulario. Por favor, revíselo e intente de nuevo";
@@ -96,21 +96,29 @@ export class FormNotificacionesComponent implements OnInit {
         nombre: dataAux.nombre,
         mensaje: dataAux.mensaje
       };
+      await this.common.showLoader();
       this._notificacionService.addNotificacion(dataValues).subscribe(
         response => {
+          this.common.hideLoader();
           if (response.status == "success") {
+            this.common.showToast("Notificación creada correctamente");
             this.status = response.status;
           } else {
+            this.common.showAlert("Error registrando la notificación");
             this.status = "error";
           }
         },
         error => {
+          this.common.showAlert("Error registrando la notificación");
+          this.common.hideLoader();
           this.status = "error";
           console.log(<any>error);
         }
       );
+      await this.common.showLoader();
       this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
+        this.common.hideLoader();
         if (!data.status) {
           let errorMsg = data.msg;
           this.toggleError(errorMsg);
@@ -121,7 +129,7 @@ export class FormNotificacionesComponent implements OnInit {
     }
   }
 
-  endUpdate() {
+  async endUpdate() {
     if (this.catchUserErrors()) {
       let msg =
         "Hay errores en el formulario. Por favor, revíselo e intente de nuevo";
@@ -134,31 +142,28 @@ export class FormNotificacionesComponent implements OnInit {
         nombre: dataAux.nombre,
         mensaje: dataAux.mensaje
       };
+      await this.common.showLoader();
       this._notificacionService
         .updateNotificacion(this.notificacionId, dataValues)
         .subscribe(
           response => {
+            this.common.hideLoader();
             if (response.status != "error") {
+              this.common.showToast("Notificación actualizada correctamente");
               this.status = "success";
               this.router.navigate(["listanotificaciones"]);
             } else {
+              this.common.showAlert("Error actualizando la notificación");
               this.status = "error";
             }
           },
           error => {
+            this.common.hideLoader();
+            this.common.showAlert("Error actualizando la notificación");
             this.status = "error";
             console.log(<any>error);
           }
         );
-      this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
-        // data is already a JSON object
-        if (!data.status) {
-          let errorMsg = data.msg;
-          this.toggleError(errorMsg);
-        } else {
-          this.ngOnInit();
-        }
-      });
     }
   }
 

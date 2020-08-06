@@ -9,18 +9,21 @@ import {
 } from "@angular/forms";
 import { ActionSheetController } from "@ionic/angular";
 import { DbHandlerService } from "../../services/db-handler.service";
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
-import { PoliticaService } from '../../services/politica.service';
-import { UserService } from '../../services/user.service';
-import {FormPoliticasComponent} from "../form-politicas/form-politicas.component";
-
-
+import {
+  Router,
+  ActivatedRoute,
+  ParamMap,
+  NavigationEnd
+} from "@angular/router";
+import { PoliticaService } from "../../services/politica.service";
+import { UserService } from "../../services/user.service";
+import { FormPoliticasComponent } from "../form-politicas/form-politicas.component";
 
 @Component({
-  selector: 'app-lista-politicas',
-  templateUrl: './lista-politicas.component.html',
-  styleUrls: ['./lista-politicas.component.scss'],
-  providers: [PoliticaService,FormPoliticasComponent,UserService] 
+  selector: "app-lista-politicas",
+  templateUrl: "./lista-politicas.component.html",
+  styleUrls: ["./lista-politicas.component.scss"],
+  providers: [PoliticaService, FormPoliticasComponent, UserService]
 })
 export class ListaPoliticasComponent implements OnInit {
   politicas: any;
@@ -36,14 +39,16 @@ export class ListaPoliticasComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     private _politicaService: PoliticaService,
     private _politicaComponent: FormPoliticasComponent
-  ) { }
+  ) {}
 
-  ngOnInit() {
-    this.selectedTitle = 'Lista de Políticas';
+  async ngOnInit() {
+    this.selectedTitle = "Lista de Políticas";
+    await this.common.showLoader();
 
-    this._politicaService.listPoliticas().subscribe(response =>{
-      this.politicas = response['politicas'];
-    })
+    this._politicaService.listPoliticas().subscribe(response => {
+      this.common.hideLoader();
+      this.politicas = response["politicas"];
+    });
     /*this.politicas = [{
       id: '29384',
       nombre: 'TRATO DE DATOS PERSONALES',
@@ -89,10 +94,10 @@ export class ListaPoliticasComponent implements OnInit {
       nombre: new FormControl("")
     });
   }
-  editarElemento(id){
+  editarElemento(id) {
     let idPolitica = id;
-    this.router.navigate(['editarpolitica']);
-    return this._politicaComponent.initForm(1,idPolitica);
+    this.router.navigate(["editarpolitica"]);
+    return this._politicaComponent.initForm(1, idPolitica);
   }
 
   filtrarPolitica() {
@@ -118,10 +123,12 @@ export class ListaPoliticasComponent implements OnInit {
     this.router.navigate(["/editarpolitica", { politica: politica }]);
   }
 
-  eliminarPolitica(event) {
+  async eliminarPolitica(event) {
     let id = event.id;
     let endpoint = `/perfiles/delete/${id}`;
+    await this.common.showLoader();
     this.dbHandler.deleteSomething(endpoint).then((data: any) => {
+      this.common.hideLoader();
       // data is already a JSON object
       if (!data.status) {
         let errorMsg = data.msg;

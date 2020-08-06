@@ -47,7 +47,7 @@ export class RestorePassComponent implements OnInit {
     this.router.navigateByUrl("/");
   }
 
-  restorePass() {
+  async restorePass() {
     if (this.catchUserErrors()) {
       this.toggleError();
     } else {
@@ -55,7 +55,9 @@ export class RestorePassComponent implements OnInit {
         showConfirm: true
       };
       var data = this.restorePassword.value;
+      await this.common.showLoader();
       this.auth.restorePass(data).subscribe((data: any) => {
+        this.common.hideLoader();
         this.showConfirm = {
           showConfirm: true
         };

@@ -103,7 +103,7 @@ export class FormUsuariosComponent implements OnInit {
     return this.registroUser.controls;
   }
 
-  endRegistro() {
+  async endRegistro() {
     if (this.catchUserErrors()) {
       let msg =
         "Hay errores en el formulario. Por favor, revíselo e intente de nuevo";
@@ -112,10 +112,9 @@ export class FormUsuariosComponent implements OnInit {
       console.log("Registrando");
       let endpoint = "/usuario";
       let dataAux = this.registroUser.value;
-      if(this.tipo == "user"){
+      if (this.tipo == "user") {
         this.tipo = 2;
-      }
-      else{
+      } else {
         this.tipo = 1;
       }
       let dataValues = {
@@ -124,36 +123,33 @@ export class FormUsuariosComponent implements OnInit {
         telefono: dataAux.telefono,
         correo: dataAux.correo,
         contrasena: dataAux.contrasena,
-        tipo_usuario: this.tipo,
+        tipo_usuario: this.tipo
       };
+      await this.common.showLoader();
       this._userService.register(dataValues).subscribe(
         response => {
+          this.common.hideLoader();
           if (response.status == "success") {
+            this.common.showToast("Usuario registrado correctamente");
             this.status = response.status;
             console.log("ok");
           } else {
+            this.common.showAlert("Error registrando el usuario");
             this.status = "error";
             console.log("bad");
           }
         },
         error => {
+          this.common.showAlert("Error registrando el usuario");
+          this.common.hideLoader();
           this.status = "error";
           console.log(<any>error);
         }
       );
-      this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
-        // data is already a JSON object
-        if (!data.status) {
-          let errorMsg = data.msg;
-          this.toggleError(errorMsg);
-        } else {
-          this.ngOnInit();
-        }
-      });
     }
   }
 
-  endUpdate() {
+  async endUpdate() {
     if (this.catchUserErrors()) {
       let msg =
         "Hay errores en el formulario. Por favor, revíselo e intente de nuevo";
@@ -169,20 +165,13 @@ export class FormUsuariosComponent implements OnInit {
         correo: dataAux.correo
       };
       console.log(this.userId);
+      await this.common.showLoader();
       this._userService
         .actualizarUsuario(this.userId, dataValues)
         .subscribe(data => {
+          this.common.hideLoader();
           this._location.back();
         });
-      this.dbHandler.putSomething(dataValues, endpoint).then((data: any) => {
-        // data is already a JSON object
-        if (!data.status) {
-          let errorMsg = data.msg;
-          this.toggleError(errorMsg);
-        } else {
-          this.ngOnInit();
-        }
-      });
     }
   }
   async toggleError(msg) {

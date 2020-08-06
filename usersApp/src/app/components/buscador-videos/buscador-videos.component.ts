@@ -74,10 +74,12 @@ export class BuscadorVideosComponent implements OnInit {
     this.artistaSelected = false;
   }
 
-  buscar() {
+  async buscar() {
     let dataAux = this.buscarVideos.value;
     console.log(dataAux.nombre);
+    this.common.showLoader();
     this._linkService.listByName(dataAux.nombre).subscribe(response => {
+      this.common.hideLoader();
       response["links"].forEach(response => {
         var link = atob(response.link);
 

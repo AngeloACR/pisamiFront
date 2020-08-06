@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
           //token
           this.common.hideLoader(); /****************** OCULTANDO LOADER******************/
           if (response.status != "error") {
+            this.common.showToast("Sesión iniciada con éxito");
+
             this.status = "success";
             this.token = response.token;
             this.identity = response;
@@ -61,11 +63,13 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("identity", JSON.stringify(this.identity));
             this.router.navigate(["welcome"]);
           } else {
+            this.common.showAlert("Error al iniciar sesión");
             this.status = "error";
           }
         },
         error => {
           this.common.hideLoader(); /****************** OCULTANDO LOADER******************/
+          this.common.showAlert("Error al iniciar sesión");
           this.status = "error";
           console.log(<any>error);
         }
