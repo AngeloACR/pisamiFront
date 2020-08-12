@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { Platform } from "@ionic/angular";
+import { Platform, MenuController } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { IonSlides } from "@ionic/angular";
@@ -77,6 +77,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private menuCtrl: MenuController,
     public _userService: UserService
   ) {
     this.initializeApp();
@@ -155,5 +156,9 @@ export class AppComponent implements OnInit {
     slideView.isEnd().then(istrue => {
       object.isEndSlide = istrue;
     });
+  }
+
+  closeMenu() {
+    this.menuCtrl.close();
   }
 }

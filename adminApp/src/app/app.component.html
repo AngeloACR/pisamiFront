@@ -7,6 +7,7 @@
                 <app-header [title]="selectedTitle"></app-header>
                 <div class="circularBox">
                     <img class="closeImg" src="assets/X.png" *ngIf="!mainMenu" (click)="volverMenu()" />
+                    <img class="closeImg" src="assets/X.png" *ngIf="mainMenu" (click)="closeMenu()" />
                 </div>
             </ion-header>
             <ion-content id="adminMenu">

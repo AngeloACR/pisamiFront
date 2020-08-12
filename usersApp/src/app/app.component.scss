@@ -202,3 +202,22 @@ ion-item.selected {
 .configItem .menuImg {
   height: 15vw;
 }
+
+.circularBox {
+  background-color: #f68522;
+  position: absolute;
+  border-radius: 84px;
+  top: 0;
+  right: -2px;
+  z-index: 25;
+  width: 82px;
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeImg {
+  height: 50%;
+}

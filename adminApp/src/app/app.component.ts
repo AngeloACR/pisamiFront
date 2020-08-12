@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { Platform } from "@ionic/angular";
+import { Platform, MenuController } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { IonSlides } from "@ionic/angular";
@@ -195,6 +195,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private menuCtrl: MenuController,
     private auth: AuthService
   ) {
     this.initializeApp();
@@ -294,6 +295,10 @@ export class AppComponent {
     this.adminMenu = false;
     this.configMenu = false;
     this.politicasMenu = false;
+  }
+
+  closeMenu() {
+    this.menuCtrl.close();
   }
 
   initializeApp() {
