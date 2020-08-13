@@ -18,5 +18,6 @@ export class LogoutComponent implements OnInit {
   async ngOnInit() {
     await this.auth.logout();
     this.router.navigateByUrl("/");
+    localStorage.clear();
   }
 }

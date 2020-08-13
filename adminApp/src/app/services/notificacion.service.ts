@@ -38,8 +38,12 @@ export class NotificacionService {
     .set('Authorization',token.token);
     return this._http.get('http://localhost:8000/api/notificaciones/'+id, {headers : headers});
   }
-
-
+  notificacionByName (name): Observable<any>{
+    let token = JSON.parse(localStorage.getItem('identity'));
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+    .set('Authorization',token.token);
+    return this._http.get('http://localhost:8000/api/notificaciones/name/'+name, {headers : headers});
+  }
   updateNotificacion (id,notificacion): Observable<any>{
     let token = JSON.parse(localStorage.getItem('identity'));
     let json = JSON.stringify(notificacion);

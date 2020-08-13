@@ -45,35 +45,12 @@ export class ListaGenerosComponent implements OnInit {
 
   async ngOnInit() {
     this.selectedTitle = "Lista de Géneros";
-
-    /* let endpoint = `/generos`    
-        this.dbHandler.getSomething(endpoint).then((data: any) => {
-        // data is already a JSON object
-        if(!data.status){
-          let errorMsg = data.msg;
-          this.toggleError(errorMsg)
-        } else{
-          this.generos = data;
-        }
-      }); */
-
     await this.common.showLoader();
     this._genreService.listGenre().subscribe(
       response => {
         this.common.hideLoader();
         if (response.status != "error") {
           this.generos = response.generos;
-          this.status = "success";
-          this.fields = ["Id", "Nombre", "Descripción"];
-          this.listData = [];
-          this.generos.forEach(genero => {
-            let aux = {
-              id: genero.id,
-              nombre: genero.nombre,
-              descripcion: genero.descripcion
-            };
-            this.listData.push(aux);
-          });
         } else {
           this.status = "error";
         }
@@ -98,19 +75,23 @@ export class ListaGenerosComponent implements OnInit {
   }
 
   filtrarGenero() {
-    let dataAux = this.buscarGenero.value;
-
-    let endpoint = `/generos/nombre/${dataAux.nombre}`;
-
-    this.dbHandler.getSomething(endpoint).then((data: any) => {
-      // data is already a JSON object
-      if (!data.status) {
-        let errorMsg = data.msg;
-        this.toggleError(errorMsg);
-      } else {
-        this.generos = data;
+    console.log(name);
+    this.selectedTitle = "Lista de Géneros";
+    this._genreService.genreByName(this.buscarGenero.controls['nombre'].value).subscribe(
+      response => {
+        console.log(response);
+        if (response.status != "error") {
+          this.generos = response.genero;
+          this.status = "success";
+        } else {
+          this.status = "error";
+        }
+      },
+      error => {
+        this.status = "error";
+        console.log(<any>error);
       }
-    });
+    );
   }
 
   habilitarGenero(event) {}
@@ -132,7 +113,7 @@ export class ListaGenerosComponent implements OnInit {
         if (response.status != "error") {
           this.common.showToast("Género eliminado exitosamente");
           this.status = "success";
-          this.router.navigate(["listageneros"]);
+          this.ngOnInit();
         } else {
           this.common.showAlert("Error eliminando el género");
           this.status = "error";

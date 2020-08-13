@@ -29,7 +29,7 @@
 
         <div style="border: none !important;" class="formInput">
             <label for="">¿Tiene representante?</label>
-            <select name="" formControlName="representante">
+            <select name="" (change)="disabled()" formControlName="representante">
                 <option selected="true" value="1">Sí</option>
                 <option value="0">No</option>
             </select>
@@ -47,7 +47,14 @@
             <textarea rows="6" type="text" formControlName="descripcion" name=""></textarea>
         </div>
         <div class="errorTag" *ngIf="fMusico.descripcion.errors?.required && (fMusico.descripcion.touched || fMusico.descripcion.dirty)">Este campo es requerido</div>
-
+        <div class="formInput">
+            <label for="">Correo</label>
+            <input class="lInput" type="text" formControlName="correo" name="" />
+        </div>
+        <div class="formInput">
+            <label for="">Telefono</label>
+            <input class="lInput" type="text" formControlName="telefono" name="" />
+        </div>
         <div class="formInput">
             <label for="">Página de Instagram</label>
             <input class="lInput" type="text" formControlName="instagram" name="" />

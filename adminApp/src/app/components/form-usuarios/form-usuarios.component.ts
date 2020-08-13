@@ -171,7 +171,7 @@ export class FormUsuariosComponent implements OnInit {
         .actualizarUsuario(this.userId, dataValues)
         .subscribe(data => {
           this.common.hideLoader();
-          this._location.back();
+          this.common.showToast("Actualizado correctamente");
         });
     }
   }

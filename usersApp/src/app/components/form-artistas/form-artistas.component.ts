@@ -160,6 +160,19 @@ export class FormArtistasComponent implements OnInit {
     this.soundFrames.push(group);
   }
 
+  disabled(){
+    let dataAux = this.registroMusico.value;
+    if(dataAux.representante == 0){
+      this.registroMusico.controls['nombre_representante'].disable();
+      this.registroMusico.controls['nombre_representante'].setValue("");
+    }
+    else{
+      this.registroMusico.controls['nombre_representante'].enable();
+    }
+    
+
+  }
+
   initForm(editMode) {
     this.registroMusico = new FormGroup({
       nombre_artistico: new FormControl("", Validators.required),
@@ -188,6 +201,7 @@ export class FormArtistasComponent implements OnInit {
            this.status = response.status;
            console.log(response.perfiles[0]);
             localStorage.setItem('idPerfil',response.perfiles[0].id);
+            this.IdPerfil = localStorage.getItem("idPerfil");
             this.registroMusico.controls['num_integrantes'].setValue(response.perfiles[0].num_integrantes);
             this.registroMusico.controls['nombre_artistico'].setValue(response.perfiles[0].nombre_artistico);
             this.registroMusico.controls['dispuesto_salir'].setValue(response.perfiles[0].dispuesto_salir);
@@ -201,10 +215,10 @@ export class FormArtistasComponent implements OnInit {
             this.registroMusico.controls['facebook'].setValue(response.perfiles[0].facebook);
             this.registroMusico.controls['pagina_web'].setValue(response.perfiles[0].pagina_web);
             this.registroMusico.controls['genero'].setValue(response.perfiles[0].genero);
-            this.registroMusico.controls['descripcion'].setValue(this.user.descripcion);
-            this.registroMusico.controls['instagram'].setValue("n/a");
-            this.registroMusico.controls['facebook'].setValue("n/a");
-            this.registroMusico.controls['pagina_web'].setValue("n/a");
+            this.registroMusico.controls['descripcion'].setValue(response.perfiles[0].descripcion);
+            this.registroMusico.controls['instagram'].setValue(response.perfiles[0].instagram);
+            this.registroMusico.controls['facebook'].setValue(response.perfiles[0].facebook);
+            //this.registroMusico.controls['pagina_web'].setValue("n/a");
             let soundAuxs = this.user.soundFrames;
             soundAuxs.forEach(soundAux => {
               this.addSoundcloud()
@@ -249,7 +263,6 @@ export class FormArtistasComponent implements OnInit {
       console.log(<any>error);
       }
     );
-    this.IdPerfil = localStorage.getItem("idPerfil");
     }
   }
 
@@ -363,7 +376,7 @@ export class FormArtistasComponent implements OnInit {
     }
   }
 
-  endUpdate() {
+  async endUpdate() {
     if (this.catchUserErrors()) {
       let msg ="Hay errores en el formulario. Por favor, revíselo e intente de nuevo"
       this.toggleError(msg);
@@ -383,6 +396,10 @@ export class FormArtistasComponent implements OnInit {
         correo: dataAux.correo,
         descripcion: dataAux.descripcion,
         genero: dataAux.genero,
+        pagina_web: dataAux.pagina_web,
+        instagram: dataAux.instagram,
+        facebook: dataAux.facebook,
+
 
       };
       //subir musica de soundcloud
@@ -439,22 +456,25 @@ export class FormArtistasComponent implements OnInit {
         });
         }
       }
-      
+      await this.common.showLoader();
       this._userService.actualizarPerfil(this.IdPerfil,dataValues).subscribe(
         response => {
+          this.common.hideLoader();
           if(response.status == "success"){
            this.status = response.status;
-           this.router.navigate(['perfil/0']);
-           console.log(response);
+           this.ngOnInit();
+           this.common.showToast("Perfil actualizado exitosamente");
           }
           else{
+          this.common.showAlert("Error al registrar usuario");
            this.status = 'error';
-           console.log(this.status);
+
           }
         },
         error => {
          this.status = 'error';
          console.log(<any>error);
+         this.common.showAlert("Error al registrar usuario");
         }
      );
      if(this.file1){
@@ -538,9 +558,13 @@ export class FormArtistasComponent implements OnInit {
       let aux3 = this.fMusico.ciudad_origen.errors
         ? this.fMusico.ciudad_origen.errors.required
         : false;
-      let aux4 = this.fMusico.nombre_representante.errors
-        ? this.fMusico.nombre_representante.errors.required
-        : false;
+      let aux4 = "";
+      if(this.registroMusico.value.representante == 1){
+        let aux4 = this.fMusico.nombre_representante.errors
+          ? this.fMusico.nombre_representante.errors.required
+          : false;
+      }
+     
       let aux7 = this.fMusico.correo.errors
         ? this.fMusico.correo.errors.email
         : false;
@@ -551,6 +575,7 @@ export class FormArtistasComponent implements OnInit {
         ? this.fMusico.paginaWeb.errors.required
         : false;
 
+      
       let error =
         aux2 || aux3 || aux4 || aux7 || aux8 || aux9;
       return error;

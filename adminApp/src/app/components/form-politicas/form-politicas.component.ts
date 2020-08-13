@@ -33,7 +33,7 @@ export class FormPoliticasComponent implements OnInit {
   registroPolitica: FormGroup;
   public afuConfig = {
     multiple: false,
-    formatsAllowed: ".jpg,.png",
+    formatsAllowed: ".pdf, .png, .jpg",
     maxSize: "1",
     uploadAPI: {
       url: "http://localhost:8000/api/politicas/upload",
@@ -142,6 +142,7 @@ export class FormPoliticasComponent implements OnInit {
           .updatePolitica(this.politicaId, dataValues)
           .subscribe(respose => {
             this.common.hideLoader();
+            this.common.showToast("Politica actualizada correctamente");
             this.ngOnInit();
           });
       } else {
@@ -152,6 +153,7 @@ export class FormPoliticasComponent implements OnInit {
         this._PoliticaService
           .updatePolitica(this.politicaId, dataValues)
           .subscribe(respose => {
+            this.common.showToast("Politica actualizada correctamente");
             this.common.hideLoader();
             this.ngOnInit();
           });

@@ -31,7 +31,7 @@ export class ListaPoliticasComponent implements OnInit {
   buscarPolitica: FormGroup;
   listData: any;
   selectedTitle: any;
-
+  url;
   constructor(
     private router: Router,
     private common: CommonService,
@@ -47,7 +47,7 @@ export class ListaPoliticasComponent implements OnInit {
   async ngOnInit() {
     this.selectedTitle = "Lista de Políticas";
     await this.common.showLoader();
-
+    this.url = "http://localhost:8000/api/";
     this._politicaService.listPoliticas().subscribe(response => {
       this.common.hideLoader();
       this.politicas = response["politicas"];
@@ -102,19 +102,11 @@ export class ListaPoliticasComponent implements OnInit {
     return this._politicaComponent.initForm(1, idPolitica);
   }
 
-  filtrarPolitica() {
-    let dataAux = this.buscarPolitica.value;
+  async filtrarPolitica() {
+    this.selectedTitle = "Lista de Políticas";
 
-    let endpoint = `/politicas/nombre/${dataAux.nombre}`;
-
-    this.dbHandler.getSomething(endpoint).then((data: any) => {
-      // data is already a JSON object
-      if (!data.status) {
-        let errorMsg = data.msg;
-        this.toggleError(errorMsg);
-      } else {
-        this.politicas = data;
-      }
+    this._politicaService.politicaByName(this.buscarPolitica.controls["nombre"].value).subscribe(response => {
+      this.politicas = response["politicas"];
     });
   }
   habilitarPolitica(event) {}
@@ -125,20 +117,24 @@ export class ListaPoliticasComponent implements OnInit {
     this.router.navigate(["/editarpolitica", { politica: politica }]);
   }
 
-  async eliminarPolitica(event) {
-    let id = event.id;
+  async eliminarPolitica(id) {
     let endpoint = `/perfiles/delete/${id}`;
     await this.common.showLoader();
-    this.dbHandler.deleteSomething(endpoint).then((data: any) => {
+    this._politicaService.deletePolitica(id).subscribe(response=> {
       this.common.hideLoader();
-      // data is already a JSON object
-      if (!data.status) {
-        let errorMsg = data.msg;
-        this.toggleError(errorMsg);
-      } else {
+      if (response.status != "error") {
+        this.common.showToast("Género eliminado exitosamente");
         this.ngOnInit();
+      } else {
+        this.common.showAlert("Error eliminando el género");
       }
-    });
+    },
+    error => {
+      this.common.hideLoader();
+      this.common.showAlert("Error eliminando el género");
+      console.log(<any>error);
+    }
+    );
   }
 
   async toggleError(msg) {

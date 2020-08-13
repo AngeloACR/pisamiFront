@@ -38,6 +38,12 @@ export class PoliticaService {
     .set('Authorization',token.token);
     return this._http.get('http://localhost:8000/api/politicas/'+id, {headers : headers});
   }
+  politicaByName (name): Observable<any>{
+    let token = JSON.parse(localStorage.getItem('identity'));
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+    .set('Authorization',token.token);
+    return this._http.get('http://localhost:8000/api/politicas/name/'+name, {headers : headers});
+  }
 
 
   updatePolitica (id,notificacion): Observable<any>{
@@ -50,11 +56,11 @@ export class PoliticaService {
     return this._http.put('http://localhost:8000/api/politicas/update/'+id,params , {headers : headers});
   }
 
-  deleteNotificacion (id): Observable<any>{
+  deletePolitica (id): Observable<any>{
     let token = JSON.parse(localStorage.getItem('identity'));
     let headers = new HttpHeaders()
     .set('Authorization',token.token);
-    return this._http.delete('http://localhost:8000/api/notificaciones/delete/'+id, {headers : headers});
+    return this._http.delete('http://localhost:8000/api/politicas/delete/'+id, {headers : headers});
   }
   
 }

@@ -11,7 +11,7 @@
 <ion-content>
     <div class="modBox">
         <div class="logBox" *ngIf="isBuscar">
-            <img class="pageImg" src="assets/8-busqueda/busqueda.png" alt="buscador">
+            <img class="pageImg" style="height: 200px;width: 200px;" src="assets/8-busqueda/busqueda.png" alt="buscador">
             <form [formGroup]="buscarArtista">
                 <div class="formContent">
                     <div class="formInput nombreArtista">
@@ -54,14 +54,14 @@
         <div class="logBox" *ngIf="isVer">
             <div class="pageBox" [ngClass]="hideBox">
                 <div class="backBox">
-                    <img src="assets/10-perfil artista/atras.png" alt="" (click)="mostrarResultados()" />
+                    <img src="assets/10-perfil artista/atras.png" alt="" (click)="abrirResultados()" />
                 </div>
                 <div class="imgList">
                     <div class="arrowBox">
                         <img class="imgArrow" src="assets/10-perfil artista/izq.png" alt="" *ngIf="!isStartOfList"
                             (click)="prev()" />
                     </div>
-                    <img class="artistaImg" [src]="currentImage" alt="" />
+                    <img class="artistaImg" src="{{url + 'fotos/' + fotoPerfil }}" alt="" />
                     <div class="arrowBox">
                         <img class="imgArrow" src="assets/10-perfil artista/der.png" alt="" *ngIf="!isEndOfList" (click)="next()" />
                     </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="detailBox">
                             <p class="detailTitle">Géneros</p>
-                            <p class="detailContent">{{artistaEscogido.estilo_musica}}</p>
+                            <p class="detailContent">{{artistaEscogido.genero_musical}}</p>
                         </div>
                         <div class="detailRatingBox">
                             <div class="detailStarsBox">
@@ -92,7 +92,7 @@
                         <p class="detailTitle">REPRESENTANTE: <span class="detailContent">{{artistaEscogido.nombre_representante}}</span>
                         </p>
                         <p class="detailTitle">INTEGRANTES: <span class="detailContent">{{artistaEscogido.num_integrantes}}</span></p>
-                        <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.dispuesto_salir}}</span></p>
+                        <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.salen}}</span></p>
                     </div>
                     <div class="detailsDBox">
                         <div class="musicItem">

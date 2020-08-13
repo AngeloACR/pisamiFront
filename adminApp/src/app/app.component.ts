@@ -5,7 +5,12 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { IonSlides } from "@ionic/angular";
 import { AuthService } from "./services/auth.service";
-
+import {
+  Router,
+  ActivatedRoute,
+  ParamMap,
+  NavigationEnd
+} from "@angular/router";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -195,7 +200,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
     this.initializeApp();
     this.initSliders();
@@ -284,7 +290,7 @@ export class AppComponent {
       this.politicasMenu = true;
       this.selectedTitle = "Políticas";
     } else if (i == 3) {
-      this.auth.logout();
+      this.router.navigate(["/logout"]);
     }
   }
 

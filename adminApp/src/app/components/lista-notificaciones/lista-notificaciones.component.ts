@@ -95,7 +95,19 @@ export class ListaNotificacionesComponent implements OnInit {
     });
   }
 
-  filtrarNotificacion() {}
+  filtrarNotificacion() {
+    this._notificacionService.notificacionByName(this.buscarNotificacion.controls['nombre'].value).subscribe(
+      response => {
+        if (response.status != "error") {
+          this.notificaciones = response.notificacion;
+        }
+      },
+      error => {
+        this.common.hideLoader();
+        console.log(<any>error);
+      }
+    );
+  }
 
   habilitarNotificacion(event) {}
 
@@ -109,7 +121,6 @@ export class ListaNotificacionesComponent implements OnInit {
   }
 
   async eliminarNotificacion(id) {
-    if (confirm("Are you sure to delete ")) {
       await this.common.showLoader();
       this._notificacionService.deleteNotificacion(id).subscribe(
         response => {
@@ -118,6 +129,7 @@ export class ListaNotificacionesComponent implements OnInit {
             this.status = "success";
             this.common.showToast("Notificación eliminada exitosamente");
             this.router.navigate(["listanotificaciones"]);
+            this.ngOnInit();
           } else {
             this.common.showAlert("Error eliminando la notificación");
             this.status = "error";
@@ -130,7 +142,7 @@ export class ListaNotificacionesComponent implements OnInit {
           console.log(<any>error);
         }
       );
-    }
+    
   }
 
   async toggleError(msg) {

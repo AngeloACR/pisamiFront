@@ -87,4 +87,9 @@ export class UserService{
         return this._http.get('http://localhost:8000/api/users/id/'+ id,{headers : headers});
     }
 
+    userBy(filtro,valor): Observable<any>{
+        let token = this.getIdentity().token;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/users/'+filtro + '/' + valor,{headers : headers});
+    }
 }

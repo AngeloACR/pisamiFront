@@ -139,7 +139,7 @@ export class FormGenerosComponent implements OnInit {
           this.common.hideLoader();
           if (response.status != "error") {
             this.common.showAlert("Género actualizado correctamente");
-            this.router.navigate(["listageneros"]);
+            this.router.navigate(["/lista-generos"]);
             this.status = "success";
           } else {
             this.common.showAlert("Error actualizando el género");

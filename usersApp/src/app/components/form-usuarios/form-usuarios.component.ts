@@ -132,6 +132,7 @@ export class FormUsuariosComponent implements OnInit {
       await this.common.showLoader();
       this._userService.register(dataValues).subscribe(
         response => {
+          this.common.hideLoader();
           if (response.status == "success") {
             this.common.showToast("Usuario creado exitosamente");
             this.status = response.status;

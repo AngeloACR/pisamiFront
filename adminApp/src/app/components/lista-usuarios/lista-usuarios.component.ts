@@ -51,18 +51,7 @@ export class ListaUsuariosComponent implements OnInit {
     this._userService.listaUsuarios().subscribe(data => {
       this.common.hideLoader();
       this.usuarios = data["user"];
-      this.fields = ["Id", "Nombre", "Apellido", "Correo", "Teléfono"];
-      this.listData = [];
-      this.usuarios.forEach(usuario => {
-        let aux = {
-          id: usuario.id,
-          nombre: usuario.nombre,
-          apellido: usuario.apellido,
-          correo: usuario.correo,
-          telefono: usuario.telefono
-        };
-        this.listData.push(aux);
-      });
+      
     });
 
     /* let endpoint = `/usuarios`
@@ -81,14 +70,32 @@ export class ListaUsuariosComponent implements OnInit {
     this.router.navigate(["editarusuario"]);
     return this._usuarioComponent.initForm(1, iduser);
   }
-  estado(usuario, estado) {
+  disableNombre(){
+    this.buscarUsuario.controls['correo'].setValue("");
+    this.buscarUsuario.controls['apellido'].setValue("");
+    this.buscarUsuario.controls['nombre'].enable();
+  }
+  disableApellido(){
+
+    this.buscarUsuario.controls['correo'].setValue("");
+    this.buscarUsuario.controls['nombre'].setValue("");
+    this.buscarUsuario.controls['apellido'].enable();
+  }
+  disableCorreo(){
+    this.buscarUsuario.controls['nombre'].setValue("");
+    this.buscarUsuario.controls['apellido'].setValue("");
+    this.buscarUsuario.controls['correo'].enable();
+  }
+  async estado(usuario, estado) {
     let dataValues = {
       estado: estado
     };
+    await this.common.showLoader();
     this._userService
       .actualizarUsuario(usuario, dataValues)
       .subscribe(response => {
-        console.log(response);
+        this.common.hideLoader();
+        this.ngOnInit();
       });
   }
   getData() {
@@ -107,19 +114,25 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   filtrarUsuario() {
-    let dataAux = this.buscarUsuario.value;
-
-    let endpoint = `/usuarios/nombre/${dataAux.nombre}`;
-
-    this.dbHandler.getSomething(endpoint).then((data: any) => {
-      // data is already a JSON object
-      if (!data.status) {
-        let errorMsg = data.msg;
-        this.toggleError(errorMsg);
-      } else {
-        this.usuarios = data;
-      }
+   
+    if(this.buscarUsuario.controls['nombre'].value != ""){
+      var filtro = "nombre";
+      var value = this.buscarUsuario.controls['nombre'].value;
+    }
+    else if(this.buscarUsuario.controls['apellido'].value != ""){
+      var filtro = "apellido";
+      var value = this.buscarUsuario.controls['apellido'].value;
+    }
+    else{
+    var filtro = "correo";
+      var value = this.buscarUsuario.controls['correo'].value;
+    }
+    this.selectedTitle = "Lista de Usuarios";
+    this._userService.userBy(filtro,value).subscribe(data => {
+      this.usuarios = data["user"];
+      
     });
+
   }
   habilitarUsuario(event) {}
 

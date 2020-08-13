@@ -25,6 +25,7 @@ export class BuscadorComponent implements OnInit {
   foto;
   url;
   artista: any;
+  fotoPerfil: any;
 
   constructor(
     private _genreService : GenreService,
@@ -57,20 +58,21 @@ export class BuscadorComponent implements OnInit {
     if(dataAux.genero){
       this._userService.perfilBy("genero",dataAux.genero).subscribe(response =>{
         this.artistas = response['perfiles'];
+        console.log(response['perfiles'].id);
         this._fotoService.listById(response['perfiles'].id).subscribe(response =>{
-          this.foto = response['fotos'];
+          //this.foto = response['fotos'][0].foto;
         });
       });
     }
     else if(dataAux.nombre){
       this._userService.perfilBy("nombre_artistico",dataAux.nombre).subscribe(response =>{
         this.artistas = response['perfiles'];
-        let index = response['perfiles'].indexOf() + 1;
-        this._fotoService.listById(45).subscribe(response =>{
-          this.foto = response['fotos'][0].foto;
+        console.log(response['perfiles'].id);
+        this._fotoService.listById(response['perfiles'].id).subscribe(response =>{
+          //this.foto = response['fotos'][0].foto;
         });
         console.log(this.foto) 
-        console.log(this.artistas);
+        console.log(this.artistas[0].fotos);
       });
     }
     
@@ -87,7 +89,20 @@ export class BuscadorComponent implements OnInit {
   mostrarArtista(artista){
     this.selectedTitle = 'Perfil del Artista'
     this._userService.perfilBy("id",artista).subscribe(response =>{
-      this.artistaEscogido = response['perfiles'][0];
+      let perfiles = response['perfiles'][0];
+      if(perfiles.dispuesto_salir == 1){
+        perfiles.salen = "si";
+      }
+      else{
+        perfiles.salen = "no";
+      }
+      this._genreService.genreById(response['perfiles'][0].genero).subscribe(response =>{
+        perfiles.genero_musical = response['genero'].nombre;
+      });
+      this._fotoService.listById(perfiles.id).subscribe(response =>{
+        this.fotoPerfil = response['fotos'][0].foto;
+      });
+      this.artistaEscogido = perfiles;
       console.log(this.artistaEscogido);
     });
     this.isBuscar = false;

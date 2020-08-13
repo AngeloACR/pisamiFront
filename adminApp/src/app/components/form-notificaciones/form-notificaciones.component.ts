@@ -116,7 +116,7 @@ export class FormNotificacionesComponent implements OnInit {
           console.log(<any>error);
         }
       );
-      await this.common.showLoader();
+      /*await this.common.showLoader();
       this.dbHandler.postSomething(dataValues, endpoint).then((data: any) => {
         // data is already a JSON object
         this.common.hideLoader();
@@ -126,7 +126,7 @@ export class FormNotificacionesComponent implements OnInit {
         } else {
           this.ngOnInit();
         }
-      });
+      });*/
     }
   }
 
@@ -152,7 +152,6 @@ export class FormNotificacionesComponent implements OnInit {
             if (response.status != "error") {
               this.common.showToast("Notificación actualizada correctamente");
               this.status = "success";
-              this.router.navigate(["listanotificaciones"]);
             } else {
               this.common.showAlert("Error actualizando la notificación");
               this.status = "error";

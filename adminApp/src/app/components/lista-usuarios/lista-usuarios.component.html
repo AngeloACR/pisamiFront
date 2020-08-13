@@ -16,6 +16,7 @@
                         type="text"
                         formControlName="nombre"
                         name=""
+                        (click)="disableNombre()"
                       />
                     </div>
                     <div class="formInput">
@@ -25,6 +26,7 @@
                         type="text"
                         formControlName="apellido"
                         name=""
+                        (click)="disableApellido()"
                       />
                     </div>
                     <div class="formInput">
@@ -34,10 +36,11 @@
                         type="text"
                         formControlName="correo"
                         name=""
+                        (click)="disableCorreo()"
                       />
                     </div>
   
-                    <button type="button" class="formButton" (click)="getUsers()">
+                    <button type="button" class="formButton" (click)="filtrarUsuario()">
                       <p>FILTRAR</p>
                     </button>
                   </div>

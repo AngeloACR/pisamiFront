@@ -75,30 +75,35 @@ export class ListaArtistasComponent implements OnInit {
       .actualizarUsuario(usuario, dataValues)
       .subscribe(response => {
         this.common.hideLoader();
-        console.log(response);
+        this.ngOnInit();
       });
   }
 
   initForm() {
     this.buscarArtista = new FormGroup({
       nombre: new FormControl(""),
-      genero: new FormControl("")
+      apellido: new FormControl(""),
+      correo: new FormControl("")
     });
   }
 
   filtrarArtista() {
-    let dataAux = this.buscarArtista.value;
-
-    let endpoint = `/perfiles/nombre/${dataAux.nombre}`;
-
-    this.dbHandler.getSomething(endpoint).then((data: any) => {
-      // data is already a JSON object
-      if (!data.status) {
-        let errorMsg = data.msg;
-        this.toggleError(errorMsg);
-      } else {
-        this.artistas = data;
-      }
+    if(this.buscarArtista.controls['nombre'].value != ""){
+      var filtro = "nombre";
+      var value = this.buscarArtista.controls['nombre'].value;
+    }
+    else if(this.buscarArtista.controls['apellido'].value != ""){
+      var filtro = "apellido";
+      var value = this.buscarArtista.controls['apellido'].value;
+    }
+    else{
+    var filtro = "correo";
+      var value = this.buscarArtista.controls['correo'].value;
+    }
+    this.selectedTitle = "Lista de Usuarios";
+    this._userService.userBy(filtro,value).subscribe(data => {
+      this.artistas = data["user"];
+      
     });
   }
 

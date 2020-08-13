@@ -38,6 +38,12 @@ export class GenreService {
     .set('Authorization',token.token);
     return this._http.get('http://localhost:8000/api/generos/id/'+id, {headers : headers});
   }
+  genreByName (name): Observable<any>{
+    let token = JSON.parse(localStorage.getItem('identity'));
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+    .set('Authorization',token.token);
+    return this._http.get('http://localhost:8000/api/generos/nombre/'+name, {headers : headers});
+  }
 
 
   updateGenre (id,genre): Observable<any>{

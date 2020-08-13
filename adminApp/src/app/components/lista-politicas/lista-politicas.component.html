@@ -43,7 +43,8 @@
                     <p>{{politica.nombre}}</p>
                   </div>
                   <div>
-                    <p>{{politica.archivo}}</p>
+                    
+                    <p><a href="{{url + 'politicas/getPolitica/' + politica.archivo }}" target="_blank">{{politica.archivo}}</a></p>
                   </div>
                   <div style="width: 250px;"  class="actionBox">
                     <button
@@ -58,7 +59,7 @@
                       style="background-color: red"
                       type="button"
                       class="actionButton"
-                      (click)="eliminarGenero(genero.id)"
+                      (click)="eliminarPolitica(politica.id)"
                     >
                       <p>Eliminar</p>
                     </button>

@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
           //token
           this.common.hideLoader(); /****************** OCULTANDO LOADER******************/
           if (response.status != "error") {
+            console.log(response.estado);
             this.common.showToast("Sesión iniciada con éxito");
 
             this.status = "success";

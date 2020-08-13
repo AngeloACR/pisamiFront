@@ -2,7 +2,7 @@
     <div class="backBox">
         <img src="assets/10-perfil artista/atras.png" alt="" (click)="mostrarResultados()" />
     </div>
-    <div class="imgList">
+    <!--<div class="imgList">
         <div class="arrowBox">
             <img class="imgArrow" src="assets/10-perfil artista/izq.png" alt="" *ngIf="!isStartOfList"
                 (click)="prev()" />
@@ -11,7 +11,7 @@
         <div class="arrowBox">
             <img class="imgArrow" src="assets/10-perfil artista/der.png" alt="" *ngIf="!isEndOfList" (click)="next()" />
         </div>
-    </div>
+    </div>-->
     <div class="verBox">
         <div class="detailsABox">
             <div class="detailBox">
@@ -24,7 +24,7 @@
             </div>
             <div class="detailBox">
                 <p class="detailTitle">Géneros</p>
-                <p class="detailContent">{{artistaEscogido.categorias}}</p>
+                <p class="detailContent">{{artistaEscogido.genero}}</p>
             </div>
             <div class="detailRatingBox">
                 <div class="detailStarsBox">
@@ -38,7 +38,7 @@
             <p class="detailTitle">REPRESENTANTE: <span class="detailContent">{{artistaEscogido.representante}}</span>
             </p>
             <p class="detailTitle">INTEGRANTES: <span class="detailContent">{{artistaEscogido.integrantes}}</span></p>
-            <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.salen}}</span></p>
+            <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.dispuesto_salir}}</span></p>
         </div>
         <div class="detailsDBox">
             <div class="musicItem">
