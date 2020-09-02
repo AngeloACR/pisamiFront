@@ -15,16 +15,16 @@
                 <img class="pageImg" src="assets/adicionales/favorito2.png" alt="favoritos">
                 <div class="cardBox" *ngFor="let artista of artistas">
                     <div class="imgBox">
-                        <img class="imgResultados" [src]="artista.imagenes[0]" alt="" />
+                        <img class="imgResultados" style="height: 100px;width: 100px;" src="{{url + 'fotos/' + artista.fotos[0].foto }}" alt="" />
                     </div>
                     <div class="infoBox">
                         <p>NOMBRE AGRUPACIÓN</p>
-                        <p>{{artista.nombre}}</p>
+                        <p>{{artista.nombre_artistico}}</p>
                         <p>CATEGORÍAS</p>
-                        <p>{{artista.categorias}}</p>
+                        <p>{{artista.genero}}</p>
                     </div>
                     <div class="moreBox">
-                        <button type="button" class="formButton" (click)="verArtista($event, artista)">
+                        <button type="button" class="formButton" (click)="verArtista(artista.id)">
                             <p>VER MÁS</p>
                         </button>
                     </div>
@@ -32,8 +32,92 @@
             </div>
         </div>
         <div class="logBox" *ngIf="isDetalle">
-            <app-detalle-artista [artistaEscogido]="artistaEscogido" style="width: 100%;" (musica)="verMusica()"
-                (perfil)="verPerfil()" (videos)="verVideos()" (volver)="volverLista()"></app-detalle-artista>
+            <div class="pageBox" [ngClass]="hideBox">
+                <div class="backBox">
+                    <img src="assets/10-perfil artista/atras.png" alt="" (click)="abrirResultados()" />
+                </div>
+                <div class="imgList">
+                    <div class="arrowBox">
+                        <img class="imgArrow" src="assets/10-perfil artista/izq.png" alt="" *ngIf="!isStartOfList"
+                            (click)="prev()" />
+                    </div>
+                    <img class="artistaImg" src="{{url + 'fotos/' + currentImage }}" alt="" />
+                    <div class="arrowBox">
+                        <img class="imgArrow" src="assets/10-perfil artista/der.png" alt="" *ngIf="!isEndOfList" (click)="next()" />
+                    </div>
+                </div>
+                <div class="verBox">
+                    <div class="detailsABox">
+                        <div class="detailBox">
+                            <p class="detailTitle">Nombre</p>
+                            <p class="detailContent">{{artistaEscogido.nombre_artistico}}</p>
+                        </div>
+                        <div class="detailBox">
+                            <p class="detailTitle">Ciudad de Origen: </p>
+                            <p class="detailContent">{{artistaEscogido.ciudad_origen}}</p>
+                        </div>
+                        <div class="detailBox">
+                            <p class="detailTitle">Géneros</p>
+                            <p class="detailContent">{{artistaEscogido.generos.nombre}}</p>
+                        </div>
+                        <div class="detailRatingBox">
+                            <div class="detailStarsBox">
+                                <app-rating [rating]="artistaEscogido.calificacion"> </app-rating>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detailsBBox">
+                        <p class="detailTitle">DESCRIPCIÓN</p>
+                        <p>{{artistaEscogido.descripcion}}</p>
+                        <p class="detailTitle">REPRESENTANTE: <span class="detailContent">{{artistaEscogido.nombre_representante}}</span>
+                        </p>
+                        <p class="detailTitle">INTEGRANTES: <span class="detailContent">{{artistaEscogido.num_integrantes}}</span></p>
+                        <p class="detailTitle">Salen de la ciudad: <span class="detailContent">{{artistaEscogido.salen}}</span></p>
+                    </div>
+                    <div class="detailsDBox">
+                        <div class="musicItem">
+                            <img src="assets/10-perfil artista/video.png" alt="video" (click)="mostrarVideos()" />
+                        </div>
+                        <div class="musicItem">
+                            <img src="assets/10-perfil artista/musica.png" alt="musica" (click)="mostrarCanciones()" />
+                        </div>
+                    </div>
+                    <div class="detailsCBox">
+                        <p style="width: 100%; text-align: center; font-size: 16px;">CONTACTO</p>
+                        <div class="contactItem">
+                            <img src="assets/10-perfil artista/tele.png" alt="telefono" />
+                            <p class="detailContent">{{artistaEscogido.telefono}}</p>
+                        </div>
+                        <div class="contactItem">
+                            <img src="assets/10-perfil artista/correo.png" alt="correo" />
+                            <p class="detailContent">{{artistaEscogido.correo}}</p>
+                        </div>
+                        <div class="contactItem" *ngIf="artistaEscogido.facebook">
+                            <img src="assets/10-perfil artista/facebbok.png" alt="facebook" />
+                            <p class="detailContent">{{artistaEscogido.facebook}}</p>
+                        </div>
+                        <div class="contactItem" *ngIf="artistaEscogido.instagram">
+                            <img src="assets/10-perfil artista/instagram.png" alt="instagram" />
+                            <p class="detailContent">{{artistaEscogido.instagram}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ratingBox">
+                    <p>CALIFICA QUE TE PARECIÓ:</p>
+                    <div class="starsBox">
+                        <app-rating [rating]="-1"> </app-rating>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logBox" *ngIf="isVideos">
+                <app-videos style="width: 100%;" [videos]="artistaEscogido.videos" (verCanciones)="mostrarCanciones()"
+                    (volver)="mostrarPerfil()"></app-videos>
+            </div>
+            <div class="logBox" *ngIf="isCanciones">
+                <app-canciones style="width: 100%;" [canciones]="artistaEscogido.canciones" (verVideos)="mostrarVideos()"
+                    (volver)="mostrarPerfil()"></app-canciones>
+            </div>
         </div>
     </div>
 </ion-content>

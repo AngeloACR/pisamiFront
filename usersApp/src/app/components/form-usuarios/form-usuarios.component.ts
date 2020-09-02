@@ -174,12 +174,16 @@ export class FormUsuariosComponent implements OnInit {
       } else {
         this.tipo = 1;
       }
+      let login = JSON.parse(localStorage.getItem("identity"));
+      console.log(login.clave);
       let dataValues = {
         nombre: dataAux.nombre,
         apellido: dataAux.apellido,
         telefono: dataAux.telefono,
         correo: dataAux.correo,
         contrasena: dataAux.password,
+        clave: login.clave,
+        login: login.login,
         tipo_usuario: this.tipo
       };
       let userdata = JSON.parse(localStorage.getItem("identity"));
@@ -189,7 +193,7 @@ export class FormUsuariosComponent implements OnInit {
         .subscribe(response => {
           this.common.hideLoader();
           this.common.showToast("Usuario actualizado exitosamente");
-          console.log("ok");
+          console.log(response);
         });
     }
   }

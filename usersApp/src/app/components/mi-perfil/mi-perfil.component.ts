@@ -1,17 +1,19 @@
 import { CommonService } from "../../services/common.service";
-import { FavoritoService } from "../../services/favorito.service";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
+import { FavoritoService } from "../../services/favorito.service";
+import {GenreService} from "../../services/genres.service";
+import {UserService} from "../../services/user.service";
+import {FotoService} from "../../services/foto.service";
 
 @Component({
-  selector: "app-detalle-artista",
-  templateUrl: "./detalle-artista.component.html",
-  styleUrls: ["./detalle-artista.component.scss"]
+  selector: 'app-mi-perfil',
+  templateUrl: './mi-perfil.component.html',
+  styleUrls: ['./mi-perfil.component.scss'],
+  providers:[GenreService,UserService,FotoService,FavoritoService]
 })
-export class DetalleArtistaComponent implements OnInit {
-  @Input()
+export class MiPerfilComponent implements OnInit {
   artistaEscogido: any;
-
   @Output()
   volver = new EventEmitter<any>();
 
@@ -23,21 +25,33 @@ export class DetalleArtistaComponent implements OnInit {
 
   @Output()
   perfil = new EventEmitter<any>();
-
+  isVer:boolean;
   isVideos: boolean;
   isCanciones: boolean;
   hideBox: {};
-
+  rating:number;
   isEndOfList: boolean;
   isStartOfList: boolean;
   currentImageIndex: number;
   currentImage: string;
   imageList: [];
+  fotoPerfil: any;
+  selectedTitle:any;
+  url:any;
+  fotoid;
 
-  constructor(private common: CommonService, private sanitizer: DomSanitizer, private _favorito : FavoritoService) {}
+  constructor(
+    private common: CommonService,
+    private sanitizer: DomSanitizer, 
+    private _favorito : FavoritoService,
+    private _genreService : GenreService,
+    private _userService : UserService,
+    private _fotoService : FotoService,
+    private _favoritoService : FavoritoService,
+    ) {}
 
   ngOnInit() {
-    this.isVideos = false;
+   /* this.isVideos = false;
     this.isCanciones = false;
     this.isStartOfList = true;
     this.isEndOfList = false;
@@ -45,7 +59,10 @@ export class DetalleArtistaComponent implements OnInit {
     this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
     this.hideBox = {
       hideBox: false
-    };
+    };*/
+    this.mostrarPerfil();
+    console.log(this.rating);
+ 
   }
 
   prev() {
@@ -55,18 +72,18 @@ export class DetalleArtistaComponent implements OnInit {
     }
     this.isEndOfList = false;
     console.log(this.currentImageIndex);
-    this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
+    this.currentImage = this.artistaEscogido.fotos[this.currentImageIndex].foto;
   }
 
   next() {
     this.currentImageIndex += 1;
-    let finalIndex = this.artistaEscogido.imagenes.length - 1;
+    let finalIndex = this.artistaEscogido.fotos.length - 1;
     if (this.currentImageIndex == finalIndex) {
       this.isEndOfList = true;
     }
     this.isStartOfList = false;
     console.log(this.currentImageIndex);
-    this.currentImage = this.artistaEscogido.imagenes[this.currentImageIndex];
+    this.currentImage = this.artistaEscogido.fotos[this.currentImageIndex].foto;
   }
 
   sanitize(url: string) {
@@ -98,14 +115,33 @@ export class DetalleArtistaComponent implements OnInit {
     };
     this.musica.emit();
   }
+  
 
   mostrarPerfil() {
-    this.isCanciones = false;
+   this.isCanciones = false;
     this.isVideos = false;
     this.hideBox = {
       hideBox: false
     };
-    this.perfil.emit();
+    this.perfil.emit()
+    this.url = "http://localhost:8000/api/";
+    this.selectedTitle = 'Perfil del Artista'
+    let userId = JSON.parse(localStorage.getItem('identity'));
+    userId = userId.userId;
+    this._userService.perfilBy("usuario_id",userId).subscribe(response =>{ 
+      let perfiles = response['perfiles'][0];
+      if(perfiles.dispuesto_salir == 1){
+        perfiles.salen = "si";
+      }
+      else{
+        perfiles.salen = "no";
+      }
+      this.artistaEscogido = perfiles;
+      this.currentImage = perfiles.fotos[0].foto;
+      this.currentImageIndex = 0;
+      console.log(this.artistaEscogido);
+    });
+    this.isVer = true;
   }
 
   mostrarVideos() {
@@ -116,4 +152,5 @@ export class DetalleArtistaComponent implements OnInit {
     };
     this.videos.emit();
   }
+
 }

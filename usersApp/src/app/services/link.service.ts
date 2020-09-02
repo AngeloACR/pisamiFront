@@ -31,7 +31,6 @@ export class LinkService{
         .set('Authorization',token.token);
         return this._http.get('http://localhost:8000/api/links/name/'+nombre , {headers : headers});
     }
-
    
 
 }

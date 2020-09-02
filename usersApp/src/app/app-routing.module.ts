@@ -5,6 +5,7 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
 import { PoliticaComponent } from './components/politica/politica.component';
 import { BuscadorVideosComponent } from './components/buscador-videos/buscador-videos.component';
 import { BuscadorCancionesComponent } from './components/buscador-canciones/buscador-canciones.component';
@@ -63,7 +64,10 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent,
   },
-  
+  {
+    path: 'miperfil',
+    component: MiPerfilComponent,
+  },
   
 ];
 @NgModule({

@@ -12,7 +12,7 @@
                 <div class="textBanner">
                     <p>Restablece tu Contraseña</p>
                 </div>
-                <form [formGroup]="restorePassword" (ngSubmit)="restorePass()">
+                <form [formGroup]="restorePassword" *ngIf="correo" (ngSubmit)="restorePass()">
                     <div class="formContent">
                         <div class="formInput">
                             <input class="lInput" type="text" placeholder="Correo electrónico" formControlName="mail"
@@ -32,10 +32,47 @@
                         </div>
                     </div>
                 </form>
+                <form [formGroup]="restorePassword" *ngIf="codigo" (ngSubmit)="checkCode()">
+                    <div class="formContent">
+                        <div class="formInput">
+                            <input class="lInput" type="text" placeholder="Introduzca su codigo" formControlName="code"
+                                name="code" />
+                        </div>
+                        <div class="errorTag"
+                            *ngIf="fRestore.code.errors?.required && (fRestore.code.touched || fRestore.code.dirty)">
+                            Este campo es requerido</div>
+
+                        <div class="buttonBox">
+                            <button type="submit" class="formButton">
+                                <p>Enviar</p>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <form [formGroup]="restorePassword" *ngIf="contrasena" (ngSubmit)="changePass()">
+                    <div class="formContent" *ngIf="contrasena">
+                        <div class="formInput">
+                            <input class="lInput" type="password" placeholder="Nueva contrasena" formControlName="contrasena"
+                                name="contrasena" />
+                        </div>
+                        <div class="errorTag"
+                            *ngIf="fRestore.password.errors?.required && (fRestore.password.touched || fRestore.password.dirty)">
+                            Este campo es requerido</div>
+                        <div class="buttonBox">
+                            <button type="submit" class="formButton">
+                                <p>Enviar</p>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="confirmText" [ngClass]="showConfirm">
                 <span class="loginButton" (click)="close()">X</span>
-                <p>Le hemos enviado un correo electrónico para poder restablecer su contraseña</p>
+                <p>{{message}}</p>
+            </div>
+            <div class="confirmText" [ngClass]="showCode">
+                <span class="loginButton" (click)="close()">X</span>
+                <p>Introduzca su nueva contrasena</p>
             </div>
             <div class="copyright">
                 <img src="assets/logos alcaldia.png" alt="Logo" />

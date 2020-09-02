@@ -47,7 +47,7 @@ export class ListaPoliticasComponent implements OnInit {
   async ngOnInit() {
     this.selectedTitle = "Lista de Políticas";
     await this.common.showLoader();
-    this.url = "http://localhost:8000/api/";
+    this.url = "http://localhost:8000/";
     this._politicaService.listPoliticas().subscribe(response => {
       this.common.hideLoader();
       this.politicas = response["politicas"];

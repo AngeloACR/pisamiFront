@@ -52,8 +52,9 @@ export class LoginComponent implements OnInit {
       this._userService.signup(data).subscribe(
         response => {
           //token
+          console.log(response);
           this.common.hideLoader(); /****************** OCULTANDO LOADER******************/
-          if (response.status != "error") {
+          if (response.status != "error" && response.estado == 1 && response.confirmed == 1) {
             console.log(response.estado);
             this.common.showToast("Sesión iniciada con éxito");
 

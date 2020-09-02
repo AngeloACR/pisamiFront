@@ -25,6 +25,7 @@ import { VideosComponent } from "./components/videos/videos.component";
 import { ResultadosBuscadorComponent } from "./components/resultados-buscador/resultados-buscador.component";
 import { CancionesComponent } from "./components/canciones/canciones.component";
 import { PerfilComponent } from "./components/perfil/perfil.component";
+import { MiPerfilComponent } from "./components/mi-perfil/mi-perfil.component";
 import { BuscadorVideosComponent } from "./components/buscador-videos/buscador-videos.component";
 import { PoliticaComponent } from "./components/politica/politica.component";
 import { BuscadorCancionesComponent } from "./components/buscador-canciones/buscador-canciones.component";
@@ -48,6 +49,7 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     HeaderComponent,
     LoginComponent,
     PerfilComponent,
+    MiPerfilComponent,
     RatingComponent,
     RestorePassComponent,
     ResetPassComponent,

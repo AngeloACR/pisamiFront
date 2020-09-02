@@ -25,6 +25,23 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.post('http://localhost:8000/api/users/login',params , {headers : headers});
     } 
+    resetPass(correo){
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get('http://localhost:8000/api/users/recuperarcontrasena/'+ correo,{headers : headers});    
+    }
+    calificar(userId,perfilId,calificacion) : Observable<any>{
+        let token = this.getIdentity().token;
+        let user_id = this.getIdentity().userId;
+        let headers = new HttpHeaders().set('Authorization',token);
+        let params = perfilId + '/' + userId + '/' + calificacion;
+        return this._http.get('http://localhost:8000/api/calificaciones/calificar/'+ params,{headers : headers});
+    }
+    calificacion(perfilId) : Observable<any>{
+        let token = this.getIdentity().token;
+        let user_id = this.getIdentity().userId;
+        let headers = new HttpHeaders().set('Authorization',token);
+        return this._http.get('http://localhost:8000/api/calificaciones/calificacion/'+ perfilId,{headers : headers});
+    }
     perfilId(id = null): Observable<any>{
         let token = this.getIdentity().token;
         let user_id = this.getIdentity().userId;
@@ -52,6 +69,14 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
         .set('Authorization',token);
         return this._http.put('http://localhost:8000/api/users/update/'+idUsuario,params , {headers : headers});
+    }
+    actualizarContrasena(data): Observable<any>{
+        let json = JSON.stringify(data);
+        let params = 'json='+json;
+        console.log(params);
+        let id = 1;
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.put('http://localhost:8000/api/users/updatepassword/'+id,params , {headers : headers});
     }
     actualizarPerfil(idPerfil,user): Observable<any>{
         let token = this.getIdentity().token;

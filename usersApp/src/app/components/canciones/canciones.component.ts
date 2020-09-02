@@ -19,7 +19,13 @@ export class CancionesComponent implements OnInit {
 
   constructor(private common: CommonService, private sanitizer: DomSanitizer) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.canciones.forEach(cancion => {
+      if(cancion.plataforma == "SoundCloud"){
+        cancion.link = atob(cancion.link);
+      }
+    }); 
+  }
 
   mostrarVideos() {
     this.verVideos.emit();
