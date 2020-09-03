@@ -187,6 +187,8 @@ ion-item.selected {
 .slideMenu {
   top: 50%;
   transform: translatey(-50%);
+  --bullet-background: white;
+  --bullet-background-active: rgba(255, 255, 255, 0.5);
   background-color: #f24e2b;
 }
 

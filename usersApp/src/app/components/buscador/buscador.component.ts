@@ -38,10 +38,10 @@ export class BuscadorComponent implements OnInit {
     this.isBuscar = true;
     this.isVer = false;
     this.isResultados = false;
+    this.initForm();
     this._genreService.listGenre().subscribe(response => {
       this.generos = response['generos'];
     });
-    this.initForm();
   }
   initForm(){
     this.buscarArtista = new FormGroup({

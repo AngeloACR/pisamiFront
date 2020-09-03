@@ -5,11 +5,13 @@
         <ion-menu contentId="main-content" type="overlay">
             <ion-header [translucent]="true">
                 <app-header title="menu"></app-header>
-                <img class="closeImg" src="assets/X.png" (click)="closeMenu()" />
+                <div class="circularBox">
+                    <img class="closeImg" src="assets/X.png" (click)="closeMenu()" />
+                </div>
             </ion-header>
 
             <ion-content id="adminMenu">
-                <ion-slides class="slideMenu" [options]="slideOptsOne" #slideWithNav>
+                <ion-slides pager class="slideMenu" [options]="slideOptsOne" #slideWithNav>
                     <ion-slide *ngFor="let s of menuSlider.slidesItems">
                         <ion-list class="menuList">
                             <ion-menu-toggle auto-hide="false" *ngFor="let p of s.menuPages; let i = index">
